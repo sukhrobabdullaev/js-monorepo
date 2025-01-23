@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../../src/index.ts"],
+  "sourcesContent": ["import { api as near, convertUnit } from \"./near.js\";\n\n// @ts-ignore\nwindow.near = near;\n// @ts-ignore\nwindow.$$ = convertUnit;\n\nexport { near };\n\nexport * from './cryptoUtils.js';\nexport * from './near.js';\nexport * from './transaction.js';\nexport * from './utils.js';\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAGA,OAAO,OAAO;AAEd,OAAO,KAAK;",
+  "names": []
+}

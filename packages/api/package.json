@@ -1,0 +1,41 @@
+{
+  "name": "@fastnear/api",
+  "version": "0.3.0",
+  "description": "Interact with NEAR Protocol blockchain including transaction signing, utilities, and more.",
+  "type": "module",
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/index.js",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "publish": "yarn npm publish",
+    "clean": "yarn rimraf dist node_modules"
+  },
+  "keywords": [
+    "near-protocol",
+    "blockchain",
+    "fastnear"
+  ],
+  "author": "FastNEAR",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "dependencies": {
+    "@fastnear/wallet-adapter": "workspace:*",
+    "@noble/curves": "*",
+    "@noble/hashes": "*",
+    "base58-js": "*",
+    "big": "*",
+    "borsh": "*"
+  },
+  "devDependencies": {
+    "glob": "*",
+    "rimraf": "*"
+  }
+}

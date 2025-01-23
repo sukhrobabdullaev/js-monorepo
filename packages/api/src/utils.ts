@@ -1,0 +1,66 @@
+import {
+  binary_to_base58 as toBase58,
+  base58_to_binary as fromBase58,
+} from "base58-js";
+import Big from "big.js";
+import { encode, decode } from 'js-base64';
+
+export { toBase58, fromBase58 };
+
+const LsPrefix = "__fastnear_";
+
+export function toBase64(data) {
+  if (typeof data === 'string') {
+    return encode(data);
+  } else {
+    const bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
+    const str = String.fromCharCode(...bytes);
+    return encode(str);
+  }
+}
+
+export function fromBase64(str) {
+  const binaryString = decode(str);
+  const len = binaryString.length;
+  const bytes = new Uint8Array(len);
+  for (let i = 0; i < len; i++) {
+    bytes[i] = binaryString.charCodeAt(i);
+  }
+  return bytes;
+}
+
+export function lsSet(key, value) {
+  if (value === null || value === undefined) {
+    localStorage.removeItem(LsPrefix + key);
+  } else {
+    localStorage.setItem(LsPrefix + key, JSON.stringify(value));
+  }
+}
+
+export function lsGet(key) {
+  const value = localStorage.getItem(LsPrefix + key);
+  return tryParseJson(value, null);
+}
+
+export function deepCopy(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
+export function tryParseJson(...args) {
+  try {
+    return JSON.parse(args[0]);
+  } catch {
+    if (args.length > 1) {
+      return args[1];
+    }
+    return args[0];
+  }
+}
+
+export function canSignWithLAK(actions) {
+  return (
+    actions.length === 1 &&
+    actions[0].type === "FunctionCall" &&
+    Big(actions[0]?.deposit ?? "0").eq(0)
+  );
+}

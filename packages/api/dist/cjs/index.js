@@ -685,7 +685,7 @@ function parseJsonFromBytes(bytes) {
   }
 }
 function withBlockId(params, blockId) {
-  return blockId === "final" || blockId === "optimistic" ? { ...params, finality: blockId } : !!blockId ? { ...params, block_id: blockId } : { ...params, finality: "optimistic" };
+  return blockId === "final" || blockId === "optimistic" ? { ...params, finality: blockId } : blockId ? { ...params, block_id: blockId } : { ...params, finality: "optimistic" };
 }
 async function queryRpc(method, params) {
   const response = await fetch(_config.nodeUrl, {
@@ -781,10 +781,10 @@ function convertUnit(s, ...args) {
     });
   }
   if (typeof s == "string") {
-    let match = s.match(/([0-9.,_]+)\s*([a-zA-Z]+)?/);
+    const match = s.match(/([0-9.,_]+)\s*([a-zA-Z]+)?/);
     if (match) {
-      let amount = match[1].replace(/[_,]/g, "");
-      let unitPart = match[2];
+      const amount = match[1].replace(/[_,]/g, "");
+      const unitPart = match[2];
       if (unitPart) {
         switch (unitPart.toLowerCase()) {
           case "near":
@@ -794,9 +794,10 @@ function convertUnit(s, ...args) {
           case "ggas":
             return (0, import_big2.default)(amount).mul((0, import_big2.default)(10).pow(9)).toFixed(0);
           case "gas":
+          case "yoctonear":
             return (0, import_big2.default)(amount).toFixed(0);
           default:
-            throw new Error(`Unknown unit: ${unit}`);
+            throw new Error(`Unknown unit: ${unitPart}`);
         }
       } else {
         return (0, import_big2.default)(amount).toFixed(0);
@@ -847,7 +848,13 @@ var api = {
     return "SignedIn";
   },
   // Query Methods
-  async view({ contractId, methodName, args, argsBase64, blockId }) {
+  async view({
+    contractId,
+    methodName,
+    args,
+    argsBase64,
+    blockId
+  }) {
     const encodedArgs = argsBase64 || (args ? toBase64(JSON.stringify(args)) : "");
     const result = await queryRpc(
       "query",
@@ -863,7 +870,10 @@ var api = {
     );
     return parseJsonFromBytes(result.result);
   },
-  async account({ accountId, blockId }) {
+  async account({
+    accountId,
+    blockId
+  }) {
     return queryRpc(
       "query",
       withBlockId(
@@ -878,7 +888,11 @@ var api = {
   async block({ blockId }) {
     return queryRpc("block", withBlockId({}, blockId));
   },
-  async accessKey({ accountId, publicKey, blockId }) {
+  async accessKey({
+    accountId,
+    publicKey,
+    blockId
+  }) {
     return queryRpc(
       "query",
       withBlockId(
@@ -898,7 +912,11 @@ var api = {
     return [..._txHistory];
   },
   // Transaction Methods
-  async sendTx({ receiverId, actions, waitUntil }) {
+  async sendTx({
+    receiverId,
+    actions,
+    waitUntil
+  }) {
     const signerId = _state.accountId;
     if (!signerId) {
       throw new Error("Not signed in");
@@ -918,7 +936,7 @@ var api = {
         tx: jsonTransaction2,
         finalState: false
       });
-      const url = new URL(window.location.href);
+      const url = new URL(typeof window !== "undefined" ? window.location.href : "");
       url.searchParams.set("txIds", txId);
       _adapter.sendTransactions({
         transactions: [jsonTransaction2],
@@ -927,16 +945,18 @@ var api = {
         console.log("Transaction result:", result);
         if (result.url) {
           console.log("Redirecting to wallet:", result.url);
-          setTimeout(() => {
-            window.location.href = result.url;
-          }, 100);
+          if (typeof window !== "undefined") {
+            setTimeout(() => {
+              window.location.href = result.url;
+            }, 100);
+          }
         } else if (result.outcomes) {
-          result.outcomes.forEach((result2) => {
+          result.outcomes.forEach((r) => {
             updateTxHistory({
               txId,
               status: "Executed",
-              result: result2,
-              txHash: result2.transaction.hash,
+              result: r,
+              txHash: r.transaction.hash,
               finalState: true
             });
           });
@@ -964,10 +984,11 @@ var api = {
       });
       return txId;
     }
-    const toDoPromises = {};
     let nonce = lsGet("nonce");
+    let block = lsGet("block");
+    const toDoPromises = {};
     if (nonce === null || nonce === void 0) {
-      toDoPromises.nonce = this.accessKey({
+      toDoPromises.nonce = api.accessKey({
         accountId: signerId,
         publicKey
       }).then((accessKey) => {
@@ -978,30 +999,30 @@ var api = {
         return accessKey.nonce;
       });
     }
-    let block = lsGet("block");
-    if (!block || parseFloat(block.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()) {
-      toDoPromises.block = this.block({ blockId: "final" }).then((block2) => {
-        block2 = {
+    if (!block || !block.header || parseFloat(block.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()) {
+      toDoPromises.block = api.block({ blockId: "final" }).then((b) => {
+        const newBlock = {
           header: {
-            prev_hash: block2.header.prev_hash,
-            timestamp_nanosec: block2.header.timestamp_nanosec
+            prev_hash: b.header.prev_hash,
+            timestamp_nanosec: b.header.timestamp_nanosec
           }
         };
-        lsSet("block", block2);
-        return block2;
+        lsSet("block", newBlock);
+        return newBlock;
       });
     }
     if (Object.keys(toDoPromises).length > 0) {
-      let results = await Promise.all(Object.values(toDoPromises));
-      for (let i = 0; i < results.length; i++) {
-        if (Object.keys(toDoPromises)[i] === "nonce") {
-          nonce = results[i];
-        } else if (Object.keys(toDoPromises)[i] === "block") {
-          block = results[i];
+      const results = await Promise.all(Object.values(toDoPromises));
+      const keys = Object.keys(toDoPromises);
+      results.forEach((res, i) => {
+        if (keys[i] === "nonce") {
+          nonce = res;
+        } else if (keys[i] === "block") {
+          block = res;
         }
-      }
+      });
     }
-    const newNonce = nonce + 1;
+    const newNonce = (nonce ?? 0) + 1;
     lsSet("nonce", newNonce);
     const blockHash = block.header.prev_hash;
     const jsonTransaction = {
@@ -1016,11 +1037,8 @@ var api = {
     const transaction = serializeTransaction(jsonTransaction);
     const txHash = (0, import_base58_js.binary_to_base58)(import_sha2.sha256(transaction));
     const signature = signHash(txHash, privateKey);
-    const singedTransaction = serializeSignedTransaction(
-      jsonTransaction,
-      signature
-    );
-    const signedTxBase64 = toBase64(singedTransaction);
+    const signedTransaction = serializeSignedTransaction(jsonTransaction, signature);
+    const signedTxBase64 = toBase64(signedTransaction);
     updateTxHistory({
       status: "Pending",
       txId,
@@ -1053,9 +1071,11 @@ var api = {
     }
     if (result.url) {
       console.log("Redirecting to wallet:", result.url);
-      setTimeout(() => {
-        window.location.href = result.url;
-      }, 100);
+      if (typeof window !== "undefined") {
+        setTimeout(() => {
+          window.location.href = result.url;
+        }, 100);
+      }
     } else if (result.accountId) {
       updateState({
         accountId: result.accountId
@@ -1088,7 +1108,13 @@ var api = {
   },
   // Action Helpers
   actions: {
-    functionCall: ({ methodName, gas, deposit, args, argsBase64 }) => ({
+    functionCall: ({
+      methodName,
+      gas,
+      deposit,
+      args,
+      argsBase64
+    }) => ({
       type: "FunctionCall",
       methodName,
       args,
@@ -1149,66 +1175,68 @@ var api = {
   }
 };
 try {
-  const url = new URL(window.location.href);
-  const accountId = url.searchParams.get("account_id");
-  const publicKey = url.searchParams.get("public_key");
-  const errorCode = url.searchParams.get("errorCode");
-  const errorMessage = url.searchParams.get("errorMessage");
-  const transactionHashes = url.searchParams.get("transactionHashes");
-  const txIds = url.searchParams.get("txIds");
-  if (errorCode || errorMessage) {
-    console.warn(new Error(`Wallet error: ${errorCode} ${errorMessage}`));
-  }
-  if (accountId && publicKey) {
-    if (publicKey === _state.publicKey) {
-      updateState({
-        accountId
-      });
-    } else {
-      console.error(
-        new Error("Public key mismatch from wallet redirect"),
-        publicKey,
-        _state.publicKey
-      );
+  if (typeof window !== "undefined") {
+    const url = new URL(window.location.href);
+    const accountId = url.searchParams.get("account_id");
+    const publicKey = url.searchParams.get("public_key");
+    const errorCode = url.searchParams.get("errorCode");
+    const errorMessage = url.searchParams.get("errorMessage");
+    const transactionHashes = url.searchParams.get("transactionHashes");
+    const txIds = url.searchParams.get("txIds");
+    if (errorCode || errorMessage) {
+      console.warn(new Error(`Wallet error: ${errorCode} ${errorMessage}`));
     }
-  }
-  if (transactionHashes || txIds) {
-    const txHashes = transactionHashes ? transactionHashes.split(",") : [];
-    const txIdsArray = txIds ? txIds.split(",") : [];
-    if (txIdsArray.length > txHashes.length) {
-      txIdsArray.forEach((txId, i) => {
-        updateTxHistory({
-          txId,
-          status: "RejectedByUser",
-          finalState: true
+    if (accountId && publicKey) {
+      if (publicKey === _state.publicKey) {
+        updateState({
+          accountId
         });
-      });
-    } else if (txIdsArray.length === txHashes.length) {
-      txIdsArray.forEach((txId, i) => {
-        updateTxHistory({
-          txId,
-          status: "PendingGotTxHash",
-          txHash: txHashes[i],
-          finalState: false
-        });
-        afterTxSent(txId);
-      });
-    } else {
-      console.error(
-        new Error("Transaction hash mismatch from wallet redirect"),
-        txIdsArray,
-        txHashes
-      );
+      } else {
+        console.error(
+          new Error("Public key mismatch from wallet redirect"),
+          publicKey,
+          _state.publicKey
+        );
+      }
     }
+    if (transactionHashes || txIds) {
+      const txHashes = transactionHashes ? transactionHashes.split(",") : [];
+      const txIdsArray = txIds ? txIds.split(",") : [];
+      if (txIdsArray.length > txHashes.length) {
+        txIdsArray.forEach((txId, i) => {
+          updateTxHistory({
+            txId,
+            status: "RejectedByUser",
+            finalState: true
+          });
+        });
+      } else if (txIdsArray.length === txHashes.length) {
+        txIdsArray.forEach((txId, i) => {
+          updateTxHistory({
+            txId,
+            status: "PendingGotTxHash",
+            txHash: txHashes[i],
+            finalState: false
+          });
+          afterTxSent(txId);
+        });
+      } else {
+        console.error(
+          new Error("Transaction hash mismatch from wallet redirect"),
+          txIdsArray,
+          txHashes
+        );
+      }
+    }
+    url.searchParams.delete("account_id");
+    url.searchParams.delete("public_key");
+    url.searchParams.delete("errorCode");
+    url.searchParams.delete("errorMessage");
+    url.searchParams.delete("all_keys");
+    url.searchParams.delete("transactionHashes");
+    url.searchParams.delete("txIds");
+    window.history.replaceState({}, "", url.toString());
   }
-  url.searchParams.delete("account_id");
-  url.searchParams.delete("public_key");
-  url.searchParams.delete("errorCode");
-  url.searchParams.delete("errorMessage");
-  url.searchParams.delete("all_keys");
-  url.searchParams.delete("transactionHashes");
-  url.searchParams.delete("txIds");
-  window.history.replaceState({}, "", url.toString());
 } catch (e) {
   console.error("Error handling wallet redirect:", e);
 }

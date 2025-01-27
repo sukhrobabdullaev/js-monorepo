@@ -1,6 +1,6 @@
 {
   "name": "@fastnear/wallet-adapter-widget",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "User interfaces for select NEAR Protocol web3 wallets",
   "type": "module",
   "scripts": {

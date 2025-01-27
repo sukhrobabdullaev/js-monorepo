@@ -1,0 +1,43 @@
+{
+  "name": "@fastnear/wallet-adapter-widget",
+  "version": "0.3.0",
+  "description": "User interfaces for select NEAR Protocol web3 wallets",
+  "type": "module",
+  "scripts": {
+    "build": "node esbuild.config.mjs",
+    "publish": "yarn npm publish",
+    "clean": "yarn rimraf dist node_modules",
+    "type-check": "tsc --noEmit"
+  },
+  "keywords": [
+    "near-protocol",
+    "blockchain",
+    "fastnear"
+  ],
+  "author": "FastNEAR",
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.js",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "dependencies": {
+    "@fastnear/meteorwallet-sdk": "*",
+    "@here-wallet/core": "*",
+    "base58-js": "*",
+    "base64-js": "*",
+    "borsh": "*"
+  },
+  "peerDependencies": {
+    "bn.js": "=5.2.1",
+    "borsh": "=0.7.0",
+    "near-api-js": "^0.45.0"
+  },
+  "devDependencies": {
+    "rimraf": "*",
+    "typescript": "*"
+  }
+}

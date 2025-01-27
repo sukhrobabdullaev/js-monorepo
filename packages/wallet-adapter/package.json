@@ -6,7 +6,8 @@
   "scripts": {
     "build": "node esbuild.config.mjs",
     "publish": "yarn npm publish",
-    "clean": "yarn rimraf dist node_modules"
+    "clean": "yarn rimraf dist node_modules",
+    "type-check": "tsc --noEmit"
   },
   "keywords": [
     "near-protocol",
@@ -24,6 +25,7 @@
     }
   },
   "devDependencies": {
-    "rimraf": "*"
+    "rimraf": "*",
+    "typescript": "*"
   }
 }

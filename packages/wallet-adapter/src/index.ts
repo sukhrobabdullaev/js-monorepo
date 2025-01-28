@@ -229,7 +229,7 @@ export class WalletAdapter {
    * @returns {Promise<SignInResult>}
    */
   async signIn(config) {
-    return this.#sendMessage("/login.html", "signIn", config);
+    return this.#sendMessage("/public/login.html", "signIn", config);
   }
 
   /**
@@ -238,7 +238,7 @@ export class WalletAdapter {
    * @returns {Promise<TransactionResult>}
    */
   async sendTransactions(config) {
-    return this.#sendMessage("/send.html", "sendTransactions", config);
+    return this.#sendMessage("/public/send.html", "sendTransactions", config);
   }
 
   /**

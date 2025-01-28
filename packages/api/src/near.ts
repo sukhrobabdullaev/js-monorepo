@@ -21,8 +21,7 @@ Big.DP = 27;
 // Constants
 const MaxBlockDelayMs = 1000 * 60 * 60 * 6; // 6 hours
 
-// const WIDGET_URL = "https://wallet-adapter.fastnear.com";
-const WIDGET_URL = "http://localhost:3000/";
+const WIDGET_URL = "https://wallet-adapter.fastnear.com";
 
 const DEFAULT_NETWORK_ID = "mainnet";
 const NETWORKS = {

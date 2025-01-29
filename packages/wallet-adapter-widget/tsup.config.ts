@@ -3,16 +3,7 @@ import { defineConfig } from 'tsup'
 const globalName = 'NearWalletAdapterWidget'
 const friendlyPackageName = 'Wallet Adapter Widget'
 
-// Any packages that are difficult to bundle can be excluded.
-// They won't be included in the final output, and you'll have
-// to ensure they're provided at runtime (Node or browser).
 const externalDeps = [
-  // '@fastnear/meteorwallet-sdk',
-  // '@here-wallet/core',
-  // 'base58-js',
-  // 'base64-js',
-  // 'borsh',
-  // 'bn.js',
   'near-api-js',
 ]
 
@@ -67,7 +58,6 @@ export default defineConfig([
     globalName,
     bundle: true,
     splitting: false,
-    // If you remove external here, the libraries above *will* be bundled
     external: externalDeps,
     dts: false,
     sourcemap: true,

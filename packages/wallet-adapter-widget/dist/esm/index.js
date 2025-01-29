@@ -1,19 +1,8 @@
-/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - https://github.com/fastnear */
-import {
-  wallets
-} from "./chunk-4CBS7GAR.js";
-import "./chunk-FRJGXRW7.js";
-import "./chunk-HCVHMGI5.js";
-import "./chunk-M3Y6E5XQ.js";
-import "./chunk-KRSAZQWH.js";
-import "./chunk-BKHU7CHG.js";
-import "./chunk-AJ4LTYAN.js";
-import "./chunk-NQRLIIBW.js";
-import "./chunk-AY5XE6ZG.js";
-import "./chunk-5YON4ULE.js";
-
-// src/index.ts
-var params = {};
+/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - ESM */
+var __defProp = Object.defineProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+import { wallets } from "./wallets.js";
+let params = {};
 window.addEventListener("message", (event) => {
   if (event.source !== window.parent) {
     return;
@@ -41,6 +30,7 @@ async function handleLogin() {
     ).join("");
     walletList.addEventListener("click", handleWalletSelect);
   }
+  __name(setupWalletList, "setupWalletList");
   async function handleWalletSelect(e) {
     const button = e.target.closest(".wallet-button");
     if (!button) return;
@@ -73,6 +63,7 @@ async function handleLogin() {
       );
     }
   }
+  __name(handleWalletSelect, "handleWalletSelect");
   document.getElementById("closeButton")?.addEventListener("click", () => {
     window.parent.postMessage(
       {
@@ -84,6 +75,7 @@ async function handleLogin() {
   });
   setupWalletList();
 }
+__name(handleLogin, "handleLogin");
 async function handleSend() {
   const { state = {} } = params;
   const wallet = wallets.find((w) => w.id === state.lastWalletId);
@@ -145,6 +137,7 @@ async function handleSend() {
     }
   }
 }
+__name(handleSend, "handleSend");
 export {
   handleLogin,
   handleSend

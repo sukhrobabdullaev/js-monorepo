@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/utils/utils.ts"],
-  "sourcesContent": ["import {\n  binary_to_base58 as toBase58,\n  base58_to_binary as fromBase58,\n} from \"base58-js\";\n\nimport { toByteArray, fromByteArray } from 'base64-js';\n\nexport { toBase58, fromBase58 };\n\nexport const keyFromString = (key) =>\n  fromBase58(\n    key.includes(\":\")\n      ? (() => {\n          const [curve, keyPart] = key.split(\":\");\n          if (curve !== \"ed25519\") {\n            throw new Error(`Unsupported curve: ${curve}`);\n          }\n          return keyPart;\n        })()\n      : key\n  );\n\nexport const keyToString = (key) => `ed25519:${toBase58(key)}`;\n\nexport function toBase64(data: Uint8Array): string {\n  return fromByteArray(data);\n}\n\nexport function fromBase64(base64: string): Uint8Array {\n  return toByteArray(base64);\n}\n"],
-  "mappings": ";;;AAAA;AAAA,EACE,oBAAoB;AAAA,EACpB,oBAAoB;AAAA,OACf;AAEP,SAAS,aAAa,qBAAqB;AAIpC,IAAM,gBAAgB,CAAC,QAC5B;AAAA,EACE,IAAI,SAAS,GAAG,KACX,MAAM;AACL,UAAM,CAAC,OAAO,OAAO,IAAI,IAAI,MAAM,GAAG;AACtC,QAAI,UAAU,WAAW;AACvB,YAAM,IAAI,MAAM,sBAAsB,KAAK,EAAE;AAAA,IAC/C;AACA,WAAO;AAAA,EACT,GAAG,IACH;AACN;AAEK,IAAM,cAAc,CAAC,QAAQ,WAAW,SAAS,GAAG,CAAC;AAErD,SAAS,SAAS,MAA0B;AACjD,SAAO,cAAc,IAAI;AAC3B;AAEO,SAAS,WAAW,QAA4B;AACrD,SAAO,YAAY,MAAM;AAC3B;",
-  "names": []
-}

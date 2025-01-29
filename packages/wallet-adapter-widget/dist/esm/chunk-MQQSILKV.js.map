@@ -1,7 +1,0 @@
-{
-  "version": 3,
-  "sources": ["../../src/wallets.ts"],
-  "sourcesContent": ["import hereIcon from './icons/here.js';\nimport nearIcon from './icons/near.js';\nimport meteorIcon from './icons/meteor.js';\nimport { createHereAdapter } from './adapters/here.js';\nimport { createNearAdapter } from './adapters/near.js';\nimport { createMeteorAdapter } from './adapters/meteor.js';\n\nexport const wallets = [\n  {\n    id: 'near',\n    name: 'NEAR Wallet',\n    icon: nearIcon,\n    adapter: createNearAdapter()\n  },\n  {\n    id: 'here',\n    name: 'HERE Wallet',\n    icon: hereIcon,\n    adapter: createHereAdapter()\n  },\n  {\n    id: 'meteor',\n    name: 'Meteor Wallet',\n    icon: meteorIcon,\n    adapter: createMeteorAdapter()\n  }\n];"],
-  "mappings": ";;;;;;;;;;;;;;;;;;;;;AAOO,IAAM,UAAU;AAAA,EACrB;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,MAAM;AAAA,IACN,SAAS,kBAAkB;AAAA,EAC7B;AAAA,EACA;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,MAAM;AAAA,IACN,SAAS,kBAAkB;AAAA,EAC7B;AAAA,EACA;AAAA,IACE,IAAI;AAAA,IACJ,MAAM;AAAA,IACN,MAAM;AAAA,IACN,SAAS,oBAAoB;AAAA,EAC/B;AACF;",
-  "names": []
-}

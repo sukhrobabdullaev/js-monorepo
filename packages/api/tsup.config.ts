@@ -50,7 +50,7 @@ export default defineConfig([
     sourcemap: true,
     minify: false,
     splitting: false,
-    bundle: true,
+    platform: 'browser',
     dts: false,
     clean: true,
     keepNames: true,

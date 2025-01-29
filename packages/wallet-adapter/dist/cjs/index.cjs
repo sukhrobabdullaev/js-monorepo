@@ -1,8 +1,9 @@
-/* ⋈ 🏃🏻💨 FastNEAR API - https://github.com/fastnear */
+/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter - CJS */
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -16,14 +17,15 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
 var src_exports = {};
 __export(src_exports, {
   WalletAdapter: () => WalletAdapter
 });
 module.exports = __toCommonJS(src_exports);
-var WalletAdapter = class _WalletAdapter {
+class WalletAdapter {
+  static {
+    __name(this, "WalletAdapter");
+  }
   /** @type {HTMLIFrameElement} */
   #iframe = null;
   /** @type {string} */
@@ -41,10 +43,10 @@ var WalletAdapter = class _WalletAdapter {
   /** @type {string} */
   static defaultWidgetUrl = "https://wallet-adapter.fastnear.com";
   /**
-     * @param {WalletAdapterConfig} [config]
-     */
+   * @param {WalletAdapterConfig} [config]
+   */
   constructor({
-    widgetUrl = _WalletAdapter.defaultWidgetUrl,
+    widgetUrl = WalletAdapter.defaultWidgetUrl,
     targetOrigin = "*",
     onStateUpdate,
     lastState,
@@ -67,6 +69,7 @@ var WalletAdapter = class _WalletAdapter {
       this.#iframe.remove();
     }
     const url = new URL(path, this.#widgetUrl);
+    console.log("aloha wa url", url);
     const iframe = document.createElement("iframe");
     iframe.src = url.toString();
     iframe.allow = "usb";
@@ -158,7 +161,7 @@ var WalletAdapter = class _WalletAdapter {
    * @returns {Promise<SignInResult>}
    */
   async signIn(config) {
-    return this.#sendMessage("/login.html", "signIn", config);
+    return this.#sendMessage("/public/login.html", "signIn", config);
   }
   /**
    * Send a transaction using connected wallet
@@ -166,7 +169,7 @@ var WalletAdapter = class _WalletAdapter {
    * @returns {Promise<TransactionResult>}
    */
   async sendTransactions(config) {
-    return this.#sendMessage("/send.html", "sendTransactions", config);
+    return this.#sendMessage("/public/send.html", "sendTransactions", config);
   }
   /**
    * Clean up adapter resources
@@ -176,9 +179,9 @@ var WalletAdapter = class _WalletAdapter {
     this.#iframe?.remove();
     this.#iframe = null;
   }
-};
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
   WalletAdapter
 });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.cjs.map

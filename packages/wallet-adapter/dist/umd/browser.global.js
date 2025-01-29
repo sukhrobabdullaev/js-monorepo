@@ -1,9 +1,10 @@
-/* ⋈ 🏃🏻💨 FastNEAR API - https://github.com/fastnear */
-var nearWalletAdapter = (() => {
+/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter - IIFE/UMD */
+var NearWalletAdapter = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -24,6 +25,9 @@ var nearWalletAdapter = (() => {
     WalletAdapter: () => WalletAdapter
   });
   var WalletAdapter = class _WalletAdapter {
+    static {
+      __name(this, "WalletAdapter");
+    }
     /** @type {HTMLIFrameElement} */
     #iframe = null;
     /** @type {string} */
@@ -41,8 +45,8 @@ var nearWalletAdapter = (() => {
     /** @type {string} */
     static defaultWidgetUrl = "https://wallet-adapter.fastnear.com";
     /**
-       * @param {WalletAdapterConfig} [config]
-       */
+     * @param {WalletAdapterConfig} [config]
+     */
     constructor({
       widgetUrl = _WalletAdapter.defaultWidgetUrl,
       targetOrigin = "*",
@@ -67,6 +71,7 @@ var nearWalletAdapter = (() => {
         this.#iframe.remove();
       }
       const url = new URL(path, this.#widgetUrl);
+      console.log("aloha wa url", url);
       const iframe = document.createElement("iframe");
       iframe.src = url.toString();
       iframe.allow = "usb";
@@ -158,7 +163,7 @@ var nearWalletAdapter = (() => {
      * @returns {Promise<SignInResult>}
      */
     async signIn(config) {
-      return this.#sendMessage("/login.html", "signIn", config);
+      return this.#sendMessage("/public/login.html", "signIn", config);
     }
     /**
      * Send a transaction using connected wallet
@@ -166,7 +171,7 @@ var nearWalletAdapter = (() => {
      * @returns {Promise<TransactionResult>}
      */
     async sendTransactions(config) {
-      return this.#sendMessage("/send.html", "sendTransactions", config);
+      return this.#sendMessage("/public/send.html", "sendTransactions", config);
     }
     /**
      * Clean up adapter resources
@@ -179,4 +184,4 @@ var nearWalletAdapter = (() => {
   };
   return __toCommonJS(src_exports);
 })();
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=browser.global.js.map

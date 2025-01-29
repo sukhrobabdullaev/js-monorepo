@@ -1,7 +1,10 @@
-/* ⋈ 🏃🏻💨 FastNEAR API - https://github.com/fastnear */
-
-// src/index.ts
-var WalletAdapter = class _WalletAdapter {
+/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter - ESM */
+var __defProp = Object.defineProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+class WalletAdapter {
+  static {
+    __name(this, "WalletAdapter");
+  }
   /** @type {HTMLIFrameElement} */
   #iframe = null;
   /** @type {string} */
@@ -19,10 +22,10 @@ var WalletAdapter = class _WalletAdapter {
   /** @type {string} */
   static defaultWidgetUrl = "https://wallet-adapter.fastnear.com";
   /**
-     * @param {WalletAdapterConfig} [config]
-     */
+   * @param {WalletAdapterConfig} [config]
+   */
   constructor({
-    widgetUrl = _WalletAdapter.defaultWidgetUrl,
+    widgetUrl = WalletAdapter.defaultWidgetUrl,
     targetOrigin = "*",
     onStateUpdate,
     lastState,
@@ -45,6 +48,7 @@ var WalletAdapter = class _WalletAdapter {
       this.#iframe.remove();
     }
     const url = new URL(path, this.#widgetUrl);
+    console.log("aloha wa url", url);
     const iframe = document.createElement("iframe");
     iframe.src = url.toString();
     iframe.allow = "usb";
@@ -136,7 +140,7 @@ var WalletAdapter = class _WalletAdapter {
    * @returns {Promise<SignInResult>}
    */
   async signIn(config) {
-    return this.#sendMessage("/login.html", "signIn", config);
+    return this.#sendMessage("/public/login.html", "signIn", config);
   }
   /**
    * Send a transaction using connected wallet
@@ -144,7 +148,7 @@ var WalletAdapter = class _WalletAdapter {
    * @returns {Promise<TransactionResult>}
    */
   async sendTransactions(config) {
-    return this.#sendMessage("/send.html", "sendTransactions", config);
+    return this.#sendMessage("/public/send.html", "sendTransactions", config);
   }
   /**
    * Clean up adapter resources
@@ -154,7 +158,7 @@ var WalletAdapter = class _WalletAdapter {
     this.#iframe?.remove();
     this.#iframe = null;
   }
-};
+}
 export {
   WalletAdapter
 };

@@ -1,9 +1,18 @@
-/* ⋈ 🏃🏻💨 FastNEAR API - https://github.com/fastnear */
-var FastNear = (() => {
+/* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD */
+var NearApi = (() => {
+  var __create = Object.create;
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __getProtoOf = Object.getPrototypeOf;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+  var __require = /* @__PURE__ */ ((x) => typeof require !== "undefined" ? require : typeof Proxy !== "undefined" ? new Proxy(x, {
+    get: (a, b) => (typeof require !== "undefined" ? require : a)[b]
+  }) : x)(function(x) {
+    if (typeof require !== "undefined") return require.apply(this, arguments);
+    throw Error('Dynamic require of "' + x + '" is not supported');
+  });
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -16,6 +25,14 @@ var FastNear = (() => {
     }
     return to;
   };
+  var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__getProtoOf(mod2)) : {}, __copyProps(
+    // If the importer is in node compatibility mode or this is not an ESM
+    // file that has been converted to a CommonJS file using a Babel-
+    // compatible transform (i.e. "__esModule" has not been set), then set
+    // "default" to the CommonJS "module.exports" for node compatibility.
+    isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
+    mod2
+  ));
   var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
 
   // src/index.ts
@@ -82,6 +99,7 @@ var FastNear = (() => {
       }
       x.constructor = Big2;
     }
+    __name(Big2, "Big");
     Big2.prototype = P;
     Big2.DP = DP;
     Big2.RM = RM;
@@ -94,6 +112,7 @@ var FastNear = (() => {
     Big2.roundUp = 3;
     return Big2;
   }
+  __name(_Big_, "_Big_");
   function parse(x, n) {
     var e, i, nl;
     if (!NUMERIC.test(n)) {
@@ -120,6 +139,7 @@ var FastNear = (() => {
     }
     return x;
   }
+  __name(parse, "parse");
   function round(x, sd, rm, more) {
     var xc = x.c;
     if (rm === UNDEFINED) rm = x.constructor.RM;
@@ -152,6 +172,7 @@ var FastNear = (() => {
     }
     return x;
   }
+  __name(round, "round");
   function stringify(x, doExponential, isNonzero) {
     var e = x.e, s = x.c.join(""), n = s.length;
     if (doExponential) {
@@ -170,6 +191,7 @@ var FastNear = (() => {
     }
     return x.s < 0 && isNonzero ? "-" + s : s;
   }
+  __name(stringify, "stringify");
   P.abs = function() {
     var x = new this.constructor(this);
     x.s = 1;
@@ -532,6 +554,9 @@ var FastNear = (() => {
 
   // ../wallet-adapter/src/index.ts
   var WalletAdapter = class _WalletAdapter {
+    static {
+      __name(this, "WalletAdapter");
+    }
     /** @type {HTMLIFrameElement} */
     #iframe = null;
     /** @type {string} */
@@ -549,8 +574,8 @@ var FastNear = (() => {
     /** @type {string} */
     static defaultWidgetUrl = "https://wallet-adapter.fastnear.com";
     /**
-       * @param {WalletAdapterConfig} [config]
-       */
+     * @param {WalletAdapterConfig} [config]
+     */
     constructor({
       widgetUrl = _WalletAdapter.defaultWidgetUrl,
       targetOrigin = "*",
@@ -575,6 +600,7 @@ var FastNear = (() => {
         this.#iframe.remove();
       }
       const url = new URL(path, this.#widgetUrl);
+      console.log("aloha wa url", url);
       const iframe = document.createElement("iframe");
       iframe.src = url.toString();
       iframe.allow = "usb";
@@ -666,7 +692,7 @@ var FastNear = (() => {
      * @returns {Promise<SignInResult>}
      */
     async signIn(config) {
-      return this.#sendMessage("/login.html", "signIn", config);
+      return this.#sendMessage("/public/login.html", "signIn", config);
     }
     /**
      * Send a transaction using connected wallet
@@ -674,7 +700,7 @@ var FastNear = (() => {
      * @returns {Promise<TransactionResult>}
      */
     async sendTransactions(config) {
-      return this.#sendMessage("/send.html", "sendTransactions", config);
+      return this.#sendMessage("/public/send.html", "sendTransactions", config);
     }
     /**
      * Clean up adapter resources
@@ -690,18 +716,21 @@ var FastNear = (() => {
   function isBytes(a) {
     return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array";
   }
+  __name(isBytes, "isBytes");
   function abytes(b, ...lengths) {
     if (!isBytes(b))
       throw new Error("Uint8Array expected");
     if (lengths.length > 0 && !lengths.includes(b.length))
       throw new Error("Uint8Array expected of length " + lengths + ", got length=" + b.length);
   }
+  __name(abytes, "abytes");
   function aexists(instance, checkFinished = true) {
     if (instance.destroyed)
       throw new Error("Hash instance has been destroyed");
     if (checkFinished && instance.finished)
       throw new Error("Hash#digest() has already been called");
   }
+  __name(aexists, "aexists");
   function aoutput(out, instance) {
     abytes(out);
     const min = instance.outputLen;
@@ -709,37 +738,45 @@ var FastNear = (() => {
       throw new Error("digestInto() expects output buffer of length at least " + min);
     }
   }
+  __name(aoutput, "aoutput");
 
-  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/crypto.js
-  var crypto2 = typeof globalThis === "object" && "crypto" in globalThis ? globalThis.crypto : void 0;
+  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/cryptoNode.js
+  var nc = __toESM(__require("node:crypto"), 1);
+  var crypto2 = nc && typeof nc === "object" && "webcrypto" in nc ? nc.webcrypto : nc && typeof nc === "object" && "randomBytes" in nc ? nc : void 0;
 
   // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js
-  var createView = (arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
+  var createView = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
   function utf8ToBytes(str) {
     if (typeof str !== "string")
       throw new Error("utf8ToBytes expected string, got " + typeof str);
     return new Uint8Array(new TextEncoder().encode(str));
   }
+  __name(utf8ToBytes, "utf8ToBytes");
   function toBytes(data) {
     if (typeof data === "string")
       data = utf8ToBytes(data);
     abytes(data);
     return data;
   }
+  __name(toBytes, "toBytes");
   var Hash = class {
+    static {
+      __name(this, "Hash");
+    }
     // Safe version that clones internal state
     clone() {
       return this._cloneInto();
     }
   };
   function wrapConstructor(hashCons) {
-    const hashC = (msg) => hashCons().update(toBytes(msg)).digest();
+    const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes(msg)).digest(), "hashC");
     const tmp = hashCons();
     hashC.outputLen = tmp.outputLen;
     hashC.blockLen = tmp.blockLen;
     hashC.create = () => hashCons();
     return hashC;
   }
+  __name(wrapConstructor, "wrapConstructor");
   function randomBytes(bytesLength = 32) {
     if (crypto2 && typeof crypto2.getRandomValues === "function") {
       return crypto2.getRandomValues(new Uint8Array(bytesLength));
@@ -749,6 +786,7 @@ var FastNear = (() => {
     }
     throw new Error("crypto.getRandomValues must be defined");
   }
+  __name(randomBytes, "randomBytes");
 
   // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/_md.js
   function setBigUint64(view, byteOffset, value, isLE) {
@@ -763,7 +801,11 @@ var FastNear = (() => {
     view.setUint32(byteOffset + h, wh, isLE);
     view.setUint32(byteOffset + l, wl, isLE);
   }
+  __name(setBigUint64, "setBigUint64");
   var HashMD = class extends Hash {
+    static {
+      __name(this, "HashMD");
+    }
     constructor(blockLen, outputLen, padOffset, isLE) {
       super();
       this.blockLen = blockLen;
@@ -858,6 +900,7 @@ var FastNear = (() => {
       return { h: Number(n & U32_MASK64), l: Number(n >> _32n & U32_MASK64) };
     return { h: Number(n >> _32n & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
   }
+  __name(fromBig, "fromBig");
   function split(lst, le = false) {
     let Ah = new Uint32Array(lst.length);
     let Al = new Uint32Array(lst.length);
@@ -867,29 +910,31 @@ var FastNear = (() => {
     }
     return [Ah, Al];
   }
-  var toBig = (h, l) => BigInt(h >>> 0) << _32n | BigInt(l >>> 0);
-  var shrSH = (h, _l, s) => h >>> s;
-  var shrSL = (h, l, s) => h << 32 - s | l >>> s;
-  var rotrSH = (h, l, s) => h >>> s | l << 32 - s;
-  var rotrSL = (h, l, s) => h << 32 - s | l >>> s;
-  var rotrBH = (h, l, s) => h << 64 - s | l >>> s - 32;
-  var rotrBL = (h, l, s) => h >>> s - 32 | l << 64 - s;
-  var rotr32H = (_h, l) => l;
-  var rotr32L = (h, _l) => h;
-  var rotlSH = (h, l, s) => h << s | l >>> 32 - s;
-  var rotlSL = (h, l, s) => l << s | h >>> 32 - s;
-  var rotlBH = (h, l, s) => l << s - 32 | h >>> 64 - s;
-  var rotlBL = (h, l, s) => h << s - 32 | l >>> 64 - s;
+  __name(split, "split");
+  var toBig = /* @__PURE__ */ __name((h, l) => BigInt(h >>> 0) << _32n | BigInt(l >>> 0), "toBig");
+  var shrSH = /* @__PURE__ */ __name((h, _l, s) => h >>> s, "shrSH");
+  var shrSL = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "shrSL");
+  var rotrSH = /* @__PURE__ */ __name((h, l, s) => h >>> s | l << 32 - s, "rotrSH");
+  var rotrSL = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "rotrSL");
+  var rotrBH = /* @__PURE__ */ __name((h, l, s) => h << 64 - s | l >>> s - 32, "rotrBH");
+  var rotrBL = /* @__PURE__ */ __name((h, l, s) => h >>> s - 32 | l << 64 - s, "rotrBL");
+  var rotr32H = /* @__PURE__ */ __name((_h, l) => l, "rotr32H");
+  var rotr32L = /* @__PURE__ */ __name((h, _l) => h, "rotr32L");
+  var rotlSH = /* @__PURE__ */ __name((h, l, s) => h << s | l >>> 32 - s, "rotlSH");
+  var rotlSL = /* @__PURE__ */ __name((h, l, s) => l << s | h >>> 32 - s, "rotlSL");
+  var rotlBH = /* @__PURE__ */ __name((h, l, s) => l << s - 32 | h >>> 64 - s, "rotlBH");
+  var rotlBL = /* @__PURE__ */ __name((h, l, s) => h << s - 32 | l >>> 64 - s, "rotlBL");
   function add(Ah, Al, Bh, Bl) {
     const l = (Al >>> 0) + (Bl >>> 0);
     return { h: Ah + Bh + (l / 2 ** 32 | 0) | 0, l: l | 0 };
   }
-  var add3L = (Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0);
-  var add3H = (low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0;
-  var add4L = (Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0);
-  var add4H = (low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0;
-  var add5L = (Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0);
-  var add5H = (low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0;
+  __name(add, "add");
+  var add3L = /* @__PURE__ */ __name((Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0), "add3L");
+  var add3H = /* @__PURE__ */ __name((low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0, "add3H");
+  var add4L = /* @__PURE__ */ __name((Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0), "add4L");
+  var add4H = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0, "add4H");
+  var add5L = /* @__PURE__ */ __name((Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0), "add5L");
+  var add5H = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0, "add5H");
   var u64 = {
     fromBig,
     split,
@@ -1002,6 +1047,9 @@ var FastNear = (() => {
   var SHA512_W_H = /* @__PURE__ */ new Uint32Array(80);
   var SHA512_W_L = /* @__PURE__ */ new Uint32Array(80);
   var SHA512 = class extends HashMD {
+    static {
+      __name(this, "SHA512");
+    }
     constructor() {
       super(128, 64, 16, false);
       this.Ah = 1779033703 | 0;
@@ -1122,14 +1170,17 @@ var FastNear = (() => {
   function isBytes2(a) {
     return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array";
   }
+  __name(isBytes2, "isBytes");
   function abytes2(item) {
     if (!isBytes2(item))
       throw new Error("Uint8Array expected");
   }
+  __name(abytes2, "abytes");
   function abool(title, value) {
     if (typeof value !== "boolean")
       throw new Error(title + " boolean expected, got " + value);
   }
+  __name(abool, "abool");
   var hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
   function bytesToHex(bytes) {
     abytes2(bytes);
@@ -1139,11 +1190,13 @@ var FastNear = (() => {
     }
     return hex;
   }
+  __name(bytesToHex, "bytesToHex");
   function hexToNumber(hex) {
     if (typeof hex !== "string")
       throw new Error("hex string expected, got " + typeof hex);
     return hex === "" ? _0n : BigInt("0x" + hex);
   }
+  __name(hexToNumber, "hexToNumber");
   var asciis = { _0: 48, _9: 57, A: 65, F: 70, a: 97, f: 102 };
   function asciiToBase16(ch) {
     if (ch >= asciis._0 && ch <= asciis._9)
@@ -1154,6 +1207,7 @@ var FastNear = (() => {
       return ch - (asciis.a - 10);
     return;
   }
+  __name(asciiToBase16, "asciiToBase16");
   function hexToBytes(hex) {
     if (typeof hex !== "string")
       throw new Error("hex string expected, got " + typeof hex);
@@ -1173,19 +1227,24 @@ var FastNear = (() => {
     }
     return array;
   }
+  __name(hexToBytes, "hexToBytes");
   function bytesToNumberBE(bytes) {
     return hexToNumber(bytesToHex(bytes));
   }
+  __name(bytesToNumberBE, "bytesToNumberBE");
   function bytesToNumberLE(bytes) {
     abytes2(bytes);
     return hexToNumber(bytesToHex(Uint8Array.from(bytes).reverse()));
   }
+  __name(bytesToNumberLE, "bytesToNumberLE");
   function numberToBytesBE(n, len) {
     return hexToBytes(n.toString(16).padStart(len * 2, "0"));
   }
+  __name(numberToBytesBE, "numberToBytesBE");
   function numberToBytesLE(n, len) {
     return numberToBytesBE(n, len).reverse();
   }
+  __name(numberToBytesLE, "numberToBytesLE");
   function ensureBytes(title, hex, expectedLength) {
     let res;
     if (typeof hex === "string") {
@@ -1204,6 +1263,7 @@ var FastNear = (() => {
       throw new Error(title + " of length " + expectedLength + " expected, got " + len);
     return res;
   }
+  __name(ensureBytes, "ensureBytes");
   function concatBytes(...arrays) {
     let sum = 0;
     for (let i = 0; i < arrays.length; i++) {
@@ -1219,34 +1279,38 @@ var FastNear = (() => {
     }
     return res;
   }
-  var isPosBig = (n) => typeof n === "bigint" && _0n <= n;
+  __name(concatBytes, "concatBytes");
+  var isPosBig = /* @__PURE__ */ __name((n) => typeof n === "bigint" && _0n <= n, "isPosBig");
   function inRange(n, min, max) {
     return isPosBig(n) && isPosBig(min) && isPosBig(max) && min <= n && n < max;
   }
+  __name(inRange, "inRange");
   function aInRange(title, n, min, max) {
     if (!inRange(n, min, max))
       throw new Error("expected valid " + title + ": " + min + " <= n < " + max + ", got " + n);
   }
+  __name(aInRange, "aInRange");
   function bitLen(n) {
     let len;
     for (len = 0; n > _0n; n >>= _1n, len += 1)
       ;
     return len;
   }
-  var bitMask = (n) => (_2n << BigInt(n - 1)) - _1n;
+  __name(bitLen, "bitLen");
+  var bitMask = /* @__PURE__ */ __name((n) => (_2n << BigInt(n - 1)) - _1n, "bitMask");
   var validatorFns = {
-    bigint: (val) => typeof val === "bigint",
-    function: (val) => typeof val === "function",
-    boolean: (val) => typeof val === "boolean",
-    string: (val) => typeof val === "string",
-    stringOrUint8Array: (val) => typeof val === "string" || isBytes2(val),
-    isSafeInteger: (val) => Number.isSafeInteger(val),
-    array: (val) => Array.isArray(val),
-    field: (val, object) => object.Fp.isValid(val),
-    hash: (val) => typeof val === "function" && Number.isSafeInteger(val.outputLen)
+    bigint: /* @__PURE__ */ __name((val) => typeof val === "bigint", "bigint"),
+    function: /* @__PURE__ */ __name((val) => typeof val === "function", "function"),
+    boolean: /* @__PURE__ */ __name((val) => typeof val === "boolean", "boolean"),
+    string: /* @__PURE__ */ __name((val) => typeof val === "string", "string"),
+    stringOrUint8Array: /* @__PURE__ */ __name((val) => typeof val === "string" || isBytes2(val), "stringOrUint8Array"),
+    isSafeInteger: /* @__PURE__ */ __name((val) => Number.isSafeInteger(val), "isSafeInteger"),
+    array: /* @__PURE__ */ __name((val) => Array.isArray(val), "array"),
+    field: /* @__PURE__ */ __name((val, object) => object.Fp.isValid(val), "field"),
+    hash: /* @__PURE__ */ __name((val) => typeof val === "function" && Number.isSafeInteger(val.outputLen), "hash")
   };
   function validateObject(object, validators, optValidators = {}) {
-    const checkField = (fieldName, type, isOptional) => {
+    const checkField = /* @__PURE__ */ __name((fieldName, type, isOptional) => {
       const checkVal = validatorFns[type];
       if (typeof checkVal !== "function")
         throw new Error("invalid validator function");
@@ -1256,13 +1320,14 @@ var FastNear = (() => {
       if (!checkVal(val, object)) {
         throw new Error("param " + String(fieldName) + " is invalid. Expected " + type + ", got " + val);
       }
-    };
+    }, "checkField");
     for (const [fieldName, type] of Object.entries(validators))
       checkField(fieldName, type, false);
     for (const [fieldName, type] of Object.entries(optValidators))
       checkField(fieldName, type, true);
     return object;
   }
+  __name(validateObject, "validateObject");
   function memoized(fn) {
     const map = /* @__PURE__ */ new WeakMap();
     return (arg, ...args) => {
@@ -1274,6 +1339,7 @@ var FastNear = (() => {
       return computed;
     };
   }
+  __name(memoized, "memoized");
 
   // ../../node_modules/@noble/curves/esm/abstract/modular.js
   var _0n2 = BigInt(0);
@@ -1289,6 +1355,7 @@ var FastNear = (() => {
     const result = a % b;
     return result >= _0n2 ? result : b + result;
   }
+  __name(mod, "mod");
   function pow(num, power, modulo) {
     if (power < _0n2)
       throw new Error("invalid exponent, negatives unsupported");
@@ -1305,6 +1372,7 @@ var FastNear = (() => {
     }
     return res;
   }
+  __name(pow, "pow");
   function pow2(x, power, modulo) {
     let res = x;
     while (power-- > _0n2) {
@@ -1313,6 +1381,7 @@ var FastNear = (() => {
     }
     return res;
   }
+  __name(pow2, "pow2");
   function invert(number, modulo) {
     if (number === _0n2)
       throw new Error("invert: expected non-zero number");
@@ -1333,6 +1402,7 @@ var FastNear = (() => {
       throw new Error("invert: does not exist");
     return mod(x, modulo);
   }
+  __name(invert, "invert");
   function tonelliShanks(P2) {
     const legendreC = (P2 - _1n2) / _2n2;
     let Q, S, Z;
@@ -1344,15 +1414,15 @@ var FastNear = (() => {
     }
     if (S === 1) {
       const p1div4 = (P2 + _1n2) / _4n;
-      return function tonelliFast(Fp2, n) {
+      return /* @__PURE__ */ __name(function tonelliFast(Fp2, n) {
         const root = Fp2.pow(n, p1div4);
         if (!Fp2.eql(Fp2.sqr(root), n))
           throw new Error("Cannot find square root");
         return root;
-      };
+      }, "tonelliFast");
     }
     const Q1div2 = (Q + _1n2) / _2n2;
-    return function tonelliSlow(Fp2, n) {
+    return /* @__PURE__ */ __name(function tonelliSlow(Fp2, n) {
       if (Fp2.pow(n, legendreC) === Fp2.neg(Fp2.ONE))
         throw new Error("Cannot find square root");
       let r = S;
@@ -1375,21 +1445,22 @@ var FastNear = (() => {
         r = m;
       }
       return x;
-    };
+    }, "tonelliSlow");
   }
+  __name(tonelliShanks, "tonelliShanks");
   function FpSqrt(P2) {
     if (P2 % _4n === _3n) {
       const p1div4 = (P2 + _1n2) / _4n;
-      return function sqrt3mod4(Fp2, n) {
+      return /* @__PURE__ */ __name(function sqrt3mod4(Fp2, n) {
         const root = Fp2.pow(n, p1div4);
         if (!Fp2.eql(Fp2.sqr(root), n))
           throw new Error("Cannot find square root");
         return root;
-      };
+      }, "sqrt3mod4");
     }
     if (P2 % _8n === _5n) {
       const c1 = (P2 - _5n) / _8n;
-      return function sqrt5mod8(Fp2, n) {
+      return /* @__PURE__ */ __name(function sqrt5mod8(Fp2, n) {
         const n2 = Fp2.mul(n, _2n2);
         const v = Fp2.pow(n2, c1);
         const nv = Fp2.mul(n, v);
@@ -1398,13 +1469,14 @@ var FastNear = (() => {
         if (!Fp2.eql(Fp2.sqr(root), n))
           throw new Error("Cannot find square root");
         return root;
-      };
+      }, "sqrt5mod8");
     }
     if (P2 % _16n === _9n) {
     }
     return tonelliShanks(P2);
   }
-  var isNegativeLE = (num, modulo) => (mod(num, modulo) & _1n2) === _1n2;
+  __name(FpSqrt, "FpSqrt");
+  var isNegativeLE = /* @__PURE__ */ __name((num, modulo) => (mod(num, modulo) & _1n2) === _1n2, "isNegativeLE");
   var FIELD_FIELDS = [
     "create",
     "isValid",
@@ -1437,6 +1509,7 @@ var FastNear = (() => {
     }, initial);
     return validateObject(field, opts);
   }
+  __name(validateField, "validateField");
   function FpPow(f, num, power) {
     if (power < _0n2)
       throw new Error("invalid exponent, negatives unsupported");
@@ -1454,6 +1527,7 @@ var FastNear = (() => {
     }
     return p;
   }
+  __name(FpPow, "FpPow");
   function FpInvertBatch(f, nums) {
     const tmp = new Array(nums.length);
     const lastMultiplied = nums.reduce((acc, num, i) => {
@@ -1471,11 +1545,13 @@ var FastNear = (() => {
     }, inverted);
     return tmp;
   }
+  __name(FpInvertBatch, "FpInvertBatch");
   function nLength(n, nBitLength) {
     const _nBitLength = nBitLength !== void 0 ? nBitLength : n.toString(2).length;
     const nByteLength = Math.ceil(_nBitLength / 8);
     return { nBitLength: _nBitLength, nByteLength };
   }
+  __name(nLength, "nLength");
   function Field(ORDER, bitLen2, isLE = false, redef = {}) {
     if (ORDER <= _0n2)
       throw new Error("invalid field: expected ORDER > 0, got " + ORDER);
@@ -1490,46 +1566,47 @@ var FastNear = (() => {
       MASK: bitMask(BITS),
       ZERO: _0n2,
       ONE: _1n2,
-      create: (num) => mod(num, ORDER),
-      isValid: (num) => {
+      create: /* @__PURE__ */ __name((num) => mod(num, ORDER), "create"),
+      isValid: /* @__PURE__ */ __name((num) => {
         if (typeof num !== "bigint")
           throw new Error("invalid field element: expected bigint, got " + typeof num);
         return _0n2 <= num && num < ORDER;
-      },
-      is0: (num) => num === _0n2,
-      isOdd: (num) => (num & _1n2) === _1n2,
-      neg: (num) => mod(-num, ORDER),
-      eql: (lhs, rhs) => lhs === rhs,
-      sqr: (num) => mod(num * num, ORDER),
-      add: (lhs, rhs) => mod(lhs + rhs, ORDER),
-      sub: (lhs, rhs) => mod(lhs - rhs, ORDER),
-      mul: (lhs, rhs) => mod(lhs * rhs, ORDER),
-      pow: (num, power) => FpPow(f, num, power),
-      div: (lhs, rhs) => mod(lhs * invert(rhs, ORDER), ORDER),
+      }, "isValid"),
+      is0: /* @__PURE__ */ __name((num) => num === _0n2, "is0"),
+      isOdd: /* @__PURE__ */ __name((num) => (num & _1n2) === _1n2, "isOdd"),
+      neg: /* @__PURE__ */ __name((num) => mod(-num, ORDER), "neg"),
+      eql: /* @__PURE__ */ __name((lhs, rhs) => lhs === rhs, "eql"),
+      sqr: /* @__PURE__ */ __name((num) => mod(num * num, ORDER), "sqr"),
+      add: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs + rhs, ORDER), "add"),
+      sub: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs - rhs, ORDER), "sub"),
+      mul: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs * rhs, ORDER), "mul"),
+      pow: /* @__PURE__ */ __name((num, power) => FpPow(f, num, power), "pow"),
+      div: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs * invert(rhs, ORDER), ORDER), "div"),
       // Same as above, but doesn't normalize
-      sqrN: (num) => num * num,
-      addN: (lhs, rhs) => lhs + rhs,
-      subN: (lhs, rhs) => lhs - rhs,
-      mulN: (lhs, rhs) => lhs * rhs,
-      inv: (num) => invert(num, ORDER),
+      sqrN: /* @__PURE__ */ __name((num) => num * num, "sqrN"),
+      addN: /* @__PURE__ */ __name((lhs, rhs) => lhs + rhs, "addN"),
+      subN: /* @__PURE__ */ __name((lhs, rhs) => lhs - rhs, "subN"),
+      mulN: /* @__PURE__ */ __name((lhs, rhs) => lhs * rhs, "mulN"),
+      inv: /* @__PURE__ */ __name((num) => invert(num, ORDER), "inv"),
       sqrt: redef.sqrt || ((n) => {
         if (!sqrtP)
           sqrtP = FpSqrt(ORDER);
         return sqrtP(f, n);
       }),
-      invertBatch: (lst) => FpInvertBatch(f, lst),
+      invertBatch: /* @__PURE__ */ __name((lst) => FpInvertBatch(f, lst), "invertBatch"),
       // TODO: do we really need constant cmov?
       // We don't have const-time bigints anyway, so probably will be not very useful
-      cmov: (a, b, c) => c ? b : a,
-      toBytes: (num) => isLE ? numberToBytesLE(num, BYTES) : numberToBytesBE(num, BYTES),
-      fromBytes: (bytes) => {
+      cmov: /* @__PURE__ */ __name((a, b, c) => c ? b : a, "cmov"),
+      toBytes: /* @__PURE__ */ __name((num) => isLE ? numberToBytesLE(num, BYTES) : numberToBytesBE(num, BYTES), "toBytes"),
+      fromBytes: /* @__PURE__ */ __name((bytes) => {
         if (bytes.length !== BYTES)
           throw new Error("Field.fromBytes: expected " + BYTES + " bytes, got " + bytes.length);
         return isLE ? bytesToNumberLE(bytes) : bytesToNumberBE(bytes);
-      }
+      }, "fromBytes")
     });
     return Object.freeze(f);
   }
+  __name(Field, "Field");
 
   // ../../node_modules/@noble/curves/esm/abstract/curve.js
   var _0n3 = BigInt(0);
@@ -1538,16 +1615,19 @@ var FastNear = (() => {
     const neg = item.negate();
     return condition ? neg : item;
   }
+  __name(constTimeNegate, "constTimeNegate");
   function validateW(W, bits) {
     if (!Number.isSafeInteger(W) || W <= 0 || W > bits)
       throw new Error("invalid window size, expected [1.." + bits + "], got W=" + W);
   }
+  __name(validateW, "validateW");
   function calcWOpts(W, bits) {
     validateW(W, bits);
     const windows = Math.ceil(bits / W) + 1;
     const windowSize = 2 ** (W - 1);
     return { windows, windowSize };
   }
+  __name(calcWOpts, "calcWOpts");
   function validateMSMPoints(points, c) {
     if (!Array.isArray(points))
       throw new Error("array expected");
@@ -1556,6 +1636,7 @@ var FastNear = (() => {
         throw new Error("invalid point at index " + i);
     });
   }
+  __name(validateMSMPoints, "validateMSMPoints");
   function validateMSMScalars(scalars, field) {
     if (!Array.isArray(scalars))
       throw new Error("array of scalars expected");
@@ -1564,11 +1645,13 @@ var FastNear = (() => {
         throw new Error("invalid scalar at index " + i);
     });
   }
+  __name(validateMSMScalars, "validateMSMScalars");
   var pointPrecomputes = /* @__PURE__ */ new WeakMap();
   var pointWindowSizes = /* @__PURE__ */ new WeakMap();
   function getW(P2) {
     return pointWindowSizes.get(P2) || 1;
   }
+  __name(getW, "getW");
   function wNAF(c, bits) {
     return {
       constTimeNegate,
@@ -1709,6 +1792,7 @@ var FastNear = (() => {
       }
     };
   }
+  __name(wNAF, "wNAF");
   function pippenger(c, fieldN, points, scalars) {
     validateMSMPoints(points, c);
     validateMSMScalars(scalars, fieldN);
@@ -1740,6 +1824,7 @@ var FastNear = (() => {
     }
     return sum;
   }
+  __name(pippenger, "pippenger");
   function validateBasic(curve) {
     validateField(curve.Fp);
     validateObject(curve, {
@@ -1757,6 +1842,7 @@ var FastNear = (() => {
       ...{ p: curve.Fp.ORDER }
     });
   }
+  __name(validateBasic, "validateBasic");
 
   // ../../node_modules/@noble/curves/esm/abstract/edwards.js
   var _0n4 = BigInt(0);
@@ -1779,6 +1865,7 @@ var FastNear = (() => {
     });
     return Object.freeze({ ...opts });
   }
+  __name(validateOpts, "validateOpts");
   function twistedEdwards(curveDef) {
     const CURVE = validateOpts(curveDef);
     const { Fp: Fp2, n: CURVE_ORDER, prehash, hash: cHash, randomBytes: randomBytes2, nByteLength, h: cofactor } = CURVE;
@@ -1802,10 +1889,12 @@ var FastNear = (() => {
     function aCoordinate(title, n) {
       aInRange("coordinate " + title, n, _0n4, MASK);
     }
+    __name(aCoordinate, "aCoordinate");
     function assertPoint(other) {
       if (!(other instanceof Point))
         throw new Error("ExtendedPoint expected");
     }
+    __name(assertPoint, "assertPoint");
     const toAffineMemo = memoized((p, iz) => {
       const { ex: x, ey: y, ez: z } = p;
       const is0 = p.is0();
@@ -1841,6 +1930,9 @@ var FastNear = (() => {
       return true;
     });
     class Point {
+      static {
+        __name(this, "Point");
+      }
       constructor(ex, ey, ez, et) {
         this.ex = ex;
         this.ey = ey;
@@ -2057,9 +2149,11 @@ var FastNear = (() => {
     function modN(a) {
       return mod(a, CURVE_ORDER);
     }
+    __name(modN, "modN");
     function modN_LE(hash) {
       return modN(bytesToNumberLE(hash));
     }
+    __name(modN_LE, "modN_LE");
     function getExtendedPublicKey(key) {
       const len = Fp2.BYTES;
       key = ensureBytes("private key", key, len);
@@ -2071,13 +2165,16 @@ var FastNear = (() => {
       const pointBytes = point.toRawBytes();
       return { head, prefix, scalar, point, pointBytes };
     }
+    __name(getExtendedPublicKey, "getExtendedPublicKey");
     function getPublicKey(privKey) {
       return getExtendedPublicKey(privKey).pointBytes;
     }
+    __name(getPublicKey, "getPublicKey");
     function hashDomainToScalar(context = new Uint8Array(), ...msgs) {
       const msg = concatBytes(...msgs);
       return modN_LE(cHash(domain(msg, ensureBytes("context", context), !!prehash)));
     }
+    __name(hashDomainToScalar, "hashDomainToScalar");
     function sign(msg, privKey, options = {}) {
       msg = ensureBytes("message", msg);
       if (prehash)
@@ -2091,6 +2188,7 @@ var FastNear = (() => {
       const res = concatBytes(R, numberToBytesLE(s, Fp2.BYTES));
       return ensureBytes("result", res, Fp2.BYTES * 2);
     }
+    __name(sign, "sign");
     const verifyOpts = VERIFY_DEFAULT;
     function verify(sig, msg, publicKey, options = verifyOpts) {
       const { context, zip215 } = options;
@@ -2117,11 +2215,12 @@ var FastNear = (() => {
       const RkA = R.add(A.multiplyUnsafe(k));
       return RkA.subtract(SB).clearCofactor().equals(Point.ZERO);
     }
+    __name(verify, "verify");
     G._setWindowSize(8);
     const utils = {
       getExtendedPublicKey,
       // ed25519 private keys are uniform 32b. No need to check for modulo bias, like in secp256k1.
-      randomPrivateKey: () => randomBytes2(Fp2.BYTES),
+      randomPrivateKey: /* @__PURE__ */ __name(() => randomBytes2(Fp2.BYTES), "randomPrivateKey"),
       /**
        * We're doing scalar multiplication (used in getPublicKey etc) with precomputed BASE_POINT
        * values. This slows down first getPublicKey() by milliseconds (see Speed section),
@@ -2143,6 +2242,7 @@ var FastNear = (() => {
       utils
     };
   }
+  __name(twistedEdwards, "twistedEdwards");
 
   // ../../node_modules/@noble/curves/esm/ed25519.js
   var ED25519_P = BigInt("57896044618658097711785492504343953926634992332820282019728792003956564819949");
@@ -2170,12 +2270,14 @@ var FastNear = (() => {
     const pow_p_5_8 = pow2(b250, _2n4, P2) * x % P2;
     return { pow_p_5_8, b2 };
   }
+  __name(ed25519_pow_2_252_3, "ed25519_pow_2_252_3");
   function adjustScalarBytes(bytes) {
     bytes[0] &= 248;
     bytes[31] &= 127;
     bytes[31] |= 64;
     return bytes;
   }
+  __name(adjustScalarBytes, "adjustScalarBytes");
   function uvRatio(u, v) {
     const P2 = ED25519_P;
     const v3 = mod(v * v * v, P2);
@@ -2196,6 +2298,7 @@ var FastNear = (() => {
       x = mod(-x, P2);
     return { isValid: useRoot1 || useRoot2, value: x };
   }
+  __name(uvRatio, "uvRatio");
   var Fp = /* @__PURE__ */ (() => Field(ED25519_P, void 0, true))();
   var ed25519Defaults = /* @__PURE__ */ (() => ({
     // Param: a
@@ -2228,18 +2331,21 @@ var FastNear = (() => {
   function isBytes3(a) {
     return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array";
   }
+  __name(isBytes3, "isBytes");
   function abytes3(b, ...lengths) {
     if (!isBytes3(b))
       throw new Error("Uint8Array expected");
     if (lengths.length > 0 && !lengths.includes(b.length))
       throw new Error("Uint8Array expected of length " + lengths + ", got length=" + b.length);
   }
+  __name(abytes3, "abytes");
   function aexists2(instance, checkFinished = true) {
     if (instance.destroyed)
       throw new Error("Hash instance has been destroyed");
     if (checkFinished && instance.finished)
       throw new Error("Hash#digest() has already been called");
   }
+  __name(aexists2, "aexists");
   function aoutput2(out, instance) {
     abytes3(out);
     const min = instance.outputLen;
@@ -2247,35 +2353,42 @@ var FastNear = (() => {
       throw new Error("digestInto() expects output buffer of length at least " + min);
     }
   }
+  __name(aoutput2, "aoutput");
 
   // ../../node_modules/@noble/hashes/esm/utils.js
-  var createView2 = (arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength);
-  var rotr = (word, shift) => word << 32 - shift | word >>> shift;
+  var createView2 = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
+  var rotr = /* @__PURE__ */ __name((word, shift) => word << 32 - shift | word >>> shift, "rotr");
   function utf8ToBytes2(str) {
     if (typeof str !== "string")
       throw new Error("utf8ToBytes expected string, got " + typeof str);
     return new Uint8Array(new TextEncoder().encode(str));
   }
+  __name(utf8ToBytes2, "utf8ToBytes");
   function toBytes2(data) {
     if (typeof data === "string")
       data = utf8ToBytes2(data);
     abytes3(data);
     return data;
   }
+  __name(toBytes2, "toBytes");
   var Hash2 = class {
+    static {
+      __name(this, "Hash");
+    }
     // Safe version that clones internal state
     clone() {
       return this._cloneInto();
     }
   };
   function wrapConstructor2(hashCons) {
-    const hashC = (msg) => hashCons().update(toBytes2(msg)).digest();
+    const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes2(msg)).digest(), "hashC");
     const tmp = hashCons();
     hashC.outputLen = tmp.outputLen;
     hashC.blockLen = tmp.blockLen;
     hashC.create = () => hashCons();
     return hashC;
   }
+  __name(wrapConstructor2, "wrapConstructor");
 
   // ../../node_modules/@noble/hashes/esm/_md.js
   function setBigUint642(view, byteOffset, value, isLE) {
@@ -2290,9 +2403,13 @@ var FastNear = (() => {
     view.setUint32(byteOffset + h, wh, isLE);
     view.setUint32(byteOffset + l, wl, isLE);
   }
-  var Chi = (a, b, c) => a & b ^ ~a & c;
-  var Maj = (a, b, c) => a & b ^ a & c ^ b & c;
+  __name(setBigUint642, "setBigUint64");
+  var Chi = /* @__PURE__ */ __name((a, b, c) => a & b ^ ~a & c, "Chi");
+  var Maj = /* @__PURE__ */ __name((a, b, c) => a & b ^ a & c ^ b & c, "Maj");
   var HashMD2 = class extends Hash2 {
+    static {
+      __name(this, "HashMD");
+    }
     constructor(blockLen, outputLen, padOffset, isLE) {
       super();
       this.blockLen = blockLen;
@@ -2458,6 +2575,9 @@ var FastNear = (() => {
   ]);
   var SHA256_W = /* @__PURE__ */ new Uint32Array(64);
   var SHA256 = class extends HashMD2 {
+    static {
+      __name(this, "SHA256");
+    }
     constructor() {
       super(64, 32, 8, false);
       this.A = SHA256_IV[0] | 0;
@@ -2561,15 +2681,16 @@ var FastNear = (() => {
       )
     ]);
   }
+  __name(base58_to_binary, "base58_to_binary");
   var base58_to_binary_default = base58_to_binary;
 
   // ../../node_modules/base58-js/create_base58_map.mjs
-  var create_base58_map = () => {
+  var create_base58_map = /* @__PURE__ */ __name(() => {
     const base58M = Array(256).fill(-1);
     for (let i = 0; i < base58_chars_default.length; ++i)
       base58M[base58_chars_default.charCodeAt(i)] = i;
     return base58M;
-  };
+  }, "create_base58_map");
   var create_base58_map_default = create_base58_map;
 
   // ../../node_modules/base58-js/binary_to_base58.mjs
@@ -2594,6 +2715,7 @@ var FastNear = (() => {
     result.reverse();
     return String.fromCharCode(...result);
   }
+  __name(binary_to_base58, "binary_to_base58");
   var binary_to_base58_default = binary_to_base58;
 
   // ../../node_modules/js-base64/base64.mjs
@@ -2610,9 +2732,9 @@ var FastNear = (() => {
   var b64re = /^(?:[A-Za-z\d+\/]{4})*?(?:[A-Za-z\d+\/]{2}(?:==)?|[A-Za-z\d+\/]{3}=?)?$/;
   var _fromCC = String.fromCharCode.bind(String);
   var _U8Afrom = typeof Uint8Array.from === "function" ? Uint8Array.from.bind(Uint8Array) : (it) => new Uint8Array(Array.prototype.slice.call(it, 0));
-  var _mkUriSafe = (src) => src.replace(/=/g, "").replace(/[+\/]/g, (m0) => m0 == "+" ? "-" : "_");
-  var _tidyB64 = (s) => s.replace(/[^A-Za-z0-9\+\/]/g, "");
-  var btoaPolyfill = (bin) => {
+  var _mkUriSafe = /* @__PURE__ */ __name((src) => src.replace(/=/g, "").replace(/[+\/]/g, (m0) => m0 == "+" ? "-" : "_"), "_mkUriSafe");
+  var _tidyB64 = /* @__PURE__ */ __name((s) => s.replace(/[^A-Za-z0-9\+\/]/g, ""), "_tidyB64");
+  var btoaPolyfill = /* @__PURE__ */ __name((bin) => {
     let u32, c0, c1, c2, asc = "";
     const pad = bin.length % 3;
     for (let i = 0; i < bin.length; ) {
@@ -2622,7 +2744,7 @@ var FastNear = (() => {
       asc += b64chs[u32 >> 18 & 63] + b64chs[u32 >> 12 & 63] + b64chs[u32 >> 6 & 63] + b64chs[u32 & 63];
     }
     return pad ? asc.slice(0, pad - 3) + "===".substring(pad) : asc;
-  };
+  }, "btoaPolyfill");
   var _btoa = typeof btoa === "function" ? (bin) => btoa(bin) : _hasBuffer ? (bin) => Buffer.from(bin, "binary").toString("base64") : btoaPolyfill;
   var _fromUint8Array = _hasBuffer ? (u8a) => Buffer.from(u8a).toString("base64") : (u8a) => {
     const maxargs = 4096;
@@ -2632,7 +2754,7 @@ var FastNear = (() => {
     }
     return _btoa(strs.join(""));
   };
-  var cb_utob = (c) => {
+  var cb_utob = /* @__PURE__ */ __name((c) => {
     if (c.length < 2) {
       var cc = c.charCodeAt(0);
       return cc < 128 ? c : cc < 2048 ? _fromCC(192 | cc >>> 6) + _fromCC(128 | cc & 63) : _fromCC(224 | cc >>> 12 & 15) + _fromCC(128 | cc >>> 6 & 63) + _fromCC(128 | cc & 63);
@@ -2640,13 +2762,13 @@ var FastNear = (() => {
       var cc = 65536 + (c.charCodeAt(0) - 55296) * 1024 + (c.charCodeAt(1) - 56320);
       return _fromCC(240 | cc >>> 18 & 7) + _fromCC(128 | cc >>> 12 & 63) + _fromCC(128 | cc >>> 6 & 63) + _fromCC(128 | cc & 63);
     }
-  };
+  }, "cb_utob");
   var re_utob = /[\uD800-\uDBFF][\uDC00-\uDFFFF]|[^\x00-\x7F]/g;
-  var utob = (u) => u.replace(re_utob, cb_utob);
+  var utob = /* @__PURE__ */ __name((u) => u.replace(re_utob, cb_utob), "utob");
   var _encode = _hasBuffer ? (s) => Buffer.from(s, "utf8").toString("base64") : _TE ? (s) => _fromUint8Array(_TE.encode(s)) : (s) => _btoa(utob(s));
-  var encode = (src, urlsafe = false) => urlsafe ? _mkUriSafe(_encode(src)) : _encode(src);
+  var encode = /* @__PURE__ */ __name((src, urlsafe = false) => urlsafe ? _mkUriSafe(_encode(src)) : _encode(src), "encode");
   var re_btou = /[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/g;
-  var cb_btou = (cccc) => {
+  var cb_btou = /* @__PURE__ */ __name((cccc) => {
     switch (cccc.length) {
       case 4:
         var cp = (7 & cccc.charCodeAt(0)) << 18 | (63 & cccc.charCodeAt(1)) << 12 | (63 & cccc.charCodeAt(2)) << 6 | 63 & cccc.charCodeAt(3), offset = cp - 65536;
@@ -2656,9 +2778,9 @@ var FastNear = (() => {
       default:
         return _fromCC((31 & cccc.charCodeAt(0)) << 6 | 63 & cccc.charCodeAt(1));
     }
-  };
-  var btou = (b) => b.replace(re_btou, cb_btou);
-  var atobPolyfill = (asc) => {
+  }, "cb_btou");
+  var btou = /* @__PURE__ */ __name((b) => b.replace(re_btou, cb_btou), "btou");
+  var atobPolyfill = /* @__PURE__ */ __name((asc) => {
     asc = asc.replace(/\s+/g, "");
     if (!b64re.test(asc))
       throw new TypeError("malformed base64.");
@@ -2669,12 +2791,12 @@ var FastNear = (() => {
       bin += r1 === 64 ? _fromCC(u24 >> 16 & 255) : r2 === 64 ? _fromCC(u24 >> 16 & 255, u24 >> 8 & 255) : _fromCC(u24 >> 16 & 255, u24 >> 8 & 255, u24 & 255);
     }
     return bin;
-  };
+  }, "atobPolyfill");
   var _atob = typeof atob === "function" ? (asc) => atob(_tidyB64(asc)) : _hasBuffer ? (asc) => Buffer.from(asc, "base64").toString("binary") : atobPolyfill;
   var _toUint8Array = _hasBuffer ? (a) => _U8Afrom(Buffer.from(a, "base64")) : (a) => _U8Afrom(_atob(a).split("").map((c) => c.charCodeAt(0)));
   var _decode = _hasBuffer ? (a) => Buffer.from(a, "base64").toString("utf8") : _TD ? (a) => _TD.decode(_toUint8Array(a)) : (a) => btou(_atob(a));
-  var _unURI = (a) => _tidyB64(a.replace(/[-_]/g, (m0) => m0 == "-" ? "+" : "/"));
-  var decode = (src) => _decode(_unURI(src));
+  var _unURI = /* @__PURE__ */ __name((a) => _tidyB64(a.replace(/[-_]/g, (m0) => m0 == "-" ? "+" : "/")), "_unURI");
+  var decode = /* @__PURE__ */ __name((src) => _decode(_unURI(src)), "decode");
 
   // src/utils.ts
   var LsPrefix = "__fastnear_";
@@ -2687,6 +2809,7 @@ var FastNear = (() => {
       return encode(str);
     }
   }
+  __name(toBase64, "toBase64");
   function fromBase64(str) {
     const binaryString = decode(str);
     const len = binaryString.length;
@@ -2696,6 +2819,7 @@ var FastNear = (() => {
     }
     return bytes;
   }
+  __name(fromBase64, "fromBase64");
   function lsSet(key, value) {
     if (value === null || value === void 0) {
       localStorage.removeItem(LsPrefix + key);
@@ -2703,13 +2827,16 @@ var FastNear = (() => {
       localStorage.setItem(LsPrefix + key, JSON.stringify(value));
     }
   }
+  __name(lsSet, "lsSet");
   function lsGet(key) {
     const value = localStorage.getItem(LsPrefix + key);
     return tryParseJson(value, null);
   }
+  __name(lsGet, "lsGet");
   function deepCopy(obj) {
     return JSON.parse(JSON.stringify(obj));
   }
+  __name(deepCopy, "deepCopy");
   function tryParseJson(...args) {
     try {
       return JSON.parse(args[0]);
@@ -2720,12 +2847,14 @@ var FastNear = (() => {
       return args[0];
     }
   }
+  __name(tryParseJson, "tryParseJson");
   function canSignWithLAK(actions) {
     return actions.length === 1 && actions[0].type === "FunctionCall" && big_default(actions[0]?.deposit ?? "0").eq(0);
   }
+  __name(canSignWithLAK, "canSignWithLAK");
 
   // src/cryptoUtils.ts
-  var keyFromString = (key) => base58_to_binary_default(
+  var keyFromString = /* @__PURE__ */ __name((key) => base58_to_binary_default(
     key.includes(":") ? (() => {
       const [curve, keyPart] = key.split(":");
       if (curve !== "ed25519") {
@@ -2733,26 +2862,30 @@ var FastNear = (() => {
       }
       return keyPart;
     })() : key
-  );
-  var keyToString = (key) => `ed25519:${binary_to_base58_default(key)}`;
+  ), "keyFromString");
+  var keyToString = /* @__PURE__ */ __name((key) => `ed25519:${binary_to_base58_default(key)}`, "keyToString");
   function publicKeyFromPrivate(privateKey) {
     privateKey = keyFromString(privateKey).slice(0, 32);
     const publicKey = ed25519.getPublicKey(privateKey);
     return keyToString(publicKey);
   }
+  __name(publicKeyFromPrivate, "publicKeyFromPrivate");
   function privateKeyFromRandom() {
     const privateKey = crypto.getRandomValues(new Uint8Array(64));
     return keyToString(privateKey);
   }
+  __name(privateKeyFromRandom, "privateKeyFromRandom");
   function signHash(hash, privateKey) {
     privateKey = keyFromString(privateKey).slice(0, 32);
     const signature = ed25519.sign(base58_to_binary_default(hash), privateKey);
     return binary_to_base58_default(signature);
   }
+  __name(signHash, "signHash");
   function signBytes(bytes, privateKey) {
     const hash = sha256(bytes);
     return signHash(binary_to_base58_default(hash), privateKey);
   }
+  __name(signBytes, "signBytes");
 
   // ../../node_modules/borsh/lib/esm/types.js
   var integers = ["u8", "u16", "u32", "u64", "u128", "i8", "i16", "i32", "i64", "i128", "f32", "f64"];
@@ -2767,6 +2900,7 @@ var FastNear = (() => {
         this.buffer = new ArrayBuffer(this.buffer_size);
         this.view = new DataView(this.buffer);
       }
+      __name(EncodeBuffer2, "EncodeBuffer");
       EncodeBuffer2.prototype.resize_if_necessary = function(needed_space) {
         if (this.buffer_size - this.offset < needed_space) {
           this.buffer_size = Math.max(this.buffer_size * 2, this.buffer_size + needed_space);
@@ -2805,6 +2939,7 @@ var FastNear = (() => {
         new Uint8Array(this.buffer).set(buf);
         this.view = new DataView(this.buffer);
       }
+      __name(DecodeBuffer2, "DecodeBuffer");
       DecodeBuffer2.prototype.assert_enough_buffer = function(size) {
         if (this.offset + size > this.buffer.byteLength) {
           throw new Error("Error in schema, the buffer is smaller than expected");
@@ -2831,14 +2966,14 @@ var FastNear = (() => {
 
   // ../../node_modules/borsh/lib/esm/utils.js
   var __extends = /* @__PURE__ */ function() {
-    var extendStatics = function(d, b) {
+    var extendStatics = /* @__PURE__ */ __name(function(d, b) {
       extendStatics = Object.setPrototypeOf || { __proto__: [] } instanceof Array && function(d2, b2) {
         d2.__proto__ = b2;
       } || function(d2, b2) {
         for (var p in b2) if (Object.prototype.hasOwnProperty.call(b2, p)) d2[p] = b2[p];
       };
       return extendStatics(d, b);
-    };
+    }, "extendStatics");
     return function(d, b) {
       if (typeof b !== "function" && b !== null)
         throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
@@ -2846,17 +2981,20 @@ var FastNear = (() => {
       function __() {
         this.constructor = d;
       }
+      __name(__, "__");
       d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
   }();
   function isArrayLike(value) {
     return Array.isArray(value) || !!value && typeof value === "object" && "length" in value && typeof value.length === "number" && (value.length === 0 || value.length > 0 && value.length - 1 in value);
   }
+  __name(isArrayLike, "isArrayLike");
   function expect_type(value, type, fieldPath) {
     if (typeof value !== type) {
       throw new Error("Expected ".concat(type, " not ").concat(typeof value, "(").concat(value, ") at ").concat(fieldPath.join(".")));
     }
   }
+  __name(expect_type, "expect_type");
   function expect_bigint(value, fieldPath) {
     var basicType = ["number", "string", "bigint", "boolean"].includes(typeof value);
     var strObject = typeof value === "object" && value !== null && "toString" in value;
@@ -2864,16 +3002,19 @@ var FastNear = (() => {
       throw new Error("Expected bigint, number, boolean or string not ".concat(typeof value, "(").concat(value, ") at ").concat(fieldPath.join(".")));
     }
   }
+  __name(expect_bigint, "expect_bigint");
   function expect_same_size(length, expected, fieldPath) {
     if (length !== expected) {
       throw new Error("Array length ".concat(length, " does not match schema length ").concat(expected, " at ").concat(fieldPath.join(".")));
     }
   }
+  __name(expect_same_size, "expect_same_size");
   function expect_enum(value, fieldPath) {
     if (typeof value !== "object" || value === null) {
       throw new Error("Expected object not ".concat(typeof value, "(").concat(value, ") at ").concat(fieldPath.join(".")));
     }
   }
+  __name(expect_enum, "expect_enum");
   var VALID_STRING_TYPES = integers.concat(["bool", "string"]);
   var VALID_OBJECT_KEYS = ["option", "enum", "array", "set", "map", "struct"];
   var ErrorSchema = (
@@ -2884,6 +3025,7 @@ var FastNear = (() => {
         var message = "Invalid schema: ".concat(JSON.stringify(schema), " expected ").concat(expected);
         return _super.call(this, message) || this;
       }
+      __name(ErrorSchema2, "ErrorSchema");
       return ErrorSchema2;
     }(Error)
   );
@@ -2911,6 +3053,7 @@ var FastNear = (() => {
     }
     throw new ErrorSchema(schema, VALID_OBJECT_KEYS.join(", ") + " or " + VALID_STRING_TYPES.join(", "));
   }
+  __name(validate_schema, "validate_schema");
   function validate_enum_schema(schema) {
     if (!Array.isArray(schema))
       throw new ErrorSchema(schema, "Array");
@@ -2925,6 +3068,7 @@ var FastNear = (() => {
       validate_schema({ struct: sch.struct });
     }
   }
+  __name(validate_enum_schema, "validate_enum_schema");
   function validate_array_schema(schema) {
     if (typeof schema !== "object")
       throw new ErrorSchema(schema, "{ type, len? }");
@@ -2935,6 +3079,7 @@ var FastNear = (() => {
       return validate_schema(schema.type);
     throw new ErrorSchema(schema, "{ type, len? }");
   }
+  __name(validate_array_schema, "validate_array_schema");
   function validate_map_schema(schema) {
     if (typeof schema === "object" && "key" in schema && "value" in schema) {
       validate_schema(schema.key);
@@ -2943,6 +3088,7 @@ var FastNear = (() => {
       throw new ErrorSchema(schema, "{ key, value }");
     }
   }
+  __name(validate_map_schema, "validate_map_schema");
   function validate_struct_schema(schema) {
     if (typeof schema !== "object")
       throw new ErrorSchema(schema, "object");
@@ -2950,6 +3096,7 @@ var FastNear = (() => {
       validate_schema(schema[key]);
     }
   }
+  __name(validate_struct_schema, "validate_struct_schema");
 
   // ../../node_modules/borsh/lib/esm/serialize.js
   var BorshSerializer = (
@@ -2960,6 +3107,7 @@ var FastNear = (() => {
         this.fieldPath = ["value"];
         this.checkTypes = checkTypes;
       }
+      __name(BorshSerializer2, "BorshSerializer");
       BorshSerializer2.prototype.encode = function(value, schema) {
         this.encode_value(value, schema);
         return this.encoded.get_used_buffer();
@@ -3118,6 +3266,7 @@ var FastNear = (() => {
       function BorshDeserializer2(bufferArray) {
         this.buffer = new DecodeBuffer(bufferArray);
       }
+      __name(BorshDeserializer2, "BorshDeserializer");
       BorshDeserializer2.prototype.decode = function(schema) {
         return this.decode_value(schema);
       };
@@ -3256,6 +3405,7 @@ var FastNear = (() => {
     var serializer = new BorshSerializer(validate);
     return serializer.encode(value, schema);
   }
+  __name(serialize, "serialize");
 
   // src/transaction.ts
   function mapTransaction(jsonTransaction) {
@@ -3272,10 +3422,12 @@ var FastNear = (() => {
       actions: jsonTransaction.actions.map(mapAction)
     };
   }
+  __name(mapTransaction, "mapTransaction");
   function serializeTransaction(jsonTransaction) {
     const transaction = mapTransaction(jsonTransaction);
     return serialize(SCHEMA.Transaction, transaction);
   }
+  __name(serializeTransaction, "serializeTransaction");
   function serializeSignedTransaction(jsonTransaction, signature) {
     const signedTransaction = {
       transaction: mapTransaction(jsonTransaction),
@@ -3287,6 +3439,7 @@ var FastNear = (() => {
     };
     return serialize(SCHEMA.SignedTransaction, signedTransaction);
   }
+  __name(serializeSignedTransaction, "serializeSignedTransaction");
   function mapAction(action) {
     switch (action.type) {
       case "CreateAccount": {
@@ -3384,7 +3537,11 @@ var FastNear = (() => {
       }
     }
   }
+  __name(mapAction, "mapAction");
   var SCHEMA = new class BorshSchema {
+    static {
+      __name(this, "BorshSchema");
+    }
     Ed25519Signature = {
       struct: {
         data: { array: { type: "u8", len: 64 } }
@@ -3544,7 +3701,7 @@ var FastNear = (() => {
   // src/near.ts
   big_default.DP = 27;
   var MaxBlockDelayMs = 1e3 * 60 * 60 * 6;
-  var WIDGET_URL = "http://localhost:3000/";
+  var WIDGET_URL = "https://wallet-adapter.fastnear.com";
   var DEFAULT_NETWORK_ID = "mainnet";
   var NETWORKS = {
     testnet: {
@@ -3582,6 +3739,7 @@ var FastNear = (() => {
       networkId: DEFAULT_NETWORK_ID
     };
   }
+  __name(getWalletAdapterState, "getWalletAdapterState");
   var _adapter;
   function updateState(newState) {
     const oldState = _state;
@@ -3603,6 +3761,7 @@ var FastNear = (() => {
       _adapter.setState(getWalletAdapterState());
     }
   }
+  __name(updateState, "updateState");
   function updateTxHistory(txStatus) {
     const txId = txStatus.txId;
     _txHistory[txId] = {
@@ -3613,6 +3772,7 @@ var FastNear = (() => {
     lsSet("txHistory", _txHistory);
     notifyTxListeners(_txHistory[txId]);
   }
+  __name(updateTxHistory, "updateTxHistory");
   function onAdapterStateUpdate(state) {
     console.log("Adapter state update:", state);
     const { accountId, lastWalletId, privateKey } = state;
@@ -3622,6 +3782,7 @@ var FastNear = (() => {
       ...privateKey && { privateKey }
     });
   }
+  __name(onAdapterStateUpdate, "onAdapterStateUpdate");
   _adapter = new WalletAdapter({
     onStateUpdate: onAdapterStateUpdate,
     lastState: getWalletAdapterState(),
@@ -3639,9 +3800,11 @@ var FastNear = (() => {
       }
     }
   }
+  __name(parseJsonFromBytes, "parseJsonFromBytes");
   function withBlockId(params, blockId) {
     return blockId === "final" || blockId === "optimistic" ? { ...params, finality: blockId } : blockId ? { ...params, block_id: blockId } : { ...params, finality: "optimistic" };
   }
+  __name(withBlockId, "withBlockId");
   async function queryRpc(method, params) {
     const response = await fetch(_config.nodeUrl, {
       method: "POST",
@@ -3659,6 +3822,7 @@ var FastNear = (() => {
     }
     return result.result;
   }
+  __name(queryRpc, "queryRpc");
   function afterTxSent(txId) {
     queryRpc("tx", {
       tx_hash: _txHistory[txId].txHash,
@@ -3682,6 +3846,7 @@ var FastNear = (() => {
       });
     });
   }
+  __name(afterTxSent, "afterTxSent");
   function sendTxToRpc(signedTxBase64, waitUntil, txId) {
     queryRpc("send_tx", {
       signed_tx_base64: signedTxBase64,
@@ -3703,6 +3868,7 @@ var FastNear = (() => {
       });
     });
   }
+  __name(sendTxToRpc, "sendTxToRpc");
   function notifyAccountListeners(accountId) {
     if (_eventListeners.account.size === 0) {
       _unbroadcastedEvents.account.push(accountId);
@@ -3716,6 +3882,7 @@ var FastNear = (() => {
       }
     });
   }
+  __name(notifyAccountListeners, "notifyAccountListeners");
   function notifyTxListeners(tx) {
     if (_eventListeners.tx.size === 0) {
       _unbroadcastedEvents.tx.push(tx);
@@ -3729,6 +3896,7 @@ var FastNear = (() => {
       }
     });
   }
+  __name(notifyTxListeners, "notifyTxListeners");
   function convertUnit(s, ...args) {
     if (Array.isArray(s)) {
       s = s.reduce((acc, part, i) => {
@@ -3761,6 +3929,7 @@ var FastNear = (() => {
     }
     return big_default(s).toFixed(0);
   }
+  __name(convertUnit, "convertUnit");
   var api = {
     // Context
     get accountId() {
@@ -4063,7 +4232,7 @@ var FastNear = (() => {
     },
     // Action Helpers
     actions: {
-      functionCall: ({
+      functionCall: /* @__PURE__ */ __name(({
         methodName,
         gas,
         deposit,
@@ -4076,22 +4245,22 @@ var FastNear = (() => {
         argsBase64,
         gas,
         deposit
-      }),
-      transfer: (yoctoAmount) => ({
+      }), "functionCall"),
+      transfer: /* @__PURE__ */ __name((yoctoAmount) => ({
         type: "Transfer",
         deposit: yoctoAmount
-      }),
-      stakeNEAR: ({ amount, publicKey }) => ({
+      }), "transfer"),
+      stakeNEAR: /* @__PURE__ */ __name(({ amount, publicKey }) => ({
         type: "Stake",
         stake: amount,
         publicKey
-      }),
-      addFullAccessKey: ({ publicKey }) => ({
+      }), "stakeNEAR"),
+      addFullAccessKey: /* @__PURE__ */ __name(({ publicKey }) => ({
         type: "AddKey",
         publicKey,
         accessKey: { permission: "FullAccess" }
-      }),
-      addLimitedAccessKey: ({
+      }), "addFullAccessKey"),
+      addLimitedAccessKey: /* @__PURE__ */ __name(({
         publicKey,
         allowance,
         accountId,
@@ -4105,22 +4274,22 @@ var FastNear = (() => {
           receiverId: accountId,
           methodNames
         }
-      }),
-      deleteKey: ({ publicKey }) => ({
+      }), "addLimitedAccessKey"),
+      deleteKey: /* @__PURE__ */ __name(({ publicKey }) => ({
         type: "DeleteKey",
         publicKey
-      }),
-      deleteAccount: ({ beneficiaryId }) => ({
+      }), "deleteKey"),
+      deleteAccount: /* @__PURE__ */ __name(({ beneficiaryId }) => ({
         type: "DeleteAccount",
         beneficiaryId
-      }),
-      createAccount: () => ({
+      }), "deleteAccount"),
+      createAccount: /* @__PURE__ */ __name(() => ({
         type: "CreateAccount"
-      }),
-      deployContract: ({ codeBase64 }) => ({
+      }), "createAccount"),
+      deployContract: /* @__PURE__ */ __name(({ codeBase64 }) => ({
         type: "DeployContract",
         codeBase64
-      })
+      }), "deployContract")
     },
     utils: {
       toBase64,
@@ -4224,4 +4393,4 @@ var FastNear = (() => {
 @noble/hashes/esm/utils.js:
   (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
 */
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=browser.global.js.map

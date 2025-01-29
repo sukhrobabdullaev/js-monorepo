@@ -1,8 +1,9 @@
-/* ⋈ 🏃🏻💨 FastNEAR - https://github.com/fastnear */
+/* ⋈ 🏃🏻💨 FastNEAR Borsh Schema - CJS */
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 var __export = (target, all) => {
   for (var name in all)
     __defProp(target, name, { get: all[name], enumerable: true });
@@ -16,15 +17,16 @@ var __copyProps = (to, from, except, desc) => {
   return to;
 };
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
-
-// src/index.ts
 var src_exports = {};
 __export(src_exports, {
   getBorshSchema: () => getBorshSchema
 });
 module.exports = __toCommonJS(src_exports);
-var getBorshSchema = (() => {
+const getBorshSchema = (() => {
   class BorshSchema {
+    static {
+      __name(this, "BorshSchema");
+    }
     Ed25519Signature = {
       struct: {
         data: { array: { type: "u8", len: 64 } }
@@ -186,4 +188,4 @@ var getBorshSchema = (() => {
 0 && (module.exports = {
   getBorshSchema
 });
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.cjs.map

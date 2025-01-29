@@ -1,9 +1,10 @@
-/* ⋈ 🏃🏻💨 FastNEAR - https://github.com/fastnear */
-var nearBorshSchema = (() => {
+/* ⋈ 🏃🏻💨 FastNEAR Borsh Schema - IIFE/UMD */
+var NearBorshSchema = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
   var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
   var __export = (target, all) => {
     for (var name in all)
       __defProp(target, name, { get: all[name], enumerable: true });
@@ -25,6 +26,9 @@ var nearBorshSchema = (() => {
   });
   var getBorshSchema = (() => {
     class BorshSchema {
+      static {
+        __name(this, "BorshSchema");
+      }
       Ed25519Signature = {
         struct: {
           data: { array: { type: "u8", len: 64 } }
@@ -184,4 +188,4 @@ var nearBorshSchema = (() => {
   })();
   return __toCommonJS(src_exports);
 })();
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=browser.global.js.map

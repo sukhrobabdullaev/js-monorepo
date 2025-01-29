@@ -1,8 +1,11 @@
-/* ⋈ 🏃🏻💨 FastNEAR - https://github.com/fastnear */
-
-// src/index.ts
-var getBorshSchema = (() => {
+/* ⋈ 🏃🏻💨 FastNEAR Borsh Schema - ESM */
+var __defProp = Object.defineProperty;
+var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
+const getBorshSchema = (() => {
   class BorshSchema {
+    static {
+      __name(this, "BorshSchema");
+    }
     Ed25519Signature = {
       struct: {
         data: { array: { type: "u8", len: 64 } }

@@ -1,6 +1,6 @@
 {
   "name": "@fastnear/borsh-schema",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "Single export of NEAR Protocol's borsh schema for common applications",
   "type": "module",
   "types": "./dist/esm/index.d.ts",

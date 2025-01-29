@@ -1,13 +1,14 @@
 {
   "name": "@fastnear/wallet-adapter-widget",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "User interfaces for select NEAR Protocol web3 wallets",
   "type": "module",
-  "main": "./dist/cjs/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/index.js",
+  "browser": "./dist/umd/browser.global.js",
   "scripts": {
-    "build": "node esbuild.config.mjs",
+    "build": "tsup",
     "publish": "yarn npm publish",
     "clean": "yarn rimraf dist node_modules",
     "type-check": "tsc --noEmit"
@@ -24,7 +25,7 @@
   ],
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
+      "require": "./dist/cjs/index.cjs",
       "import": "./dist/esm/index.js"
     }
   },
@@ -38,10 +39,12 @@
   "peerDependencies": {
     "bn.js": "=5.2.1",
     "borsh": "=0.7.0",
-    "near-api-js": "^0.45.0"
+    "near-api-js": "^2.0.0"
   },
   "devDependencies": {
+    "near-api-js": "^2.0.0",
     "rimraf": "*",
+    "tsup": "*",
     "typescript": "*"
   }
 }

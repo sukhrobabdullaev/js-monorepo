@@ -1,34 +1,36 @@
 {
   "name": "@fastnear/wallet-adapter",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Optimized interfaces for a NEAR Protocol wallet adapter",
   "type": "module",
-  "main": "./dist/cjs/index.js",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.cjs",
   "module": "./dist/esm/index.js",
-  "browser": "./dist/umd/index.js",
+  "browser": "./dist/umd/browser.global.js",
   "scripts": {
-    "build": "node esbuild.config.mjs",
+    "build": "tsup",
     "publish": "yarn npm publish",
     "clean": "yarn rimraf dist node_modules",
     "type-check": "tsc --noEmit"
   },
+  "author": "FastNEAR",
   "keywords": [
     "near-protocol",
     "blockchain",
     "fastnear"
   ],
-  "author": "FastNEAR",
   "files": [
     "dist"
   ],
   "exports": {
     ".": {
-      "require": "./dist/cjs/index.js",
+      "require": "./dist/cjs/index.cjs",
       "import": "./dist/esm/index.js"
     }
   },
   "devDependencies": {
     "rimraf": "*",
+    "tsup": "*",
     "typescript": "*"
   }
 }

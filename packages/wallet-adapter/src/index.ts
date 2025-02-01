@@ -21,7 +21,6 @@
  * @property {string} [accountId] - Account ID if immediately available
  * @property {string} [error] - Error message if sign in failed
  */
-
 export interface SignInResult {
   url?: string;
   accountId?: string;

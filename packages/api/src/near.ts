@@ -35,22 +35,7 @@ import { sha256 } from "@noble/hashes/sha2";
 import * as reExportUtils from "@fastnear/utils";
 
 Big.DP = 27;
-
-// Constants (unchanged)
 export const MaxBlockDelayMs = 1000 * 60 * 60 * 6; // 6 hours
-export const WIDGET_URL = "https://wallet-adapter.fastnear.com";
-
-export const DEFAULT_NETWORK_ID = "mainnet";
-export const NETWORKS = {
-  testnet: {
-    networkId: "testnet",
-    nodeUrl: "https://rpc.testnet.fastnear.com/",
-  },
-  mainnet: {
-    networkId: "mainnet",
-    nodeUrl: "https://rpc.mainnet.fastnear.com/",
-  },
-};
 
 export function withBlockId(params: Record<string, any>, blockId?: string) {
   return blockId === "final" || blockId === "optimistic"
@@ -160,7 +145,7 @@ export const config = (newConfig?: Record<string, any>) => {
   if (newConfig) {
     if (newConfig.networkId && current.networkId !== newConfig.networkId) {
       // switch to new network
-      setConfig({...NETWORKS[newConfig.networkId]});
+      setConfig(newConfig.networkId);
 
       // reset app state
       updateState({

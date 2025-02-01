@@ -3,8 +3,21 @@ import {
   lsGet,
   publicKeyFromPrivate,
 } from "@fastnear/utils";
-import {DEFAULT_NETWORK_ID, NETWORKS, WIDGET_URL} from "./near.js";
 import {WalletAdapter} from "@fastnear/wallet-adapter";
+
+export const WIDGET_URL = "https://wallet-adapter.fastnear.com";
+
+export const DEFAULT_NETWORK_ID = "mainnet";
+export const NETWORKS = {
+  testnet: {
+    networkId: "testnet",
+    nodeUrl: "https://rpc.testnet.fastnear.com/",
+  },
+  mainnet: {
+    networkId: "mainnet",
+    nodeUrl: "https://rpc.mainnet.fastnear.com/",
+  },
+};
 
 export interface NetworkConfig {
   networkId: string;
@@ -223,7 +236,7 @@ export function getTxHistory(): TxHistory {
 // Exposed "write" functions
 export function setConfig(newConf: NetworkConfig): void {
   _config = newConf;
-  lsSet("config", _config);
+  lsSet("config", {...NETWORKS[_config.networkId]});
 }
 
 export function resetTxHistory(): void {

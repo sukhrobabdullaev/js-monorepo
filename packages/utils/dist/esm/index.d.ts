@@ -3222,6 +3222,7 @@ declare function lsSet(key: any, value: any): void;
 declare function lsGet(key: any): any;
 declare function deepCopy(obj: any): any;
 declare function tryParseJson(...args: any[]): any;
+declare function parseJsonFromBytes(bytes: Uint8Array): any;
 declare function canSignWithLAK(actions: any): any;
 
-export { SCHEMA, canSignWithLAK, convertUnit, deepCopy, fromBase64, keyFromString, keyToString, lsGet, lsSet, mapAction, mapTransaction, privateKeyFromRandom, publicKeyFromPrivate, serializeSignedTransaction, serializeTransaction, signBytes, signHash, toBase64, tryParseJson };
+export { SCHEMA, canSignWithLAK, convertUnit, deepCopy, fromBase64, keyFromString, keyToString, lsGet, lsSet, mapAction, mapTransaction, parseJsonFromBytes, privateKeyFromRandom, publicKeyFromPrivate, serializeSignedTransaction, serializeTransaction, signBytes, signHash, toBase64, tryParseJson };

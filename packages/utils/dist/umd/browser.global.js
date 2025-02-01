@@ -50,6 +50,7 @@ var NearUtils = (() => {
     lsSet: () => lsSet,
     mapAction: () => mapAction,
     mapTransaction: () => mapTransaction,
+    parseJsonFromBytes: () => parseJsonFromBytes,
     privateKeyFromRandom: () => privateKeyFromRandom,
     publicKeyFromPrivate: () => publicKeyFromPrivate,
     reExportBorshSchema: () => src_exports,
@@ -2720,6 +2721,21 @@ var NearUtils = (() => {
     }
   }
   __name(tryParseJson, "tryParseJson");
+  function parseJsonFromBytes(bytes) {
+    try {
+      const decoder = new TextDecoder();
+      return JSON.parse(
+        decoder.decode(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes))
+      );
+    } catch (e) {
+      try {
+        return bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+      } catch (e2) {
+        return bytes;
+      }
+    }
+  }
+  __name(parseJsonFromBytes, "parseJsonFromBytes");
   function canSignWithLAK(actions) {
     return actions.length === 1 && actions[0].type === "FunctionCall" && big_default(actions[0]?.deposit ?? "0").eq(0);
   }
@@ -3604,4 +3620,16 @@ var NearUtils = (() => {
 @noble/hashes/esm/utils.js:
   (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
 */
+
+if (typeof globalThis.NearUtils === 'undefined') {
+  console.warn('No globalThis.NearUtils');
+} else {
+  Object.defineProperty(globalThis, 'NearUtils', {
+    value: globalThis.NearUtils,
+    writable: false,
+    enumerable: true,
+    configurable: false,
+  });
+}
+
 //# sourceMappingURL=browser.global.js.map

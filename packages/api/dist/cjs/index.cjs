@@ -3,10 +3,6 @@ var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;
 var __hasOwnProp = Object.prototype.hasOwnProperty;
-var __export = (target, all) => {
-  for (var name in all)
-    __defProp(target, name, { get: all[name], enumerable: true });
-};
 var __copyProps = (to, from, except, desc) => {
   if (from && typeof from === "object" || typeof from === "function") {
     for (let key of __getOwnPropNames(from))
@@ -18,23 +14,14 @@ var __copyProps = (to, from, except, desc) => {
 var __reExport = (target, mod, secondTarget) => (__copyProps(target, mod, "default"), secondTarget && __copyProps(secondTarget, mod, "default"));
 var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 var src_exports = {};
-__export(src_exports, {
-  near: () => import_near.api
-});
 module.exports = __toCommonJS(src_exports);
-var import_near = require("./near.js");
-__reExport(src_exports, require("./cryptoUtils.js"), module.exports);
+var import_utils = require("@fastnear/utils");
 __reExport(src_exports, require("./near.js"), module.exports);
-__reExport(src_exports, require("./transaction.js"), module.exports);
-__reExport(src_exports, require("./utils.js"), module.exports);
-window.near = import_near.api;
-window.$$ = import_near.convertUnit;
+if (typeof window !== "undefined") {
+  window.$$ = import_utils.convertUnit;
+}
 // Annotate the CommonJS export names for ESM import in node:
 0 && (module.exports = {
-  near,
-  ...require("./cryptoUtils.js"),
-  ...require("./near.js"),
-  ...require("./transaction.js"),
-  ...require("./utils.js")
+  ...require("./near.js")
 });
 //# sourceMappingURL=index.cjs.map

@@ -1,5 +1,5 @@
 /* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD */
-var NearApi = (() => {
+var near = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
   var __getOwnPropNames = Object.getOwnPropertyNames;
@@ -20,10 +20,38 @@ var NearApi = (() => {
   var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
 
   // src/index.ts
-  var src_exports = {};
-  __export(src_exports, {
+  var src_exports3 = {};
+  __export(src_exports3, {
+    DEFAULT_NETWORK_ID: () => DEFAULT_NETWORK_ID,
+    MaxBlockDelayMs: () => MaxBlockDelayMs,
+    NETWORKS: () => NETWORKS,
+    WIDGET_URL: () => WIDGET_URL,
+    accessKey: () => accessKey,
+    account: () => account,
+    accountId: () => accountId,
+    actions: () => actions,
+    afterTxSent: () => afterTxSent,
+    authStatus: () => authStatus,
+    block: () => block,
+    config: () => config,
+    localTxHistory: () => localTxHistory,
+    publicKey: () => publicKey,
+    queryRpc: () => queryRpc,
+    reExports: () => reExports,
+    requestSignIn: () => requestSignIn,
+    sendTx: () => sendTx,
+    sendTxToRpc: () => sendTxToRpc,
+    signOut: () => signOut,
+    tx: () => tx,
+    utils: () => utils,
+    view: () => view,
+    withBlockId: () => withBlockId
+  });
+
+  // ../utils/src/index.ts
+  var src_exports2 = {};
+  __export(src_exports2, {
     SCHEMA: () => SCHEMA,
-    api: () => api,
     canSignWithLAK: () => canSignWithLAK,
     convertUnit: () => convertUnit,
     deepCopy: () => deepCopy,
@@ -34,10 +62,11 @@ var NearApi = (() => {
     lsGet: () => lsGet,
     lsSet: () => lsSet,
     mapAction: () => mapAction,
-    near: () => api,
+    mapTransaction: () => mapTransaction,
     parseJsonFromBytes: () => parseJsonFromBytes,
     privateKeyFromRandom: () => privateKeyFromRandom,
     publicKeyFromPrivate: () => publicKeyFromPrivate,
+    reExportBorshSchema: () => src_exports,
     serializeSignedTransaction: () => serializeSignedTransaction,
     serializeTransaction: () => serializeTransaction,
     sha256: () => sha256,
@@ -47,654 +76,6 @@ var NearApi = (() => {
     toBase64: () => toBase64,
     tryParseJson: () => tryParseJson
   });
-
-  // ../../node_modules/big.js/big.mjs
-  var DP = 20;
-  var RM = 1;
-  var MAX_DP = 1e6;
-  var MAX_POWER = 1e6;
-  var NE = -7;
-  var PE = 21;
-  var STRICT = false;
-  var NAME = "[big.js] ";
-  var INVALID = NAME + "Invalid ";
-  var INVALID_DP = INVALID + "decimal places";
-  var INVALID_RM = INVALID + "rounding mode";
-  var DIV_BY_ZERO = NAME + "Division by zero";
-  var P = {};
-  var UNDEFINED = void 0;
-  var NUMERIC = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i;
-  function _Big_() {
-    function Big2(n) {
-      var x = this;
-      if (!(x instanceof Big2)) return n === UNDEFINED ? _Big_() : new Big2(n);
-      if (n instanceof Big2) {
-        x.s = n.s;
-        x.e = n.e;
-        x.c = n.c.slice();
-      } else {
-        if (typeof n !== "string") {
-          if (Big2.strict === true && typeof n !== "bigint") {
-            throw TypeError(INVALID + "value");
-          }
-          n = n === 0 && 1 / n < 0 ? "-0" : String(n);
-        }
-        parse(x, n);
-      }
-      x.constructor = Big2;
-    }
-    __name(Big2, "Big");
-    Big2.prototype = P;
-    Big2.DP = DP;
-    Big2.RM = RM;
-    Big2.NE = NE;
-    Big2.PE = PE;
-    Big2.strict = STRICT;
-    Big2.roundDown = 0;
-    Big2.roundHalfUp = 1;
-    Big2.roundHalfEven = 2;
-    Big2.roundUp = 3;
-    return Big2;
-  }
-  __name(_Big_, "_Big_");
-  function parse(x, n) {
-    var e, i, nl;
-    if (!NUMERIC.test(n)) {
-      throw Error(INVALID + "number");
-    }
-    x.s = n.charAt(0) == "-" ? (n = n.slice(1), -1) : 1;
-    if ((e = n.indexOf(".")) > -1) n = n.replace(".", "");
-    if ((i = n.search(/e/i)) > 0) {
-      if (e < 0) e = i;
-      e += +n.slice(i + 1);
-      n = n.substring(0, i);
-    } else if (e < 0) {
-      e = n.length;
-    }
-    nl = n.length;
-    for (i = 0; i < nl && n.charAt(i) == "0"; ) ++i;
-    if (i == nl) {
-      x.c = [x.e = 0];
-    } else {
-      for (; nl > 0 && n.charAt(--nl) == "0"; ) ;
-      x.e = e - i - 1;
-      x.c = [];
-      for (e = 0; i <= nl; ) x.c[e++] = +n.charAt(i++);
-    }
-    return x;
-  }
-  __name(parse, "parse");
-  function round(x, sd, rm, more) {
-    var xc = x.c;
-    if (rm === UNDEFINED) rm = x.constructor.RM;
-    if (rm !== 0 && rm !== 1 && rm !== 2 && rm !== 3) {
-      throw Error(INVALID_RM);
-    }
-    if (sd < 1) {
-      more = rm === 3 && (more || !!xc[0]) || sd === 0 && (rm === 1 && xc[0] >= 5 || rm === 2 && (xc[0] > 5 || xc[0] === 5 && (more || xc[1] !== UNDEFINED)));
-      xc.length = 1;
-      if (more) {
-        x.e = x.e - sd + 1;
-        xc[0] = 1;
-      } else {
-        xc[0] = x.e = 0;
-      }
-    } else if (sd < xc.length) {
-      more = rm === 1 && xc[sd] >= 5 || rm === 2 && (xc[sd] > 5 || xc[sd] === 5 && (more || xc[sd + 1] !== UNDEFINED || xc[sd - 1] & 1)) || rm === 3 && (more || !!xc[0]);
-      xc.length = sd;
-      if (more) {
-        for (; ++xc[--sd] > 9; ) {
-          xc[sd] = 0;
-          if (sd === 0) {
-            ++x.e;
-            xc.unshift(1);
-            break;
-          }
-        }
-      }
-      for (sd = xc.length; !xc[--sd]; ) xc.pop();
-    }
-    return x;
-  }
-  __name(round, "round");
-  function stringify(x, doExponential, isNonzero) {
-    var e = x.e, s = x.c.join(""), n = s.length;
-    if (doExponential) {
-      s = s.charAt(0) + (n > 1 ? "." + s.slice(1) : "") + (e < 0 ? "e" : "e+") + e;
-    } else if (e < 0) {
-      for (; ++e; ) s = "0" + s;
-      s = "0." + s;
-    } else if (e > 0) {
-      if (++e > n) {
-        for (e -= n; e--; ) s += "0";
-      } else if (e < n) {
-        s = s.slice(0, e) + "." + s.slice(e);
-      }
-    } else if (n > 1) {
-      s = s.charAt(0) + "." + s.slice(1);
-    }
-    return x.s < 0 && isNonzero ? "-" + s : s;
-  }
-  __name(stringify, "stringify");
-  P.abs = function() {
-    var x = new this.constructor(this);
-    x.s = 1;
-    return x;
-  };
-  P.cmp = function(y) {
-    var isneg, x = this, xc = x.c, yc = (y = new x.constructor(y)).c, i = x.s, j = y.s, k = x.e, l = y.e;
-    if (!xc[0] || !yc[0]) return !xc[0] ? !yc[0] ? 0 : -j : i;
-    if (i != j) return i;
-    isneg = i < 0;
-    if (k != l) return k > l ^ isneg ? 1 : -1;
-    j = (k = xc.length) < (l = yc.length) ? k : l;
-    for (i = -1; ++i < j; ) {
-      if (xc[i] != yc[i]) return xc[i] > yc[i] ^ isneg ? 1 : -1;
-    }
-    return k == l ? 0 : k > l ^ isneg ? 1 : -1;
-  };
-  P.div = function(y) {
-    var x = this, Big2 = x.constructor, a = x.c, b = (y = new Big2(y)).c, k = x.s == y.s ? 1 : -1, dp = Big2.DP;
-    if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
-      throw Error(INVALID_DP);
-    }
-    if (!b[0]) {
-      throw Error(DIV_BY_ZERO);
-    }
-    if (!a[0]) {
-      y.s = k;
-      y.c = [y.e = 0];
-      return y;
-    }
-    var bl, bt, n, cmp, ri, bz = b.slice(), ai = bl = b.length, al = a.length, r = a.slice(0, bl), rl = r.length, q = y, qc = q.c = [], qi = 0, p = dp + (q.e = x.e - y.e) + 1;
-    q.s = k;
-    k = p < 0 ? 0 : p;
-    bz.unshift(0);
-    for (; rl++ < bl; ) r.push(0);
-    do {
-      for (n = 0; n < 10; n++) {
-        if (bl != (rl = r.length)) {
-          cmp = bl > rl ? 1 : -1;
-        } else {
-          for (ri = -1, cmp = 0; ++ri < bl; ) {
-            if (b[ri] != r[ri]) {
-              cmp = b[ri] > r[ri] ? 1 : -1;
-              break;
-            }
-          }
-        }
-        if (cmp < 0) {
-          for (bt = rl == bl ? b : bz; rl; ) {
-            if (r[--rl] < bt[rl]) {
-              ri = rl;
-              for (; ri && !r[--ri]; ) r[ri] = 9;
-              --r[ri];
-              r[rl] += 10;
-            }
-            r[rl] -= bt[rl];
-          }
-          for (; !r[0]; ) r.shift();
-        } else {
-          break;
-        }
-      }
-      qc[qi++] = cmp ? n : ++n;
-      if (r[0] && cmp) r[rl] = a[ai] || 0;
-      else r = [a[ai]];
-    } while ((ai++ < al || r[0] !== UNDEFINED) && k--);
-    if (!qc[0] && qi != 1) {
-      qc.shift();
-      q.e--;
-      p--;
-    }
-    if (qi > p) round(q, p, Big2.RM, r[0] !== UNDEFINED);
-    return q;
-  };
-  P.eq = function(y) {
-    return this.cmp(y) === 0;
-  };
-  P.gt = function(y) {
-    return this.cmp(y) > 0;
-  };
-  P.gte = function(y) {
-    return this.cmp(y) > -1;
-  };
-  P.lt = function(y) {
-    return this.cmp(y) < 0;
-  };
-  P.lte = function(y) {
-    return this.cmp(y) < 1;
-  };
-  P.minus = P.sub = function(y) {
-    var i, j, t, xlty, x = this, Big2 = x.constructor, a = x.s, b = (y = new Big2(y)).s;
-    if (a != b) {
-      y.s = -b;
-      return x.plus(y);
-    }
-    var xc = x.c.slice(), xe = x.e, yc = y.c, ye = y.e;
-    if (!xc[0] || !yc[0]) {
-      if (yc[0]) {
-        y.s = -b;
-      } else if (xc[0]) {
-        y = new Big2(x);
-      } else {
-        y.s = 1;
-      }
-      return y;
-    }
-    if (a = xe - ye) {
-      if (xlty = a < 0) {
-        a = -a;
-        t = xc;
-      } else {
-        ye = xe;
-        t = yc;
-      }
-      t.reverse();
-      for (b = a; b--; ) t.push(0);
-      t.reverse();
-    } else {
-      j = ((xlty = xc.length < yc.length) ? xc : yc).length;
-      for (a = b = 0; b < j; b++) {
-        if (xc[b] != yc[b]) {
-          xlty = xc[b] < yc[b];
-          break;
-        }
-      }
-    }
-    if (xlty) {
-      t = xc;
-      xc = yc;
-      yc = t;
-      y.s = -y.s;
-    }
-    if ((b = (j = yc.length) - (i = xc.length)) > 0) for (; b--; ) xc[i++] = 0;
-    for (b = i; j > a; ) {
-      if (xc[--j] < yc[j]) {
-        for (i = j; i && !xc[--i]; ) xc[i] = 9;
-        --xc[i];
-        xc[j] += 10;
-      }
-      xc[j] -= yc[j];
-    }
-    for (; xc[--b] === 0; ) xc.pop();
-    for (; xc[0] === 0; ) {
-      xc.shift();
-      --ye;
-    }
-    if (!xc[0]) {
-      y.s = 1;
-      xc = [ye = 0];
-    }
-    y.c = xc;
-    y.e = ye;
-    return y;
-  };
-  P.mod = function(y) {
-    var ygtx, x = this, Big2 = x.constructor, a = x.s, b = (y = new Big2(y)).s;
-    if (!y.c[0]) {
-      throw Error(DIV_BY_ZERO);
-    }
-    x.s = y.s = 1;
-    ygtx = y.cmp(x) == 1;
-    x.s = a;
-    y.s = b;
-    if (ygtx) return new Big2(x);
-    a = Big2.DP;
-    b = Big2.RM;
-    Big2.DP = Big2.RM = 0;
-    x = x.div(y);
-    Big2.DP = a;
-    Big2.RM = b;
-    return this.minus(x.times(y));
-  };
-  P.neg = function() {
-    var x = new this.constructor(this);
-    x.s = -x.s;
-    return x;
-  };
-  P.plus = P.add = function(y) {
-    var e, k, t, x = this, Big2 = x.constructor;
-    y = new Big2(y);
-    if (x.s != y.s) {
-      y.s = -y.s;
-      return x.minus(y);
-    }
-    var xe = x.e, xc = x.c, ye = y.e, yc = y.c;
-    if (!xc[0] || !yc[0]) {
-      if (!yc[0]) {
-        if (xc[0]) {
-          y = new Big2(x);
-        } else {
-          y.s = x.s;
-        }
-      }
-      return y;
-    }
-    xc = xc.slice();
-    if (e = xe - ye) {
-      if (e > 0) {
-        ye = xe;
-        t = yc;
-      } else {
-        e = -e;
-        t = xc;
-      }
-      t.reverse();
-      for (; e--; ) t.push(0);
-      t.reverse();
-    }
-    if (xc.length - yc.length < 0) {
-      t = yc;
-      yc = xc;
-      xc = t;
-    }
-    e = yc.length;
-    for (k = 0; e; xc[e] %= 10) k = (xc[--e] = xc[e] + yc[e] + k) / 10 | 0;
-    if (k) {
-      xc.unshift(k);
-      ++ye;
-    }
-    for (e = xc.length; xc[--e] === 0; ) xc.pop();
-    y.c = xc;
-    y.e = ye;
-    return y;
-  };
-  P.pow = function(n) {
-    var x = this, one = new x.constructor("1"), y = one, isneg = n < 0;
-    if (n !== ~~n || n < -MAX_POWER || n > MAX_POWER) {
-      throw Error(INVALID + "exponent");
-    }
-    if (isneg) n = -n;
-    for (; ; ) {
-      if (n & 1) y = y.times(x);
-      n >>= 1;
-      if (!n) break;
-      x = x.times(x);
-    }
-    return isneg ? one.div(y) : y;
-  };
-  P.prec = function(sd, rm) {
-    if (sd !== ~~sd || sd < 1 || sd > MAX_DP) {
-      throw Error(INVALID + "precision");
-    }
-    return round(new this.constructor(this), sd, rm);
-  };
-  P.round = function(dp, rm) {
-    if (dp === UNDEFINED) dp = 0;
-    else if (dp !== ~~dp || dp < -MAX_DP || dp > MAX_DP) {
-      throw Error(INVALID_DP);
-    }
-    return round(new this.constructor(this), dp + this.e + 1, rm);
-  };
-  P.sqrt = function() {
-    var r, c, t, x = this, Big2 = x.constructor, s = x.s, e = x.e, half = new Big2("0.5");
-    if (!x.c[0]) return new Big2(x);
-    if (s < 0) {
-      throw Error(NAME + "No square root");
-    }
-    s = Math.sqrt(+stringify(x, true, true));
-    if (s === 0 || s === 1 / 0) {
-      c = x.c.join("");
-      if (!(c.length + e & 1)) c += "0";
-      s = Math.sqrt(c);
-      e = ((e + 1) / 2 | 0) - (e < 0 || e & 1);
-      r = new Big2((s == 1 / 0 ? "5e" : (s = s.toExponential()).slice(0, s.indexOf("e") + 1)) + e);
-    } else {
-      r = new Big2(s + "");
-    }
-    e = r.e + (Big2.DP += 4);
-    do {
-      t = r;
-      r = half.times(t.plus(x.div(t)));
-    } while (t.c.slice(0, e).join("") !== r.c.slice(0, e).join(""));
-    return round(r, (Big2.DP -= 4) + r.e + 1, Big2.RM);
-  };
-  P.times = P.mul = function(y) {
-    var c, x = this, Big2 = x.constructor, xc = x.c, yc = (y = new Big2(y)).c, a = xc.length, b = yc.length, i = x.e, j = y.e;
-    y.s = x.s == y.s ? 1 : -1;
-    if (!xc[0] || !yc[0]) {
-      y.c = [y.e = 0];
-      return y;
-    }
-    y.e = i + j;
-    if (a < b) {
-      c = xc;
-      xc = yc;
-      yc = c;
-      j = a;
-      a = b;
-      b = j;
-    }
-    for (c = new Array(j = a + b); j--; ) c[j] = 0;
-    for (i = b; i--; ) {
-      b = 0;
-      for (j = a + i; j > i; ) {
-        b = c[j] + yc[i] * xc[j - i - 1] + b;
-        c[j--] = b % 10;
-        b = b / 10 | 0;
-      }
-      c[j] = b;
-    }
-    if (b) ++y.e;
-    else c.shift();
-    for (i = c.length; !c[--i]; ) c.pop();
-    y.c = c;
-    return y;
-  };
-  P.toExponential = function(dp, rm) {
-    var x = this, n = x.c[0];
-    if (dp !== UNDEFINED) {
-      if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
-        throw Error(INVALID_DP);
-      }
-      x = round(new x.constructor(x), ++dp, rm);
-      for (; x.c.length < dp; ) x.c.push(0);
-    }
-    return stringify(x, true, !!n);
-  };
-  P.toFixed = function(dp, rm) {
-    var x = this, n = x.c[0];
-    if (dp !== UNDEFINED) {
-      if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
-        throw Error(INVALID_DP);
-      }
-      x = round(new x.constructor(x), dp + x.e + 1, rm);
-      for (dp = dp + x.e + 1; x.c.length < dp; ) x.c.push(0);
-    }
-    return stringify(x, false, !!n);
-  };
-  P[Symbol.for("nodejs.util.inspect.custom")] = P.toJSON = P.toString = function() {
-    var x = this, Big2 = x.constructor;
-    return stringify(x, x.e <= Big2.NE || x.e >= Big2.PE, !!x.c[0]);
-  };
-  P.toNumber = function() {
-    var n = +stringify(this, true, true);
-    if (this.constructor.strict === true && !this.eq(n.toString())) {
-      throw Error(NAME + "Imprecise conversion");
-    }
-    return n;
-  };
-  P.toPrecision = function(sd, rm) {
-    var x = this, Big2 = x.constructor, n = x.c[0];
-    if (sd !== UNDEFINED) {
-      if (sd !== ~~sd || sd < 1 || sd > MAX_DP) {
-        throw Error(INVALID + "precision");
-      }
-      x = round(new Big2(x), sd, rm);
-      for (; x.c.length < sd; ) x.c.push(0);
-    }
-    return stringify(x, sd <= x.e || x.e <= Big2.NE || x.e >= Big2.PE, !!n);
-  };
-  P.valueOf = function() {
-    var x = this, Big2 = x.constructor;
-    if (Big2.strict === true) {
-      throw Error(NAME + "valueOf disallowed");
-    }
-    return stringify(x, x.e <= Big2.NE || x.e >= Big2.PE, true);
-  };
-  var Big = _Big_();
-  var big_default = Big;
-
-  // ../wallet-adapter/src/index.ts
-  var WalletAdapter = class _WalletAdapter {
-    static {
-      __name(this, "WalletAdapter");
-    }
-    /** @type {HTMLIFrameElement} */
-    #iframe = null;
-    /** @type {string} */
-    #targetOrigin;
-    /** @type {string} */
-    #widgetUrl;
-    /** @type {Map<string, Function>} */
-    #pending = /* @__PURE__ */ new Map();
-    /** @type {WalletState} */
-    #state;
-    /** @type {Function} */
-    #onStateUpdate;
-    /** @type {string} */
-    #callbackUrl;
-    /** @type {string} */
-    static defaultWidgetUrl = "https://wallet-adapter.fastnear.com";
-    /**
-     * @param {WalletAdapterConfig} [config]
-     */
-    constructor({
-      widgetUrl = _WalletAdapter.defaultWidgetUrl,
-      targetOrigin = "*",
-      onStateUpdate,
-      lastState,
-      callbackUrl = window.location.href
-    } = {}) {
-      this.#targetOrigin = targetOrigin;
-      this.#widgetUrl = widgetUrl;
-      this.#onStateUpdate = onStateUpdate;
-      this.#callbackUrl = callbackUrl;
-      this.#state = lastState || {};
-      window.addEventListener("message", this.#handleMessage.bind(this));
-    }
-    /**
-     * Creates an iframe for wallet interaction
-     * @param {string} path - Path to load in iframe
-     * @returns {HTMLIFrameElement}
-     */
-    #createIframe(path) {
-      if (this.#iframe) {
-        this.#iframe.remove();
-      }
-      const url = new URL(path, this.#widgetUrl);
-      console.log("aloha wa url", url);
-      const iframe = document.createElement("iframe");
-      iframe.src = url.toString();
-      iframe.allow = "usb";
-      iframe.style.border = "none";
-      iframe.style.zIndex = "10000";
-      iframe.style.position = "fixed";
-      iframe.style.display = "block";
-      iframe.style.top = "0";
-      iframe.style.left = "0";
-      iframe.style.width = "100%";
-      iframe.style.height = "100%";
-      document.body.appendChild(iframe);
-      this.#iframe = iframe;
-      return iframe;
-    }
-    /**
-     * Handles messages from the wallet widget
-     * @param {MessageEvent} event
-     */
-    #handleMessage(event) {
-      if (this.#targetOrigin !== "*" && event.origin !== this.#targetOrigin) {
-        return;
-      }
-      const { id, type, action, payload } = event.data;
-      if (type !== "wallet-adapter") return;
-      if (action === "close") {
-        this.#iframe?.remove();
-        this.#iframe = null;
-        return;
-      }
-      if (payload?.state) {
-        this.#state = { ...this.#state, ...payload.state };
-        this.#onStateUpdate?.(this.#state);
-      }
-      const resolve = this.#pending.get(id);
-      if (resolve) {
-        this.#pending.delete(id);
-        this.#iframe?.remove();
-        this.#iframe = null;
-        resolve(payload);
-      }
-    }
-    /**
-     * Sends a message to the wallet widget
-     * @param {string} path - Path to load in iframe
-     * @param {string} method - Method to call
-     * @param {Object} params - Parameters to pass
-     * @returns {Promise<any>}
-     */
-    async #sendMessage(path, method, params) {
-      return new Promise((resolve) => {
-        const id = Math.random().toString(36).slice(2);
-        this.#pending.set(id, resolve);
-        const iframe = this.#createIframe(path);
-        iframe.onload = () => {
-          iframe.contentWindow?.postMessage(
-            {
-              type: "wallet-adapter",
-              method,
-              params: {
-                id,
-                ...params,
-                state: this.#state,
-                callbackUrl: params.callbackUrl || this.#callbackUrl
-              }
-            },
-            this.#targetOrigin
-          );
-        };
-      });
-    }
-    /**
-     * Get current wallet state
-     * @returns {WalletState}
-     */
-    getState() {
-      return { ...this.#state };
-    }
-    /**
-     * Set current wallet state
-     * @param state
-     */
-    setState(state) {
-      this.#state = state;
-    }
-    /**
-     * Sign in with a NEAR wallet
-     * @param {SignInConfig} config
-     * @returns {Promise<SignInResult>}
-     */
-    async signIn(config) {
-      return this.#sendMessage("/public/login.html", "signIn", config);
-    }
-    /**
-     * Send a transaction using connected wallet
-     * @param {TransactionConfig} config
-     * @returns {Promise<TransactionResult>}
-     */
-    async sendTransactions(config) {
-      return this.#sendMessage("/public/send.html", "sendTransactions", config);
-    }
-    /**
-     * Clean up adapter resources
-     */
-    destroy() {
-      window.removeEventListener("message", this.#handleMessage);
-      this.#iframe?.remove();
-      this.#iframe = null;
-    }
-  };
 
   // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/_assert.js
   function isBytes(a) {
@@ -772,17 +153,17 @@ var NearApi = (() => {
   __name(randomBytes, "randomBytes");
 
   // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/_md.js
-  function setBigUint64(view, byteOffset, value, isLE) {
-    if (typeof view.setBigUint64 === "function")
-      return view.setBigUint64(byteOffset, value, isLE);
+  function setBigUint64(view2, byteOffset, value, isLE) {
+    if (typeof view2.setBigUint64 === "function")
+      return view2.setBigUint64(byteOffset, value, isLE);
     const _32n2 = BigInt(32);
     const _u32_max = BigInt(4294967295);
     const wh = Number(value >> _32n2 & _u32_max);
     const wl = Number(value & _u32_max);
     const h = isLE ? 4 : 0;
     const l = isLE ? 0 : 4;
-    view.setUint32(byteOffset + h, wh, isLE);
-    view.setUint32(byteOffset + l, wl, isLE);
+    view2.setUint32(byteOffset + h, wh, isLE);
+    view2.setUint32(byteOffset + l, wl, isLE);
   }
   __name(setBigUint64, "setBigUint64");
   var HashMD = class extends Hash {
@@ -804,7 +185,7 @@ var NearApi = (() => {
     }
     update(data) {
       aexists(this);
-      const { view, buffer, blockLen } = this;
+      const { view: view2, buffer, blockLen } = this;
       data = toBytes(data);
       const len = data.length;
       for (let pos = 0; pos < len; ) {
@@ -819,7 +200,7 @@ var NearApi = (() => {
         this.pos += take;
         pos += take;
         if (this.pos === blockLen) {
-          this.process(view, 0);
+          this.process(view2, 0);
           this.pos = 0;
         }
       }
@@ -831,18 +212,18 @@ var NearApi = (() => {
       aexists(this);
       aoutput(out, this);
       this.finished = true;
-      const { buffer, view, blockLen, isLE } = this;
+      const { buffer, view: view2, blockLen, isLE } = this;
       let { pos } = this;
       buffer[pos++] = 128;
       this.buffer.subarray(pos).fill(0);
       if (this.padOffset > blockLen - pos) {
-        this.process(view, 0);
+        this.process(view2, 0);
         pos = 0;
       }
       for (let i = pos; i < blockLen; i++)
         buffer[i] = 0;
-      setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE);
-      this.process(view, 0);
+      setBigUint64(view2, blockLen - 8, BigInt(this.length * 8), isLE);
+      this.process(view2, 0);
       const oview = createView(out);
       const len = this.outputLen;
       if (len % 4)
@@ -1076,10 +457,10 @@ var NearApi = (() => {
       this.Hh = Hh | 0;
       this.Hl = Hl | 0;
     }
-    process(view, offset) {
+    process(view2, offset) {
       for (let i = 0; i < 16; i++, offset += 4) {
-        SHA512_W_H[i] = view.getUint32(offset);
-        SHA512_W_L[i] = view.getUint32(offset += 4);
+        SHA512_W_H[i] = view2.getUint32(offset);
+        SHA512_W_L[i] = view2.getUint32(offset += 4);
       }
       for (let i = 16; i < 80; i++) {
         const W15h = SHA512_W_H[i - 15] | 0;
@@ -2173,12 +1554,12 @@ var NearApi = (() => {
     }
     __name(sign, "sign");
     const verifyOpts = VERIFY_DEFAULT;
-    function verify(sig, msg, publicKey, options = verifyOpts) {
+    function verify(sig, msg, publicKey2, options = verifyOpts) {
       const { context, zip215 } = options;
       const len = Fp2.BYTES;
       sig = ensureBytes("signature", sig, 2 * len);
       msg = ensureBytes("message", msg);
-      publicKey = ensureBytes("publicKey", publicKey, len);
+      publicKey2 = ensureBytes("publicKey", publicKey2, len);
       if (zip215 !== void 0)
         abool("zip215", zip215);
       if (prehash)
@@ -2186,7 +1567,7 @@ var NearApi = (() => {
       const s = bytesToNumberLE(sig.slice(len, 2 * len));
       let A, R, SB;
       try {
-        A = Point.fromHex(publicKey, zip215);
+        A = Point.fromHex(publicKey2, zip215);
         R = Point.fromHex(sig.slice(0, len), zip215);
         SB = G.multiplyUnsafe(s);
       } catch (error) {
@@ -2200,7 +1581,7 @@ var NearApi = (() => {
     }
     __name(verify, "verify");
     G._setWindowSize(8);
-    const utils = {
+    const utils2 = {
       getExtendedPublicKey,
       // ed25519 private keys are uniform 32b. No need to check for modulo bias, like in secp256k1.
       randomPrivateKey: /* @__PURE__ */ __name(() => randomBytes2(Fp2.BYTES), "randomPrivateKey"),
@@ -2222,7 +1603,7 @@ var NearApi = (() => {
       sign,
       verify,
       ExtendedPoint: Point,
-      utils
+      utils: utils2
     };
   }
   __name(twistedEdwards, "twistedEdwards");
@@ -2374,17 +1755,17 @@ var NearApi = (() => {
   __name(wrapConstructor2, "wrapConstructor");
 
   // ../../node_modules/@noble/hashes/esm/_md.js
-  function setBigUint642(view, byteOffset, value, isLE) {
-    if (typeof view.setBigUint64 === "function")
-      return view.setBigUint64(byteOffset, value, isLE);
+  function setBigUint642(view2, byteOffset, value, isLE) {
+    if (typeof view2.setBigUint64 === "function")
+      return view2.setBigUint64(byteOffset, value, isLE);
     const _32n2 = BigInt(32);
     const _u32_max = BigInt(4294967295);
     const wh = Number(value >> _32n2 & _u32_max);
     const wl = Number(value & _u32_max);
     const h = isLE ? 4 : 0;
     const l = isLE ? 0 : 4;
-    view.setUint32(byteOffset + h, wh, isLE);
-    view.setUint32(byteOffset + l, wl, isLE);
+    view2.setUint32(byteOffset + h, wh, isLE);
+    view2.setUint32(byteOffset + l, wl, isLE);
   }
   __name(setBigUint642, "setBigUint64");
   var Chi = /* @__PURE__ */ __name((a, b, c) => a & b ^ ~a & c, "Chi");
@@ -2408,7 +1789,7 @@ var NearApi = (() => {
     }
     update(data) {
       aexists2(this);
-      const { view, buffer, blockLen } = this;
+      const { view: view2, buffer, blockLen } = this;
       data = toBytes2(data);
       const len = data.length;
       for (let pos = 0; pos < len; ) {
@@ -2423,7 +1804,7 @@ var NearApi = (() => {
         this.pos += take;
         pos += take;
         if (this.pos === blockLen) {
-          this.process(view, 0);
+          this.process(view2, 0);
           this.pos = 0;
         }
       }
@@ -2435,18 +1816,18 @@ var NearApi = (() => {
       aexists2(this);
       aoutput2(out, this);
       this.finished = true;
-      const { buffer, view, blockLen, isLE } = this;
+      const { buffer, view: view2, blockLen, isLE } = this;
       let { pos } = this;
       buffer[pos++] = 128;
       this.buffer.subarray(pos).fill(0);
       if (this.padOffset > blockLen - pos) {
-        this.process(view, 0);
+        this.process(view2, 0);
         pos = 0;
       }
       for (let i = pos; i < blockLen; i++)
         buffer[i] = 0;
-      setBigUint642(view, blockLen - 8, BigInt(this.length * 8), isLE);
-      this.process(view, 0);
+      setBigUint642(view2, blockLen - 8, BigInt(this.length * 8), isLE);
+      this.process(view2, 0);
       const oview = createView2(out);
       const len = this.outputLen;
       if (len % 4)
@@ -2587,9 +1968,9 @@ var NearApi = (() => {
       this.G = G | 0;
       this.H = H | 0;
     }
-    process(view, offset) {
+    process(view2, offset) {
       for (let i = 0; i < 16; i++, offset += 4)
-        SHA256_W[i] = view.getUint32(offset, false);
+        SHA256_W[i] = view2.getUint32(offset, false);
       for (let i = 16; i < 64; i++) {
         const W15 = SHA256_W[i - 15];
         const W2 = SHA256_W[i - 2];
@@ -2701,6 +2082,494 @@ var NearApi = (() => {
   __name(binary_to_base58, "binary_to_base58");
   var binary_to_base58_default = binary_to_base58;
 
+  // ../../node_modules/big.js/big.mjs
+  var DP = 20;
+  var RM = 1;
+  var MAX_DP = 1e6;
+  var MAX_POWER = 1e6;
+  var NE = -7;
+  var PE = 21;
+  var STRICT = false;
+  var NAME = "[big.js] ";
+  var INVALID = NAME + "Invalid ";
+  var INVALID_DP = INVALID + "decimal places";
+  var INVALID_RM = INVALID + "rounding mode";
+  var DIV_BY_ZERO = NAME + "Division by zero";
+  var P = {};
+  var UNDEFINED = void 0;
+  var NUMERIC = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i;
+  function _Big_() {
+    function Big2(n) {
+      var x = this;
+      if (!(x instanceof Big2)) return n === UNDEFINED ? _Big_() : new Big2(n);
+      if (n instanceof Big2) {
+        x.s = n.s;
+        x.e = n.e;
+        x.c = n.c.slice();
+      } else {
+        if (typeof n !== "string") {
+          if (Big2.strict === true && typeof n !== "bigint") {
+            throw TypeError(INVALID + "value");
+          }
+          n = n === 0 && 1 / n < 0 ? "-0" : String(n);
+        }
+        parse(x, n);
+      }
+      x.constructor = Big2;
+    }
+    __name(Big2, "Big");
+    Big2.prototype = P;
+    Big2.DP = DP;
+    Big2.RM = RM;
+    Big2.NE = NE;
+    Big2.PE = PE;
+    Big2.strict = STRICT;
+    Big2.roundDown = 0;
+    Big2.roundHalfUp = 1;
+    Big2.roundHalfEven = 2;
+    Big2.roundUp = 3;
+    return Big2;
+  }
+  __name(_Big_, "_Big_");
+  function parse(x, n) {
+    var e, i, nl;
+    if (!NUMERIC.test(n)) {
+      throw Error(INVALID + "number");
+    }
+    x.s = n.charAt(0) == "-" ? (n = n.slice(1), -1) : 1;
+    if ((e = n.indexOf(".")) > -1) n = n.replace(".", "");
+    if ((i = n.search(/e/i)) > 0) {
+      if (e < 0) e = i;
+      e += +n.slice(i + 1);
+      n = n.substring(0, i);
+    } else if (e < 0) {
+      e = n.length;
+    }
+    nl = n.length;
+    for (i = 0; i < nl && n.charAt(i) == "0"; ) ++i;
+    if (i == nl) {
+      x.c = [x.e = 0];
+    } else {
+      for (; nl > 0 && n.charAt(--nl) == "0"; ) ;
+      x.e = e - i - 1;
+      x.c = [];
+      for (e = 0; i <= nl; ) x.c[e++] = +n.charAt(i++);
+    }
+    return x;
+  }
+  __name(parse, "parse");
+  function round(x, sd, rm, more) {
+    var xc = x.c;
+    if (rm === UNDEFINED) rm = x.constructor.RM;
+    if (rm !== 0 && rm !== 1 && rm !== 2 && rm !== 3) {
+      throw Error(INVALID_RM);
+    }
+    if (sd < 1) {
+      more = rm === 3 && (more || !!xc[0]) || sd === 0 && (rm === 1 && xc[0] >= 5 || rm === 2 && (xc[0] > 5 || xc[0] === 5 && (more || xc[1] !== UNDEFINED)));
+      xc.length = 1;
+      if (more) {
+        x.e = x.e - sd + 1;
+        xc[0] = 1;
+      } else {
+        xc[0] = x.e = 0;
+      }
+    } else if (sd < xc.length) {
+      more = rm === 1 && xc[sd] >= 5 || rm === 2 && (xc[sd] > 5 || xc[sd] === 5 && (more || xc[sd + 1] !== UNDEFINED || xc[sd - 1] & 1)) || rm === 3 && (more || !!xc[0]);
+      xc.length = sd;
+      if (more) {
+        for (; ++xc[--sd] > 9; ) {
+          xc[sd] = 0;
+          if (sd === 0) {
+            ++x.e;
+            xc.unshift(1);
+            break;
+          }
+        }
+      }
+      for (sd = xc.length; !xc[--sd]; ) xc.pop();
+    }
+    return x;
+  }
+  __name(round, "round");
+  function stringify(x, doExponential, isNonzero) {
+    var e = x.e, s = x.c.join(""), n = s.length;
+    if (doExponential) {
+      s = s.charAt(0) + (n > 1 ? "." + s.slice(1) : "") + (e < 0 ? "e" : "e+") + e;
+    } else if (e < 0) {
+      for (; ++e; ) s = "0" + s;
+      s = "0." + s;
+    } else if (e > 0) {
+      if (++e > n) {
+        for (e -= n; e--; ) s += "0";
+      } else if (e < n) {
+        s = s.slice(0, e) + "." + s.slice(e);
+      }
+    } else if (n > 1) {
+      s = s.charAt(0) + "." + s.slice(1);
+    }
+    return x.s < 0 && isNonzero ? "-" + s : s;
+  }
+  __name(stringify, "stringify");
+  P.abs = function() {
+    var x = new this.constructor(this);
+    x.s = 1;
+    return x;
+  };
+  P.cmp = function(y) {
+    var isneg, x = this, xc = x.c, yc = (y = new x.constructor(y)).c, i = x.s, j = y.s, k = x.e, l = y.e;
+    if (!xc[0] || !yc[0]) return !xc[0] ? !yc[0] ? 0 : -j : i;
+    if (i != j) return i;
+    isneg = i < 0;
+    if (k != l) return k > l ^ isneg ? 1 : -1;
+    j = (k = xc.length) < (l = yc.length) ? k : l;
+    for (i = -1; ++i < j; ) {
+      if (xc[i] != yc[i]) return xc[i] > yc[i] ^ isneg ? 1 : -1;
+    }
+    return k == l ? 0 : k > l ^ isneg ? 1 : -1;
+  };
+  P.div = function(y) {
+    var x = this, Big2 = x.constructor, a = x.c, b = (y = new Big2(y)).c, k = x.s == y.s ? 1 : -1, dp = Big2.DP;
+    if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
+      throw Error(INVALID_DP);
+    }
+    if (!b[0]) {
+      throw Error(DIV_BY_ZERO);
+    }
+    if (!a[0]) {
+      y.s = k;
+      y.c = [y.e = 0];
+      return y;
+    }
+    var bl, bt, n, cmp, ri, bz = b.slice(), ai = bl = b.length, al = a.length, r = a.slice(0, bl), rl = r.length, q = y, qc = q.c = [], qi = 0, p = dp + (q.e = x.e - y.e) + 1;
+    q.s = k;
+    k = p < 0 ? 0 : p;
+    bz.unshift(0);
+    for (; rl++ < bl; ) r.push(0);
+    do {
+      for (n = 0; n < 10; n++) {
+        if (bl != (rl = r.length)) {
+          cmp = bl > rl ? 1 : -1;
+        } else {
+          for (ri = -1, cmp = 0; ++ri < bl; ) {
+            if (b[ri] != r[ri]) {
+              cmp = b[ri] > r[ri] ? 1 : -1;
+              break;
+            }
+          }
+        }
+        if (cmp < 0) {
+          for (bt = rl == bl ? b : bz; rl; ) {
+            if (r[--rl] < bt[rl]) {
+              ri = rl;
+              for (; ri && !r[--ri]; ) r[ri] = 9;
+              --r[ri];
+              r[rl] += 10;
+            }
+            r[rl] -= bt[rl];
+          }
+          for (; !r[0]; ) r.shift();
+        } else {
+          break;
+        }
+      }
+      qc[qi++] = cmp ? n : ++n;
+      if (r[0] && cmp) r[rl] = a[ai] || 0;
+      else r = [a[ai]];
+    } while ((ai++ < al || r[0] !== UNDEFINED) && k--);
+    if (!qc[0] && qi != 1) {
+      qc.shift();
+      q.e--;
+      p--;
+    }
+    if (qi > p) round(q, p, Big2.RM, r[0] !== UNDEFINED);
+    return q;
+  };
+  P.eq = function(y) {
+    return this.cmp(y) === 0;
+  };
+  P.gt = function(y) {
+    return this.cmp(y) > 0;
+  };
+  P.gte = function(y) {
+    return this.cmp(y) > -1;
+  };
+  P.lt = function(y) {
+    return this.cmp(y) < 0;
+  };
+  P.lte = function(y) {
+    return this.cmp(y) < 1;
+  };
+  P.minus = P.sub = function(y) {
+    var i, j, t, xlty, x = this, Big2 = x.constructor, a = x.s, b = (y = new Big2(y)).s;
+    if (a != b) {
+      y.s = -b;
+      return x.plus(y);
+    }
+    var xc = x.c.slice(), xe = x.e, yc = y.c, ye = y.e;
+    if (!xc[0] || !yc[0]) {
+      if (yc[0]) {
+        y.s = -b;
+      } else if (xc[0]) {
+        y = new Big2(x);
+      } else {
+        y.s = 1;
+      }
+      return y;
+    }
+    if (a = xe - ye) {
+      if (xlty = a < 0) {
+        a = -a;
+        t = xc;
+      } else {
+        ye = xe;
+        t = yc;
+      }
+      t.reverse();
+      for (b = a; b--; ) t.push(0);
+      t.reverse();
+    } else {
+      j = ((xlty = xc.length < yc.length) ? xc : yc).length;
+      for (a = b = 0; b < j; b++) {
+        if (xc[b] != yc[b]) {
+          xlty = xc[b] < yc[b];
+          break;
+        }
+      }
+    }
+    if (xlty) {
+      t = xc;
+      xc = yc;
+      yc = t;
+      y.s = -y.s;
+    }
+    if ((b = (j = yc.length) - (i = xc.length)) > 0) for (; b--; ) xc[i++] = 0;
+    for (b = i; j > a; ) {
+      if (xc[--j] < yc[j]) {
+        for (i = j; i && !xc[--i]; ) xc[i] = 9;
+        --xc[i];
+        xc[j] += 10;
+      }
+      xc[j] -= yc[j];
+    }
+    for (; xc[--b] === 0; ) xc.pop();
+    for (; xc[0] === 0; ) {
+      xc.shift();
+      --ye;
+    }
+    if (!xc[0]) {
+      y.s = 1;
+      xc = [ye = 0];
+    }
+    y.c = xc;
+    y.e = ye;
+    return y;
+  };
+  P.mod = function(y) {
+    var ygtx, x = this, Big2 = x.constructor, a = x.s, b = (y = new Big2(y)).s;
+    if (!y.c[0]) {
+      throw Error(DIV_BY_ZERO);
+    }
+    x.s = y.s = 1;
+    ygtx = y.cmp(x) == 1;
+    x.s = a;
+    y.s = b;
+    if (ygtx) return new Big2(x);
+    a = Big2.DP;
+    b = Big2.RM;
+    Big2.DP = Big2.RM = 0;
+    x = x.div(y);
+    Big2.DP = a;
+    Big2.RM = b;
+    return this.minus(x.times(y));
+  };
+  P.neg = function() {
+    var x = new this.constructor(this);
+    x.s = -x.s;
+    return x;
+  };
+  P.plus = P.add = function(y) {
+    var e, k, t, x = this, Big2 = x.constructor;
+    y = new Big2(y);
+    if (x.s != y.s) {
+      y.s = -y.s;
+      return x.minus(y);
+    }
+    var xe = x.e, xc = x.c, ye = y.e, yc = y.c;
+    if (!xc[0] || !yc[0]) {
+      if (!yc[0]) {
+        if (xc[0]) {
+          y = new Big2(x);
+        } else {
+          y.s = x.s;
+        }
+      }
+      return y;
+    }
+    xc = xc.slice();
+    if (e = xe - ye) {
+      if (e > 0) {
+        ye = xe;
+        t = yc;
+      } else {
+        e = -e;
+        t = xc;
+      }
+      t.reverse();
+      for (; e--; ) t.push(0);
+      t.reverse();
+    }
+    if (xc.length - yc.length < 0) {
+      t = yc;
+      yc = xc;
+      xc = t;
+    }
+    e = yc.length;
+    for (k = 0; e; xc[e] %= 10) k = (xc[--e] = xc[e] + yc[e] + k) / 10 | 0;
+    if (k) {
+      xc.unshift(k);
+      ++ye;
+    }
+    for (e = xc.length; xc[--e] === 0; ) xc.pop();
+    y.c = xc;
+    y.e = ye;
+    return y;
+  };
+  P.pow = function(n) {
+    var x = this, one = new x.constructor("1"), y = one, isneg = n < 0;
+    if (n !== ~~n || n < -MAX_POWER || n > MAX_POWER) {
+      throw Error(INVALID + "exponent");
+    }
+    if (isneg) n = -n;
+    for (; ; ) {
+      if (n & 1) y = y.times(x);
+      n >>= 1;
+      if (!n) break;
+      x = x.times(x);
+    }
+    return isneg ? one.div(y) : y;
+  };
+  P.prec = function(sd, rm) {
+    if (sd !== ~~sd || sd < 1 || sd > MAX_DP) {
+      throw Error(INVALID + "precision");
+    }
+    return round(new this.constructor(this), sd, rm);
+  };
+  P.round = function(dp, rm) {
+    if (dp === UNDEFINED) dp = 0;
+    else if (dp !== ~~dp || dp < -MAX_DP || dp > MAX_DP) {
+      throw Error(INVALID_DP);
+    }
+    return round(new this.constructor(this), dp + this.e + 1, rm);
+  };
+  P.sqrt = function() {
+    var r, c, t, x = this, Big2 = x.constructor, s = x.s, e = x.e, half = new Big2("0.5");
+    if (!x.c[0]) return new Big2(x);
+    if (s < 0) {
+      throw Error(NAME + "No square root");
+    }
+    s = Math.sqrt(+stringify(x, true, true));
+    if (s === 0 || s === 1 / 0) {
+      c = x.c.join("");
+      if (!(c.length + e & 1)) c += "0";
+      s = Math.sqrt(c);
+      e = ((e + 1) / 2 | 0) - (e < 0 || e & 1);
+      r = new Big2((s == 1 / 0 ? "5e" : (s = s.toExponential()).slice(0, s.indexOf("e") + 1)) + e);
+    } else {
+      r = new Big2(s + "");
+    }
+    e = r.e + (Big2.DP += 4);
+    do {
+      t = r;
+      r = half.times(t.plus(x.div(t)));
+    } while (t.c.slice(0, e).join("") !== r.c.slice(0, e).join(""));
+    return round(r, (Big2.DP -= 4) + r.e + 1, Big2.RM);
+  };
+  P.times = P.mul = function(y) {
+    var c, x = this, Big2 = x.constructor, xc = x.c, yc = (y = new Big2(y)).c, a = xc.length, b = yc.length, i = x.e, j = y.e;
+    y.s = x.s == y.s ? 1 : -1;
+    if (!xc[0] || !yc[0]) {
+      y.c = [y.e = 0];
+      return y;
+    }
+    y.e = i + j;
+    if (a < b) {
+      c = xc;
+      xc = yc;
+      yc = c;
+      j = a;
+      a = b;
+      b = j;
+    }
+    for (c = new Array(j = a + b); j--; ) c[j] = 0;
+    for (i = b; i--; ) {
+      b = 0;
+      for (j = a + i; j > i; ) {
+        b = c[j] + yc[i] * xc[j - i - 1] + b;
+        c[j--] = b % 10;
+        b = b / 10 | 0;
+      }
+      c[j] = b;
+    }
+    if (b) ++y.e;
+    else c.shift();
+    for (i = c.length; !c[--i]; ) c.pop();
+    y.c = c;
+    return y;
+  };
+  P.toExponential = function(dp, rm) {
+    var x = this, n = x.c[0];
+    if (dp !== UNDEFINED) {
+      if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
+        throw Error(INVALID_DP);
+      }
+      x = round(new x.constructor(x), ++dp, rm);
+      for (; x.c.length < dp; ) x.c.push(0);
+    }
+    return stringify(x, true, !!n);
+  };
+  P.toFixed = function(dp, rm) {
+    var x = this, n = x.c[0];
+    if (dp !== UNDEFINED) {
+      if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
+        throw Error(INVALID_DP);
+      }
+      x = round(new x.constructor(x), dp + x.e + 1, rm);
+      for (dp = dp + x.e + 1; x.c.length < dp; ) x.c.push(0);
+    }
+    return stringify(x, false, !!n);
+  };
+  P[Symbol.for("nodejs.util.inspect.custom")] = P.toJSON = P.toString = function() {
+    var x = this, Big2 = x.constructor;
+    return stringify(x, x.e <= Big2.NE || x.e >= Big2.PE, !!x.c[0]);
+  };
+  P.toNumber = function() {
+    var n = +stringify(this, true, true);
+    if (this.constructor.strict === true && !this.eq(n.toString())) {
+      throw Error(NAME + "Imprecise conversion");
+    }
+    return n;
+  };
+  P.toPrecision = function(sd, rm) {
+    var x = this, Big2 = x.constructor, n = x.c[0];
+    if (sd !== UNDEFINED) {
+      if (sd !== ~~sd || sd < 1 || sd > MAX_DP) {
+        throw Error(INVALID + "precision");
+      }
+      x = round(new Big2(x), sd, rm);
+      for (; x.c.length < sd; ) x.c.push(0);
+    }
+    return stringify(x, sd <= x.e || x.e <= Big2.NE || x.e >= Big2.PE, !!n);
+  };
+  P.valueOf = function() {
+    var x = this, Big2 = x.constructor;
+    if (Big2.strict === true) {
+      throw Error(NAME + "valueOf disallowed");
+    }
+    return stringify(x, x.e <= Big2.NE || x.e >= Big2.PE, true);
+  };
+  var Big = _Big_();
+  var big_default = Big;
+
   // ../../node_modules/js-base64/base64.mjs
   var _hasBuffer = typeof Buffer === "function";
   var _TD = typeof TextDecoder === "function" ? new TextDecoder() : void 0;
@@ -2781,7 +2650,7 @@ var NearApi = (() => {
   var _unURI = /* @__PURE__ */ __name((a) => _tidyB64(a.replace(/[-_]/g, (m0) => m0 == "-" ? "+" : "/")), "_unURI");
   var decode = /* @__PURE__ */ __name((src) => _decode(_unURI(src)), "decode");
 
-  // src/utils.ts
+  // ../utils/src/misc.ts
   var LsPrefix = "__fastnear_";
   function toBase64(data) {
     if (typeof data === "string") {
@@ -2803,6 +2672,39 @@ var NearApi = (() => {
     return bytes;
   }
   __name(fromBase64, "fromBase64");
+  function convertUnit(s, ...args) {
+    if (Array.isArray(s)) {
+      s = s.reduce((acc, part, i) => {
+        return acc + (args[i - 1] ?? "") + part;
+      });
+    }
+    if (typeof s == "string") {
+      const match = s.match(/([0-9.,_]+)\s*([a-zA-Z]+)?/);
+      if (match) {
+        const amount = match[1].replace(/[_,]/g, "");
+        const unitPart = match[2];
+        if (unitPart) {
+          switch (unitPart.toLowerCase()) {
+            case "near":
+              return big_default(amount).mul(big_default(10).pow(24)).toFixed(0);
+            case "tgas":
+              return big_default(amount).mul(big_default(10).pow(12)).toFixed(0);
+            case "ggas":
+              return big_default(amount).mul(big_default(10).pow(9)).toFixed(0);
+            case "gas":
+            case "yoctonear":
+              return big_default(amount).toFixed(0);
+            default:
+              throw new Error(`Unknown unit: ${unitPart}`);
+          }
+        } else {
+          return big_default(amount).toFixed(0);
+        }
+      }
+    }
+    return big_default(s).toFixed(0);
+  }
+  __name(convertUnit, "convertUnit");
   function lsSet(key, value) {
     if (value === null || value === void 0) {
       localStorage.removeItem(LsPrefix + key);
@@ -2831,12 +2733,27 @@ var NearApi = (() => {
     }
   }
   __name(tryParseJson, "tryParseJson");
-  function canSignWithLAK(actions) {
-    return actions.length === 1 && actions[0].type === "FunctionCall" && big_default(actions[0]?.deposit ?? "0").eq(0);
+  function parseJsonFromBytes(bytes) {
+    try {
+      const decoder = new TextDecoder();
+      return JSON.parse(
+        decoder.decode(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes))
+      );
+    } catch (e) {
+      try {
+        return bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+      } catch (e2) {
+        return bytes;
+      }
+    }
+  }
+  __name(parseJsonFromBytes, "parseJsonFromBytes");
+  function canSignWithLAK(actions2) {
+    return actions2.length === 1 && actions2[0].type === "FunctionCall" && big_default(actions2[0]?.deposit ?? "0").eq(0);
   }
   __name(canSignWithLAK, "canSignWithLAK");
 
-  // src/cryptoUtils.ts
+  // ../utils/src/crypto.ts
   var keyFromString = /* @__PURE__ */ __name((key) => base58_to_binary_default(
     key.includes(":") ? (() => {
       const [curve, keyPart] = key.split(":");
@@ -2849,8 +2766,8 @@ var NearApi = (() => {
   var keyToString = /* @__PURE__ */ __name((key) => `ed25519:${binary_to_base58_default(key)}`, "keyToString");
   function publicKeyFromPrivate(privateKey) {
     privateKey = keyFromString(privateKey).slice(0, 32);
-    const publicKey = ed25519.getPublicKey(privateKey);
-    return keyToString(publicKey);
+    const publicKey2 = ed25519.getPublicKey(privateKey);
+    return keyToString(publicKey2);
   }
   __name(publicKeyFromPrivate, "publicKeyFromPrivate");
   function privateKeyFromRandom() {
@@ -3390,7 +3307,175 @@ var NearApi = (() => {
   }
   __name(serialize, "serialize");
 
-  // src/transaction.ts
+  // ../borsh-schema/src/index.ts
+  var src_exports = {};
+  __export(src_exports, {
+    getBorshSchema: () => getBorshSchema
+  });
+  var getBorshSchema = (() => {
+    class BorshSchema {
+      static {
+        __name(this, "BorshSchema");
+      }
+      Ed25519Signature = {
+        struct: {
+          data: { array: { type: "u8", len: 64 } }
+        }
+      };
+      Secp256k1Signature = {
+        struct: {
+          data: { array: { type: "u8", len: 65 } }
+        }
+      };
+      Signature = {
+        enum: [
+          { struct: { ed25519Signature: this.Ed25519Signature } },
+          { struct: { secp256k1Signature: this.Secp256k1Signature } }
+        ]
+      };
+      Ed25519Data = {
+        struct: {
+          data: { array: { type: "u8", len: 32 } }
+        }
+      };
+      Secp256k1Data = {
+        struct: {
+          data: { array: { type: "u8", len: 64 } }
+        }
+      };
+      PublicKey = {
+        enum: [
+          { struct: { ed25519Key: this.Ed25519Data } },
+          { struct: { secp256k1Key: this.Secp256k1Data } }
+        ]
+      };
+      FunctionCallPermission = {
+        struct: {
+          allowance: { option: "u128" },
+          receiverId: "string",
+          methodNames: { array: { type: "string" } }
+        }
+      };
+      FullAccessPermission = {
+        struct: {}
+      };
+      AccessKeyPermission = {
+        enum: [
+          { struct: { functionCall: this.FunctionCallPermission } },
+          { struct: { fullAccess: this.FullAccessPermission } }
+        ]
+      };
+      AccessKey = {
+        struct: {
+          nonce: "u64",
+          permission: this.AccessKeyPermission
+        }
+      };
+      CreateAccount = {
+        struct: {}
+      };
+      DeployContract = {
+        struct: {
+          code: { array: { type: "u8" } }
+        }
+      };
+      FunctionCall = {
+        struct: {
+          methodName: "string",
+          args: { array: { type: "u8" } },
+          gas: "u64",
+          deposit: "u128"
+        }
+      };
+      Transfer = {
+        struct: {
+          deposit: "u128"
+        }
+      };
+      Stake = {
+        struct: {
+          stake: "u128",
+          publicKey: this.PublicKey
+        }
+      };
+      AddKey = {
+        struct: {
+          publicKey: this.PublicKey,
+          accessKey: this.AccessKey
+        }
+      };
+      DeleteKey = {
+        struct: {
+          publicKey: this.PublicKey
+        }
+      };
+      DeleteAccount = {
+        struct: {
+          beneficiaryId: "string"
+        }
+      };
+      ClassicAction = {
+        enum: [
+          { struct: { createAccount: this.CreateAccount } },
+          { struct: { deployContract: this.DeployContract } },
+          { struct: { functionCall: this.FunctionCall } },
+          { struct: { transfer: this.Transfer } },
+          { struct: { stake: this.Stake } },
+          { struct: { addKey: this.AddKey } },
+          { struct: { deleteKey: this.DeleteKey } },
+          { struct: { deleteAccount: this.DeleteAccount } }
+        ]
+      };
+      DelegateAction = {
+        struct: {
+          senderId: "string",
+          receiverId: "string",
+          actions: { array: { type: this.ClassicAction } },
+          nonce: "u64",
+          maxBlockHeight: "u64",
+          publicKey: this.PublicKey
+        }
+      };
+      SignedDelegate = {
+        struct: {
+          delegateAction: this.DelegateAction,
+          signature: this.Signature
+        }
+      };
+      Action = {
+        enum: [
+          { struct: { createAccount: this.CreateAccount } },
+          { struct: { deployContract: this.DeployContract } },
+          { struct: { functionCall: this.FunctionCall } },
+          { struct: { transfer: this.Transfer } },
+          { struct: { stake: this.Stake } },
+          { struct: { addKey: this.AddKey } },
+          { struct: { deleteKey: this.DeleteKey } },
+          { struct: { deleteAccount: this.DeleteAccount } },
+          { struct: { signedDelegate: this.SignedDelegate } }
+        ]
+      };
+      Transaction = {
+        struct: {
+          signerId: "string",
+          publicKey: this.PublicKey,
+          nonce: "u64",
+          receiverId: "string",
+          blockHash: { array: { type: "u8", len: 32 } },
+          actions: { array: { type: this.Action } }
+        }
+      };
+      SignedTransaction = {
+        struct: {
+          transaction: this.Transaction,
+          signature: this.Signature
+        }
+      };
+    }
+    return new BorshSchema();
+  })();
+
+  // ../utils/src/transaction.ts
   function mapTransaction(jsonTransaction) {
     return {
       signerId: jsonTransaction.signerId,
@@ -3521,183 +3606,178 @@ var NearApi = (() => {
     }
   }
   __name(mapAction, "mapAction");
-  var SCHEMA = new class BorshSchema {
-    static {
-      __name(this, "BorshSchema");
-    }
-    Ed25519Signature = {
-      struct: {
-        data: { array: { type: "u8", len: 64 } }
-      }
-    };
-    Secp256k1Signature = {
-      struct: {
-        data: { array: { type: "u8", len: 65 } }
-      }
-    };
-    Signature = {
-      enum: [
-        { struct: { ed25519Signature: this.Ed25519Signature } },
-        { struct: { secp256k1Signature: this.Secp256k1Signature } }
-      ]
-    };
-    Ed25519Data = {
-      struct: {
-        data: { array: { type: "u8", len: 32 } }
-      }
-    };
-    Secp256k1Data = {
-      struct: {
-        data: { array: { type: "u8", len: 64 } }
-      }
-    };
-    PublicKey = {
-      enum: [
-        { struct: { ed25519Key: this.Ed25519Data } },
-        { struct: { secp256k1Key: this.Secp256k1Data } }
-      ]
-    };
-    FunctionCallPermission = {
-      struct: {
-        allowance: { option: "u128" },
-        receiverId: "string",
-        methodNames: { array: { type: "string" } }
-      }
-    };
-    FullAccessPermission = {
-      struct: {}
-    };
-    AccessKeyPermission = {
-      enum: [
-        { struct: { functionCall: this.FunctionCallPermission } },
-        { struct: { fullAccess: this.FullAccessPermission } }
-      ]
-    };
-    AccessKey = {
-      struct: {
-        nonce: "u64",
-        permission: this.AccessKeyPermission
-      }
-    };
-    CreateAccount = {
-      struct: {}
-    };
-    DeployContract = {
-      struct: {
-        code: { array: { type: "u8" } }
-      }
-    };
-    FunctionCall = {
-      struct: {
-        methodName: "string",
-        args: { array: { type: "u8" } },
-        gas: "u64",
-        deposit: "u128"
-      }
-    };
-    Transfer = {
-      struct: {
-        deposit: "u128"
-      }
-    };
-    Stake = {
-      struct: {
-        stake: "u128",
-        publicKey: this.PublicKey
-      }
-    };
-    AddKey = {
-      struct: {
-        publicKey: this.PublicKey,
-        accessKey: this.AccessKey
-      }
-    };
-    DeleteKey = {
-      struct: {
-        publicKey: this.PublicKey
-      }
-    };
-    DeleteAccount = {
-      struct: {
-        beneficiaryId: "string"
-      }
-    };
-    ClassicAction = {
-      enum: [
-        { struct: { createAccount: this.CreateAccount } },
-        { struct: { deployContract: this.DeployContract } },
-        { struct: { functionCall: this.FunctionCall } },
-        { struct: { transfer: this.Transfer } },
-        { struct: { stake: this.Stake } },
-        { struct: { addKey: this.AddKey } },
-        { struct: { deleteKey: this.DeleteKey } },
-        { struct: { deleteAccount: this.DeleteAccount } }
-      ]
-    };
-    DelegateAction = {
-      struct: {
-        senderId: "string",
-        receiverId: "string",
-        actions: { array: { type: this.ClassicAction } },
-        nonce: "u64",
-        maxBlockHeight: "u64",
-        publicKey: this.PublicKey
-      }
-    };
-    SignedDelegate = {
-      struct: {
-        delegateAction: this.DelegateAction,
-        signature: this.Signature
-      }
-    };
-    Action = {
-      enum: [
-        { struct: { createAccount: this.CreateAccount } },
-        { struct: { deployContract: this.DeployContract } },
-        { struct: { functionCall: this.FunctionCall } },
-        { struct: { transfer: this.Transfer } },
-        { struct: { stake: this.Stake } },
-        { struct: { addKey: this.AddKey } },
-        { struct: { deleteKey: this.DeleteKey } },
-        { struct: { deleteAccount: this.DeleteAccount } },
-        { struct: { signedDelegate: this.SignedDelegate } }
-      ]
-    };
-    Transaction = {
-      struct: {
-        signerId: "string",
-        publicKey: this.PublicKey,
-        nonce: "u64",
-        receiverId: "string",
-        blockHash: { array: { type: "u8", len: 32 } },
-        actions: { array: { type: this.Action } }
-      }
-    };
-    SignedTransaction = {
-      struct: {
-        transaction: this.Transaction,
-        signature: this.Signature
-      }
-    };
-  }();
+  var SCHEMA = getBorshSchema;
 
-  // src/near.ts
-  big_default.DP = 27;
-  var MaxBlockDelayMs = 1e3 * 60 * 60 * 6;
-  var WIDGET_URL = "https://wallet-adapter.fastnear.com";
-  var DEFAULT_NETWORK_ID = "mainnet";
-  var NETWORKS = {
-    testnet: {
-      networkId: "testnet",
-      nodeUrl: "https://rpc.testnet.fastnear.com/"
-    },
-    mainnet: {
-      networkId: "mainnet",
-      nodeUrl: "https://rpc.mainnet.fastnear.com/"
+  // ../wallet-adapter/src/index.ts
+  var WalletAdapter = class _WalletAdapter {
+    static {
+      __name(this, "WalletAdapter");
+    }
+    /** @type {HTMLIFrameElement} */
+    #iframe = null;
+    /** @type {string} */
+    #targetOrigin;
+    /** @type {string} */
+    #widgetUrl;
+    /** @type {Map<string, Function>} */
+    #pending = /* @__PURE__ */ new Map();
+    /** @type {WalletState} */
+    #state;
+    /** @type {Function} */
+    #onStateUpdate;
+    /** @type {string} */
+    #callbackUrl;
+    /** @type {string} */
+    static defaultWidgetUrl = "https://wallet-adapter.fastnear.com";
+    /**
+     * @param {WalletAdapterConfig} [config]
+     */
+    constructor({
+      widgetUrl = _WalletAdapter.defaultWidgetUrl,
+      targetOrigin = "*",
+      onStateUpdate,
+      lastState,
+      callbackUrl = window.location.href
+    } = {}) {
+      this.#targetOrigin = targetOrigin;
+      this.#widgetUrl = widgetUrl;
+      this.#onStateUpdate = onStateUpdate;
+      this.#callbackUrl = callbackUrl;
+      this.#state = lastState || {};
+      window.addEventListener("message", this.#handleMessage.bind(this));
+    }
+    /**
+     * Creates an iframe for wallet interaction
+     * @param {string} path - Path to load in iframe
+     * @returns {HTMLIFrameElement}
+     */
+    #createIframe(path) {
+      if (this.#iframe) {
+        this.#iframe.remove();
+      }
+      const url = new URL(path, this.#widgetUrl);
+      console.log("aloha wa url", url);
+      const iframe = document.createElement("iframe");
+      iframe.src = url.toString();
+      iframe.allow = "usb";
+      iframe.style.border = "none";
+      iframe.style.zIndex = "10000";
+      iframe.style.position = "fixed";
+      iframe.style.display = "block";
+      iframe.style.top = "0";
+      iframe.style.left = "0";
+      iframe.style.width = "100%";
+      iframe.style.height = "100%";
+      document.body.appendChild(iframe);
+      this.#iframe = iframe;
+      return iframe;
+    }
+    /**
+     * Handles messages from the wallet widget
+     * @param {MessageEvent} event
+     */
+    #handleMessage(event) {
+      if (this.#targetOrigin !== "*" && event.origin !== this.#targetOrigin) {
+        return;
+      }
+      const { id, type, action, payload } = event.data;
+      if (type !== "wallet-adapter") return;
+      if (action === "close") {
+        this.#iframe?.remove();
+        this.#iframe = null;
+        return;
+      }
+      if (payload?.state) {
+        this.#state = { ...this.#state, ...payload.state };
+        this.#onStateUpdate?.(this.#state);
+      }
+      const resolve = this.#pending.get(id);
+      if (resolve) {
+        this.#pending.delete(id);
+        this.#iframe?.remove();
+        this.#iframe = null;
+        resolve(payload);
+      }
+    }
+    /**
+     * Sends a message to the wallet widget
+     * @param {string} path - Path to load in iframe
+     * @param {string} method - Method to call
+     * @param {Object} params - Parameters to pass
+     * @returns {Promise<any>}
+     */
+    async #sendMessage(path, method, params) {
+      return new Promise((resolve) => {
+        const id = Math.random().toString(36).slice(2);
+        this.#pending.set(id, resolve);
+        const iframe = this.#createIframe(path);
+        iframe.onload = () => {
+          iframe.contentWindow?.postMessage(
+            {
+              type: "wallet-adapter",
+              method,
+              params: {
+                id,
+                ...params,
+                state: this.#state,
+                callbackUrl: params.callbackUrl || this.#callbackUrl
+              }
+            },
+            this.#targetOrigin
+          );
+        };
+      });
+    }
+    /**
+     * Get current wallet state
+     * @returns {WalletState}
+     */
+    getState() {
+      return { ...this.#state };
+    }
+    /**
+     * Set current wallet state
+     * @param state
+     */
+    setState(state) {
+      this.#state = state;
+    }
+    /**
+     * Sign in with a NEAR wallet
+     * @param {SignInConfig} config
+     * @returns {Promise<SignInResult>}
+     */
+    async signIn(config2) {
+      return this.#sendMessage("/public/login.html", "signIn", config2);
+    }
+    /**
+     * Send a transaction using connected wallet
+     * @param {TransactionConfig} config
+     * @returns {Promise<TransactionResult>}
+     */
+    async sendTransactions(config2) {
+      return this.#sendMessage("/public/send.html", "sendTransactions", config2);
+    }
+    /**
+     * Clean up adapter resources
+     */
+    destroy() {
+      window.removeEventListener("message", this.#handleMessage);
+      this.#iframe?.remove();
+      this.#iframe = null;
     }
   };
-  var _config = lsGet("config") || { ...NETWORKS[DEFAULT_NETWORK_ID] };
+
+  // src/state.ts
+  var _config = lsGet("config") || {
+    ...NETWORKS[DEFAULT_NETWORK_ID]
+  };
   var _state = lsGet("state") || {};
+  var _adapter = new WalletAdapter({
+    onStateUpdate: onAdapterStateUpdate,
+    lastState: getWalletAdapterState(),
+    widgetUrl: WIDGET_URL
+  });
   try {
     _state.publicKey = _state.privateKey ? publicKeyFromPrivate(_state.privateKey) : null;
   } catch (e) {
@@ -3723,7 +3803,6 @@ var NearApi = (() => {
     };
   }
   __name(getWalletAdapterState, "getWalletAdapterState");
-  var _adapter;
   function updateState(newState) {
     const oldState = _state;
     _state = { ..._state, ...newState };
@@ -3748,7 +3827,7 @@ var NearApi = (() => {
   function updateTxHistory(txStatus) {
     const txId = txStatus.txId;
     _txHistory[txId] = {
-      ..._txHistory[txId] ?? {},
+      ..._txHistory[txId] || {},
       ...txStatus,
       updateTimestamp: Date.now()
     };
@@ -3758,38 +3837,82 @@ var NearApi = (() => {
   __name(updateTxHistory, "updateTxHistory");
   function onAdapterStateUpdate(state) {
     console.log("Adapter state update:", state);
-    const { accountId, lastWalletId, privateKey } = state;
+    const { accountId: accountId2, lastWalletId, privateKey } = state;
     updateState({
-      accountId,
-      lastWalletId,
-      ...privateKey && { privateKey }
+      accountId: accountId2 || void 0,
+      lastWalletId: lastWalletId || void 0,
+      ...privateKey ? { privateKey } : {}
     });
   }
   __name(onAdapterStateUpdate, "onAdapterStateUpdate");
-  _adapter = new WalletAdapter({
-    onStateUpdate: onAdapterStateUpdate,
-    lastState: getWalletAdapterState(),
-    widgetUrl: WIDGET_URL
-  });
-  function parseJsonFromBytes(bytes) {
-    try {
-      const decoder = new TextDecoder();
-      return JSON.parse(decoder.decode(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes)));
-    } catch (e) {
-      try {
-        return bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
-      } catch (e2) {
-        return bytes;
-      }
+  function notifyAccountListeners(accountId2) {
+    if (_eventListeners.account.size === 0) {
+      _unbroadcastedEvents.account.push(accountId2);
+      return;
     }
+    _eventListeners.account.forEach((callback) => {
+      try {
+        callback(accountId2);
+      } catch (e) {
+        console.error(e);
+      }
+    });
   }
-  __name(parseJsonFromBytes, "parseJsonFromBytes");
+  __name(notifyAccountListeners, "notifyAccountListeners");
+  function notifyTxListeners(tx2) {
+    if (_eventListeners.tx.size === 0) {
+      _unbroadcastedEvents.tx.push(tx2);
+      return;
+    }
+    _eventListeners.tx.forEach((callback) => {
+      try {
+        callback(tx2);
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  }
+  __name(notifyTxListeners, "notifyTxListeners");
+  function getConfig() {
+    return _config;
+  }
+  __name(getConfig, "getConfig");
+  function getTxHistory() {
+    return _txHistory;
+  }
+  __name(getTxHistory, "getTxHistory");
+  function setConfig(newConf) {
+    _config = newConf;
+    lsSet("config", _config);
+  }
+  __name(setConfig, "setConfig");
+  function resetTxHistory() {
+    _txHistory = {};
+    lsSet("txHistory", _txHistory);
+  }
+  __name(resetTxHistory, "resetTxHistory");
+
+  // src/near.ts
+  big_default.DP = 27;
+  var MaxBlockDelayMs = 1e3 * 60 * 60 * 6;
+  var WIDGET_URL = "https://wallet-adapter.fastnear.com";
+  var DEFAULT_NETWORK_ID = "mainnet";
+  var NETWORKS = {
+    testnet: {
+      networkId: "testnet",
+      nodeUrl: "https://rpc.testnet.fastnear.com/"
+    },
+    mainnet: {
+      networkId: "mainnet",
+      nodeUrl: "https://rpc.mainnet.fastnear.com/"
+    }
+  };
   function withBlockId(params, blockId) {
     return blockId === "final" || blockId === "optimistic" ? { ...params, finality: blockId } : blockId ? { ...params, block_id: blockId } : { ...params, finality: "optimistic" };
   }
   __name(withBlockId, "withBlockId");
   async function queryRpc(method, params) {
-    const response = await fetch(_config.nodeUrl, {
+    const response = await fetch(getConfig().nodeUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -3807,9 +3930,10 @@ var NearApi = (() => {
   }
   __name(queryRpc, "queryRpc");
   function afterTxSent(txId) {
+    const txHistory = getTxHistory();
     queryRpc("tx", {
-      tx_hash: _txHistory[txId].txHash,
-      sender_account_id: _txHistory[txId].tx.signerId,
+      tx_hash: txHistory[txId].txHash,
+      sender_account_id: txHistory[txId].tx.signerId,
       wait_until: "EXECUTED_OPTIMISTIC"
     }).then((result) => {
       const successValue = result?.status?.SuccessValue;
@@ -3852,440 +3976,360 @@ var NearApi = (() => {
     });
   }
   __name(sendTxToRpc, "sendTxToRpc");
-  function notifyAccountListeners(accountId) {
-    if (_eventListeners.account.size === 0) {
-      _unbroadcastedEvents.account.push(accountId);
-      return;
-    }
-    _eventListeners.account.forEach((callback) => {
-      try {
-        callback(accountId);
-      } catch (e) {
-        console.error(e);
+  var accountId = /* @__PURE__ */ __name(() => {
+    return _state.accountId;
+  }, "accountId");
+  var publicKey = /* @__PURE__ */ __name(() => {
+    return _state.publicKey;
+  }, "publicKey");
+  var config = /* @__PURE__ */ __name((newConfig) => {
+    const current = getConfig();
+    if (newConfig) {
+      if (newConfig.networkId && current.networkId !== newConfig.networkId) {
+        setConfig({ ...NETWORKS[newConfig.networkId] });
+        updateState({
+          accountId: null,
+          privateKey: null,
+          lastWalletId: null
+        });
+        lsSet("block", null);
+        resetTxHistory();
       }
-    });
-  }
-  __name(notifyAccountListeners, "notifyAccountListeners");
-  function notifyTxListeners(tx) {
-    if (_eventListeners.tx.size === 0) {
-      _unbroadcastedEvents.tx.push(tx);
-      return;
-    }
-    _eventListeners.tx.forEach((callback) => {
-      try {
-        callback(tx);
-      } catch (e) {
-        console.error(e);
-      }
-    });
-  }
-  __name(notifyTxListeners, "notifyTxListeners");
-  function convertUnit(s, ...args) {
-    if (Array.isArray(s)) {
-      s = s.reduce((acc, part, i) => {
-        return acc + (args[i - 1] ?? "") + part;
+      setConfig({
+        ...getConfig(),
+        ...newConfig
       });
     }
-    if (typeof s == "string") {
-      const match = s.match(/([0-9.,_]+)\s*([a-zA-Z]+)?/);
-      if (match) {
-        const amount = match[1].replace(/[_,]/g, "");
-        const unitPart = match[2];
-        if (unitPart) {
-          switch (unitPart.toLowerCase()) {
-            case "near":
-              return big_default(amount).mul(big_default(10).pow(24)).toFixed(0);
-            case "tgas":
-              return big_default(amount).mul(big_default(10).pow(12)).toFixed(0);
-            case "ggas":
-              return big_default(amount).mul(big_default(10).pow(9)).toFixed(0);
-            case "gas":
-            case "yoctonear":
-              return big_default(amount).toFixed(0);
-            default:
-              throw new Error(`Unknown unit: ${unitPart}`);
-          }
-        } else {
-          return big_default(amount).toFixed(0);
-        }
-      }
+    return getConfig();
+  }, "config");
+  var authStatus = /* @__PURE__ */ __name(() => {
+    if (!_state.accountId) {
+      return "SignedOut";
     }
-    return big_default(s).toFixed(0);
-  }
-  __name(convertUnit, "convertUnit");
-  var api = {
-    // Context
-    get accountId() {
-      return _state.accountId;
-    },
-    get publicKey() {
-      return _state.publicKey;
-    },
-    config(newConfig) {
-      if (newConfig) {
-        if (newConfig.networkId && _config.networkId !== newConfig.networkId) {
-          _config = { ...NETWORKS[newConfig.networkId] };
-          updateState({
-            accountId: null,
-            privateKey: null,
-            lastWalletId: null
-          });
-          lsSet("block", null);
-          _txHistory = {};
-          lsSet("txHistory", _txHistory);
-        }
-        _config = { ..._config, ...newConfig };
-        lsSet("config", _config);
-      }
-      return _config;
-    },
-    get authStatus() {
-      if (!_state.accountId) {
-        return "SignedOut";
-      }
-      const accessKey = _state.publicKey;
-      const contractId = _state.accessKeyContractId;
-      if (accessKey && contractId && _state.privateKey) {
-        return {
-          type: "SignedInWithLimitedAccessKey",
-          accessKey,
-          contractId
-        };
-      }
-      return "SignedIn";
-    },
-    // Query Methods
-    async view({
-      contractId,
-      methodName,
-      args,
-      argsBase64,
-      blockId
-    }) {
-      const encodedArgs = argsBase64 || (args ? toBase64(JSON.stringify(args)) : "");
-      const result = await queryRpc(
-        "query",
-        withBlockId(
-          {
-            request_type: "call_function",
-            account_id: contractId,
-            method_name: methodName,
-            args_base64: encodedArgs
-          },
-          blockId
-        )
-      );
-      return parseJsonFromBytes(result.result);
-    },
-    async account({
-      accountId,
-      blockId
-    }) {
-      return queryRpc(
-        "query",
-        withBlockId(
-          {
-            request_type: "view_account",
-            account_id: accountId
-          },
-          blockId
-        )
-      );
-    },
-    async block({ blockId }) {
-      return queryRpc("block", withBlockId({}, blockId));
-    },
-    async accessKey({
-      accountId,
-      publicKey,
-      blockId
-    }) {
-      return queryRpc(
-        "query",
-        withBlockId(
-          {
-            request_type: "view_access_key",
-            account_id: accountId,
-            public_key: publicKey
-          },
-          blockId
-        )
-      );
-    },
-    async tx({ txHash, accountId }) {
-      return queryRpc("tx", [txHash, accountId]);
-    },
-    localTxHistory() {
-      return [..._txHistory];
-    },
-    // Transaction Methods
-    async sendTx({
-      receiverId,
-      actions,
-      waitUntil
-    }) {
-      const signerId = _state.accountId;
-      if (!signerId) {
-        throw new Error("Not signed in");
-      }
-      const publicKey = _state.publicKey;
-      const privateKey = _state.privateKey;
-      const txId = `tx-${Date.now()}-${Math.random()}`;
-      if (!privateKey || receiverId !== _state.accessKeyContractId || !canSignWithLAK(actions)) {
-        const jsonTransaction2 = {
-          signerId,
-          receiverId,
-          actions
-        };
-        updateTxHistory({
-          status: "Pending",
-          txId,
-          tx: jsonTransaction2,
-          finalState: false
-        });
-        const url = new URL(typeof window !== "undefined" ? window.location.href : "");
-        url.searchParams.set("txIds", txId);
-        _adapter.sendTransactions({
-          transactions: [jsonTransaction2],
-          callbackUrl: url.toString()
-        }).then((result) => {
-          console.log("Transaction result:", result);
-          if (result.url) {
-            console.log("Redirecting to wallet:", result.url);
-            if (typeof window !== "undefined") {
-              setTimeout(() => {
-                window.location.href = result.url;
-              }, 100);
-            }
-          } else if (result.outcomes) {
-            result.outcomes.forEach((r) => {
-              updateTxHistory({
-                txId,
-                status: "Executed",
-                result: r,
-                txHash: r.transaction.hash,
-                finalState: true
-              });
-            });
-          } else if (result.rejected) {
-            updateTxHistory({
-              txId,
-              status: "RejectedByUser",
-              finalState: true
-            });
-          } else if (result.error) {
-            updateTxHistory({
-              txId,
-              status: "Error",
-              error: tryParseJson(result.error),
-              finalState: true
-            });
-          }
-        }).catch((error) => {
-          updateTxHistory({
-            txId,
-            status: "Error",
-            error: tryParseJson(error.message),
-            finalState: true
-          });
-        });
-        return txId;
-      }
-      let nonce = lsGet("nonce");
-      let block = lsGet("block");
-      const toDoPromises = {};
-      if (nonce === null || nonce === void 0) {
-        toDoPromises.nonce = api.accessKey({
-          accountId: signerId,
-          publicKey
-        }).then((accessKey) => {
-          if (accessKey.error) {
-            throw new Error(`Access key error: ${accessKey.error}`);
-          }
-          lsSet("nonce", accessKey.nonce);
-          return accessKey.nonce;
-        });
-      }
-      if (!block || !block.header || parseFloat(block.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()) {
-        toDoPromises.block = api.block({ blockId: "final" }).then((b) => {
-          const newBlock = {
-            header: {
-              prev_hash: b.header.prev_hash,
-              timestamp_nanosec: b.header.timestamp_nanosec
-            }
-          };
-          lsSet("block", newBlock);
-          return newBlock;
-        });
-      }
-      if (Object.keys(toDoPromises).length > 0) {
-        const results = await Promise.all(Object.values(toDoPromises));
-        const keys = Object.keys(toDoPromises);
-        results.forEach((res, i) => {
-          if (keys[i] === "nonce") {
-            nonce = res;
-          } else if (keys[i] === "block") {
-            block = res;
-          }
-        });
-      }
-      const newNonce = (nonce ?? 0) + 1;
-      lsSet("nonce", newNonce);
-      const blockHash = block.header.prev_hash;
-      const jsonTransaction = {
-        signerId,
-        publicKey,
-        nonce: newNonce,
-        receiverId,
-        blockHash,
-        actions
+    const accessKey2 = _state.publicKey;
+    const contractId = _state.accessKeyContractId;
+    if (accessKey2 && contractId && _state.privateKey) {
+      return {
+        type: "SignedInWithLimitedAccessKey",
+        accessKey: accessKey2,
+        contractId
       };
-      console.log("Transaction:", jsonTransaction);
-      const transaction = serializeTransaction(jsonTransaction);
-      const txHash = binary_to_base58_default(sha256(transaction));
-      const signature = signHash(txHash, privateKey);
-      const signedTransaction = serializeSignedTransaction(jsonTransaction, signature);
-      const signedTxBase64 = toBase64(signedTransaction);
+    }
+    return "SignedIn";
+  }, "authStatus");
+  var view = /* @__PURE__ */ __name(async ({
+    contractId,
+    methodName,
+    args,
+    argsBase64,
+    blockId
+  }) => {
+    const encodedArgs = argsBase64 || (args ? toBase64(JSON.stringify(args)) : "");
+    const result = await queryRpc(
+      "query",
+      withBlockId(
+        {
+          request_type: "call_function",
+          account_id: contractId,
+          method_name: methodName,
+          args_base64: encodedArgs
+        },
+        blockId
+      )
+    );
+    return parseJsonFromBytes(result.result);
+  }, "view");
+  var account = /* @__PURE__ */ __name(async ({
+    accountId: accountId2,
+    blockId
+  }) => {
+    return queryRpc(
+      "query",
+      withBlockId(
+        {
+          request_type: "view_account",
+          account_id: accountId2
+        },
+        blockId
+      )
+    );
+  }, "account");
+  var block = /* @__PURE__ */ __name(async ({ blockId }) => {
+    return queryRpc("block", withBlockId({}, blockId));
+  }, "block");
+  var accessKey = /* @__PURE__ */ __name(async ({
+    accountId: accountId2,
+    publicKey: publicKey2,
+    blockId
+  }) => {
+    return queryRpc(
+      "query",
+      withBlockId(
+        {
+          request_type: "view_access_key",
+          account_id: accountId2,
+          public_key: publicKey2
+        },
+        blockId
+      )
+    );
+  }, "accessKey");
+  var tx = /* @__PURE__ */ __name(async ({
+    txHash,
+    accountId: accountId2
+  }) => {
+    return queryRpc("tx", [txHash, accountId2]);
+  }, "tx");
+  var localTxHistory = /* @__PURE__ */ __name(() => {
+    return getTxHistory();
+  }, "localTxHistory");
+  var sendTx = /* @__PURE__ */ __name(async ({
+    receiverId,
+    actions: actions2,
+    waitUntil
+  }) => {
+    const signerId = _state.accountId;
+    if (!signerId) {
+      throw new Error("Not signed in");
+    }
+    const publicKey2 = _state.publicKey;
+    const privateKey = _state.privateKey;
+    const txId = `tx-${Date.now()}-${Math.random()}`;
+    if (!privateKey || receiverId !== _state.accessKeyContractId || !canSignWithLAK(actions2)) {
+      const jsonTransaction2 = {
+        signerId,
+        receiverId,
+        actions: actions2
+      };
       updateTxHistory({
         status: "Pending",
         txId,
-        tx: jsonTransaction,
-        signature,
-        signedTxBase64,
-        txHash,
+        tx: jsonTransaction2,
         finalState: false
       });
-      sendTxToRpc(signedTxBase64, waitUntil, txId);
-      return txId;
-    },
-    // Authentication Methods
-    async requestSignIn({ contractId }) {
-      const privateKey = privateKeyFromRandom();
-      updateState({
-        accessKeyContractId: contractId,
-        accountId: null,
-        privateKey
-      });
-      const publicKey = publicKeyFromPrivate(privateKey);
-      const result = await _adapter.signIn({
-        networkId: _config.networkId,
-        contractId,
-        publicKey
-      });
-      console.log("Sign in result:", result);
-      if (result.error) {
-        throw new Error(`Wallet error: ${result.error}`);
-      }
-      if (result.url) {
-        console.log("Redirecting to wallet:", result.url);
-        if (typeof window !== "undefined") {
-          setTimeout(() => {
-            window.location.href = result.url;
-          }, 100);
+      const url = new URL(typeof window !== "undefined" ? window.location.href : "");
+      url.searchParams.set("txIds", txId);
+      _adapter.sendTransactions({
+        transactions: [jsonTransaction2],
+        callbackUrl: url.toString()
+      }).then((result) => {
+        console.log("Transaction result:", result);
+        if (result.url) {
+          console.log("Redirecting to wallet:", result.url);
+          if (typeof window !== "undefined") {
+            setTimeout(() => {
+              window.location.href = result.url;
+            }, 100);
+          }
+        } else if (result.outcomes) {
+          result.outcomes.forEach((r) => {
+            updateTxHistory({
+              txId,
+              status: "Executed",
+              result: r,
+              txHash: r.transaction.hash,
+              finalState: true
+            });
+          });
+        } else if (result.rejected) {
+          updateTxHistory({
+            txId,
+            status: "RejectedByUser",
+            finalState: true
+          });
+        } else if (result.error) {
+          updateTxHistory({
+            txId,
+            status: "Error",
+            error: tryParseJson(result.error),
+            finalState: true
+          });
         }
-      } else if (result.accountId) {
-        updateState({
-          accountId: result.accountId
+      }).catch((error) => {
+        updateTxHistory({
+          txId,
+          status: "Error",
+          error: tryParseJson(error.message),
+          finalState: true
         });
-      }
-    },
-    signOut() {
-      updateState({
-        accountId: null,
-        privateKey: null,
-        contractId: null
       });
-    },
-    // Event Handlers
-    onAccount(callback) {
-      _eventListeners.account.add(callback);
-      if (_unbroadcastedEvents.account.length > 0) {
-        const events = _unbroadcastedEvents.account;
-        _unbroadcastedEvents.account = [];
-        events.forEach(notifyAccountListeners);
-      }
-    },
-    onTx(callback) {
-      _eventListeners.tx.add(callback);
-      if (_unbroadcastedEvents.tx.length > 0) {
-        const events = _unbroadcastedEvents.tx;
-        _unbroadcastedEvents.tx = [];
-        events.forEach(notifyTxListeners);
-      }
-    },
-    // Action Helpers
-    actions: {
-      functionCall: /* @__PURE__ */ __name(({
-        methodName,
-        gas,
-        deposit,
-        args,
-        argsBase64
-      }) => ({
-        type: "FunctionCall",
-        methodName,
-        args,
-        argsBase64,
-        gas,
-        deposit
-      }), "functionCall"),
-      transfer: /* @__PURE__ */ __name((yoctoAmount) => ({
-        type: "Transfer",
-        deposit: yoctoAmount
-      }), "transfer"),
-      stakeNEAR: /* @__PURE__ */ __name(({ amount, publicKey }) => ({
-        type: "Stake",
-        stake: amount,
-        publicKey
-      }), "stakeNEAR"),
-      addFullAccessKey: /* @__PURE__ */ __name(({ publicKey }) => ({
-        type: "AddKey",
-        publicKey,
-        accessKey: { permission: "FullAccess" }
-      }), "addFullAccessKey"),
-      addLimitedAccessKey: /* @__PURE__ */ __name(({
-        publicKey,
-        allowance,
-        accountId,
-        methodNames
-      }) => ({
-        type: "AddKey",
-        publicKey,
-        accessKey: {
-          permission: "FunctionCall",
-          allowance,
-          receiverId: accountId,
-          methodNames
-        }
-      }), "addLimitedAccessKey"),
-      deleteKey: /* @__PURE__ */ __name(({ publicKey }) => ({
-        type: "DeleteKey",
-        publicKey
-      }), "deleteKey"),
-      deleteAccount: /* @__PURE__ */ __name(({ beneficiaryId }) => ({
-        type: "DeleteAccount",
-        beneficiaryId
-      }), "deleteAccount"),
-      createAccount: /* @__PURE__ */ __name(() => ({
-        type: "CreateAccount"
-      }), "createAccount"),
-      deployContract: /* @__PURE__ */ __name(({ codeBase64 }) => ({
-        type: "DeployContract",
-        codeBase64
-      }), "deployContract")
-    },
-    utils: {
-      toBase64,
-      fromBase64,
-      toBase58: binary_to_base58_default,
-      fromBase58: base58_to_binary_default
+      return txId;
     }
+    let nonce = lsGet("nonce");
+    let block2 = lsGet("block");
+    const toDoPromises = {};
+    if (nonce === null || nonce === void 0) {
+      toDoPromises.nonce = accessKey({
+        accountId: signerId,
+        publicKey: publicKey2
+      }).then((accessKey2) => {
+        if (accessKey2.error) {
+          throw new Error(`Access key error: ${accessKey2.error}`);
+        }
+        lsSet("nonce", accessKey2.nonce);
+        return accessKey2.nonce;
+      });
+    }
+    if (!block2 || !block2.header || parseFloat(block2.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()) {
+      toDoPromises.block = block2({ blockId: "final" }).then((b) => {
+        const newBlock = {
+          header: {
+            prev_hash: b.header.prev_hash,
+            timestamp_nanosec: b.header.timestamp_nanosec
+          }
+        };
+        lsSet("block", newBlock);
+        return newBlock;
+      });
+    }
+    if (Object.keys(toDoPromises).length > 0) {
+      const results = await Promise.all(Object.values(toDoPromises));
+      const keys = Object.keys(toDoPromises);
+      results.forEach((res, i) => {
+        if (keys[i] === "nonce") {
+          nonce = res;
+        } else if (keys[i] === "block") {
+          block2 = res;
+        }
+      });
+    }
+    const newNonce = (nonce ?? 0) + 1;
+    lsSet("nonce", newNonce);
+    const blockHash = block2.header.prev_hash;
+    const jsonTransaction = {
+      signerId,
+      publicKey: publicKey2,
+      nonce: newNonce,
+      receiverId,
+      blockHash,
+      actions: actions2
+    };
+    console.log("Transaction:", jsonTransaction);
+    const transaction = serializeTransaction(jsonTransaction);
+    const txHash = binary_to_base58_default(sha256(transaction));
+    const signature = signHash(txHash, privateKey);
+    const signedTransaction = serializeSignedTransaction(jsonTransaction, signature);
+    const signedTxBase64 = toBase64(signedTransaction);
+    updateTxHistory({
+      status: "Pending",
+      txId,
+      tx: jsonTransaction,
+      signature,
+      signedTxBase64,
+      txHash,
+      finalState: false
+    });
+    sendTxToRpc(signedTxBase64, waitUntil, txId);
+    return txId;
+  }, "sendTx");
+  var requestSignIn = /* @__PURE__ */ __name(async ({ contractId }) => {
+    const privateKey = privateKeyFromRandom();
+    updateState({
+      accessKeyContractId: contractId,
+      accountId: null,
+      privateKey
+    });
+    const publicKey2 = publicKeyFromPrivate(privateKey);
+    const result = await _adapter.signIn({
+      networkId: getConfig().networkId,
+      // (C) replaced _config.networkId
+      contractId,
+      publicKey: publicKey2
+    });
+    console.log("Sign in result:", result);
+    if (result.error) {
+      throw new Error(`Wallet error: ${result.error}`);
+    }
+    if (result.url) {
+      console.log("Redirecting to wallet:", result.url);
+      if (typeof window !== "undefined") {
+        setTimeout(() => {
+          window.location.href = result.url;
+        }, 100);
+      }
+    } else if (result.accountId) {
+      updateState({
+        accountId: result.accountId
+      });
+    }
+  }, "requestSignIn");
+  var signOut = /* @__PURE__ */ __name(() => {
+    updateState({
+      accountId: null,
+      privateKey: null,
+      contractId: null
+    });
+  }, "signOut");
+  var actions = {
+    functionCall: /* @__PURE__ */ __name(({
+      methodName,
+      gas,
+      deposit,
+      args,
+      argsBase64
+    }) => ({
+      type: "FunctionCall",
+      methodName,
+      args,
+      argsBase64,
+      gas,
+      deposit
+    }), "functionCall"),
+    transfer: /* @__PURE__ */ __name((yoctoAmount) => ({
+      type: "Transfer",
+      deposit: yoctoAmount
+    }), "transfer"),
+    stakeNEAR: /* @__PURE__ */ __name(({ amount, publicKey: publicKey2 }) => ({
+      type: "Stake",
+      stake: amount,
+      publicKey: publicKey2
+    }), "stakeNEAR"),
+    addFullAccessKey: /* @__PURE__ */ __name(({ publicKey: publicKey2 }) => ({
+      type: "AddKey",
+      publicKey: publicKey2,
+      accessKey: { permission: "FullAccess" }
+    }), "addFullAccessKey"),
+    addLimitedAccessKey: /* @__PURE__ */ __name(({
+      publicKey: publicKey2,
+      allowance,
+      accountId: accountId2,
+      methodNames
+    }) => ({
+      type: "AddKey",
+      publicKey: publicKey2,
+      accessKey: {
+        permission: "FunctionCall",
+        allowance,
+        receiverId: accountId2,
+        methodNames
+      }
+    }), "addLimitedAccessKey"),
+    deleteKey: /* @__PURE__ */ __name(({ publicKey: publicKey2 }) => ({
+      type: "DeleteKey",
+      publicKey: publicKey2
+    }), "deleteKey"),
+    deleteAccount: /* @__PURE__ */ __name(({ beneficiaryId }) => ({
+      type: "DeleteAccount",
+      beneficiaryId
+    }), "deleteAccount"),
+    createAccount: /* @__PURE__ */ __name(() => ({
+      type: "CreateAccount"
+    }), "createAccount"),
+    deployContract: /* @__PURE__ */ __name(({ codeBase64 }) => ({
+      type: "DeployContract",
+      codeBase64
+    }), "deployContract")
   };
+  var reExports = {
+    utils: src_exports2,
+    borshSchema: src_exports
+  };
+  var utils = reExports.utils;
   try {
     if (typeof window !== "undefined") {
       const url = new URL(window.location.href);
-      const accountId = url.searchParams.get("account_id");
-      const publicKey = url.searchParams.get("public_key");
+      const accountId2 = url.searchParams.get("account_id");
+      const publicKey2 = url.searchParams.get("public_key");
       const errorCode = url.searchParams.get("errorCode");
       const errorMessage = url.searchParams.get("errorMessage");
       const transactionHashes = url.searchParams.get("transactionHashes");
@@ -4293,15 +4337,15 @@ var NearApi = (() => {
       if (errorCode || errorMessage) {
         console.warn(new Error(`Wallet error: ${errorCode} ${errorMessage}`));
       }
-      if (accountId && publicKey) {
-        if (publicKey === _state.publicKey) {
+      if (accountId2 && publicKey2) {
+        if (publicKey2 === _state.publicKey) {
           updateState({
-            accountId
+            accountId: accountId2
           });
         } else {
           console.error(
             new Error("Public key mismatch from wallet redirect"),
-            publicKey,
+            publicKey2,
             _state.publicKey
           );
         }
@@ -4349,9 +4393,10 @@ var NearApi = (() => {
   }
 
   // src/index.ts
-  window.near = api;
-  window.$$ = convertUnit;
-  return __toCommonJS(src_exports);
+  if (typeof window !== "undefined") {
+    window.$$ = convertUnit;
+  }
+  return __toCommonJS(src_exports3);
 })();
 /*! Bundled license information:
 
@@ -4376,4 +4421,16 @@ var NearApi = (() => {
 @noble/hashes/esm/utils.js:
   (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
 */
+
+if (typeof globalThis.near === 'undefined') {
+  console.warn('No globalThis.near');
+} else {
+  Object.defineProperty(globalThis, 'near', {
+    value: globalThis.near,
+    writable: false,
+    enumerable: true,
+    configurable: false,
+  });
+}
+
 //# sourceMappingURL=browser.global.js.map

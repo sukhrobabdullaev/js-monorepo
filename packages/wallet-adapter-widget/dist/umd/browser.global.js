@@ -16,8 +16,8 @@ var NearWalletAdapterWidget = (() => {
   var __esm = (fn2, res) => function __init() {
     return fn2 && (res = (0, fn2[__getOwnPropNames(fn2)[0]])(fn2 = 0)), res;
   };
-  var __commonJS = (cb, mod2) => function __require2() {
-    return mod2 || (0, cb[__getOwnPropNames(cb)[0]])((mod2 = { exports: {} }).exports, mod2), mod2.exports;
+  var __commonJS = (cb, mod) => function __require2() {
+    return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;
   };
   var __export = (target, all) => {
     for (var name in all)
@@ -31,15 +31,15 @@ var NearWalletAdapterWidget = (() => {
     }
     return to;
   };
-  var __toESM = (mod2, isNodeMode, target) => (target = mod2 != null ? __create(__getProtoOf(mod2)) : {}, __copyProps(
+  var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
     // If the importer is in node compatibility mode or this is not an ESM
     // file that has been converted to a CommonJS file using a Babel-
     // compatible transform (i.e. "__esModule" has not been set), then set
     // "default" to the CommonJS "module.exports" for node compatibility.
-    isNodeMode || !mod2 || !mod2.__esModule ? __defProp(target, "default", { value: mod2, enumerable: true }) : target,
-    mod2
+    isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+    mod
   ));
-  var __toCommonJS = (mod2) => __copyProps(__defProp({}, "__esModule", { value: true }), mod2);
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
 
   // ../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/lib/commonjs/constants.cjs
   var require_constants = __commonJS({
@@ -47,11 +47,11 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeySize = exports2.KeyType = void 0;
-      var KeyType2;
-      (function(KeyType3) {
-        KeyType3[KeyType3["ED25519"] = 0] = "ED25519";
-        KeyType3[KeyType3["SECP256K1"] = 1] = "SECP256K1";
-      })(KeyType2 || (exports2.KeyType = KeyType2 = {}));
+      var KeyType;
+      (function(KeyType2) {
+        KeyType2[KeyType2["ED25519"] = 0] = "ED25519";
+        KeyType2[KeyType2["SECP256K1"] = 1] = "SECP256K1";
+      })(KeyType || (exports2.KeyType = KeyType = {}));
       exports2.KeySize = {
         SECRET_KEY: 32,
         ED25519_PUBLIC_KEY: 32,
@@ -66,12 +66,12 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyPairBase = void 0;
-      var KeyPairBase2 = class {
+      var KeyPairBase = class {
         static {
           __name(this, "KeyPairBase");
         }
       };
-      exports2.KeyPairBase = KeyPairBase2;
+      exports2.KeyPairBase = KeyPairBase;
     }
   });
 
@@ -164,8 +164,8 @@ var NearWalletAdapterWidget = (() => {
   var require_errors = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/node_modules/@near-js/utils/lib/commonjs/errors/errors.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorMessages = void 0;
@@ -180,7 +180,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Assignable = void 0;
-      var Assignable2 = class {
+      var Assignable = class {
         static {
           __name(this, "Assignable");
         }
@@ -190,7 +190,7 @@ var NearWalletAdapterWidget = (() => {
           });
         }
       };
-      exports2.Assignable = Assignable2;
+      exports2.Assignable = Assignable;
     }
   });
 
@@ -200,7 +200,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Enum = void 0;
-      var Enum2 = class {
+      var Enum = class {
         static {
           __name(this, "Enum");
         }
@@ -213,7 +213,7 @@ var NearWalletAdapterWidget = (() => {
           });
         }
       };
-      exports2.Enum = Enum2;
+      exports2.Enum = Enum;
     }
   });
 
@@ -223,7 +223,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorContext = exports2.TypedError = exports2.ArgumentTypeError = exports2.PositionalArgsError = void 0;
-      var PositionalArgsError2 = class extends Error {
+      var PositionalArgsError = class extends Error {
         static {
           __name(this, "PositionalArgsError");
         }
@@ -231,8 +231,8 @@ var NearWalletAdapterWidget = (() => {
           super("Contract method calls expect named arguments wrapped in object, e.g. { argName1: argValue1, argName2: argValue2 }");
         }
       };
-      exports2.PositionalArgsError = PositionalArgsError2;
-      var ArgumentTypeError2 = class extends Error {
+      exports2.PositionalArgsError = PositionalArgsError;
+      var ArgumentTypeError = class extends Error {
         static {
           __name(this, "ArgumentTypeError");
         }
@@ -240,8 +240,8 @@ var NearWalletAdapterWidget = (() => {
           super(`Expected ${argType} for '${argName}' argument, but got '${JSON.stringify(argValue)}'`);
         }
       };
-      exports2.ArgumentTypeError = ArgumentTypeError2;
-      var TypedError2 = class extends Error {
+      exports2.ArgumentTypeError = ArgumentTypeError;
+      var TypedError = class extends Error {
         static {
           __name(this, "TypedError");
         }
@@ -253,8 +253,8 @@ var NearWalletAdapterWidget = (() => {
           this.context = context;
         }
       };
-      exports2.TypedError = TypedError2;
-      var ErrorContext2 = class {
+      exports2.TypedError = TypedError;
+      var ErrorContext = class {
         static {
           __name(this, "ErrorContext");
         }
@@ -263,7 +263,7 @@ var NearWalletAdapterWidget = (() => {
           this.transactionHash = transactionHash;
         }
       };
-      exports2.ErrorContext = ErrorContext2;
+      exports2.ErrorContext = ErrorContext;
     }
   });
 
@@ -273,11 +273,11 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.IdType = void 0;
-      var IdType2;
-      (function(IdType3) {
-        IdType3["Transaction"] = "transaction";
-        IdType3["Receipt"] = "receipt";
-      })(IdType2 || (exports2.IdType = IdType2 = {}));
+      var IdType;
+      (function(IdType2) {
+        IdType2["Transaction"] = "transaction";
+        IdType2["Receipt"] = "receipt";
+      })(IdType || (exports2.IdType = IdType = {}));
     }
   });
 
@@ -287,18 +287,18 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.FinalExecutionStatusBasic = exports2.ExecutionStatusBasic = void 0;
-      var ExecutionStatusBasic2;
-      (function(ExecutionStatusBasic3) {
-        ExecutionStatusBasic3["Unknown"] = "Unknown";
-        ExecutionStatusBasic3["Pending"] = "Pending";
-        ExecutionStatusBasic3["Failure"] = "Failure";
-      })(ExecutionStatusBasic2 || (exports2.ExecutionStatusBasic = ExecutionStatusBasic2 = {}));
-      var FinalExecutionStatusBasic2;
-      (function(FinalExecutionStatusBasic3) {
-        FinalExecutionStatusBasic3["NotStarted"] = "NotStarted";
-        FinalExecutionStatusBasic3["Started"] = "Started";
-        FinalExecutionStatusBasic3["Failure"] = "Failure";
-      })(FinalExecutionStatusBasic2 || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic2 = {}));
+      var ExecutionStatusBasic;
+      (function(ExecutionStatusBasic2) {
+        ExecutionStatusBasic2["Unknown"] = "Unknown";
+        ExecutionStatusBasic2["Pending"] = "Pending";
+        ExecutionStatusBasic2["Failure"] = "Failure";
+      })(ExecutionStatusBasic || (exports2.ExecutionStatusBasic = ExecutionStatusBasic = {}));
+      var FinalExecutionStatusBasic;
+      (function(FinalExecutionStatusBasic2) {
+        FinalExecutionStatusBasic2["NotStarted"] = "NotStarted";
+        FinalExecutionStatusBasic2["Started"] = "Started";
+        FinalExecutionStatusBasic2["Failure"] = "Failure";
+      })(FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic = {}));
     }
   });
 
@@ -357,41 +357,41 @@ var NearWalletAdapterWidget = (() => {
         typeof exports2 === "object" && typeof module2 !== "undefined" ? module2.exports = factory() : typeof define === "function" && define.amd ? define(factory) : (global2 = global2 || self, global2.Mustache = factory());
       })(exports2, function() {
         "use strict";
-        var objectToString2 = Object.prototype.toString;
-        var isArray2 = Array.isArray || /* @__PURE__ */ __name(function isArrayPolyfill2(object) {
-          return objectToString2.call(object) === "[object Array]";
+        var objectToString = Object.prototype.toString;
+        var isArray = Array.isArray || /* @__PURE__ */ __name(function isArrayPolyfill(object) {
+          return objectToString.call(object) === "[object Array]";
         }, "isArrayPolyfill");
-        function isFunction2(object) {
+        function isFunction(object) {
           return typeof object === "function";
         }
-        __name(isFunction2, "isFunction");
-        function typeStr2(obj) {
-          return isArray2(obj) ? "array" : typeof obj;
+        __name(isFunction, "isFunction");
+        function typeStr(obj) {
+          return isArray(obj) ? "array" : typeof obj;
         }
-        __name(typeStr2, "typeStr");
-        function escapeRegExp2(string) {
+        __name(typeStr, "typeStr");
+        function escapeRegExp(string) {
           return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
         }
-        __name(escapeRegExp2, "escapeRegExp");
-        function hasProperty2(obj, propName) {
+        __name(escapeRegExp, "escapeRegExp");
+        function hasProperty(obj, propName) {
           return obj != null && typeof obj === "object" && propName in obj;
         }
-        __name(hasProperty2, "hasProperty");
-        function primitiveHasOwnProperty2(primitive, propName) {
+        __name(hasProperty, "hasProperty");
+        function primitiveHasOwnProperty(primitive, propName) {
           return primitive != null && typeof primitive !== "object" && primitive.hasOwnProperty && primitive.hasOwnProperty(propName);
         }
-        __name(primitiveHasOwnProperty2, "primitiveHasOwnProperty");
-        var regExpTest2 = RegExp.prototype.test;
-        function testRegExp2(re, string) {
-          return regExpTest2.call(re, string);
+        __name(primitiveHasOwnProperty, "primitiveHasOwnProperty");
+        var regExpTest = RegExp.prototype.test;
+        function testRegExp(re, string) {
+          return regExpTest.call(re, string);
         }
-        __name(testRegExp2, "testRegExp");
-        var nonSpaceRe2 = /\S/;
-        function isWhitespace2(string) {
-          return !testRegExp2(nonSpaceRe2, string);
+        __name(testRegExp, "testRegExp");
+        var nonSpaceRe = /\S/;
+        function isWhitespace(string) {
+          return !testRegExp(nonSpaceRe, string);
         }
-        __name(isWhitespace2, "isWhitespace");
-        var entityMap2 = {
+        __name(isWhitespace, "isWhitespace");
+        var entityMap = {
           "&": "&amp;",
           "<": "&lt;",
           ">": "&gt;",
@@ -401,18 +401,18 @@ var NearWalletAdapterWidget = (() => {
           "`": "&#x60;",
           "=": "&#x3D;"
         };
-        function escapeHtml2(string) {
+        function escapeHtml(string) {
           return String(string).replace(/[&<>"'`=\/]/g, /* @__PURE__ */ __name(function fromEntityMap(s) {
-            return entityMap2[s];
+            return entityMap[s];
           }, "fromEntityMap"));
         }
-        __name(escapeHtml2, "escapeHtml");
-        var whiteRe2 = /\s*/;
-        var spaceRe2 = /\s+/;
-        var equalsRe2 = /\s*=/;
-        var curlyRe2 = /\s*\}/;
-        var tagRe2 = /#|\^|\/|>|\{|&|=|!/;
-        function parseTemplate2(template, tags) {
+        __name(escapeHtml, "escapeHtml");
+        var whiteRe = /\s*/;
+        var spaceRe = /\s+/;
+        var equalsRe = /\s*=/;
+        var curlyRe = /\s*\}/;
+        var tagRe = /#|\^|\/|>|\{|&|=|!/;
+        function parseTemplate(template, tags) {
           if (!template)
             return [];
           var lineHasNonSpace = false;
@@ -437,16 +437,16 @@ var NearWalletAdapterWidget = (() => {
           var openingTagRe, closingTagRe, closingCurlyRe;
           function compileTags(tagsToCompile) {
             if (typeof tagsToCompile === "string")
-              tagsToCompile = tagsToCompile.split(spaceRe2, 2);
-            if (!isArray2(tagsToCompile) || tagsToCompile.length !== 2)
+              tagsToCompile = tagsToCompile.split(spaceRe, 2);
+            if (!isArray(tagsToCompile) || tagsToCompile.length !== 2)
               throw new Error("Invalid tags: " + tagsToCompile);
-            openingTagRe = new RegExp(escapeRegExp2(tagsToCompile[0]) + "\\s*");
-            closingTagRe = new RegExp("\\s*" + escapeRegExp2(tagsToCompile[1]));
-            closingCurlyRe = new RegExp("\\s*" + escapeRegExp2("}" + tagsToCompile[1]));
+            openingTagRe = new RegExp(escapeRegExp(tagsToCompile[0]) + "\\s*");
+            closingTagRe = new RegExp("\\s*" + escapeRegExp(tagsToCompile[1]));
+            closingCurlyRe = new RegExp("\\s*" + escapeRegExp("}" + tagsToCompile[1]));
           }
           __name(compileTags, "compileTags");
-          compileTags(tags || mustache2.tags);
-          var scanner = new Scanner2(template);
+          compileTags(tags || mustache.tags);
+          var scanner = new Scanner(template);
           var start, type, value, chr, token, openSection;
           while (!scanner.eos()) {
             start = scanner.pos;
@@ -454,7 +454,7 @@ var NearWalletAdapterWidget = (() => {
             if (value) {
               for (var i = 0, valueLength = value.length; i < valueLength; ++i) {
                 chr = value.charAt(i);
-                if (isWhitespace2(chr)) {
+                if (isWhitespace(chr)) {
                   spaces.push(tokens.length);
                   indentation += chr;
                 } else {
@@ -475,15 +475,15 @@ var NearWalletAdapterWidget = (() => {
             if (!scanner.scan(openingTagRe))
               break;
             hasTag = true;
-            type = scanner.scan(tagRe2) || "name";
-            scanner.scan(whiteRe2);
+            type = scanner.scan(tagRe) || "name";
+            scanner.scan(whiteRe);
             if (type === "=") {
-              value = scanner.scanUntil(equalsRe2);
-              scanner.scan(equalsRe2);
+              value = scanner.scanUntil(equalsRe);
+              scanner.scan(equalsRe);
               scanner.scanUntil(closingTagRe);
             } else if (type === "{") {
               value = scanner.scanUntil(closingCurlyRe);
-              scanner.scan(curlyRe2);
+              scanner.scan(curlyRe);
               scanner.scanUntil(closingTagRe);
               type = "&";
             } else {
@@ -516,10 +516,10 @@ var NearWalletAdapterWidget = (() => {
           openSection = sections.pop();
           if (openSection)
             throw new Error('Unclosed section "' + openSection[1] + '" at ' + scanner.pos);
-          return nestTokens2(squashTokens2(tokens));
+          return nestTokens(squashTokens(tokens));
         }
-        __name(parseTemplate2, "parseTemplate");
-        function squashTokens2(tokens) {
+        __name(parseTemplate, "parseTemplate");
+        function squashTokens(tokens) {
           var squashedTokens = [];
           var token, lastToken;
           for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
@@ -536,8 +536,8 @@ var NearWalletAdapterWidget = (() => {
           }
           return squashedTokens;
         }
-        __name(squashTokens2, "squashTokens");
-        function nestTokens2(tokens) {
+        __name(squashTokens, "squashTokens");
+        function nestTokens(tokens) {
           var nestedTokens = [];
           var collector = nestedTokens;
           var sections = [];
@@ -562,17 +562,17 @@ var NearWalletAdapterWidget = (() => {
           }
           return nestedTokens;
         }
-        __name(nestTokens2, "nestTokens");
-        function Scanner2(string) {
+        __name(nestTokens, "nestTokens");
+        function Scanner(string) {
           this.string = string;
           this.tail = string;
           this.pos = 0;
         }
-        __name(Scanner2, "Scanner");
-        Scanner2.prototype.eos = /* @__PURE__ */ __name(function eos2() {
+        __name(Scanner, "Scanner");
+        Scanner.prototype.eos = /* @__PURE__ */ __name(function eos() {
           return this.tail === "";
         }, "eos");
-        Scanner2.prototype.scan = /* @__PURE__ */ __name(function scan2(re) {
+        Scanner.prototype.scan = /* @__PURE__ */ __name(function scan(re) {
           var match = this.tail.match(re);
           if (!match || match.index !== 0)
             return "";
@@ -581,7 +581,7 @@ var NearWalletAdapterWidget = (() => {
           this.pos += string.length;
           return string;
         }, "scan");
-        Scanner2.prototype.scanUntil = /* @__PURE__ */ __name(function scanUntil2(re) {
+        Scanner.prototype.scanUntil = /* @__PURE__ */ __name(function scanUntil(re) {
           var index = this.tail.search(re), match;
           switch (index) {
             case -1:
@@ -598,16 +598,16 @@ var NearWalletAdapterWidget = (() => {
           this.pos += match.length;
           return match;
         }, "scanUntil");
-        function Context2(view, parentContext) {
+        function Context(view, parentContext) {
           this.view = view;
           this.cache = { ".": this.view };
           this.parent = parentContext;
         }
-        __name(Context2, "Context");
-        Context2.prototype.push = /* @__PURE__ */ __name(function push2(view) {
-          return new Context2(view, this);
+        __name(Context, "Context");
+        Context.prototype.push = /* @__PURE__ */ __name(function push(view) {
+          return new Context(view, this);
         }, "push");
-        Context2.prototype.lookup = /* @__PURE__ */ __name(function lookup2(name) {
+        Context.prototype.lookup = /* @__PURE__ */ __name(function lookup(name) {
           var cache = this.cache;
           var value;
           if (cache.hasOwnProperty(name)) {
@@ -621,12 +621,12 @@ var NearWalletAdapterWidget = (() => {
                 index = 0;
                 while (intermediateValue != null && index < names.length) {
                   if (index === names.length - 1)
-                    lookupHit = hasProperty2(intermediateValue, names[index]) || primitiveHasOwnProperty2(intermediateValue, names[index]);
+                    lookupHit = hasProperty(intermediateValue, names[index]) || primitiveHasOwnProperty(intermediateValue, names[index]);
                   intermediateValue = intermediateValue[names[index++]];
                 }
               } else {
                 intermediateValue = context.view[name];
-                lookupHit = hasProperty2(context.view, name);
+                lookupHit = hasProperty(context.view, name);
               }
               if (lookupHit) {
                 value = intermediateValue;
@@ -636,11 +636,11 @@ var NearWalletAdapterWidget = (() => {
             }
             cache[name] = value;
           }
-          if (isFunction2(value))
+          if (isFunction(value))
             value = value.call(this.view);
           return value;
         }, "lookup");
-        function Writer2() {
+        function Writer() {
           this.templateCache = {
             _cache: {},
             set: /* @__PURE__ */ __name(function set(key, value) {
@@ -654,29 +654,29 @@ var NearWalletAdapterWidget = (() => {
             }, "clear")
           };
         }
-        __name(Writer2, "Writer");
-        Writer2.prototype.clearCache = /* @__PURE__ */ __name(function clearCache3() {
+        __name(Writer, "Writer");
+        Writer.prototype.clearCache = /* @__PURE__ */ __name(function clearCache() {
           if (typeof this.templateCache !== "undefined") {
             this.templateCache.clear();
           }
         }, "clearCache");
-        Writer2.prototype.parse = /* @__PURE__ */ __name(function parse3(template, tags) {
+        Writer.prototype.parse = /* @__PURE__ */ __name(function parse2(template, tags) {
           var cache = this.templateCache;
-          var cacheKey = template + ":" + (tags || mustache2.tags).join(":");
+          var cacheKey = template + ":" + (tags || mustache.tags).join(":");
           var isCacheEnabled = typeof cache !== "undefined";
           var tokens = isCacheEnabled ? cache.get(cacheKey) : void 0;
           if (tokens == void 0) {
-            tokens = parseTemplate2(template, tags);
+            tokens = parseTemplate(template, tags);
             isCacheEnabled && cache.set(cacheKey, tokens);
           }
           return tokens;
         }, "parse");
-        Writer2.prototype.render = /* @__PURE__ */ __name(function render3(template, view, partials, tags) {
+        Writer.prototype.render = /* @__PURE__ */ __name(function render(template, view, partials, tags) {
           var tokens = this.parse(template, tags);
-          var context = view instanceof Context2 ? view : new Context2(view, void 0);
+          var context = view instanceof Context ? view : new Context(view, void 0);
           return this.renderTokens(tokens, context, partials, template, tags);
         }, "render");
-        Writer2.prototype.renderTokens = /* @__PURE__ */ __name(function renderTokens2(tokens, context, partials, originalTemplate, tags) {
+        Writer.prototype.renderTokens = /* @__PURE__ */ __name(function renderTokens(tokens, context, partials, originalTemplate, tags) {
           var buffer = "";
           var token, symbol, value;
           for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
@@ -694,7 +694,7 @@ var NearWalletAdapterWidget = (() => {
           }
           return buffer;
         }, "renderTokens");
-        Writer2.prototype.renderSection = /* @__PURE__ */ __name(function renderSection2(token, context, partials, originalTemplate) {
+        Writer.prototype.renderSection = /* @__PURE__ */ __name(function renderSection(token, context, partials, originalTemplate) {
           var self2 = this;
           var buffer = "";
           var value = context.lookup(token[1]);
@@ -703,13 +703,13 @@ var NearWalletAdapterWidget = (() => {
           }
           __name(subRender, "subRender");
           if (!value) return;
-          if (isArray2(value)) {
+          if (isArray(value)) {
             for (var j = 0, valueLength = value.length; j < valueLength; ++j) {
               buffer += this.renderTokens(token[4], context.push(value[j]), partials, originalTemplate);
             }
           } else if (typeof value === "object" || typeof value === "string" || typeof value === "number") {
             buffer += this.renderTokens(token[4], context.push(value), partials, originalTemplate);
-          } else if (isFunction2(value)) {
+          } else if (isFunction(value)) {
             if (typeof originalTemplate !== "string")
               throw new Error("Cannot use higher-order sections without the original template");
             value = value.call(context.view, originalTemplate.slice(token[3], token[5]), subRender);
@@ -720,12 +720,12 @@ var NearWalletAdapterWidget = (() => {
           }
           return buffer;
         }, "renderSection");
-        Writer2.prototype.renderInverted = /* @__PURE__ */ __name(function renderInverted2(token, context, partials, originalTemplate) {
+        Writer.prototype.renderInverted = /* @__PURE__ */ __name(function renderInverted(token, context, partials, originalTemplate) {
           var value = context.lookup(token[1]);
-          if (!value || isArray2(value) && value.length === 0)
+          if (!value || isArray(value) && value.length === 0)
             return this.renderTokens(token[4], context, partials, originalTemplate);
         }, "renderInverted");
-        Writer2.prototype.indentPartial = /* @__PURE__ */ __name(function indentPartial2(partial, indentation, lineHasNonSpace) {
+        Writer.prototype.indentPartial = /* @__PURE__ */ __name(function indentPartial(partial, indentation, lineHasNonSpace) {
           var filteredIndentation = indentation.replace(/[^ \t]/g, "");
           var partialByNl = partial.split("\n");
           for (var i = 0; i < partialByNl.length; i++) {
@@ -735,9 +735,9 @@ var NearWalletAdapterWidget = (() => {
           }
           return partialByNl.join("\n");
         }, "indentPartial");
-        Writer2.prototype.renderPartial = /* @__PURE__ */ __name(function renderPartial2(token, context, partials, tags) {
+        Writer.prototype.renderPartial = /* @__PURE__ */ __name(function renderPartial(token, context, partials, tags) {
           if (!partials) return;
-          var value = isFunction2(partials) ? partials(token[1]) : partials[token[1]];
+          var value = isFunction(partials) ? partials(token[1]) : partials[token[1]];
           if (value != null) {
             var lineHasNonSpace = token[6];
             var tagIndex = token[5];
@@ -749,20 +749,20 @@ var NearWalletAdapterWidget = (() => {
             return this.renderTokens(this.parse(indentedValue, tags), context, partials, indentedValue);
           }
         }, "renderPartial");
-        Writer2.prototype.unescapedValue = /* @__PURE__ */ __name(function unescapedValue2(token, context) {
+        Writer.prototype.unescapedValue = /* @__PURE__ */ __name(function unescapedValue(token, context) {
           var value = context.lookup(token[1]);
           if (value != null)
             return value;
         }, "unescapedValue");
-        Writer2.prototype.escapedValue = /* @__PURE__ */ __name(function escapedValue2(token, context) {
+        Writer.prototype.escapedValue = /* @__PURE__ */ __name(function escapedValue(token, context) {
           var value = context.lookup(token[1]);
           if (value != null)
-            return mustache2.escape(value);
+            return mustache.escape(value);
         }, "escapedValue");
-        Writer2.prototype.rawValue = /* @__PURE__ */ __name(function rawValue2(token) {
+        Writer.prototype.rawValue = /* @__PURE__ */ __name(function rawValue(token) {
           return token[1];
         }, "rawValue");
-        var mustache2 = {
+        var mustache = {
           name: "mustache.js",
           version: "4.0.0",
           tags: ["{{", "}}"],
@@ -779,33 +779,33 @@ var NearWalletAdapterWidget = (() => {
            * the cache by setting it to the literal `undefined`.
            */
           set templateCache(cache) {
-            defaultWriter2.templateCache = cache;
+            defaultWriter.templateCache = cache;
           },
           /**
            * Gets the default or overridden caching object from the default writer.
            */
           get templateCache() {
-            return defaultWriter2.templateCache;
+            return defaultWriter.templateCache;
           }
         };
-        var defaultWriter2 = new Writer2();
-        mustache2.clearCache = /* @__PURE__ */ __name(function clearCache3() {
-          return defaultWriter2.clearCache();
+        var defaultWriter = new Writer();
+        mustache.clearCache = /* @__PURE__ */ __name(function clearCache() {
+          return defaultWriter.clearCache();
         }, "clearCache");
-        mustache2.parse = /* @__PURE__ */ __name(function parse3(template, tags) {
-          return defaultWriter2.parse(template, tags);
+        mustache.parse = /* @__PURE__ */ __name(function parse2(template, tags) {
+          return defaultWriter.parse(template, tags);
         }, "parse");
-        mustache2.render = /* @__PURE__ */ __name(function render3(template, view, partials, tags) {
+        mustache.render = /* @__PURE__ */ __name(function render(template, view, partials, tags) {
           if (typeof template !== "string") {
-            throw new TypeError('Invalid template! Template should be a "string" but "' + typeStr2(template) + '" was given as the first argument for mustache#render(template, view, partials)');
+            throw new TypeError('Invalid template! Template should be a "string" but "' + typeStr(template) + '" was given as the first argument for mustache#render(template, view, partials)');
           }
-          return defaultWriter2.render(template, view, partials, tags);
+          return defaultWriter.render(template, view, partials, tags);
         }, "render");
-        mustache2.escape = escapeHtml2;
-        mustache2.Scanner = Scanner2;
-        mustache2.Context = Context2;
-        mustache2.Writer = Writer2;
-        return mustache2;
+        mustache.escape = escapeHtml;
+        mustache.Scanner = Scanner;
+        mustache.Context = Context;
+        mustache.Writer = Writer;
+        return mustache;
       });
     }
   });
@@ -874,16 +874,16 @@ var NearWalletAdapterWidget = (() => {
   var require_base_x = __commonJS({
     "../../node_modules/bs58/node_modules/base-x/index.js"(exports2, module2) {
       var Buffer2 = require_safe_buffer().Buffer;
-      module2.exports = /* @__PURE__ */ __name(function base2(ALPHABET2) {
+      module2.exports = /* @__PURE__ */ __name(function base(ALPHABET) {
         var ALPHABET_MAP = {};
-        var BASE = ALPHABET2.length;
-        var LEADER = ALPHABET2.charAt(0);
-        for (var z = 0; z < ALPHABET2.length; z++) {
-          var x = ALPHABET2.charAt(z);
+        var BASE = ALPHABET.length;
+        var LEADER = ALPHABET.charAt(0);
+        for (var z = 0; z < ALPHABET.length; z++) {
+          var x = ALPHABET.charAt(z);
           if (ALPHABET_MAP[x] !== void 0) throw new TypeError(x + " is ambiguous");
           ALPHABET_MAP[x] = z;
         }
-        function encode(source) {
+        function encode2(source) {
           if (source.length === 0) return "";
           var digits = [0];
           for (var i = 0; i < source.length; ++i) {
@@ -898,11 +898,11 @@ var NearWalletAdapterWidget = (() => {
             }
           }
           var string = "";
-          for (var k = 0; source[k] === 0 && k < source.length - 1; ++k) string += ALPHABET2[0];
-          for (var q = digits.length - 1; q >= 0; --q) string += ALPHABET2[digits[q]];
+          for (var k = 0; source[k] === 0 && k < source.length - 1; ++k) string += ALPHABET[0];
+          for (var q = digits.length - 1; q >= 0; --q) string += ALPHABET[digits[q]];
           return string;
         }
-        __name(encode, "encode");
+        __name(encode2, "encode");
         function decodeUnsafe(string) {
           if (string.length === 0) return Buffer2.allocUnsafe(0);
           var bytes = [0];
@@ -925,16 +925,16 @@ var NearWalletAdapterWidget = (() => {
           return Buffer2.from(bytes.reverse());
         }
         __name(decodeUnsafe, "decodeUnsafe");
-        function decode(string) {
+        function decode2(string) {
           var buffer = decodeUnsafe(string);
           if (buffer) return buffer;
           throw new Error("Non-base" + BASE + " character");
         }
-        __name(decode, "decode");
+        __name(decode2, "decode");
         return {
-          encode,
+          encode: encode2,
           decodeUnsafe,
-          decode
+          decode: decode2
         };
       }, "base");
     }
@@ -944,8 +944,8 @@ var NearWalletAdapterWidget = (() => {
   var require_bs58 = __commonJS({
     "../../node_modules/bs58/index.js"(exports2, module2) {
       var basex = require_base_x();
-      var ALPHABET2 = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-      module2.exports = basex(ALPHABET2);
+      var ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+      module2.exports = basex(ALPHABET);
     }
   });
 
@@ -953,74 +953,74 @@ var NearWalletAdapterWidget = (() => {
   var require_format = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/node_modules/@near-js/utils/lib/commonjs/format.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.baseDecode = exports2.baseEncode = exports2.parseNearAmount = exports2.formatNearAmount = exports2.NEAR_NOMINATION = exports2.NEAR_NOMINATION_EXP = void 0;
       var bs58_1 = __importDefault(require_bs58());
       exports2.NEAR_NOMINATION_EXP = 24;
       exports2.NEAR_NOMINATION = 10n ** BigInt(exports2.NEAR_NOMINATION_EXP);
-      var ROUNDING_OFFSETS2 = [];
-      var BN102 = 10n;
-      for (let i = 0, offset = 5n; i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN102) {
-        ROUNDING_OFFSETS2[i] = offset;
+      var ROUNDING_OFFSETS = [];
+      var BN10 = 10n;
+      for (let i = 0, offset = 5n; i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN10) {
+        ROUNDING_OFFSETS[i] = offset;
       }
-      function formatNearAmount2(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
+      function formatNearAmount(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
         let balanceBN = BigInt(balance);
         if (fracDigits !== exports2.NEAR_NOMINATION_EXP) {
           const roundingExp = exports2.NEAR_NOMINATION_EXP - fracDigits - 1;
           if (roundingExp > 0) {
-            balanceBN += ROUNDING_OFFSETS2[roundingExp];
+            balanceBN += ROUNDING_OFFSETS[roundingExp];
           }
         }
         balance = balanceBN.toString();
         const wholeStr = balance.substring(0, balance.length - exports2.NEAR_NOMINATION_EXP) || "0";
         const fractionStr = balance.substring(balance.length - exports2.NEAR_NOMINATION_EXP).padStart(exports2.NEAR_NOMINATION_EXP, "0").substring(0, fracDigits);
-        return trimTrailingZeroes2(`${formatWithCommas2(wholeStr)}.${fractionStr}`);
+        return trimTrailingZeroes(`${formatWithCommas(wholeStr)}.${fractionStr}`);
       }
-      __name(formatNearAmount2, "formatNearAmount");
-      exports2.formatNearAmount = formatNearAmount2;
-      function parseNearAmount2(amt) {
+      __name(formatNearAmount, "formatNearAmount");
+      exports2.formatNearAmount = formatNearAmount;
+      function parseNearAmount(amt) {
         if (!amt) {
           return null;
         }
-        amt = cleanupAmount2(amt);
-        const split2 = amt.split(".");
-        const wholePart = split2[0];
-        const fracPart = split2[1] || "";
-        if (split2.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
+        amt = cleanupAmount(amt);
+        const split = amt.split(".");
+        const wholePart = split[0];
+        const fracPart = split[1] || "";
+        if (split.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
           throw new Error(`Cannot parse '${amt}' as NEAR amount`);
         }
-        return trimLeadingZeroes2(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
+        return trimLeadingZeroes(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
       }
-      __name(parseNearAmount2, "parseNearAmount");
-      exports2.parseNearAmount = parseNearAmount2;
-      function cleanupAmount2(amount) {
+      __name(parseNearAmount, "parseNearAmount");
+      exports2.parseNearAmount = parseNearAmount;
+      function cleanupAmount(amount) {
         return amount.replace(/,/g, "").trim();
       }
-      __name(cleanupAmount2, "cleanupAmount");
-      function trimTrailingZeroes2(value) {
+      __name(cleanupAmount, "cleanupAmount");
+      function trimTrailingZeroes(value) {
         return value.replace(/\.?0*$/, "");
       }
-      __name(trimTrailingZeroes2, "trimTrailingZeroes");
-      function trimLeadingZeroes2(value) {
+      __name(trimTrailingZeroes, "trimTrailingZeroes");
+      function trimLeadingZeroes(value) {
         value = value.replace(/^0+/, "");
         if (value === "") {
           return "0";
         }
         return value;
       }
-      __name(trimLeadingZeroes2, "trimLeadingZeroes");
-      function formatWithCommas2(value) {
+      __name(trimLeadingZeroes, "trimLeadingZeroes");
+      function formatWithCommas(value) {
         const pattern = /(-?\d+)(\d{3})/;
         while (pattern.test(value)) {
           value = value.replace(pattern, "$1,$2");
         }
         return value;
       }
-      __name(formatWithCommas2, "formatWithCommas");
-      function baseEncode2(value) {
+      __name(formatWithCommas, "formatWithCommas");
+      function baseEncode(value) {
         if (typeof value === "string") {
           const bytes = [];
           for (let c = 0; c < value.length; c++) {
@@ -1030,13 +1030,13 @@ var NearWalletAdapterWidget = (() => {
         }
         return bs58_1.default.encode(value);
       }
-      __name(baseEncode2, "baseEncode");
-      exports2.baseEncode = baseEncode2;
-      function baseDecode2(value) {
+      __name(baseEncode, "baseEncode");
+      exports2.baseEncode = baseEncode;
+      function baseDecode(value) {
         return new Uint8Array(bs58_1.default.decode(value));
       }
-      __name(baseDecode2, "baseDecode");
-      exports2.baseDecode = baseDecode2;
+      __name(baseDecode, "baseDecode");
+      exports2.baseDecode = baseDecode;
     }
   });
 
@@ -1995,8 +1995,8 @@ var NearWalletAdapterWidget = (() => {
   var require_rpc_errors = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/node_modules/@near-js/utils/lib/commonjs/errors/rpc_errors.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getErrorTypeFromErrorMessage = exports2.formatError = exports2.parseResultError = exports2.parseRpcError = exports2.ServerError = void 0;
@@ -2005,65 +2005,65 @@ var NearWalletAdapterWidget = (() => {
       var format_1 = require_format();
       var errors_1 = require_errors();
       var rpc_error_schema_json_1 = __importDefault(require_rpc_error_schema());
-      var mustacheHelpers2 = {
-        formatNear: /* @__PURE__ */ __name(() => (n, render3) => (0, format_1.formatNearAmount)(render3(n)), "formatNear")
+      var mustacheHelpers = {
+        formatNear: /* @__PURE__ */ __name(() => (n, render) => (0, format_1.formatNearAmount)(render(n)), "formatNear")
       };
-      var ServerError2 = class extends types_1.TypedError {
+      var ServerError = class extends types_1.TypedError {
         static {
           __name(this, "ServerError");
         }
       };
-      exports2.ServerError = ServerError2;
-      var ServerTransactionError2 = class extends ServerError2 {
+      exports2.ServerError = ServerError;
+      var ServerTransactionError = class extends ServerError {
         static {
           __name(this, "ServerTransactionError");
         }
         transaction_outcome;
       };
-      function parseRpcError2(errorObj) {
+      function parseRpcError(errorObj) {
         const result = {};
-        const errorClassName = walkSubtype2(errorObj, rpc_error_schema_json_1.default.schema, result, "");
-        const error = new ServerError2(formatError2(errorClassName, result), errorClassName);
+        const errorClassName = walkSubtype(errorObj, rpc_error_schema_json_1.default.schema, result, "");
+        const error = new ServerError(formatError(errorClassName, result), errorClassName);
         Object.assign(error, result);
         return error;
       }
-      __name(parseRpcError2, "parseRpcError");
-      exports2.parseRpcError = parseRpcError2;
-      function parseResultError2(result) {
-        const server_error = parseRpcError2(result.status.Failure);
-        const server_tx_error = new ServerTransactionError2();
+      __name(parseRpcError, "parseRpcError");
+      exports2.parseRpcError = parseRpcError;
+      function parseResultError(result) {
+        const server_error = parseRpcError(result.status.Failure);
+        const server_tx_error = new ServerTransactionError();
         Object.assign(server_tx_error, server_error);
         server_tx_error.type = server_error.type;
         server_tx_error.message = server_error.message;
         server_tx_error.transaction_outcome = result.transaction_outcome;
         return server_tx_error;
       }
-      __name(parseResultError2, "parseResultError");
-      exports2.parseResultError = parseResultError2;
-      function formatError2(errorClassName, errorData) {
+      __name(parseResultError, "parseResultError");
+      exports2.parseResultError = parseResultError;
+      function formatError(errorClassName, errorData) {
         if (typeof errors_1.ErrorMessages[errorClassName] === "string") {
           return mustache_1.default.render(errors_1.ErrorMessages[errorClassName], {
             ...errorData,
-            ...mustacheHelpers2
+            ...mustacheHelpers
           });
         }
         return JSON.stringify(errorData);
       }
-      __name(formatError2, "formatError");
-      exports2.formatError = formatError2;
-      function walkSubtype2(errorObj, schema, result, typeName) {
+      __name(formatError, "formatError");
+      exports2.formatError = formatError;
+      function walkSubtype(errorObj, schema, result, typeName) {
         let error;
         let type;
         let errorTypeName;
         for (const errorName in schema) {
-          if (isString2(errorObj[errorName])) {
+          if (isString(errorObj[errorName])) {
             return errorObj[errorName];
           }
-          if (isObject2(errorObj[errorName])) {
+          if (isObject(errorObj[errorName])) {
             error = errorObj[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
-          } else if (isObject2(errorObj.kind) && isObject2(errorObj.kind[errorName])) {
+          } else if (isObject(errorObj.kind) && isObject(errorObj.kind[errorName])) {
             error = errorObj.kind[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
@@ -2075,14 +2075,14 @@ var NearWalletAdapterWidget = (() => {
           for (const prop of Object.keys(type.props)) {
             result[prop] = error[prop];
           }
-          return walkSubtype2(error, schema, result, errorTypeName);
+          return walkSubtype(error, schema, result, errorTypeName);
         } else {
           result.kind = errorObj;
           return typeName;
         }
       }
-      __name(walkSubtype2, "walkSubtype");
-      function getErrorTypeFromErrorMessage2(errorMessage, errorType) {
+      __name(walkSubtype, "walkSubtype");
+      function getErrorTypeFromErrorMessage(errorMessage, errorType) {
         switch (true) {
           case /^account .*? does not exist while viewing$/.test(errorMessage):
             return "AccountDoesNotExist";
@@ -2104,16 +2104,16 @@ var NearWalletAdapterWidget = (() => {
             return errorType;
         }
       }
-      __name(getErrorTypeFromErrorMessage2, "getErrorTypeFromErrorMessage");
-      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage2;
-      function isObject2(n) {
+      __name(getErrorTypeFromErrorMessage, "getErrorTypeFromErrorMessage");
+      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage;
+      function isObject(n) {
         return Object.prototype.toString.call(n) === "[object Object]";
       }
-      __name(isObject2, "isObject");
-      function isString2(n) {
+      __name(isObject, "isObject");
+      function isString(n) {
         return Object.prototype.toString.call(n) === "[object String]";
       }
-      __name(isString2, "isString");
+      __name(isString, "isString");
     }
   });
 
@@ -2152,7 +2152,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ConsoleLogger = void 0;
-      var ConsoleLogger2 = class {
+      var ConsoleLogger = class {
         static {
           __name(this, "ConsoleLogger");
         }
@@ -2208,7 +2208,7 @@ var NearWalletAdapterWidget = (() => {
           this.print("fatal", message2, ...optionalParams);
         }
       };
-      exports2.ConsoleLogger = ConsoleLogger2;
+      exports2.ConsoleLogger = ConsoleLogger;
     }
   });
 
@@ -2219,7 +2219,7 @@ var NearWalletAdapterWidget = (() => {
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Logger = void 0;
       var console_logger_1 = require_console_logger();
-      var DEFAULT_LOG_LEVELS2 = [
+      var DEFAULT_LOG_LEVELS = [
         "verbose",
         "debug",
         "log",
@@ -2227,12 +2227,12 @@ var NearWalletAdapterWidget = (() => {
         "error",
         "fatal"
       ];
-      var DEFAULT_LOGGER2 = new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS2);
-      var Logger2 = class {
+      var DEFAULT_LOGGER = new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS);
+      var Logger = class {
         static {
           __name(this, "Logger");
         }
-        static instanceRef = DEFAULT_LOGGER2;
+        static instanceRef = DEFAULT_LOGGER;
         static overrideLogger = /* @__PURE__ */ __name((logger) => {
           this.instanceRef = logger;
         }, "overrideLogger");
@@ -2267,7 +2267,7 @@ var NearWalletAdapterWidget = (() => {
           this.instanceRef?.fatal?.(message2, ...optionalParams);
         }
       };
-      exports2.Logger = Logger2;
+      exports2.Logger = Logger;
     }
   });
 
@@ -2296,7 +2296,7 @@ var NearWalletAdapterWidget = (() => {
       exports2.printTxOutcomeLogs = exports2.printTxOutcomeLogsAndFailures = void 0;
       var errors_1 = require_errors3();
       var logger_1 = require_logger2();
-      function printTxOutcomeLogsAndFailures2({ contractId, outcome }) {
+      function printTxOutcomeLogsAndFailures({ contractId, outcome }) {
         const flatLogs = [outcome.transaction_outcome, ...outcome.receipts_outcome].reduce((acc, it) => {
           const isFailure = typeof it.outcome.status === "object" && typeof it.outcome.status.Failure === "object";
           if (it.outcome.logs.length || isFailure) {
@@ -2311,7 +2311,7 @@ var NearWalletAdapterWidget = (() => {
         }, []);
         for (const result of flatLogs) {
           logger_1.Logger.log(`Receipt${result.receiptIds.length > 1 ? "s" : ""}: ${result.receiptIds.join(", ")}`);
-          printTxOutcomeLogs2({
+          printTxOutcomeLogs({
             contractId,
             logs: result.logs,
             prefix: "	"
@@ -2321,15 +2321,15 @@ var NearWalletAdapterWidget = (() => {
           }
         }
       }
-      __name(printTxOutcomeLogsAndFailures2, "printTxOutcomeLogsAndFailures");
-      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures2;
-      function printTxOutcomeLogs2({ contractId, logs, prefix = "" }) {
+      __name(printTxOutcomeLogsAndFailures, "printTxOutcomeLogsAndFailures");
+      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures;
+      function printTxOutcomeLogs({ contractId, logs, prefix = "" }) {
         for (const log2 of logs) {
           logger_1.Logger.log(`${prefix}Log [${contractId}]: ${log2}`);
         }
       }
-      __name(printTxOutcomeLogs2, "printTxOutcomeLogs");
-      exports2.printTxOutcomeLogs = printTxOutcomeLogs2;
+      __name(printTxOutcomeLogs, "printTxOutcomeLogs");
+      exports2.printTxOutcomeLogs = printTxOutcomeLogs;
     }
   });
 
@@ -2339,7 +2339,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getTransactionLastResult = void 0;
-      function getTransactionLastResult2(txResult) {
+      function getTransactionLastResult(txResult) {
         if (typeof txResult.status === "object" && typeof txResult.status.SuccessValue === "string") {
           const value = Buffer.from(txResult.status.SuccessValue, "base64").toString();
           try {
@@ -2350,8 +2350,8 @@ var NearWalletAdapterWidget = (() => {
         }
         return null;
       }
-      __name(getTransactionLastResult2, "getTransactionLastResult");
-      exports2.getTransactionLastResult = getTransactionLastResult2;
+      __name(getTransactionLastResult, "getTransactionLastResult");
+      exports2.getTransactionLastResult = getTransactionLastResult;
     }
   });
 
@@ -2359,7 +2359,7 @@ var NearWalletAdapterWidget = (() => {
   var require_depd = __commonJS({
     "../../node_modules/depd/index.js"(exports2, module2) {
       var relative2 = __require("path").relative;
-      module2.exports = depd3;
+      module2.exports = depd2;
       var basePath2 = process.cwd();
       function containsNamespace2(str, namespace) {
         var vals = str.split(/[ ,]+/);
@@ -2409,7 +2409,7 @@ var NearWalletAdapterWidget = (() => {
         return str;
       }
       __name(createStackString2, "createStackString");
-      function depd3(namespace) {
+      function depd2(namespace) {
         if (!namespace) {
           throw new TypeError("argument namespace is required");
         }
@@ -2429,7 +2429,7 @@ var NearWalletAdapterWidget = (() => {
         deprecate2.property = wrapproperty2;
         return deprecate2;
       }
-      __name(depd3, "depd");
+      __name(depd2, "depd");
       function eehaslisteners(emitter, type) {
         var count = typeof emitter.listenerCount !== "function" ? emitter.listeners(type).length : emitter.listenerCount(type);
         return count > 0;
@@ -2687,11 +2687,11 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.sortBigIntAsc = void 0;
-      function sortBigIntAsc2(a, b) {
+      function sortBigIntAsc(a, b) {
         return a < b ? -1 : a > b ? 1 : 0;
       }
-      __name(sortBigIntAsc2, "sortBigIntAsc");
-      exports2.sortBigIntAsc = sortBigIntAsc2;
+      __name(sortBigIntAsc, "sortBigIntAsc");
+      exports2.sortBigIntAsc = sortBigIntAsc;
     }
   });
 
@@ -2699,14 +2699,14 @@ var NearWalletAdapterWidget = (() => {
   var require_validators = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/node_modules/@near-js/utils/lib/commonjs/validators.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.diffEpochValidators = exports2.findSeatPrice = void 0;
       var depd_1 = __importDefault(require_depd());
       var utils_1 = require_utils();
-      function findSeatPrice2(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
+      function findSeatPrice(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
         if (protocolVersion && protocolVersion < 49) {
           return findSeatPriceForProtocolBefore49(validators, maxNumberOfSeats);
         }
@@ -2717,8 +2717,8 @@ var NearWalletAdapterWidget = (() => {
         }
         return findSeatPriceForProtocolAfter49(validators, maxNumberOfSeats, minimumStakeRatio);
       }
-      __name(findSeatPrice2, "findSeatPrice");
-      exports2.findSeatPrice = findSeatPrice2;
+      __name(findSeatPrice, "findSeatPrice");
+      exports2.findSeatPrice = findSeatPrice;
       function findSeatPriceForProtocolBefore49(validators, numSeats) {
         const stakes = validators.map((v) => BigInt(v.stake)).sort(utils_1.sortBigIntAsc);
         const num = BigInt(numSeats);
@@ -2759,7 +2759,7 @@ var NearWalletAdapterWidget = (() => {
         }
       }
       __name(findSeatPriceForProtocolAfter49, "findSeatPriceForProtocolAfter49");
-      function diffEpochValidators2(currentValidators, nextValidators) {
+      function diffEpochValidators(currentValidators, nextValidators) {
         const validatorsMap = /* @__PURE__ */ new Map();
         currentValidators.forEach((v) => validatorsMap.set(v.account_id, v));
         const nextValidatorsSet = new Set(nextValidators.map((v) => v.account_id));
@@ -2769,8 +2769,8 @@ var NearWalletAdapterWidget = (() => {
           changedValidators: nextValidators.filter((v) => validatorsMap.has(v.account_id) && validatorsMap.get(v.account_id).stake != v.stake).map((v) => ({ current: validatorsMap.get(v.account_id), next: v }))
         };
       }
-      __name(diffEpochValidators2, "diffEpochValidators");
-      exports2.diffEpochValidators = diffEpochValidators2;
+      __name(diffEpochValidators, "diffEpochValidators");
+      exports2.diffEpochValidators = diffEpochValidators;
     }
   });
 
@@ -2868,8 +2868,8 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.crypto = void 0;
-      var nc2 = __require("node:crypto");
-      exports2.crypto = nc2 && typeof nc2 === "object" && "webcrypto" in nc2 ? nc2.webcrypto : void 0;
+      var nc = __require("node:crypto");
+      exports2.crypto = nc && typeof nc === "object" && "webcrypto" in nc ? nc.webcrypto : void 0;
     }
   });
 
@@ -2885,26 +2885,26 @@ var NearWalletAdapterWidget = (() => {
       exports2.u8 = u8;
       var u32 = /* @__PURE__ */ __name((arr) => new Uint32Array(arr.buffer, arr.byteOffset, Math.floor(arr.byteLength / 4)), "u32");
       exports2.u32 = u32;
-      var createView3 = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
-      exports2.createView = createView3;
-      var rotr2 = /* @__PURE__ */ __name((word, shift) => word << 32 - shift | word >>> shift, "rotr");
-      exports2.rotr = rotr2;
+      var createView = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
+      exports2.createView = createView;
+      var rotr = /* @__PURE__ */ __name((word, shift) => word << 32 - shift | word >>> shift, "rotr");
+      exports2.rotr = rotr;
       exports2.isLE = new Uint8Array(new Uint32Array([287454020]).buffer)[0] === 68;
       if (!exports2.isLE)
         throw new Error("Non little-endian hardware is not supported");
-      var hexes2 = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
-      function bytesToHex2(bytes) {
+      var hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
+      function bytesToHex(bytes) {
         if (!u8a(bytes))
           throw new Error("Uint8Array expected");
         let hex = "";
         for (let i = 0; i < bytes.length; i++) {
-          hex += hexes2[bytes[i]];
+          hex += hexes[bytes[i]];
         }
         return hex;
       }
-      __name(bytesToHex2, "bytesToHex");
-      exports2.bytesToHex = bytesToHex2;
-      function hexToBytes2(hex) {
+      __name(bytesToHex, "bytesToHex");
+      exports2.bytesToHex = bytesToHex;
+      function hexToBytes(hex) {
         if (typeof hex !== "string")
           throw new Error("hex string expected, got " + typeof hex);
         const len = hex.length;
@@ -2921,8 +2921,8 @@ var NearWalletAdapterWidget = (() => {
         }
         return array;
       }
-      __name(hexToBytes2, "hexToBytes");
-      exports2.hexToBytes = hexToBytes2;
+      __name(hexToBytes, "hexToBytes");
+      exports2.hexToBytes = hexToBytes;
       var nextTick = /* @__PURE__ */ __name(async () => {
       }, "nextTick");
       exports2.nextTick = nextTick;
@@ -2939,23 +2939,23 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(asyncLoop, "asyncLoop");
       exports2.asyncLoop = asyncLoop;
-      function utf8ToBytes3(str) {
+      function utf8ToBytes(str) {
         if (typeof str !== "string")
           throw new Error(`utf8ToBytes expected string, got ${typeof str}`);
         return new Uint8Array(new TextEncoder().encode(str));
       }
-      __name(utf8ToBytes3, "utf8ToBytes");
-      exports2.utf8ToBytes = utf8ToBytes3;
-      function toBytes3(data) {
+      __name(utf8ToBytes, "utf8ToBytes");
+      exports2.utf8ToBytes = utf8ToBytes;
+      function toBytes(data) {
         if (typeof data === "string")
-          data = utf8ToBytes3(data);
+          data = utf8ToBytes(data);
         if (!u8a(data))
           throw new Error(`expected Uint8Array, got ${typeof data}`);
         return data;
       }
-      __name(toBytes3, "toBytes");
-      exports2.toBytes = toBytes3;
-      function concatBytes3(...arrays) {
+      __name(toBytes, "toBytes");
+      exports2.toBytes = toBytes;
+      function concatBytes(...arrays) {
         const r = new Uint8Array(arrays.reduce((sum, a) => sum + a.length, 0));
         let pad = 0;
         arrays.forEach((a) => {
@@ -2966,9 +2966,9 @@ var NearWalletAdapterWidget = (() => {
         });
         return r;
       }
-      __name(concatBytes3, "concatBytes");
-      exports2.concatBytes = concatBytes3;
-      var Hash3 = class {
+      __name(concatBytes, "concatBytes");
+      exports2.concatBytes = concatBytes;
+      var Hash = class {
         static {
           __name(this, "Hash");
         }
@@ -2977,7 +2977,7 @@ var NearWalletAdapterWidget = (() => {
           return this._cloneInto();
         }
       };
-      exports2.Hash = Hash3;
+      exports2.Hash = Hash;
       var toStr = {}.toString;
       function checkOpts(defaults, opts) {
         if (opts !== void 0 && toStr.call(opts) !== "[object Object]")
@@ -2987,18 +2987,18 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(checkOpts, "checkOpts");
       exports2.checkOpts = checkOpts;
-      function wrapConstructor3(hashCons) {
-        const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes3(msg)).digest(), "hashC");
+      function wrapConstructor(hashCons) {
+        const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes(msg)).digest(), "hashC");
         const tmp = hashCons();
         hashC.outputLen = tmp.outputLen;
         hashC.blockLen = tmp.blockLen;
         hashC.create = () => hashCons();
         return hashC;
       }
-      __name(wrapConstructor3, "wrapConstructor");
-      exports2.wrapConstructor = wrapConstructor3;
+      __name(wrapConstructor, "wrapConstructor");
+      exports2.wrapConstructor = wrapConstructor;
       function wrapConstructorWithOpts(hashCons) {
-        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes3(msg)).digest(), "hashC");
+        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes(msg)).digest(), "hashC");
         const tmp = hashCons({});
         hashC.outputLen = tmp.outputLen;
         hashC.blockLen = tmp.blockLen;
@@ -3008,7 +3008,7 @@ var NearWalletAdapterWidget = (() => {
       __name(wrapConstructorWithOpts, "wrapConstructorWithOpts");
       exports2.wrapConstructorWithOpts = wrapConstructorWithOpts;
       function wrapXOFConstructorWithOpts(hashCons) {
-        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes3(msg)).digest(), "hashC");
+        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes(msg)).digest(), "hashC");
         const tmp = hashCons({});
         hashC.outputLen = tmp.outputLen;
         hashC.blockLen = tmp.blockLen;
@@ -3017,14 +3017,14 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(wrapXOFConstructorWithOpts, "wrapXOFConstructorWithOpts");
       exports2.wrapXOFConstructorWithOpts = wrapXOFConstructorWithOpts;
-      function randomBytes2(bytesLength = 32) {
+      function randomBytes(bytesLength = 32) {
         if (crypto_1.crypto && typeof crypto_1.crypto.getRandomValues === "function") {
           return crypto_1.crypto.getRandomValues(new Uint8Array(bytesLength));
         }
         throw new Error("crypto.getRandomValues must be defined");
       }
-      __name(randomBytes2, "randomBytes");
-      exports2.randomBytes = randomBytes2;
+      __name(randomBytes, "randomBytes");
+      exports2.randomBytes = randomBytes;
     }
   });
 
@@ -3036,19 +3036,19 @@ var NearWalletAdapterWidget = (() => {
       exports2.SHA2 = void 0;
       var _assert_js_1 = require_assert();
       var utils_js_1 = require_utils2();
-      function setBigUint643(view, byteOffset, value, isLE) {
+      function setBigUint64(view, byteOffset, value, isLE) {
         if (typeof view.setBigUint64 === "function")
           return view.setBigUint64(byteOffset, value, isLE);
-        const _32n2 = BigInt(32);
+        const _32n = BigInt(32);
         const _u32_max = BigInt(4294967295);
-        const wh = Number(value >> _32n2 & _u32_max);
+        const wh = Number(value >> _32n & _u32_max);
         const wl = Number(value & _u32_max);
         const h = isLE ? 4 : 0;
         const l = isLE ? 0 : 4;
         view.setUint32(byteOffset + h, wh, isLE);
         view.setUint32(byteOffset + l, wl, isLE);
       }
-      __name(setBigUint643, "setBigUint64");
+      __name(setBigUint64, "setBigUint64");
       var SHA2 = class extends utils_js_1.Hash {
         static {
           __name(this, "SHA2");
@@ -3105,7 +3105,7 @@ var NearWalletAdapterWidget = (() => {
           }
           for (let i = pos; i < blockLen; i++)
             buffer[i] = 0;
-          setBigUint643(view, blockLen - 8, BigInt(this.length * 8), isLE);
+          setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE);
           this.process(view, 0);
           const oview = (0, utils_js_1.createView)(out);
           const len = this.outputLen;
@@ -3148,95 +3148,95 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.add5L = exports2.add5H = exports2.add4H = exports2.add4L = exports2.add3H = exports2.add3L = exports2.add = exports2.rotlBL = exports2.rotlBH = exports2.rotlSL = exports2.rotlSH = exports2.rotr32L = exports2.rotr32H = exports2.rotrBL = exports2.rotrBH = exports2.rotrSL = exports2.rotrSH = exports2.shrSL = exports2.shrSH = exports2.toBig = exports2.split = exports2.fromBig = void 0;
-      var U32_MASK642 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
-      var _32n2 = /* @__PURE__ */ BigInt(32);
-      function fromBig2(n, le = false) {
+      var U32_MASK64 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
+      var _32n = /* @__PURE__ */ BigInt(32);
+      function fromBig(n, le = false) {
         if (le)
-          return { h: Number(n & U32_MASK642), l: Number(n >> _32n2 & U32_MASK642) };
-        return { h: Number(n >> _32n2 & U32_MASK642) | 0, l: Number(n & U32_MASK642) | 0 };
+          return { h: Number(n & U32_MASK64), l: Number(n >> _32n & U32_MASK64) };
+        return { h: Number(n >> _32n & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
       }
-      __name(fromBig2, "fromBig");
-      exports2.fromBig = fromBig2;
-      function split2(lst, le = false) {
+      __name(fromBig, "fromBig");
+      exports2.fromBig = fromBig;
+      function split(lst, le = false) {
         let Ah = new Uint32Array(lst.length);
         let Al = new Uint32Array(lst.length);
         for (let i = 0; i < lst.length; i++) {
-          const { h, l } = fromBig2(lst[i], le);
+          const { h, l } = fromBig(lst[i], le);
           [Ah[i], Al[i]] = [h, l];
         }
         return [Ah, Al];
       }
-      __name(split2, "split");
-      exports2.split = split2;
-      var toBig2 = /* @__PURE__ */ __name((h, l) => BigInt(h >>> 0) << _32n2 | BigInt(l >>> 0), "toBig");
-      exports2.toBig = toBig2;
-      var shrSH2 = /* @__PURE__ */ __name((h, _l, s) => h >>> s, "shrSH");
-      exports2.shrSH = shrSH2;
-      var shrSL2 = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "shrSL");
-      exports2.shrSL = shrSL2;
-      var rotrSH2 = /* @__PURE__ */ __name((h, l, s) => h >>> s | l << 32 - s, "rotrSH");
-      exports2.rotrSH = rotrSH2;
-      var rotrSL2 = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "rotrSL");
-      exports2.rotrSL = rotrSL2;
-      var rotrBH2 = /* @__PURE__ */ __name((h, l, s) => h << 64 - s | l >>> s - 32, "rotrBH");
-      exports2.rotrBH = rotrBH2;
-      var rotrBL2 = /* @__PURE__ */ __name((h, l, s) => h >>> s - 32 | l << 64 - s, "rotrBL");
-      exports2.rotrBL = rotrBL2;
-      var rotr32H2 = /* @__PURE__ */ __name((_h, l) => l, "rotr32H");
-      exports2.rotr32H = rotr32H2;
-      var rotr32L2 = /* @__PURE__ */ __name((h, _l) => h, "rotr32L");
-      exports2.rotr32L = rotr32L2;
-      var rotlSH2 = /* @__PURE__ */ __name((h, l, s) => h << s | l >>> 32 - s, "rotlSH");
-      exports2.rotlSH = rotlSH2;
-      var rotlSL2 = /* @__PURE__ */ __name((h, l, s) => l << s | h >>> 32 - s, "rotlSL");
-      exports2.rotlSL = rotlSL2;
-      var rotlBH2 = /* @__PURE__ */ __name((h, l, s) => l << s - 32 | h >>> 64 - s, "rotlBH");
-      exports2.rotlBH = rotlBH2;
-      var rotlBL2 = /* @__PURE__ */ __name((h, l, s) => h << s - 32 | l >>> 64 - s, "rotlBL");
-      exports2.rotlBL = rotlBL2;
-      function add2(Ah, Al, Bh, Bl) {
+      __name(split, "split");
+      exports2.split = split;
+      var toBig = /* @__PURE__ */ __name((h, l) => BigInt(h >>> 0) << _32n | BigInt(l >>> 0), "toBig");
+      exports2.toBig = toBig;
+      var shrSH = /* @__PURE__ */ __name((h, _l, s) => h >>> s, "shrSH");
+      exports2.shrSH = shrSH;
+      var shrSL = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "shrSL");
+      exports2.shrSL = shrSL;
+      var rotrSH = /* @__PURE__ */ __name((h, l, s) => h >>> s | l << 32 - s, "rotrSH");
+      exports2.rotrSH = rotrSH;
+      var rotrSL = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "rotrSL");
+      exports2.rotrSL = rotrSL;
+      var rotrBH = /* @__PURE__ */ __name((h, l, s) => h << 64 - s | l >>> s - 32, "rotrBH");
+      exports2.rotrBH = rotrBH;
+      var rotrBL = /* @__PURE__ */ __name((h, l, s) => h >>> s - 32 | l << 64 - s, "rotrBL");
+      exports2.rotrBL = rotrBL;
+      var rotr32H = /* @__PURE__ */ __name((_h, l) => l, "rotr32H");
+      exports2.rotr32H = rotr32H;
+      var rotr32L = /* @__PURE__ */ __name((h, _l) => h, "rotr32L");
+      exports2.rotr32L = rotr32L;
+      var rotlSH = /* @__PURE__ */ __name((h, l, s) => h << s | l >>> 32 - s, "rotlSH");
+      exports2.rotlSH = rotlSH;
+      var rotlSL = /* @__PURE__ */ __name((h, l, s) => l << s | h >>> 32 - s, "rotlSL");
+      exports2.rotlSL = rotlSL;
+      var rotlBH = /* @__PURE__ */ __name((h, l, s) => l << s - 32 | h >>> 64 - s, "rotlBH");
+      exports2.rotlBH = rotlBH;
+      var rotlBL = /* @__PURE__ */ __name((h, l, s) => h << s - 32 | l >>> 64 - s, "rotlBL");
+      exports2.rotlBL = rotlBL;
+      function add(Ah, Al, Bh, Bl) {
         const l = (Al >>> 0) + (Bl >>> 0);
         return { h: Ah + Bh + (l / 2 ** 32 | 0) | 0, l: l | 0 };
       }
-      __name(add2, "add");
-      exports2.add = add2;
-      var add3L2 = /* @__PURE__ */ __name((Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0), "add3L");
-      exports2.add3L = add3L2;
-      var add3H2 = /* @__PURE__ */ __name((low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0, "add3H");
-      exports2.add3H = add3H2;
-      var add4L2 = /* @__PURE__ */ __name((Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0), "add4L");
-      exports2.add4L = add4L2;
-      var add4H2 = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0, "add4H");
-      exports2.add4H = add4H2;
-      var add5L2 = /* @__PURE__ */ __name((Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0), "add5L");
-      exports2.add5L = add5L2;
-      var add5H2 = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0, "add5H");
-      exports2.add5H = add5H2;
-      var u642 = {
-        fromBig: fromBig2,
-        split: split2,
-        toBig: toBig2,
-        shrSH: shrSH2,
-        shrSL: shrSL2,
-        rotrSH: rotrSH2,
-        rotrSL: rotrSL2,
-        rotrBH: rotrBH2,
-        rotrBL: rotrBL2,
-        rotr32H: rotr32H2,
-        rotr32L: rotr32L2,
-        rotlSH: rotlSH2,
-        rotlSL: rotlSL2,
-        rotlBH: rotlBH2,
-        rotlBL: rotlBL2,
-        add: add2,
-        add3L: add3L2,
-        add3H: add3H2,
-        add4L: add4L2,
-        add4H: add4H2,
-        add5H: add5H2,
-        add5L: add5L2
+      __name(add, "add");
+      exports2.add = add;
+      var add3L = /* @__PURE__ */ __name((Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0), "add3L");
+      exports2.add3L = add3L;
+      var add3H = /* @__PURE__ */ __name((low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0, "add3H");
+      exports2.add3H = add3H;
+      var add4L = /* @__PURE__ */ __name((Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0), "add4L");
+      exports2.add4L = add4L;
+      var add4H = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0, "add4H");
+      exports2.add4H = add4H;
+      var add5L = /* @__PURE__ */ __name((Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0), "add5L");
+      exports2.add5L = add5L;
+      var add5H = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0, "add5H");
+      exports2.add5H = add5H;
+      var u64 = {
+        fromBig,
+        split,
+        toBig,
+        shrSH,
+        shrSL,
+        rotrSH,
+        rotrSL,
+        rotrBH,
+        rotrBL,
+        rotr32H,
+        rotr32L,
+        rotlSH,
+        rotlSL,
+        rotlBH,
+        rotlBL,
+        add,
+        add3L,
+        add3H,
+        add4L,
+        add4H,
+        add5H,
+        add5L
       };
-      exports2.default = u642;
+      exports2.default = u64;
     }
   });
 
@@ -3249,7 +3249,7 @@ var NearWalletAdapterWidget = (() => {
       var _sha2_js_1 = require_sha2();
       var _u64_js_1 = require_u64();
       var utils_js_1 = require_utils2();
-      var [SHA512_Kh2, SHA512_Kl2] = /* @__PURE__ */ (() => _u64_js_1.default.split([
+      var [SHA512_Kh, SHA512_Kl] = /* @__PURE__ */ (() => _u64_js_1.default.split([
         "0x428a2f98d728ae22",
         "0x7137449123ef65cd",
         "0xb5c0fbcfec4d3b2f",
@@ -3331,9 +3331,9 @@ var NearWalletAdapterWidget = (() => {
         "0x5fcb6fab3ad6faec",
         "0x6c44198c4a475817"
       ].map((n) => BigInt(n))))();
-      var SHA512_W_H2 = /* @__PURE__ */ new Uint32Array(80);
-      var SHA512_W_L2 = /* @__PURE__ */ new Uint32Array(80);
-      var SHA5122 = class extends _sha2_js_1.SHA2 {
+      var SHA512_W_H = /* @__PURE__ */ new Uint32Array(80);
+      var SHA512_W_L = /* @__PURE__ */ new Uint32Array(80);
+      var SHA512 = class extends _sha2_js_1.SHA2 {
         static {
           __name(this, "SHA512");
         }
@@ -3382,22 +3382,22 @@ var NearWalletAdapterWidget = (() => {
         }
         process(view, offset) {
           for (let i = 0; i < 16; i++, offset += 4) {
-            SHA512_W_H2[i] = view.getUint32(offset);
-            SHA512_W_L2[i] = view.getUint32(offset += 4);
+            SHA512_W_H[i] = view.getUint32(offset);
+            SHA512_W_L[i] = view.getUint32(offset += 4);
           }
           for (let i = 16; i < 80; i++) {
-            const W15h = SHA512_W_H2[i - 15] | 0;
-            const W15l = SHA512_W_L2[i - 15] | 0;
+            const W15h = SHA512_W_H[i - 15] | 0;
+            const W15l = SHA512_W_L[i - 15] | 0;
             const s0h = _u64_js_1.default.rotrSH(W15h, W15l, 1) ^ _u64_js_1.default.rotrSH(W15h, W15l, 8) ^ _u64_js_1.default.shrSH(W15h, W15l, 7);
             const s0l = _u64_js_1.default.rotrSL(W15h, W15l, 1) ^ _u64_js_1.default.rotrSL(W15h, W15l, 8) ^ _u64_js_1.default.shrSL(W15h, W15l, 7);
-            const W2h = SHA512_W_H2[i - 2] | 0;
-            const W2l = SHA512_W_L2[i - 2] | 0;
+            const W2h = SHA512_W_H[i - 2] | 0;
+            const W2l = SHA512_W_L[i - 2] | 0;
             const s1h = _u64_js_1.default.rotrSH(W2h, W2l, 19) ^ _u64_js_1.default.rotrBH(W2h, W2l, 61) ^ _u64_js_1.default.shrSH(W2h, W2l, 6);
             const s1l = _u64_js_1.default.rotrSL(W2h, W2l, 19) ^ _u64_js_1.default.rotrBL(W2h, W2l, 61) ^ _u64_js_1.default.shrSL(W2h, W2l, 6);
-            const SUMl = _u64_js_1.default.add4L(s0l, s1l, SHA512_W_L2[i - 7], SHA512_W_L2[i - 16]);
-            const SUMh = _u64_js_1.default.add4H(SUMl, s0h, s1h, SHA512_W_H2[i - 7], SHA512_W_H2[i - 16]);
-            SHA512_W_H2[i] = SUMh | 0;
-            SHA512_W_L2[i] = SUMl | 0;
+            const SUMl = _u64_js_1.default.add4L(s0l, s1l, SHA512_W_L[i - 7], SHA512_W_L[i - 16]);
+            const SUMh = _u64_js_1.default.add4H(SUMl, s0h, s1h, SHA512_W_H[i - 7], SHA512_W_H[i - 16]);
+            SHA512_W_H[i] = SUMh | 0;
+            SHA512_W_L[i] = SUMl | 0;
           }
           let { Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl } = this;
           for (let i = 0; i < 80; i++) {
@@ -3405,8 +3405,8 @@ var NearWalletAdapterWidget = (() => {
             const sigma1l = _u64_js_1.default.rotrSL(Eh, El, 14) ^ _u64_js_1.default.rotrSL(Eh, El, 18) ^ _u64_js_1.default.rotrBL(Eh, El, 41);
             const CHIh = Eh & Fh ^ ~Eh & Gh;
             const CHIl = El & Fl ^ ~El & Gl;
-            const T1ll = _u64_js_1.default.add5L(Hl, sigma1l, CHIl, SHA512_Kl2[i], SHA512_W_L2[i]);
-            const T1h = _u64_js_1.default.add5H(T1ll, Hh, sigma1h, CHIh, SHA512_Kh2[i], SHA512_W_H2[i]);
+            const T1ll = _u64_js_1.default.add5L(Hl, sigma1l, CHIl, SHA512_Kl[i], SHA512_W_L[i]);
+            const T1h = _u64_js_1.default.add5H(T1ll, Hh, sigma1h, CHIh, SHA512_Kh[i], SHA512_W_H[i]);
             const T1l = T1ll | 0;
             const sigma0h = _u64_js_1.default.rotrSH(Ah, Al, 28) ^ _u64_js_1.default.rotrBH(Ah, Al, 34) ^ _u64_js_1.default.rotrBH(Ah, Al, 39);
             const sigma0l = _u64_js_1.default.rotrSL(Ah, Al, 28) ^ _u64_js_1.default.rotrBL(Ah, Al, 34) ^ _u64_js_1.default.rotrBL(Ah, Al, 39);
@@ -3440,16 +3440,16 @@ var NearWalletAdapterWidget = (() => {
           this.set(Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl);
         }
         roundClean() {
-          SHA512_W_H2.fill(0);
-          SHA512_W_L2.fill(0);
+          SHA512_W_H.fill(0);
+          SHA512_W_L.fill(0);
         }
         destroy() {
           this.buffer.fill(0);
           this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
         }
       };
-      exports2.SHA512 = SHA5122;
-      var SHA512_224 = class extends SHA5122 {
+      exports2.SHA512 = SHA512;
+      var SHA512_224 = class extends SHA512 {
         static {
           __name(this, "SHA512_224");
         }
@@ -3474,7 +3474,7 @@ var NearWalletAdapterWidget = (() => {
           this.outputLen = 28;
         }
       };
-      var SHA512_256 = class extends SHA5122 {
+      var SHA512_256 = class extends SHA512 {
         static {
           __name(this, "SHA512_256");
         }
@@ -3499,7 +3499,7 @@ var NearWalletAdapterWidget = (() => {
           this.outputLen = 32;
         }
       };
-      var SHA384 = class extends SHA5122 {
+      var SHA384 = class extends SHA512 {
         static {
           __name(this, "SHA384");
         }
@@ -3524,7 +3524,7 @@ var NearWalletAdapterWidget = (() => {
           this.outputLen = 48;
         }
       };
-      exports2.sha512 = (0, utils_js_1.wrapConstructor)(() => new SHA5122());
+      exports2.sha512 = (0, utils_js_1.wrapConstructor)(() => new SHA512());
       exports2.sha512_224 = (0, utils_js_1.wrapConstructor)(() => new SHA512_224());
       exports2.sha512_256 = (0, utils_js_1.wrapConstructor)(() => new SHA512_256());
       exports2.sha384 = (0, utils_js_1.wrapConstructor)(() => new SHA384());
@@ -3537,36 +3537,36 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.validateObject = exports2.createHmacDrbg = exports2.bitMask = exports2.bitSet = exports2.bitGet = exports2.bitLen = exports2.utf8ToBytes = exports2.equalBytes = exports2.concatBytes = exports2.ensureBytes = exports2.numberToVarBytesBE = exports2.numberToBytesLE = exports2.numberToBytesBE = exports2.bytesToNumberLE = exports2.bytesToNumberBE = exports2.hexToBytes = exports2.hexToNumber = exports2.numberToHexUnpadded = exports2.bytesToHex = void 0;
-      var _0n6 = BigInt(0);
-      var _1n6 = BigInt(1);
-      var _2n5 = BigInt(2);
+      var _0n = BigInt(0);
+      var _1n = BigInt(1);
+      var _2n = BigInt(2);
       var u8a = /* @__PURE__ */ __name((a) => a instanceof Uint8Array, "u8a");
-      var hexes2 = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
-      function bytesToHex2(bytes) {
+      var hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
+      function bytesToHex(bytes) {
         if (!u8a(bytes))
           throw new Error("Uint8Array expected");
         let hex = "";
         for (let i = 0; i < bytes.length; i++) {
-          hex += hexes2[bytes[i]];
+          hex += hexes[bytes[i]];
         }
         return hex;
       }
-      __name(bytesToHex2, "bytesToHex");
-      exports2.bytesToHex = bytesToHex2;
+      __name(bytesToHex, "bytesToHex");
+      exports2.bytesToHex = bytesToHex;
       function numberToHexUnpadded(num) {
         const hex = num.toString(16);
         return hex.length & 1 ? `0${hex}` : hex;
       }
       __name(numberToHexUnpadded, "numberToHexUnpadded");
       exports2.numberToHexUnpadded = numberToHexUnpadded;
-      function hexToNumber2(hex) {
+      function hexToNumber(hex) {
         if (typeof hex !== "string")
           throw new Error("hex string expected, got " + typeof hex);
         return BigInt(hex === "" ? "0" : `0x${hex}`);
       }
-      __name(hexToNumber2, "hexToNumber");
-      exports2.hexToNumber = hexToNumber2;
-      function hexToBytes2(hex) {
+      __name(hexToNumber, "hexToNumber");
+      exports2.hexToNumber = hexToNumber;
+      function hexToBytes(hex) {
         if (typeof hex !== "string")
           throw new Error("hex string expected, got " + typeof hex);
         const len = hex.length;
@@ -3583,40 +3583,40 @@ var NearWalletAdapterWidget = (() => {
         }
         return array;
       }
-      __name(hexToBytes2, "hexToBytes");
-      exports2.hexToBytes = hexToBytes2;
-      function bytesToNumberBE2(bytes) {
-        return hexToNumber2(bytesToHex2(bytes));
+      __name(hexToBytes, "hexToBytes");
+      exports2.hexToBytes = hexToBytes;
+      function bytesToNumberBE(bytes) {
+        return hexToNumber(bytesToHex(bytes));
       }
-      __name(bytesToNumberBE2, "bytesToNumberBE");
-      exports2.bytesToNumberBE = bytesToNumberBE2;
-      function bytesToNumberLE2(bytes) {
+      __name(bytesToNumberBE, "bytesToNumberBE");
+      exports2.bytesToNumberBE = bytesToNumberBE;
+      function bytesToNumberLE(bytes) {
         if (!u8a(bytes))
           throw new Error("Uint8Array expected");
-        return hexToNumber2(bytesToHex2(Uint8Array.from(bytes).reverse()));
+        return hexToNumber(bytesToHex(Uint8Array.from(bytes).reverse()));
       }
-      __name(bytesToNumberLE2, "bytesToNumberLE");
-      exports2.bytesToNumberLE = bytesToNumberLE2;
-      function numberToBytesBE2(n, len) {
-        return hexToBytes2(n.toString(16).padStart(len * 2, "0"));
+      __name(bytesToNumberLE, "bytesToNumberLE");
+      exports2.bytesToNumberLE = bytesToNumberLE;
+      function numberToBytesBE(n, len) {
+        return hexToBytes(n.toString(16).padStart(len * 2, "0"));
       }
-      __name(numberToBytesBE2, "numberToBytesBE");
-      exports2.numberToBytesBE = numberToBytesBE2;
-      function numberToBytesLE2(n, len) {
-        return numberToBytesBE2(n, len).reverse();
+      __name(numberToBytesBE, "numberToBytesBE");
+      exports2.numberToBytesBE = numberToBytesBE;
+      function numberToBytesLE(n, len) {
+        return numberToBytesBE(n, len).reverse();
       }
-      __name(numberToBytesLE2, "numberToBytesLE");
-      exports2.numberToBytesLE = numberToBytesLE2;
+      __name(numberToBytesLE, "numberToBytesLE");
+      exports2.numberToBytesLE = numberToBytesLE;
       function numberToVarBytesBE(n) {
-        return hexToBytes2(numberToHexUnpadded(n));
+        return hexToBytes(numberToHexUnpadded(n));
       }
       __name(numberToVarBytesBE, "numberToVarBytesBE");
       exports2.numberToVarBytesBE = numberToVarBytesBE;
-      function ensureBytes2(title, hex, expectedLength) {
+      function ensureBytes(title, hex, expectedLength) {
         let res;
         if (typeof hex === "string") {
           try {
-            res = hexToBytes2(hex);
+            res = hexToBytes(hex);
           } catch (e) {
             throw new Error(`${title} must be valid hex string, got "${hex}". Cause: ${e}`);
           }
@@ -3630,9 +3630,9 @@ var NearWalletAdapterWidget = (() => {
           throw new Error(`${title} expected ${expectedLength} bytes, got ${len}`);
         return res;
       }
-      __name(ensureBytes2, "ensureBytes");
-      exports2.ensureBytes = ensureBytes2;
-      function concatBytes3(...arrays) {
+      __name(ensureBytes, "ensureBytes");
+      exports2.ensureBytes = ensureBytes;
+      function concatBytes(...arrays) {
         const r = new Uint8Array(arrays.reduce((sum, a) => sum + a.length, 0));
         let pad = 0;
         arrays.forEach((a) => {
@@ -3643,8 +3643,8 @@ var NearWalletAdapterWidget = (() => {
         });
         return r;
       }
-      __name(concatBytes3, "concatBytes");
-      exports2.concatBytes = concatBytes3;
+      __name(concatBytes, "concatBytes");
+      exports2.concatBytes = concatBytes;
       function equalBytes(b1, b2) {
         if (b1.length !== b2.length)
           return false;
@@ -3655,32 +3655,32 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(equalBytes, "equalBytes");
       exports2.equalBytes = equalBytes;
-      function utf8ToBytes3(str) {
+      function utf8ToBytes(str) {
         if (typeof str !== "string")
           throw new Error(`utf8ToBytes expected string, got ${typeof str}`);
         return new Uint8Array(new TextEncoder().encode(str));
       }
-      __name(utf8ToBytes3, "utf8ToBytes");
-      exports2.utf8ToBytes = utf8ToBytes3;
-      function bitLen2(n) {
+      __name(utf8ToBytes, "utf8ToBytes");
+      exports2.utf8ToBytes = utf8ToBytes;
+      function bitLen(n) {
         let len;
-        for (len = 0; n > _0n6; n >>= _1n6, len += 1)
+        for (len = 0; n > _0n; n >>= _1n, len += 1)
           ;
         return len;
       }
-      __name(bitLen2, "bitLen");
-      exports2.bitLen = bitLen2;
+      __name(bitLen, "bitLen");
+      exports2.bitLen = bitLen;
       function bitGet(n, pos) {
-        return n >> BigInt(pos) & _1n6;
+        return n >> BigInt(pos) & _1n;
       }
       __name(bitGet, "bitGet");
       exports2.bitGet = bitGet;
       var bitSet = /* @__PURE__ */ __name((n, pos, value) => {
-        return n | (value ? _1n6 : _0n6) << BigInt(pos);
+        return n | (value ? _1n : _0n) << BigInt(pos);
       }, "bitSet");
       exports2.bitSet = bitSet;
-      var bitMask2 = /* @__PURE__ */ __name((n) => (_2n5 << BigInt(n - 1)) - _1n6, "bitMask");
-      exports2.bitMask = bitMask2;
+      var bitMask = /* @__PURE__ */ __name((n) => (_2n << BigInt(n - 1)) - _1n, "bitMask");
+      exports2.bitMask = bitMask;
       var u8n = /* @__PURE__ */ __name((data) => new Uint8Array(data), "u8n");
       var u8fr = /* @__PURE__ */ __name((arr) => Uint8Array.from(arr), "u8fr");
       function createHmacDrbg(hashLen, qByteLen, hmacFn) {
@@ -3718,7 +3718,7 @@ var NearWalletAdapterWidget = (() => {
             out.push(sl);
             len += v.length;
           }
-          return concatBytes3(...out);
+          return concatBytes(...out);
         }, "gen");
         const genUntil = /* @__PURE__ */ __name((seed, pred) => {
           reset();
@@ -3733,7 +3733,7 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(createHmacDrbg, "createHmacDrbg");
       exports2.createHmacDrbg = createHmacDrbg;
-      var validatorFns2 = {
+      var validatorFns = {
         bigint: /* @__PURE__ */ __name((val) => typeof val === "bigint", "bigint"),
         function: /* @__PURE__ */ __name((val) => typeof val === "function", "function"),
         boolean: /* @__PURE__ */ __name((val) => typeof val === "boolean", "boolean"),
@@ -3744,9 +3744,9 @@ var NearWalletAdapterWidget = (() => {
         field: /* @__PURE__ */ __name((val, object) => object.Fp.isValid(val), "field"),
         hash: /* @__PURE__ */ __name((val) => typeof val === "function" && Number.isSafeInteger(val.outputLen), "hash")
       };
-      function validateObject2(object, validators, optValidators = {}) {
+      function validateObject(object, validators, optValidators = {}) {
         const checkField = /* @__PURE__ */ __name((fieldName, type, isOptional) => {
-          const checkVal = validatorFns2[type];
+          const checkVal = validatorFns[type];
           if (typeof checkVal !== "function")
             throw new Error(`Invalid validator "${type}", expected function`);
           const val = object[fieldName];
@@ -3762,8 +3762,8 @@ var NearWalletAdapterWidget = (() => {
           checkField(fieldName, type, true);
         return object;
       }
-      __name(validateObject2, "validateObject");
-      exports2.validateObject = validateObject2;
+      __name(validateObject, "validateObject");
+      exports2.validateObject = validateObject;
     }
   });
 
@@ -3774,55 +3774,55 @@ var NearWalletAdapterWidget = (() => {
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.mapHashToField = exports2.getMinHashLength = exports2.getFieldBytesLength = exports2.hashToPrivateScalar = exports2.FpSqrtEven = exports2.FpSqrtOdd = exports2.Field = exports2.nLength = exports2.FpIsSquare = exports2.FpDiv = exports2.FpInvertBatch = exports2.FpPow = exports2.validateField = exports2.isNegativeLE = exports2.FpSqrt = exports2.tonelliShanks = exports2.invert = exports2.pow2 = exports2.pow = exports2.mod = void 0;
       var utils_js_1 = require_utils3();
-      var _0n6 = BigInt(0);
-      var _1n6 = BigInt(1);
-      var _2n5 = BigInt(2);
-      var _3n3 = BigInt(3);
-      var _4n2 = BigInt(4);
-      var _5n3 = BigInt(5);
-      var _8n4 = BigInt(8);
-      var _9n2 = BigInt(9);
-      var _16n2 = BigInt(16);
-      function mod2(a, b) {
+      var _0n = BigInt(0);
+      var _1n = BigInt(1);
+      var _2n = BigInt(2);
+      var _3n = BigInt(3);
+      var _4n = BigInt(4);
+      var _5n = BigInt(5);
+      var _8n = BigInt(8);
+      var _9n = BigInt(9);
+      var _16n = BigInt(16);
+      function mod(a, b) {
         const result = a % b;
-        return result >= _0n6 ? result : b + result;
+        return result >= _0n ? result : b + result;
       }
-      __name(mod2, "mod");
-      exports2.mod = mod2;
-      function pow3(num, power, modulo) {
-        if (modulo <= _0n6 || power < _0n6)
+      __name(mod, "mod");
+      exports2.mod = mod;
+      function pow(num, power, modulo) {
+        if (modulo <= _0n || power < _0n)
           throw new Error("Expected power/modulo > 0");
-        if (modulo === _1n6)
-          return _0n6;
-        let res = _1n6;
-        while (power > _0n6) {
-          if (power & _1n6)
+        if (modulo === _1n)
+          return _0n;
+        let res = _1n;
+        while (power > _0n) {
+          if (power & _1n)
             res = res * num % modulo;
           num = num * num % modulo;
-          power >>= _1n6;
+          power >>= _1n;
         }
         return res;
       }
-      __name(pow3, "pow");
-      exports2.pow = pow3;
-      function pow22(x, power, modulo) {
+      __name(pow, "pow");
+      exports2.pow = pow;
+      function pow2(x, power, modulo) {
         let res = x;
-        while (power-- > _0n6) {
+        while (power-- > _0n) {
           res *= res;
           res %= modulo;
         }
         return res;
       }
-      __name(pow22, "pow2");
-      exports2.pow2 = pow22;
-      function invert2(number, modulo) {
-        if (number === _0n6 || modulo <= _0n6) {
+      __name(pow2, "pow2");
+      exports2.pow2 = pow2;
+      function invert(number, modulo) {
+        if (number === _0n || modulo <= _0n) {
           throw new Error(`invert: expected positive integers, got n=${number} mod=${modulo}`);
         }
-        let a = mod2(number, modulo);
+        let a = mod(number, modulo);
         let b = modulo;
-        let x = _0n6, y = _1n6, u = _1n6, v = _0n6;
-        while (a !== _0n6) {
+        let x = _0n, y = _1n, u = _1n, v = _0n;
+        while (a !== _0n) {
           const q = b / a;
           const r = b % a;
           const m = x - u * q;
@@ -3830,88 +3830,88 @@ var NearWalletAdapterWidget = (() => {
           b = a, a = r, x = u, y = v, u = m, v = n;
         }
         const gcd = b;
-        if (gcd !== _1n6)
+        if (gcd !== _1n)
           throw new Error("invert: does not exist");
-        return mod2(x, modulo);
+        return mod(x, modulo);
       }
-      __name(invert2, "invert");
-      exports2.invert = invert2;
-      function tonelliShanks2(P) {
-        const legendreC = (P - _1n6) / _2n5;
+      __name(invert, "invert");
+      exports2.invert = invert;
+      function tonelliShanks(P2) {
+        const legendreC = (P2 - _1n) / _2n;
         let Q, S, Z;
-        for (Q = P - _1n6, S = 0; Q % _2n5 === _0n6; Q /= _2n5, S++)
+        for (Q = P2 - _1n, S = 0; Q % _2n === _0n; Q /= _2n, S++)
           ;
-        for (Z = _2n5; Z < P && pow3(Z, legendreC, P) !== P - _1n6; Z++)
+        for (Z = _2n; Z < P2 && pow(Z, legendreC, P2) !== P2 - _1n; Z++)
           ;
         if (S === 1) {
-          const p1div4 = (P + _1n6) / _4n2;
-          return /* @__PURE__ */ __name(function tonelliFast(Fp2, n) {
-            const root2 = Fp2.pow(n, p1div4);
-            if (!Fp2.eql(Fp2.sqr(root2), n))
+          const p1div4 = (P2 + _1n) / _4n;
+          return /* @__PURE__ */ __name(function tonelliFast(Fp, n) {
+            const root2 = Fp.pow(n, p1div4);
+            if (!Fp.eql(Fp.sqr(root2), n))
               throw new Error("Cannot find square root");
             return root2;
           }, "tonelliFast");
         }
-        const Q1div2 = (Q + _1n6) / _2n5;
-        return /* @__PURE__ */ __name(function tonelliSlow(Fp2, n) {
-          if (Fp2.pow(n, legendreC) === Fp2.neg(Fp2.ONE))
+        const Q1div2 = (Q + _1n) / _2n;
+        return /* @__PURE__ */ __name(function tonelliSlow(Fp, n) {
+          if (Fp.pow(n, legendreC) === Fp.neg(Fp.ONE))
             throw new Error("Cannot find square root");
           let r = S;
-          let g = Fp2.pow(Fp2.mul(Fp2.ONE, Z), Q);
-          let x = Fp2.pow(n, Q1div2);
-          let b = Fp2.pow(n, Q);
-          while (!Fp2.eql(b, Fp2.ONE)) {
-            if (Fp2.eql(b, Fp2.ZERO))
-              return Fp2.ZERO;
+          let g = Fp.pow(Fp.mul(Fp.ONE, Z), Q);
+          let x = Fp.pow(n, Q1div2);
+          let b = Fp.pow(n, Q);
+          while (!Fp.eql(b, Fp.ONE)) {
+            if (Fp.eql(b, Fp.ZERO))
+              return Fp.ZERO;
             let m = 1;
-            for (let t2 = Fp2.sqr(b); m < r; m++) {
-              if (Fp2.eql(t2, Fp2.ONE))
+            for (let t2 = Fp.sqr(b); m < r; m++) {
+              if (Fp.eql(t2, Fp.ONE))
                 break;
-              t2 = Fp2.sqr(t2);
+              t2 = Fp.sqr(t2);
             }
-            const ge = Fp2.pow(g, _1n6 << BigInt(r - m - 1));
-            g = Fp2.sqr(ge);
-            x = Fp2.mul(x, ge);
-            b = Fp2.mul(b, g);
+            const ge = Fp.pow(g, _1n << BigInt(r - m - 1));
+            g = Fp.sqr(ge);
+            x = Fp.mul(x, ge);
+            b = Fp.mul(b, g);
             r = m;
           }
           return x;
         }, "tonelliSlow");
       }
-      __name(tonelliShanks2, "tonelliShanks");
-      exports2.tonelliShanks = tonelliShanks2;
-      function FpSqrt2(P) {
-        if (P % _4n2 === _3n3) {
-          const p1div4 = (P + _1n6) / _4n2;
-          return /* @__PURE__ */ __name(function sqrt3mod4(Fp2, n) {
-            const root2 = Fp2.pow(n, p1div4);
-            if (!Fp2.eql(Fp2.sqr(root2), n))
+      __name(tonelliShanks, "tonelliShanks");
+      exports2.tonelliShanks = tonelliShanks;
+      function FpSqrt(P2) {
+        if (P2 % _4n === _3n) {
+          const p1div4 = (P2 + _1n) / _4n;
+          return /* @__PURE__ */ __name(function sqrt3mod4(Fp, n) {
+            const root2 = Fp.pow(n, p1div4);
+            if (!Fp.eql(Fp.sqr(root2), n))
               throw new Error("Cannot find square root");
             return root2;
           }, "sqrt3mod4");
         }
-        if (P % _8n4 === _5n3) {
-          const c1 = (P - _5n3) / _8n4;
-          return /* @__PURE__ */ __name(function sqrt5mod8(Fp2, n) {
-            const n2 = Fp2.mul(n, _2n5);
-            const v = Fp2.pow(n2, c1);
-            const nv = Fp2.mul(n, v);
-            const i = Fp2.mul(Fp2.mul(nv, _2n5), v);
-            const root2 = Fp2.mul(nv, Fp2.sub(i, Fp2.ONE));
-            if (!Fp2.eql(Fp2.sqr(root2), n))
+        if (P2 % _8n === _5n) {
+          const c1 = (P2 - _5n) / _8n;
+          return /* @__PURE__ */ __name(function sqrt5mod8(Fp, n) {
+            const n2 = Fp.mul(n, _2n);
+            const v = Fp.pow(n2, c1);
+            const nv = Fp.mul(n, v);
+            const i = Fp.mul(Fp.mul(nv, _2n), v);
+            const root2 = Fp.mul(nv, Fp.sub(i, Fp.ONE));
+            if (!Fp.eql(Fp.sqr(root2), n))
               throw new Error("Cannot find square root");
             return root2;
           }, "sqrt5mod8");
         }
-        if (P % _16n2 === _9n2) {
+        if (P2 % _16n === _9n) {
         }
-        return tonelliShanks2(P);
+        return tonelliShanks(P2);
       }
-      __name(FpSqrt2, "FpSqrt");
-      exports2.FpSqrt = FpSqrt2;
-      var isNegativeLE2 = /* @__PURE__ */ __name((num, modulo) => (mod2(num, modulo) & _1n6) === _1n6, "isNegativeLE");
-      exports2.isNegativeLE = isNegativeLE2;
-      var FIELD_FIELDS2 = [
+      __name(FpSqrt, "FpSqrt");
+      exports2.FpSqrt = FpSqrt;
+      var isNegativeLE = /* @__PURE__ */ __name((num, modulo) => (mod(num, modulo) & _1n) === _1n, "isNegativeLE");
+      exports2.isNegativeLE = isNegativeLE;
+      var FIELD_FIELDS = [
         "create",
         "isValid",
         "is0",
@@ -3930,41 +3930,41 @@ var NearWalletAdapterWidget = (() => {
         "mulN",
         "sqrN"
       ];
-      function validateField2(field) {
+      function validateField(field) {
         const initial = {
           ORDER: "bigint",
           MASK: "bigint",
           BYTES: "isSafeInteger",
           BITS: "isSafeInteger"
         };
-        const opts = FIELD_FIELDS2.reduce((map, val) => {
+        const opts = FIELD_FIELDS.reduce((map, val) => {
           map[val] = "function";
           return map;
         }, initial);
         return (0, utils_js_1.validateObject)(field, opts);
       }
-      __name(validateField2, "validateField");
-      exports2.validateField = validateField2;
-      function FpPow2(f, num, power) {
-        if (power < _0n6)
+      __name(validateField, "validateField");
+      exports2.validateField = validateField;
+      function FpPow(f, num, power) {
+        if (power < _0n)
           throw new Error("Expected power > 0");
-        if (power === _0n6)
+        if (power === _0n)
           return f.ONE;
-        if (power === _1n6)
+        if (power === _1n)
           return num;
         let p = f.ONE;
         let d = num;
-        while (power > _0n6) {
-          if (power & _1n6)
+        while (power > _0n) {
+          if (power & _1n)
             p = f.mul(p, d);
           d = f.sqr(d);
-          power >>= _1n6;
+          power >>= _1n;
         }
         return p;
       }
-      __name(FpPow2, "FpPow");
-      exports2.FpPow = FpPow2;
-      function FpInvertBatch2(f, nums) {
+      __name(FpPow, "FpPow");
+      exports2.FpPow = FpPow;
+      function FpInvertBatch(f, nums) {
         const tmp = new Array(nums.length);
         const lastMultiplied = nums.reduce((acc, num, i) => {
           if (f.is0(num))
@@ -3981,15 +3981,15 @@ var NearWalletAdapterWidget = (() => {
         }, inverted);
         return tmp;
       }
-      __name(FpInvertBatch2, "FpInvertBatch");
-      exports2.FpInvertBatch = FpInvertBatch2;
+      __name(FpInvertBatch, "FpInvertBatch");
+      exports2.FpInvertBatch = FpInvertBatch;
       function FpDiv(f, lhs, rhs) {
-        return f.mul(lhs, typeof rhs === "bigint" ? invert2(rhs, f.ORDER) : f.inv(rhs));
+        return f.mul(lhs, typeof rhs === "bigint" ? invert(rhs, f.ORDER) : f.inv(rhs));
       }
       __name(FpDiv, "FpDiv");
       exports2.FpDiv = FpDiv;
       function FpIsSquare(f) {
-        const legendreConst = (f.ORDER - _1n6) / _2n5;
+        const legendreConst = (f.ORDER - _1n) / _2n;
         return (x) => {
           const p = f.pow(x, legendreConst);
           return f.eql(p, f.ZERO) || f.eql(p, f.ONE);
@@ -3997,51 +3997,51 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(FpIsSquare, "FpIsSquare");
       exports2.FpIsSquare = FpIsSquare;
-      function nLength2(n, nBitLength) {
+      function nLength(n, nBitLength) {
         const _nBitLength = nBitLength !== void 0 ? nBitLength : n.toString(2).length;
         const nByteLength = Math.ceil(_nBitLength / 8);
         return { nBitLength: _nBitLength, nByteLength };
       }
-      __name(nLength2, "nLength");
-      exports2.nLength = nLength2;
-      function Field2(ORDER, bitLen2, isLE = false, redef = {}) {
-        if (ORDER <= _0n6)
+      __name(nLength, "nLength");
+      exports2.nLength = nLength;
+      function Field(ORDER, bitLen, isLE = false, redef = {}) {
+        if (ORDER <= _0n)
           throw new Error(`Expected Field ORDER > 0, got ${ORDER}`);
-        const { nBitLength: BITS, nByteLength: BYTES } = nLength2(ORDER, bitLen2);
+        const { nBitLength: BITS, nByteLength: BYTES } = nLength(ORDER, bitLen);
         if (BYTES > 2048)
           throw new Error("Field lengths over 2048 bytes are not supported");
-        const sqrtP = FpSqrt2(ORDER);
+        const sqrtP = FpSqrt(ORDER);
         const f = Object.freeze({
           ORDER,
           BITS,
           BYTES,
           MASK: (0, utils_js_1.bitMask)(BITS),
-          ZERO: _0n6,
-          ONE: _1n6,
-          create: /* @__PURE__ */ __name((num) => mod2(num, ORDER), "create"),
+          ZERO: _0n,
+          ONE: _1n,
+          create: /* @__PURE__ */ __name((num) => mod(num, ORDER), "create"),
           isValid: /* @__PURE__ */ __name((num) => {
             if (typeof num !== "bigint")
               throw new Error(`Invalid field element: expected bigint, got ${typeof num}`);
-            return _0n6 <= num && num < ORDER;
+            return _0n <= num && num < ORDER;
           }, "isValid"),
-          is0: /* @__PURE__ */ __name((num) => num === _0n6, "is0"),
-          isOdd: /* @__PURE__ */ __name((num) => (num & _1n6) === _1n6, "isOdd"),
-          neg: /* @__PURE__ */ __name((num) => mod2(-num, ORDER), "neg"),
+          is0: /* @__PURE__ */ __name((num) => num === _0n, "is0"),
+          isOdd: /* @__PURE__ */ __name((num) => (num & _1n) === _1n, "isOdd"),
+          neg: /* @__PURE__ */ __name((num) => mod(-num, ORDER), "neg"),
           eql: /* @__PURE__ */ __name((lhs, rhs) => lhs === rhs, "eql"),
-          sqr: /* @__PURE__ */ __name((num) => mod2(num * num, ORDER), "sqr"),
-          add: /* @__PURE__ */ __name((lhs, rhs) => mod2(lhs + rhs, ORDER), "add"),
-          sub: /* @__PURE__ */ __name((lhs, rhs) => mod2(lhs - rhs, ORDER), "sub"),
-          mul: /* @__PURE__ */ __name((lhs, rhs) => mod2(lhs * rhs, ORDER), "mul"),
-          pow: /* @__PURE__ */ __name((num, power) => FpPow2(f, num, power), "pow"),
-          div: /* @__PURE__ */ __name((lhs, rhs) => mod2(lhs * invert2(rhs, ORDER), ORDER), "div"),
+          sqr: /* @__PURE__ */ __name((num) => mod(num * num, ORDER), "sqr"),
+          add: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs + rhs, ORDER), "add"),
+          sub: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs - rhs, ORDER), "sub"),
+          mul: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs * rhs, ORDER), "mul"),
+          pow: /* @__PURE__ */ __name((num, power) => FpPow(f, num, power), "pow"),
+          div: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs * invert(rhs, ORDER), ORDER), "div"),
           // Same as above, but doesn't normalize
           sqrN: /* @__PURE__ */ __name((num) => num * num, "sqrN"),
           addN: /* @__PURE__ */ __name((lhs, rhs) => lhs + rhs, "addN"),
           subN: /* @__PURE__ */ __name((lhs, rhs) => lhs - rhs, "subN"),
           mulN: /* @__PURE__ */ __name((lhs, rhs) => lhs * rhs, "mulN"),
-          inv: /* @__PURE__ */ __name((num) => invert2(num, ORDER), "inv"),
+          inv: /* @__PURE__ */ __name((num) => invert(num, ORDER), "inv"),
           sqrt: redef.sqrt || ((n) => sqrtP(f, n)),
-          invertBatch: /* @__PURE__ */ __name((lst) => FpInvertBatch2(f, lst), "invertBatch"),
+          invertBatch: /* @__PURE__ */ __name((lst) => FpInvertBatch(f, lst), "invertBatch"),
           // TODO: do we really need constant cmov?
           // We don't have const-time bigints anyway, so probably will be not very useful
           cmov: /* @__PURE__ */ __name((a, b, c) => c ? b : a, "cmov"),
@@ -4054,32 +4054,32 @@ var NearWalletAdapterWidget = (() => {
         });
         return Object.freeze(f);
       }
-      __name(Field2, "Field");
-      exports2.Field = Field2;
-      function FpSqrtOdd(Fp2, elm) {
-        if (!Fp2.isOdd)
+      __name(Field, "Field");
+      exports2.Field = Field;
+      function FpSqrtOdd(Fp, elm) {
+        if (!Fp.isOdd)
           throw new Error(`Field doesn't have isOdd`);
-        const root2 = Fp2.sqrt(elm);
-        return Fp2.isOdd(root2) ? root2 : Fp2.neg(root2);
+        const root2 = Fp.sqrt(elm);
+        return Fp.isOdd(root2) ? root2 : Fp.neg(root2);
       }
       __name(FpSqrtOdd, "FpSqrtOdd");
       exports2.FpSqrtOdd = FpSqrtOdd;
-      function FpSqrtEven2(Fp2, elm) {
-        if (!Fp2.isOdd)
+      function FpSqrtEven(Fp, elm) {
+        if (!Fp.isOdd)
           throw new Error(`Field doesn't have isOdd`);
-        const root2 = Fp2.sqrt(elm);
-        return Fp2.isOdd(root2) ? Fp2.neg(root2) : root2;
+        const root2 = Fp.sqrt(elm);
+        return Fp.isOdd(root2) ? Fp.neg(root2) : root2;
       }
-      __name(FpSqrtEven2, "FpSqrtEven");
-      exports2.FpSqrtEven = FpSqrtEven2;
+      __name(FpSqrtEven, "FpSqrtEven");
+      exports2.FpSqrtEven = FpSqrtEven;
       function hashToPrivateScalar(hash, groupOrder, isLE = false) {
         hash = (0, utils_js_1.ensureBytes)("privateHash", hash);
         const hashLen = hash.length;
-        const minLen = nLength2(groupOrder).nByteLength + 8;
+        const minLen = nLength(groupOrder).nByteLength + 8;
         if (minLen < 24 || hashLen < minLen || hashLen > 1024)
           throw new Error(`hashToPrivateScalar: expected ${minLen}-1024 bytes of input, got ${hashLen}`);
         const num = isLE ? (0, utils_js_1.bytesToNumberLE)(hash) : (0, utils_js_1.bytesToNumberBE)(hash);
-        return mod2(num, groupOrder - _1n6) + _1n6;
+        return mod(num, groupOrder - _1n) + _1n;
       }
       __name(hashToPrivateScalar, "hashToPrivateScalar");
       exports2.hashToPrivateScalar = hashToPrivateScalar;
@@ -4104,7 +4104,7 @@ var NearWalletAdapterWidget = (() => {
         if (len < 16 || len < minLen || len > 1024)
           throw new Error(`expected ${minLen}-1024 bytes of input, got ${len}`);
         const num = isLE ? (0, utils_js_1.bytesToNumberBE)(key) : (0, utils_js_1.bytesToNumberLE)(key);
-        const reduced = mod2(num, fieldOrder - _1n6) + _1n6;
+        const reduced = mod(num, fieldOrder - _1n) + _1n;
         return isLE ? (0, utils_js_1.numberToBytesLE)(reduced, fieldLen) : (0, utils_js_1.numberToBytesBE)(reduced, fieldLen);
       }
       __name(mapHashToField, "mapHashToField");
@@ -4120,10 +4120,10 @@ var NearWalletAdapterWidget = (() => {
       exports2.validateBasic = exports2.wNAF = void 0;
       var modular_js_1 = require_modular();
       var utils_js_1 = require_utils3();
-      var _0n6 = BigInt(0);
-      var _1n6 = BigInt(1);
-      function wNAF2(c, bits) {
-        const constTimeNegate2 = /* @__PURE__ */ __name((condition, item) => {
+      var _0n = BigInt(0);
+      var _1n = BigInt(1);
+      function wNAF(c, bits) {
+        const constTimeNegate = /* @__PURE__ */ __name((condition, item) => {
           const neg = item.negate();
           return condition ? neg : item;
         }, "constTimeNegate");
@@ -4133,16 +4133,16 @@ var NearWalletAdapterWidget = (() => {
           return { windows, windowSize };
         }, "opts");
         return {
-          constTimeNegate: constTimeNegate2,
+          constTimeNegate,
           // non-const time multiplication ladder
           unsafeLadder(elm, n) {
             let p = c.ZERO;
             let d = elm;
-            while (n > _0n6) {
-              if (n & _1n6)
+            while (n > _0n) {
+              if (n & _1n)
                 p = p.add(d);
               d = d.double();
-              n >>= _1n6;
+              n >>= _1n;
             }
             return p;
           },
@@ -4160,15 +4160,15 @@ var NearWalletAdapterWidget = (() => {
             const { windows, windowSize } = opts(W);
             const points = [];
             let p = elm;
-            let base2 = p;
+            let base = p;
             for (let window2 = 0; window2 < windows; window2++) {
-              base2 = p;
-              points.push(base2);
+              base = p;
+              points.push(base);
               for (let i = 1; i < windowSize; i++) {
-                base2 = base2.add(p);
-                points.push(base2);
+                base = base.add(p);
+                points.push(base);
               }
-              p = base2.double();
+              p = base.double();
             }
             return points;
           },
@@ -4192,36 +4192,36 @@ var NearWalletAdapterWidget = (() => {
               n >>= shiftBy;
               if (wbits > windowSize) {
                 wbits -= maxNumber;
-                n += _1n6;
+                n += _1n;
               }
               const offset1 = offset;
               const offset2 = offset + Math.abs(wbits) - 1;
               const cond1 = window2 % 2 !== 0;
               const cond2 = wbits < 0;
               if (wbits === 0) {
-                f = f.add(constTimeNegate2(cond1, precomputes[offset1]));
+                f = f.add(constTimeNegate(cond1, precomputes[offset1]));
               } else {
-                p = p.add(constTimeNegate2(cond2, precomputes[offset2]));
+                p = p.add(constTimeNegate(cond2, precomputes[offset2]));
               }
             }
             return { p, f };
           },
-          wNAFCached(P, precomputesMap, n, transform) {
-            const W = P._WINDOW_SIZE || 1;
-            let comp = precomputesMap.get(P);
+          wNAFCached(P2, precomputesMap, n, transform) {
+            const W = P2._WINDOW_SIZE || 1;
+            let comp = precomputesMap.get(P2);
             if (!comp) {
-              comp = this.precomputeWindow(P, W);
+              comp = this.precomputeWindow(P2, W);
               if (W !== 1) {
-                precomputesMap.set(P, transform(comp));
+                precomputesMap.set(P2, transform(comp));
               }
             }
             return this.wNAF(W, comp, n);
           }
         };
       }
-      __name(wNAF2, "wNAF");
-      exports2.wNAF = wNAF2;
-      function validateBasic2(curve) {
+      __name(wNAF, "wNAF");
+      exports2.wNAF = wNAF;
+      function validateBasic(curve) {
         (0, modular_js_1.validateField)(curve.Fp);
         (0, utils_js_1.validateObject)(curve, {
           n: "bigint",
@@ -4238,8 +4238,8 @@ var NearWalletAdapterWidget = (() => {
           ...{ p: curve.Fp.ORDER }
         });
       }
-      __name(validateBasic2, "validateBasic");
-      exports2.validateBasic = validateBasic2;
+      __name(validateBasic, "validateBasic");
+      exports2.validateBasic = validateBasic;
     }
   });
 
@@ -4253,12 +4253,12 @@ var NearWalletAdapterWidget = (() => {
       var ut = require_utils3();
       var utils_js_1 = require_utils3();
       var curve_js_1 = require_curve();
-      var _0n6 = BigInt(0);
-      var _1n6 = BigInt(1);
-      var _2n5 = BigInt(2);
-      var _8n4 = BigInt(8);
-      var VERIFY_DEFAULT2 = { zip215: true };
-      function validateOpts2(curve) {
+      var _0n = BigInt(0);
+      var _1n = BigInt(1);
+      var _2n = BigInt(2);
+      var _8n = BigInt(8);
+      var VERIFY_DEFAULT = { zip215: true };
+      function validateOpts(curve) {
         const opts = (0, curve_js_1.validateBasic)(curve);
         ut.validateObject(curve, {
           hash: "function",
@@ -4273,39 +4273,39 @@ var NearWalletAdapterWidget = (() => {
         });
         return Object.freeze({ ...opts });
       }
-      __name(validateOpts2, "validateOpts");
-      function twistedEdwards2(curveDef) {
-        const CURVE = validateOpts2(curveDef);
-        const { Fp: Fp2, n: CURVE_ORDER, prehash, hash: cHash, randomBytes: randomBytes2, nByteLength, h: cofactor } = CURVE;
-        const MASK = _2n5 << BigInt(nByteLength * 8) - _1n6;
-        const modP = Fp2.create;
-        const uvRatio2 = CURVE.uvRatio || ((u, v) => {
+      __name(validateOpts, "validateOpts");
+      function twistedEdwards(curveDef) {
+        const CURVE = validateOpts(curveDef);
+        const { Fp, n: CURVE_ORDER, prehash, hash: cHash, randomBytes, nByteLength, h: cofactor } = CURVE;
+        const MASK = _2n << BigInt(nByteLength * 8) - _1n;
+        const modP = Fp.create;
+        const uvRatio = CURVE.uvRatio || ((u, v) => {
           try {
-            return { isValid: true, value: Fp2.sqrt(u * Fp2.inv(v)) };
+            return { isValid: true, value: Fp.sqrt(u * Fp.inv(v)) };
           } catch (e) {
-            return { isValid: false, value: _0n6 };
+            return { isValid: false, value: _0n };
           }
         });
-        const adjustScalarBytes2 = CURVE.adjustScalarBytes || ((bytes) => bytes);
+        const adjustScalarBytes = CURVE.adjustScalarBytes || ((bytes) => bytes);
         const domain = CURVE.domain || ((data, ctx, phflag) => {
           if (ctx.length || phflag)
             throw new Error("Contexts/pre-hash are not supported");
           return data;
         });
-        const inBig = /* @__PURE__ */ __name((n) => typeof n === "bigint" && _0n6 < n, "inBig");
-        const inRange2 = /* @__PURE__ */ __name((n, max) => inBig(n) && inBig(max) && n < max, "inRange");
-        const in0MaskRange = /* @__PURE__ */ __name((n) => n === _0n6 || inRange2(n, MASK), "in0MaskRange");
+        const inBig = /* @__PURE__ */ __name((n) => typeof n === "bigint" && _0n < n, "inBig");
+        const inRange = /* @__PURE__ */ __name((n, max) => inBig(n) && inBig(max) && n < max, "inRange");
+        const in0MaskRange = /* @__PURE__ */ __name((n) => n === _0n || inRange(n, MASK), "in0MaskRange");
         function assertInRange(n, max) {
-          if (inRange2(n, max))
+          if (inRange(n, max))
             return n;
           throw new Error(`Expected valid scalar < ${max}, got ${typeof n} ${n}`);
         }
         __name(assertInRange, "assertInRange");
         function assertGE0(n) {
-          return n === _0n6 ? n : assertInRange(n, CURVE_ORDER);
+          return n === _0n ? n : assertInRange(n, CURVE_ORDER);
         }
         __name(assertGE0, "assertGE0");
-        const pointPrecomputes2 = /* @__PURE__ */ new Map();
+        const pointPrecomputes = /* @__PURE__ */ new Map();
         function isPoint(other) {
           if (!(other instanceof Point))
             throw new Error("ExtendedPoint expected");
@@ -4341,16 +4341,16 @@ var NearWalletAdapterWidget = (() => {
             const { x, y } = p || {};
             if (!in0MaskRange(x) || !in0MaskRange(y))
               throw new Error("invalid affine point");
-            return new Point(x, y, _1n6, modP(x * y));
+            return new Point(x, y, _1n, modP(x * y));
           }
           static normalizeZ(points) {
-            const toInv = Fp2.invertBatch(points.map((p) => p.ez));
+            const toInv = Fp.invertBatch(points.map((p) => p.ez));
             return points.map((p, i) => p.toAffine(toInv[i])).map(Point.fromAffine);
           }
           // "Private method", don't use it directly
           _setWindowSize(windowSize) {
             this._WINDOW_SIZE = windowSize;
-            pointPrecomputes2.delete(this);
+            pointPrecomputes.delete(this);
           }
           // Not required for fromHex(), which always creates valid points.
           // Could be useful for fromAffine().
@@ -4398,7 +4398,7 @@ var NearWalletAdapterWidget = (() => {
             const { ex: X1, ey: Y1, ez: Z1 } = this;
             const A = modP(X1 * X1);
             const B = modP(Y1 * Y1);
-            const C = modP(_2n5 * modP(Z1 * Z1));
+            const C = modP(_2n * modP(Z1 * Z1));
             const D = modP(a * A);
             const x1y1 = X1 + Y1;
             const E = modP(modP(x1y1 * x1y1) - A - B);
@@ -4423,10 +4423,10 @@ var NearWalletAdapterWidget = (() => {
               const A2 = modP((Y1 - X1) * (Y2 + X2));
               const B2 = modP((Y1 + X1) * (Y2 - X2));
               const F2 = modP(B2 - A2);
-              if (F2 === _0n6)
+              if (F2 === _0n)
                 return this.double();
-              const C2 = modP(Z1 * _2n5 * T2);
-              const D2 = modP(T1 * _2n5 * Z2);
+              const C2 = modP(Z1 * _2n * T2);
+              const D2 = modP(T1 * _2n * Z2);
               const E2 = D2 + C2;
               const G3 = B2 + A2;
               const H2 = D2 - C2;
@@ -4454,7 +4454,7 @@ var NearWalletAdapterWidget = (() => {
             return this.add(other.negate());
           }
           wNAF(n) {
-            return wnaf.wNAFCached(this, pointPrecomputes2, n, Point.normalizeZ);
+            return wnaf.wNAFCached(this, pointPrecomputes, n, Point.normalizeZ);
           }
           // Constant-time multiplication.
           multiply(scalar) {
@@ -4467,9 +4467,9 @@ var NearWalletAdapterWidget = (() => {
           // Does NOT allow scalars higher than CURVE.n.
           multiplyUnsafe(scalar) {
             let n = assertGE0(scalar);
-            if (n === _0n6)
+            if (n === _0n)
               return I;
-            if (this.equals(I) || n === _1n6)
+            if (this.equals(I) || n === _1n)
               return this;
             if (this.equals(G))
               return this.wNAF(n).p;
@@ -4493,19 +4493,19 @@ var NearWalletAdapterWidget = (() => {
             const { ex: x, ey: y, ez: z } = this;
             const is0 = this.is0();
             if (iz == null)
-              iz = is0 ? _8n4 : Fp2.inv(z);
+              iz = is0 ? _8n : Fp.inv(z);
             const ax = modP(x * iz);
             const ay = modP(y * iz);
             const zz = modP(z * iz);
             if (is0)
-              return { x: _0n6, y: _1n6 };
-            if (zz !== _1n6)
+              return { x: _0n, y: _1n };
+            if (zz !== _1n)
               throw new Error("invZ was invalid");
             return { x: ax, y: ay };
           }
           clearCofactor() {
             const { h: cofactor2 } = CURVE;
-            if (cofactor2 === _1n6)
+            if (cofactor2 === _1n)
               return this;
             return this.multiplyUnsafe(cofactor2);
           }
@@ -4513,28 +4513,28 @@ var NearWalletAdapterWidget = (() => {
           // Uses algo from RFC8032 5.1.3.
           static fromHex(hex, zip215 = false) {
             const { d, a } = CURVE;
-            const len = Fp2.BYTES;
+            const len = Fp.BYTES;
             hex = (0, utils_js_1.ensureBytes)("pointHex", hex, len);
             const normed = hex.slice();
             const lastByte = hex[len - 1];
             normed[len - 1] = lastByte & ~128;
             const y = ut.bytesToNumberLE(normed);
-            if (y === _0n6) {
+            if (y === _0n) {
             } else {
               if (zip215)
                 assertInRange(y, MASK);
               else
-                assertInRange(y, Fp2.ORDER);
+                assertInRange(y, Fp.ORDER);
             }
             const y2 = modP(y * y);
-            const u = modP(y2 - _1n6);
+            const u = modP(y2 - _1n);
             const v = modP(d * y2 - a);
-            let { isValid, value: x } = uvRatio2(u, v);
+            let { isValid, value: x } = uvRatio(u, v);
             if (!isValid)
               throw new Error("Point.fromHex: invalid y coordinate");
-            const isXOdd = (x & _1n6) === _1n6;
+            const isXOdd = (x & _1n) === _1n;
             const isLastByteOdd = (lastByte & 128) !== 0;
-            if (!zip215 && x === _0n6 && isLastByteOdd)
+            if (!zip215 && x === _0n && isLastByteOdd)
               throw new Error("Point.fromHex: x=0 and x_0=1");
             if (isLastByteOdd !== isXOdd)
               x = modP(-x);
@@ -4545,16 +4545,16 @@ var NearWalletAdapterWidget = (() => {
           }
           toRawBytes() {
             const { x, y } = this.toAffine();
-            const bytes = ut.numberToBytesLE(y, Fp2.BYTES);
-            bytes[bytes.length - 1] |= x & _1n6 ? 128 : 0;
+            const bytes = ut.numberToBytesLE(y, Fp.BYTES);
+            bytes[bytes.length - 1] |= x & _1n ? 128 : 0;
             return bytes;
           }
           toHex() {
             return ut.bytesToHex(this.toRawBytes());
           }
         }
-        Point.BASE = new Point(CURVE.Gx, CURVE.Gy, _1n6, modP(CURVE.Gx * CURVE.Gy));
-        Point.ZERO = new Point(_0n6, _1n6, _1n6, _0n6);
+        Point.BASE = new Point(CURVE.Gx, CURVE.Gy, _1n, modP(CURVE.Gx * CURVE.Gy));
+        Point.ZERO = new Point(_0n, _1n, _1n, _0n);
         const { BASE: G, ZERO: I } = Point;
         const wnaf = (0, curve_js_1.wNAF)(Point, nByteLength * 8);
         function modN(a) {
@@ -4569,7 +4569,7 @@ var NearWalletAdapterWidget = (() => {
           const len = nByteLength;
           key = (0, utils_js_1.ensureBytes)("private key", key, len);
           const hashed = (0, utils_js_1.ensureBytes)("hashed private key", cHash(key), 2 * len);
-          const head = adjustScalarBytes2(hashed.slice(0, len));
+          const head = adjustScalarBytes(hashed.slice(0, len));
           const prefix = hashed.slice(len, 2 * len);
           const scalar = modN_LE(head);
           const point = G.multiply(scalar);
@@ -4596,14 +4596,14 @@ var NearWalletAdapterWidget = (() => {
           const k = hashDomainToScalar(options.context, R, pointBytes, msg);
           const s = modN(r + k * scalar);
           assertGE0(s);
-          const res = ut.concatBytes(R, ut.numberToBytesLE(s, Fp2.BYTES));
+          const res = ut.concatBytes(R, ut.numberToBytesLE(s, Fp.BYTES));
           return (0, utils_js_1.ensureBytes)("result", res, nByteLength * 2);
         }
         __name(sign, "sign");
-        const verifyOpts = VERIFY_DEFAULT2;
+        const verifyOpts = VERIFY_DEFAULT;
         function verify(sig, msg, publicKey, options = verifyOpts) {
           const { context, zip215 } = options;
-          const len = Fp2.BYTES;
+          const len = Fp.BYTES;
           sig = (0, utils_js_1.ensureBytes)("signature", sig, 2 * len);
           msg = (0, utils_js_1.ensureBytes)("message", msg);
           if (prehash)
@@ -4628,7 +4628,7 @@ var NearWalletAdapterWidget = (() => {
         const utils = {
           getExtendedPublicKey,
           // ed25519 private keys are uniform 32b. No need to check for modulo bias, like in secp256k1.
-          randomPrivateKey: /* @__PURE__ */ __name(() => randomBytes2(Fp2.BYTES), "randomPrivateKey"),
+          randomPrivateKey: /* @__PURE__ */ __name(() => randomBytes(Fp.BYTES), "randomPrivateKey"),
           /**
            * We're doing scalar multiplication (used in getPublicKey etc) with precomputed BASE_POINT
            * values. This slows down first getPublicKey() by milliseconds (see Speed section),
@@ -4650,8 +4650,8 @@ var NearWalletAdapterWidget = (() => {
           utils
         };
       }
-      __name(twistedEdwards2, "twistedEdwards");
-      exports2.twistedEdwards = twistedEdwards2;
+      __name(twistedEdwards, "twistedEdwards");
+      exports2.twistedEdwards = twistedEdwards;
     }
   });
 
@@ -4663,9 +4663,9 @@ var NearWalletAdapterWidget = (() => {
       exports2.montgomery = void 0;
       var modular_js_1 = require_modular();
       var utils_js_1 = require_utils3();
-      var _0n6 = BigInt(0);
-      var _1n6 = BigInt(1);
-      function validateOpts2(curve) {
+      var _0n = BigInt(0);
+      var _1n = BigInt(1);
+      function validateOpts(curve) {
         (0, utils_js_1.validateObject)(curve, {
           a: "bigint"
         }, {
@@ -4678,16 +4678,16 @@ var NearWalletAdapterWidget = (() => {
         });
         return Object.freeze({ ...curve });
       }
-      __name(validateOpts2, "validateOpts");
+      __name(validateOpts, "validateOpts");
       function montgomery(curveDef) {
-        const CURVE = validateOpts2(curveDef);
-        const { P } = CURVE;
-        const modP = /* @__PURE__ */ __name((n) => (0, modular_js_1.mod)(n, P), "modP");
+        const CURVE = validateOpts(curveDef);
+        const { P: P2 } = CURVE;
+        const modP = /* @__PURE__ */ __name((n) => (0, modular_js_1.mod)(n, P2), "modP");
         const montgomeryBits = CURVE.montgomeryBits;
         const montgomeryBytes = Math.ceil(montgomeryBits / 8);
         const fieldLen = CURVE.nByteLength;
-        const adjustScalarBytes2 = CURVE.adjustScalarBytes || ((bytes) => bytes);
-        const powPminus2 = CURVE.powPminus2 || ((x) => (0, modular_js_1.pow)(x, P - BigInt(2), P));
+        const adjustScalarBytes = CURVE.adjustScalarBytes || ((bytes) => bytes);
+        const powPminus2 = CURVE.powPminus2 || ((x) => (0, modular_js_1.pow)(x, P2 - BigInt(2), P2));
         function cswap(swap, x_2, x_3) {
           const dummy = modP(swap * (x_2 - x_3));
           x_2 = modP(x_2 - dummy);
@@ -4696,7 +4696,7 @@ var NearWalletAdapterWidget = (() => {
         }
         __name(cswap, "cswap");
         function assertFieldElement(n) {
-          if (typeof n === "bigint" && _0n6 <= n && n < P)
+          if (typeof n === "bigint" && _0n <= n && n < P2)
             return n;
           throw new Error("Expected valid scalar 0 < scalar < CURVE.P");
         }
@@ -4706,14 +4706,14 @@ var NearWalletAdapterWidget = (() => {
           const u = assertFieldElement(pointU);
           const k = assertFieldElement(scalar);
           const x_1 = u;
-          let x_2 = _1n6;
-          let z_2 = _0n6;
+          let x_2 = _1n;
+          let z_2 = _0n;
           let x_3 = u;
-          let z_3 = _1n6;
-          let swap = _0n6;
+          let z_3 = _1n;
+          let swap = _0n;
           let sw;
-          for (let t = BigInt(montgomeryBits - 1); t >= _0n6; t--) {
-            const k_t = k >> t & _1n6;
+          for (let t = BigInt(montgomeryBits - 1); t >= _0n; t--) {
+            const k_t = k >> t & _1n;
             swap ^= k_t;
             sw = cswap(swap, x_2, x_3);
             x_2 = sw[0];
@@ -4763,14 +4763,14 @@ var NearWalletAdapterWidget = (() => {
           const bytes = (0, utils_js_1.ensureBytes)("scalar", n);
           if (bytes.length !== montgomeryBytes && bytes.length !== fieldLen)
             throw new Error(`Expected ${montgomeryBytes} or ${fieldLen} bytes, got ${bytes.length}`);
-          return (0, utils_js_1.bytesToNumberLE)(adjustScalarBytes2(bytes));
+          return (0, utils_js_1.bytesToNumberLE)(adjustScalarBytes(bytes));
         }
         __name(decodeScalar, "decodeScalar");
         function scalarMult(scalar, u) {
           const pointU = decodeUCoordinate(u);
           const _scalar = decodeScalar(scalar);
           const pu = montgomeryLadder(pointU, _scalar);
-          if (pu === _0n6)
+          if (pu === _0n)
             throw new Error("Invalid private or public key received");
           return encodeUCoordinate(pu);
         }
@@ -4831,19 +4831,19 @@ var NearWalletAdapterWidget = (() => {
         return arr;
       }
       __name(strxor, "strxor");
-      function isBytes4(item) {
+      function isBytes(item) {
         if (!(item instanceof Uint8Array))
           throw new Error("Uint8Array expected");
       }
-      __name(isBytes4, "isBytes");
+      __name(isBytes, "isBytes");
       function isNum(item) {
         if (!Number.isSafeInteger(item))
           throw new Error("number expected");
       }
       __name(isNum, "isNum");
       function expand_message_xmd(msg, DST, lenInBytes, H) {
-        isBytes4(msg);
-        isBytes4(DST);
+        isBytes(msg);
+        isBytes(DST);
         isNum(lenInBytes);
         if (DST.length > 255)
           DST = H((0, utils_js_1.concatBytes)((0, utils_js_1.utf8ToBytes)("H2C-OVERSIZE-DST-"), DST));
@@ -4867,8 +4867,8 @@ var NearWalletAdapterWidget = (() => {
       __name(expand_message_xmd, "expand_message_xmd");
       exports2.expand_message_xmd = expand_message_xmd;
       function expand_message_xof(msg, DST, lenInBytes, k, H) {
-        isBytes4(msg);
-        isBytes4(DST);
+        isBytes(msg);
+        isBytes(DST);
         isNum(lenInBytes);
         if (DST.length > 255) {
           const dkLen = Math.ceil(2 * k / 8);
@@ -4889,7 +4889,7 @@ var NearWalletAdapterWidget = (() => {
           hash: "hash"
         });
         const { p, k, m, hash, expand, DST: _DST } = options;
-        isBytes4(msg);
+        isBytes(msg);
         isNum(count);
         const DST = validateDST(_DST);
         const log2p = p.toString(2).length;
@@ -4940,17 +4940,17 @@ var NearWalletAdapterWidget = (() => {
             const u = hash_to_field(msg, 2, { ...def, DST: def.DST, ...options });
             const u0 = Point.fromAffine(mapToCurve(u[0]));
             const u1 = Point.fromAffine(mapToCurve(u[1]));
-            const P = u0.add(u1).clearCofactor();
-            P.assertValidity();
-            return P;
+            const P2 = u0.add(u1).clearCofactor();
+            P2.assertValidity();
+            return P2;
           },
           // Encodes byte string to elliptic curve.
           // encode_to_curve from https://www.rfc-editor.org/rfc/rfc9380#section-3
           encodeToCurve(msg, options) {
             const u = hash_to_field(msg, 1, { ...def, DST: def.encodeDST, ...options });
-            const P = Point.fromAffine(mapToCurve(u[0])).clearCofactor();
-            P.assertValidity();
-            return P;
+            const P2 = Point.fromAffine(mapToCurve(u[0])).clearCofactor();
+            P2.assertValidity();
+            return P2;
           }
         };
       }
@@ -4972,61 +4972,61 @@ var NearWalletAdapterWidget = (() => {
       var modular_js_1 = require_modular();
       var utils_js_1 = require_utils3();
       var hash_to_curve_js_1 = require_hash_to_curve();
-      var ED25519_P2 = BigInt("57896044618658097711785492504343953926634992332820282019728792003956564819949");
-      var ED25519_SQRT_M12 = BigInt("19681161376707505956807079304988542015446066515923890162744021073123829784752");
-      var _0n6 = BigInt(0);
-      var _1n6 = BigInt(1);
-      var _2n5 = BigInt(2);
-      var _5n3 = BigInt(5);
+      var ED25519_P = BigInt("57896044618658097711785492504343953926634992332820282019728792003956564819949");
+      var ED25519_SQRT_M1 = BigInt("19681161376707505956807079304988542015446066515923890162744021073123829784752");
+      var _0n = BigInt(0);
+      var _1n = BigInt(1);
+      var _2n = BigInt(2);
+      var _5n = BigInt(5);
       var _10n = BigInt(10);
       var _20n = BigInt(20);
       var _40n = BigInt(40);
       var _80n = BigInt(80);
-      function ed25519_pow_2_252_32(x) {
-        const P = ED25519_P2;
-        const x2 = x * x % P;
-        const b2 = x2 * x % P;
-        const b4 = (0, modular_js_1.pow2)(b2, _2n5, P) * b2 % P;
-        const b5 = (0, modular_js_1.pow2)(b4, _1n6, P) * x % P;
-        const b10 = (0, modular_js_1.pow2)(b5, _5n3, P) * b5 % P;
-        const b20 = (0, modular_js_1.pow2)(b10, _10n, P) * b10 % P;
-        const b40 = (0, modular_js_1.pow2)(b20, _20n, P) * b20 % P;
-        const b80 = (0, modular_js_1.pow2)(b40, _40n, P) * b40 % P;
-        const b160 = (0, modular_js_1.pow2)(b80, _80n, P) * b80 % P;
-        const b240 = (0, modular_js_1.pow2)(b160, _80n, P) * b80 % P;
-        const b250 = (0, modular_js_1.pow2)(b240, _10n, P) * b10 % P;
-        const pow_p_5_8 = (0, modular_js_1.pow2)(b250, _2n5, P) * x % P;
+      function ed25519_pow_2_252_3(x) {
+        const P2 = ED25519_P;
+        const x2 = x * x % P2;
+        const b2 = x2 * x % P2;
+        const b4 = (0, modular_js_1.pow2)(b2, _2n, P2) * b2 % P2;
+        const b5 = (0, modular_js_1.pow2)(b4, _1n, P2) * x % P2;
+        const b10 = (0, modular_js_1.pow2)(b5, _5n, P2) * b5 % P2;
+        const b20 = (0, modular_js_1.pow2)(b10, _10n, P2) * b10 % P2;
+        const b40 = (0, modular_js_1.pow2)(b20, _20n, P2) * b20 % P2;
+        const b80 = (0, modular_js_1.pow2)(b40, _40n, P2) * b40 % P2;
+        const b160 = (0, modular_js_1.pow2)(b80, _80n, P2) * b80 % P2;
+        const b240 = (0, modular_js_1.pow2)(b160, _80n, P2) * b80 % P2;
+        const b250 = (0, modular_js_1.pow2)(b240, _10n, P2) * b10 % P2;
+        const pow_p_5_8 = (0, modular_js_1.pow2)(b250, _2n, P2) * x % P2;
         return { pow_p_5_8, b2 };
       }
-      __name(ed25519_pow_2_252_32, "ed25519_pow_2_252_3");
-      function adjustScalarBytes2(bytes) {
+      __name(ed25519_pow_2_252_3, "ed25519_pow_2_252_3");
+      function adjustScalarBytes(bytes) {
         bytes[0] &= 248;
         bytes[31] &= 127;
         bytes[31] |= 64;
         return bytes;
       }
-      __name(adjustScalarBytes2, "adjustScalarBytes");
-      function uvRatio2(u, v) {
-        const P = ED25519_P2;
-        const v3 = (0, modular_js_1.mod)(v * v * v, P);
-        const v7 = (0, modular_js_1.mod)(v3 * v3 * v, P);
-        const pow3 = ed25519_pow_2_252_32(u * v7).pow_p_5_8;
-        let x = (0, modular_js_1.mod)(u * v3 * pow3, P);
-        const vx2 = (0, modular_js_1.mod)(v * x * x, P);
+      __name(adjustScalarBytes, "adjustScalarBytes");
+      function uvRatio(u, v) {
+        const P2 = ED25519_P;
+        const v3 = (0, modular_js_1.mod)(v * v * v, P2);
+        const v7 = (0, modular_js_1.mod)(v3 * v3 * v, P2);
+        const pow = ed25519_pow_2_252_3(u * v7).pow_p_5_8;
+        let x = (0, modular_js_1.mod)(u * v3 * pow, P2);
+        const vx2 = (0, modular_js_1.mod)(v * x * x, P2);
         const root1 = x;
-        const root2 = (0, modular_js_1.mod)(x * ED25519_SQRT_M12, P);
+        const root2 = (0, modular_js_1.mod)(x * ED25519_SQRT_M1, P2);
         const useRoot1 = vx2 === u;
-        const useRoot2 = vx2 === (0, modular_js_1.mod)(-u, P);
-        const noRoot = vx2 === (0, modular_js_1.mod)(-u * ED25519_SQRT_M12, P);
+        const useRoot2 = vx2 === (0, modular_js_1.mod)(-u, P2);
+        const noRoot = vx2 === (0, modular_js_1.mod)(-u * ED25519_SQRT_M1, P2);
         if (useRoot1)
           x = root1;
         if (useRoot2 || noRoot)
           x = root2;
-        if ((0, modular_js_1.isNegativeLE)(x, P))
-          x = (0, modular_js_1.mod)(-x, P);
+        if ((0, modular_js_1.isNegativeLE)(x, P2))
+          x = (0, modular_js_1.mod)(-x, P2);
         return { isValid: useRoot1 || useRoot2, value: x };
       }
-      __name(uvRatio2, "uvRatio");
+      __name(uvRatio, "uvRatio");
       exports2.ED25519_TORSION_SUBGROUP = [
         "0100000000000000000000000000000000000000000000000000000000000000",
         "c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac037a",
@@ -5037,15 +5037,15 @@ var NearWalletAdapterWidget = (() => {
         "0000000000000000000000000000000000000000000000000000000000000000",
         "c7176a703d4dd84fba3c0b760d10670f2a2053fa2c39ccc64ec7fd7792ac03fa"
       ];
-      var Fp2 = (0, modular_js_1.Field)(ED25519_P2, void 0, true);
-      var ed25519Defaults2 = {
+      var Fp = (0, modular_js_1.Field)(ED25519_P, void 0, true);
+      var ed25519Defaults = {
         // Param: a
         a: BigInt(-1),
         // d is equal to -121665/121666 over finite field.
         // Negative number is P - number, and division is invert(number, P)
         d: BigInt("37095705934669439343138083508754565189542113879843219016388785533085940283555"),
         // Finite field 𝔽p over which we'll do calculations; 2n**255n - 19n
-        Fp: Fp2,
+        Fp,
         // Subgroup order: how many points curve has
         // 2n**252n + 27742317777372353535851937790883648493n;
         n: BigInt("7237005577332262213973186563042994240857116359379907606001950938285454250989"),
@@ -5056,13 +5056,13 @@ var NearWalletAdapterWidget = (() => {
         Gy: BigInt("46316835694926478169428394003475163141307993866256225615783033603165251855960"),
         hash: sha512_1.sha512,
         randomBytes: utils_1.randomBytes,
-        adjustScalarBytes: adjustScalarBytes2,
+        adjustScalarBytes,
         // dom2
         // Ratio of u to v. Allows us to combine inversion and square root. Uses algo from RFC8032 5.1.3.
         // Constant-time, u/√v
-        uvRatio: uvRatio2
+        uvRatio
       };
-      exports2.ed25519 = (0, edwards_js_1.twistedEdwards)(ed25519Defaults2);
+      exports2.ed25519 = (0, edwards_js_1.twistedEdwards)(ed25519Defaults);
       function ed25519_domain(data, ctx, phflag) {
         if (ctx.length > 255)
           throw new Error("Context is too big");
@@ -5070,111 +5070,111 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(ed25519_domain, "ed25519_domain");
       exports2.ed25519ctx = (0, edwards_js_1.twistedEdwards)({
-        ...ed25519Defaults2,
+        ...ed25519Defaults,
         domain: ed25519_domain
       });
       exports2.ed25519ph = (0, edwards_js_1.twistedEdwards)({
-        ...ed25519Defaults2,
+        ...ed25519Defaults,
         domain: ed25519_domain,
         prehash: sha512_1.sha512
       });
       exports2.x25519 = (() => (0, montgomery_js_1.montgomery)({
-        P: ED25519_P2,
+        P: ED25519_P,
         a: BigInt(486662),
         montgomeryBits: 255,
         nByteLength: 32,
         Gu: BigInt(9),
         powPminus2: /* @__PURE__ */ __name((x) => {
-          const P = ED25519_P2;
-          const { pow_p_5_8, b2 } = ed25519_pow_2_252_32(x);
-          return (0, modular_js_1.mod)((0, modular_js_1.pow2)(pow_p_5_8, BigInt(3), P) * b2, P);
+          const P2 = ED25519_P;
+          const { pow_p_5_8, b2 } = ed25519_pow_2_252_3(x);
+          return (0, modular_js_1.mod)((0, modular_js_1.pow2)(pow_p_5_8, BigInt(3), P2) * b2, P2);
         }, "powPminus2"),
-        adjustScalarBytes: adjustScalarBytes2,
+        adjustScalarBytes,
         randomBytes: utils_1.randomBytes
       }))();
       function edwardsToMontgomeryPub(edwardsPub) {
         const { y } = exports2.ed25519.ExtendedPoint.fromHex(edwardsPub);
-        const _1n7 = BigInt(1);
-        return Fp2.toBytes(Fp2.create((_1n7 + y) * Fp2.inv(_1n7 - y)));
+        const _1n2 = BigInt(1);
+        return Fp.toBytes(Fp.create((_1n2 + y) * Fp.inv(_1n2 - y)));
       }
       __name(edwardsToMontgomeryPub, "edwardsToMontgomeryPub");
       exports2.edwardsToMontgomeryPub = edwardsToMontgomeryPub;
       exports2.edwardsToMontgomery = edwardsToMontgomeryPub;
       function edwardsToMontgomeryPriv(edwardsPriv) {
-        const hashed = ed25519Defaults2.hash(edwardsPriv.subarray(0, 32));
-        return ed25519Defaults2.adjustScalarBytes(hashed).subarray(0, 32);
+        const hashed = ed25519Defaults.hash(edwardsPriv.subarray(0, 32));
+        return ed25519Defaults.adjustScalarBytes(hashed).subarray(0, 32);
       }
       __name(edwardsToMontgomeryPriv, "edwardsToMontgomeryPriv");
       exports2.edwardsToMontgomeryPriv = edwardsToMontgomeryPriv;
-      var ELL2_C1 = (Fp2.ORDER + BigInt(3)) / BigInt(8);
-      var ELL2_C2 = Fp2.pow(_2n5, ELL2_C1);
-      var ELL2_C3 = Fp2.sqrt(Fp2.neg(Fp2.ONE));
-      var ELL2_C4 = (Fp2.ORDER - BigInt(5)) / BigInt(8);
+      var ELL2_C1 = (Fp.ORDER + BigInt(3)) / BigInt(8);
+      var ELL2_C2 = Fp.pow(_2n, ELL2_C1);
+      var ELL2_C3 = Fp.sqrt(Fp.neg(Fp.ONE));
+      var ELL2_C4 = (Fp.ORDER - BigInt(5)) / BigInt(8);
       var ELL2_J = BigInt(486662);
       function map_to_curve_elligator2_curve25519(u) {
-        let tv1 = Fp2.sqr(u);
-        tv1 = Fp2.mul(tv1, _2n5);
-        let xd = Fp2.add(tv1, Fp2.ONE);
-        let x1n = Fp2.neg(ELL2_J);
-        let tv2 = Fp2.sqr(xd);
-        let gxd = Fp2.mul(tv2, xd);
-        let gx1 = Fp2.mul(tv1, ELL2_J);
-        gx1 = Fp2.mul(gx1, x1n);
-        gx1 = Fp2.add(gx1, tv2);
-        gx1 = Fp2.mul(gx1, x1n);
-        let tv3 = Fp2.sqr(gxd);
-        tv2 = Fp2.sqr(tv3);
-        tv3 = Fp2.mul(tv3, gxd);
-        tv3 = Fp2.mul(tv3, gx1);
-        tv2 = Fp2.mul(tv2, tv3);
-        let y11 = Fp2.pow(tv2, ELL2_C4);
-        y11 = Fp2.mul(y11, tv3);
-        let y12 = Fp2.mul(y11, ELL2_C3);
-        tv2 = Fp2.sqr(y11);
-        tv2 = Fp2.mul(tv2, gxd);
-        let e1 = Fp2.eql(tv2, gx1);
-        let y1 = Fp2.cmov(y12, y11, e1);
-        let x2n = Fp2.mul(x1n, tv1);
-        let y21 = Fp2.mul(y11, u);
-        y21 = Fp2.mul(y21, ELL2_C2);
-        let y22 = Fp2.mul(y21, ELL2_C3);
-        let gx2 = Fp2.mul(gx1, tv1);
-        tv2 = Fp2.sqr(y21);
-        tv2 = Fp2.mul(tv2, gxd);
-        let e2 = Fp2.eql(tv2, gx2);
-        let y2 = Fp2.cmov(y22, y21, e2);
-        tv2 = Fp2.sqr(y1);
-        tv2 = Fp2.mul(tv2, gxd);
-        let e3 = Fp2.eql(tv2, gx1);
-        let xn = Fp2.cmov(x2n, x1n, e3);
-        let y = Fp2.cmov(y2, y1, e3);
-        let e4 = Fp2.isOdd(y);
-        y = Fp2.cmov(y, Fp2.neg(y), e3 !== e4);
-        return { xMn: xn, xMd: xd, yMn: y, yMd: _1n6 };
+        let tv1 = Fp.sqr(u);
+        tv1 = Fp.mul(tv1, _2n);
+        let xd = Fp.add(tv1, Fp.ONE);
+        let x1n = Fp.neg(ELL2_J);
+        let tv2 = Fp.sqr(xd);
+        let gxd = Fp.mul(tv2, xd);
+        let gx1 = Fp.mul(tv1, ELL2_J);
+        gx1 = Fp.mul(gx1, x1n);
+        gx1 = Fp.add(gx1, tv2);
+        gx1 = Fp.mul(gx1, x1n);
+        let tv3 = Fp.sqr(gxd);
+        tv2 = Fp.sqr(tv3);
+        tv3 = Fp.mul(tv3, gxd);
+        tv3 = Fp.mul(tv3, gx1);
+        tv2 = Fp.mul(tv2, tv3);
+        let y11 = Fp.pow(tv2, ELL2_C4);
+        y11 = Fp.mul(y11, tv3);
+        let y12 = Fp.mul(y11, ELL2_C3);
+        tv2 = Fp.sqr(y11);
+        tv2 = Fp.mul(tv2, gxd);
+        let e1 = Fp.eql(tv2, gx1);
+        let y1 = Fp.cmov(y12, y11, e1);
+        let x2n = Fp.mul(x1n, tv1);
+        let y21 = Fp.mul(y11, u);
+        y21 = Fp.mul(y21, ELL2_C2);
+        let y22 = Fp.mul(y21, ELL2_C3);
+        let gx2 = Fp.mul(gx1, tv1);
+        tv2 = Fp.sqr(y21);
+        tv2 = Fp.mul(tv2, gxd);
+        let e2 = Fp.eql(tv2, gx2);
+        let y2 = Fp.cmov(y22, y21, e2);
+        tv2 = Fp.sqr(y1);
+        tv2 = Fp.mul(tv2, gxd);
+        let e3 = Fp.eql(tv2, gx1);
+        let xn = Fp.cmov(x2n, x1n, e3);
+        let y = Fp.cmov(y2, y1, e3);
+        let e4 = Fp.isOdd(y);
+        y = Fp.cmov(y, Fp.neg(y), e3 !== e4);
+        return { xMn: xn, xMd: xd, yMn: y, yMd: _1n };
       }
       __name(map_to_curve_elligator2_curve25519, "map_to_curve_elligator2_curve25519");
-      var ELL2_C1_EDWARDS = (0, modular_js_1.FpSqrtEven)(Fp2, Fp2.neg(BigInt(486664)));
+      var ELL2_C1_EDWARDS = (0, modular_js_1.FpSqrtEven)(Fp, Fp.neg(BigInt(486664)));
       function map_to_curve_elligator2_edwards25519(u) {
         const { xMn, xMd, yMn, yMd } = map_to_curve_elligator2_curve25519(u);
-        let xn = Fp2.mul(xMn, yMd);
-        xn = Fp2.mul(xn, ELL2_C1_EDWARDS);
-        let xd = Fp2.mul(xMd, yMn);
-        let yn = Fp2.sub(xMn, xMd);
-        let yd = Fp2.add(xMn, xMd);
-        let tv1 = Fp2.mul(xd, yd);
-        let e = Fp2.eql(tv1, Fp2.ZERO);
-        xn = Fp2.cmov(xn, Fp2.ZERO, e);
-        xd = Fp2.cmov(xd, Fp2.ONE, e);
-        yn = Fp2.cmov(yn, Fp2.ONE, e);
-        yd = Fp2.cmov(yd, Fp2.ONE, e);
-        const inv = Fp2.invertBatch([xd, yd]);
-        return { x: Fp2.mul(xn, inv[0]), y: Fp2.mul(yn, inv[1]) };
+        let xn = Fp.mul(xMn, yMd);
+        xn = Fp.mul(xn, ELL2_C1_EDWARDS);
+        let xd = Fp.mul(xMd, yMn);
+        let yn = Fp.sub(xMn, xMd);
+        let yd = Fp.add(xMn, xMd);
+        let tv1 = Fp.mul(xd, yd);
+        let e = Fp.eql(tv1, Fp.ZERO);
+        xn = Fp.cmov(xn, Fp.ZERO, e);
+        xd = Fp.cmov(xd, Fp.ONE, e);
+        yn = Fp.cmov(yn, Fp.ONE, e);
+        yd = Fp.cmov(yd, Fp.ONE, e);
+        const inv = Fp.invertBatch([xd, yd]);
+        return { x: Fp.mul(xn, inv[0]), y: Fp.mul(yn, inv[1]) };
       }
       __name(map_to_curve_elligator2_edwards25519, "map_to_curve_elligator2_edwards25519");
       var htf = /* @__PURE__ */ (() => (0, hash_to_curve_js_1.createHasher)(exports2.ed25519.ExtendedPoint, (scalars) => map_to_curve_elligator2_edwards25519(scalars[0]), {
         DST: "edwards25519_XMD:SHA-512_ELL2_RO_",
         encodeDST: "edwards25519_XMD:SHA-512_ELL2_NU_",
-        p: Fp2.ORDER,
+        p: Fp.ORDER,
         m: 1,
         k: 128,
         expand: "xmd",
@@ -5187,37 +5187,37 @@ var NearWalletAdapterWidget = (() => {
           throw new Error("RistrettoPoint expected");
       }
       __name(assertRstPoint, "assertRstPoint");
-      var SQRT_M1 = ED25519_SQRT_M12;
+      var SQRT_M1 = ED25519_SQRT_M1;
       var SQRT_AD_MINUS_ONE = BigInt("25063068953384623474111414158702152701244531502492656460079210482610430750235");
       var INVSQRT_A_MINUS_D = BigInt("54469307008909316920995813868745141605393597292927456921205312896311721017578");
       var ONE_MINUS_D_SQ = BigInt("1159843021668779879193775521855586647937357759715417654439879720876111806838");
       var D_MINUS_ONE_SQ = BigInt("40440834346308536858101042469323190826248399146238708352240133220865137265952");
-      var invertSqrt = /* @__PURE__ */ __name((number) => uvRatio2(_1n6, number), "invertSqrt");
+      var invertSqrt = /* @__PURE__ */ __name((number) => uvRatio(_1n, number), "invertSqrt");
       var MAX_255B = BigInt("0x7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
       var bytes255ToNumberLE = /* @__PURE__ */ __name((bytes) => exports2.ed25519.CURVE.Fp.create((0, utils_js_1.bytesToNumberLE)(bytes) & MAX_255B), "bytes255ToNumberLE");
       function calcElligatorRistrettoMap(r0) {
         const { d } = exports2.ed25519.CURVE;
-        const P = exports2.ed25519.CURVE.Fp.ORDER;
-        const mod2 = exports2.ed25519.CURVE.Fp.create;
-        const r = mod2(SQRT_M1 * r0 * r0);
-        const Ns = mod2((r + _1n6) * ONE_MINUS_D_SQ);
+        const P2 = exports2.ed25519.CURVE.Fp.ORDER;
+        const mod = exports2.ed25519.CURVE.Fp.create;
+        const r = mod(SQRT_M1 * r0 * r0);
+        const Ns = mod((r + _1n) * ONE_MINUS_D_SQ);
         let c = BigInt(-1);
-        const D = mod2((c - d * r) * mod2(r + d));
-        let { isValid: Ns_D_is_sq, value: s } = uvRatio2(Ns, D);
-        let s_ = mod2(s * r0);
-        if (!(0, modular_js_1.isNegativeLE)(s_, P))
-          s_ = mod2(-s_);
+        const D = mod((c - d * r) * mod(r + d));
+        let { isValid: Ns_D_is_sq, value: s } = uvRatio(Ns, D);
+        let s_ = mod(s * r0);
+        if (!(0, modular_js_1.isNegativeLE)(s_, P2))
+          s_ = mod(-s_);
         if (!Ns_D_is_sq)
           s = s_;
         if (!Ns_D_is_sq)
           c = r;
-        const Nt = mod2(c * (r - _1n6) * D_MINUS_ONE_SQ - D);
+        const Nt = mod(c * (r - _1n) * D_MINUS_ONE_SQ - D);
         const s2 = s * s;
-        const W0 = mod2((s + s) * D);
-        const W1 = mod2(Nt * SQRT_AD_MINUS_ONE);
-        const W2 = mod2(_1n6 - s2);
-        const W3 = mod2(_1n6 + s2);
-        return new exports2.ed25519.ExtendedPoint(mod2(W0 * W3), mod2(W2 * W1), mod2(W1 * W3), mod2(W0 * W2));
+        const W0 = mod((s + s) * D);
+        const W1 = mod(Nt * SQRT_AD_MINUS_ONE);
+        const W2 = mod(_1n - s2);
+        const W3 = mod(_1n + s2);
+        return new exports2.ed25519.ExtendedPoint(mod(W0 * W3), mod(W2 * W1), mod(W1 * W3), mod(W0 * W2));
       }
       __name(calcElligatorRistrettoMap, "calcElligatorRistrettoMap");
       var RistPoint = class _RistPoint {
@@ -5255,29 +5255,29 @@ var NearWalletAdapterWidget = (() => {
         static fromHex(hex) {
           hex = (0, utils_js_1.ensureBytes)("ristrettoHex", hex, 32);
           const { a, d } = exports2.ed25519.CURVE;
-          const P = exports2.ed25519.CURVE.Fp.ORDER;
-          const mod2 = exports2.ed25519.CURVE.Fp.create;
+          const P2 = exports2.ed25519.CURVE.Fp.ORDER;
+          const mod = exports2.ed25519.CURVE.Fp.create;
           const emsg = "RistrettoPoint.fromHex: the hex is not valid encoding of RistrettoPoint";
           const s = bytes255ToNumberLE(hex);
-          if (!(0, utils_js_1.equalBytes)((0, utils_js_1.numberToBytesLE)(s, 32), hex) || (0, modular_js_1.isNegativeLE)(s, P))
+          if (!(0, utils_js_1.equalBytes)((0, utils_js_1.numberToBytesLE)(s, 32), hex) || (0, modular_js_1.isNegativeLE)(s, P2))
             throw new Error(emsg);
-          const s2 = mod2(s * s);
-          const u1 = mod2(_1n6 + a * s2);
-          const u2 = mod2(_1n6 - a * s2);
-          const u1_2 = mod2(u1 * u1);
-          const u2_2 = mod2(u2 * u2);
-          const v = mod2(a * d * u1_2 - u2_2);
-          const { isValid, value: I } = invertSqrt(mod2(v * u2_2));
-          const Dx = mod2(I * u2);
-          const Dy = mod2(I * Dx * v);
-          let x = mod2((s + s) * Dx);
-          if ((0, modular_js_1.isNegativeLE)(x, P))
-            x = mod2(-x);
-          const y = mod2(u1 * Dy);
-          const t = mod2(x * y);
-          if (!isValid || (0, modular_js_1.isNegativeLE)(t, P) || y === _0n6)
+          const s2 = mod(s * s);
+          const u1 = mod(_1n + a * s2);
+          const u2 = mod(_1n - a * s2);
+          const u1_2 = mod(u1 * u1);
+          const u2_2 = mod(u2 * u2);
+          const v = mod(a * d * u1_2 - u2_2);
+          const { isValid, value: I } = invertSqrt(mod(v * u2_2));
+          const Dx = mod(I * u2);
+          const Dy = mod(I * Dx * v);
+          let x = mod((s + s) * Dx);
+          if ((0, modular_js_1.isNegativeLE)(x, P2))
+            x = mod(-x);
+          const y = mod(u1 * Dy);
+          const t = mod(x * y);
+          if (!isValid || (0, modular_js_1.isNegativeLE)(t, P2) || y === _0n)
             throw new Error(emsg);
-          return new _RistPoint(new exports2.ed25519.ExtendedPoint(x, y, _1n6, t));
+          return new _RistPoint(new exports2.ed25519.ExtendedPoint(x, y, _1n, t));
         }
         /**
          * Encodes ristretto point to Uint8Array.
@@ -5285,30 +5285,30 @@ var NearWalletAdapterWidget = (() => {
          */
         toRawBytes() {
           let { ex: x, ey: y, ez: z, et: t } = this.ep;
-          const P = exports2.ed25519.CURVE.Fp.ORDER;
-          const mod2 = exports2.ed25519.CURVE.Fp.create;
-          const u1 = mod2(mod2(z + y) * mod2(z - y));
-          const u2 = mod2(x * y);
-          const u2sq = mod2(u2 * u2);
-          const { value: invsqrt } = invertSqrt(mod2(u1 * u2sq));
-          const D1 = mod2(invsqrt * u1);
-          const D2 = mod2(invsqrt * u2);
-          const zInv = mod2(D1 * D2 * t);
+          const P2 = exports2.ed25519.CURVE.Fp.ORDER;
+          const mod = exports2.ed25519.CURVE.Fp.create;
+          const u1 = mod(mod(z + y) * mod(z - y));
+          const u2 = mod(x * y);
+          const u2sq = mod(u2 * u2);
+          const { value: invsqrt } = invertSqrt(mod(u1 * u2sq));
+          const D1 = mod(invsqrt * u1);
+          const D2 = mod(invsqrt * u2);
+          const zInv = mod(D1 * D2 * t);
           let D;
-          if ((0, modular_js_1.isNegativeLE)(t * zInv, P)) {
-            let _x = mod2(y * SQRT_M1);
-            let _y = mod2(x * SQRT_M1);
+          if ((0, modular_js_1.isNegativeLE)(t * zInv, P2)) {
+            let _x = mod(y * SQRT_M1);
+            let _y = mod(x * SQRT_M1);
             x = _x;
             y = _y;
-            D = mod2(D1 * INVSQRT_A_MINUS_D);
+            D = mod(D1 * INVSQRT_A_MINUS_D);
           } else {
             D = D2;
           }
-          if ((0, modular_js_1.isNegativeLE)(x * zInv, P))
-            y = mod2(-y);
-          let s = mod2((z - y) * D);
-          if ((0, modular_js_1.isNegativeLE)(s, P))
-            s = mod2(-s);
+          if ((0, modular_js_1.isNegativeLE)(x * zInv, P2))
+            y = mod(-y);
+          let s = mod((z - y) * D);
+          if ((0, modular_js_1.isNegativeLE)(s, P2))
+            s = mod(-s);
           return (0, utils_js_1.numberToBytesLE)(s, 32);
         }
         toHex() {
@@ -5322,9 +5322,9 @@ var NearWalletAdapterWidget = (() => {
           assertRstPoint(other);
           const { ex: X1, ey: Y1 } = this.ep;
           const { ex: X2, ey: Y2 } = other.ep;
-          const mod2 = exports2.ed25519.CURVE.Fp.create;
-          const one = mod2(X1 * Y2) === mod2(Y1 * X2);
-          const two = mod2(Y1 * Y2) === mod2(X1 * X2);
+          const mod = exports2.ed25519.CURVE.Fp.create;
+          const one = mod(X1 * Y2) === mod(Y1 * X2);
+          const two = mod(Y1 * Y2) === mod(X1 * X2);
           return one || two;
         }
         add(other) {
@@ -5353,8 +5353,8 @@ var NearWalletAdapterWidget = (() => {
         const d = options.DST;
         const DST = typeof d === "string" ? (0, utils_1.utf8ToBytes)(d) : d;
         const uniform_bytes = (0, hash_to_curve_js_1.expand_message_xmd)(msg, DST, 64, sha512_1.sha512);
-        const P = RistPoint.hashToCurve(uniform_bytes);
-        return P;
+        const P2 = RistPoint.hashToCurve(uniform_bytes);
+        return P2;
       }, "hashToRistretto255");
       exports2.hashToRistretto255 = hashToRistretto255;
       exports2.hash_to_ristretto255 = exports2.hashToRistretto255;
@@ -5613,7 +5613,7 @@ var NearWalletAdapterWidget = (() => {
         return Object.prototype.toString.call(value).slice(8, -1);
       }
       __name(toTypeString, "toTypeString");
-      module2.exports = (secp256k13) => {
+      module2.exports = (secp256k1) => {
         return {
           contextRandomize(seed) {
             assert(
@@ -5621,18 +5621,18 @@ var NearWalletAdapterWidget = (() => {
               "Expected seed to be an Uint8Array or null"
             );
             if (seed !== null) isUint8Array("seed", seed, 32);
-            switch (secp256k13.contextRandomize(seed)) {
+            switch (secp256k1.contextRandomize(seed)) {
               case 1:
                 throw new Error(errors.CONTEXT_RANDOMIZE_UNKNOW);
             }
           },
           privateKeyVerify(seckey) {
             isUint8Array("private key", seckey, 32);
-            return secp256k13.privateKeyVerify(seckey) === 0;
+            return secp256k1.privateKeyVerify(seckey) === 0;
           },
           privateKeyNegate(seckey) {
             isUint8Array("private key", seckey, 32);
-            switch (secp256k13.privateKeyNegate(seckey)) {
+            switch (secp256k1.privateKeyNegate(seckey)) {
               case 0:
                 return seckey;
               case 1:
@@ -5642,7 +5642,7 @@ var NearWalletAdapterWidget = (() => {
           privateKeyTweakAdd(seckey, tweak) {
             isUint8Array("private key", seckey, 32);
             isUint8Array("tweak", tweak, 32);
-            switch (secp256k13.privateKeyTweakAdd(seckey, tweak)) {
+            switch (secp256k1.privateKeyTweakAdd(seckey, tweak)) {
               case 0:
                 return seckey;
               case 1:
@@ -5652,7 +5652,7 @@ var NearWalletAdapterWidget = (() => {
           privateKeyTweakMul(seckey, tweak) {
             isUint8Array("private key", seckey, 32);
             isUint8Array("tweak", tweak, 32);
-            switch (secp256k13.privateKeyTweakMul(seckey, tweak)) {
+            switch (secp256k1.privateKeyTweakMul(seckey, tweak)) {
               case 0:
                 return seckey;
               case 1:
@@ -5661,13 +5661,13 @@ var NearWalletAdapterWidget = (() => {
           },
           publicKeyVerify(pubkey) {
             isUint8Array("public key", pubkey, [33, 65]);
-            return secp256k13.publicKeyVerify(pubkey) === 0;
+            return secp256k1.publicKeyVerify(pubkey) === 0;
           },
           publicKeyCreate(seckey, compressed = true, output) {
             isUint8Array("private key", seckey, 32);
             isCompressed(compressed);
             output = getAssertedOutput(output, compressed ? 33 : 65);
-            switch (secp256k13.publicKeyCreate(output, seckey)) {
+            switch (secp256k1.publicKeyCreate(output, seckey)) {
               case 0:
                 return output;
               case 1:
@@ -5680,7 +5680,7 @@ var NearWalletAdapterWidget = (() => {
             isUint8Array("public key", pubkey, [33, 65]);
             isCompressed(compressed);
             output = getAssertedOutput(output, compressed ? 33 : 65);
-            switch (secp256k13.publicKeyConvert(output, pubkey)) {
+            switch (secp256k1.publicKeyConvert(output, pubkey)) {
               case 0:
                 return output;
               case 1:
@@ -5693,7 +5693,7 @@ var NearWalletAdapterWidget = (() => {
             isUint8Array("public key", pubkey, [33, 65]);
             isCompressed(compressed);
             output = getAssertedOutput(output, compressed ? 33 : 65);
-            switch (secp256k13.publicKeyNegate(output, pubkey)) {
+            switch (secp256k1.publicKeyNegate(output, pubkey)) {
               case 0:
                 return output;
               case 1:
@@ -5712,7 +5712,7 @@ var NearWalletAdapterWidget = (() => {
             }
             isCompressed(compressed);
             output = getAssertedOutput(output, compressed ? 33 : 65);
-            switch (secp256k13.publicKeyCombine(output, pubkeys)) {
+            switch (secp256k1.publicKeyCombine(output, pubkeys)) {
               case 0:
                 return output;
               case 1:
@@ -5728,7 +5728,7 @@ var NearWalletAdapterWidget = (() => {
             isUint8Array("tweak", tweak, 32);
             isCompressed(compressed);
             output = getAssertedOutput(output, compressed ? 33 : 65);
-            switch (secp256k13.publicKeyTweakAdd(output, pubkey, tweak)) {
+            switch (secp256k1.publicKeyTweakAdd(output, pubkey, tweak)) {
               case 0:
                 return output;
               case 1:
@@ -5742,7 +5742,7 @@ var NearWalletAdapterWidget = (() => {
             isUint8Array("tweak", tweak, 32);
             isCompressed(compressed);
             output = getAssertedOutput(output, compressed ? 33 : 65);
-            switch (secp256k13.publicKeyTweakMul(output, pubkey, tweak)) {
+            switch (secp256k1.publicKeyTweakMul(output, pubkey, tweak)) {
               case 0:
                 return output;
               case 1:
@@ -5753,7 +5753,7 @@ var NearWalletAdapterWidget = (() => {
           },
           signatureNormalize(sig) {
             isUint8Array("signature", sig, 64);
-            switch (secp256k13.signatureNormalize(sig)) {
+            switch (secp256k1.signatureNormalize(sig)) {
               case 0:
                 return sig;
               case 1:
@@ -5764,7 +5764,7 @@ var NearWalletAdapterWidget = (() => {
             isUint8Array("signature", sig, 64);
             output = getAssertedOutput(output, 72);
             const obj = { output, outputlen: 72 };
-            switch (secp256k13.signatureExport(obj, sig)) {
+            switch (secp256k1.signatureExport(obj, sig)) {
               case 0:
                 return output.slice(0, obj.outputlen);
               case 1:
@@ -5776,7 +5776,7 @@ var NearWalletAdapterWidget = (() => {
           signatureImport(sig, output) {
             isUint8Array("signature", sig);
             output = getAssertedOutput(output, 64);
-            switch (secp256k13.signatureImport(output, sig)) {
+            switch (secp256k1.signatureImport(output, sig)) {
               case 0:
                 return output;
               case 1:
@@ -5793,7 +5793,7 @@ var NearWalletAdapterWidget = (() => {
             if (options.noncefn !== void 0) assert(toTypeString(options.noncefn) === "Function", "Expected options.noncefn to be a Function");
             output = getAssertedOutput(output, 64);
             const obj = { signature: output, recid: null };
-            switch (secp256k13.ecdsaSign(obj, msg32, seckey, options.data, options.noncefn)) {
+            switch (secp256k1.ecdsaSign(obj, msg32, seckey, options.data, options.noncefn)) {
               case 0:
                 return obj;
               case 1:
@@ -5806,7 +5806,7 @@ var NearWalletAdapterWidget = (() => {
             isUint8Array("signature", sig, 64);
             isUint8Array("message", msg32, 32);
             isUint8Array("public key", pubkey, [33, 65]);
-            switch (secp256k13.ecdsaVerify(sig, msg32, pubkey)) {
+            switch (secp256k1.ecdsaVerify(sig, msg32, pubkey)) {
               case 0:
                 return true;
               case 3:
@@ -5826,7 +5826,7 @@ var NearWalletAdapterWidget = (() => {
             isUint8Array("message", msg32, 32);
             isCompressed(compressed);
             output = getAssertedOutput(output, compressed ? 33 : 65);
-            switch (secp256k13.ecdsaRecover(output, sig, recid, msg32)) {
+            switch (secp256k1.ecdsaRecover(output, sig, recid, msg32)) {
               case 0:
                 return output;
               case 1:
@@ -5850,7 +5850,7 @@ var NearWalletAdapterWidget = (() => {
             } else {
               output = getAssertedOutput(output, 32);
             }
-            switch (secp256k13.ecdh(output, pubkey, seckey, options.data, options.hashfn, options.xbuf, options.ybuf)) {
+            switch (secp256k1.ecdh(output, pubkey, seckey, options.data, options.hashfn, options.xbuf, options.ybuf)) {
               case 0:
                 return output;
               case 1:
@@ -5952,7 +5952,7 @@ var NearWalletAdapterWidget = (() => {
           ctor.prototype.constructor = ctor;
         }
         __name(inherits, "inherits");
-        function BN(number, base2, endian) {
+        function BN(number, base, endian) {
           if (BN.isBN(number)) {
             return number;
           }
@@ -5961,11 +5961,11 @@ var NearWalletAdapterWidget = (() => {
           this.length = 0;
           this.red = null;
           if (number !== null) {
-            if (base2 === "le" || base2 === "be") {
-              endian = base2;
-              base2 = 10;
+            if (base === "le" || base === "be") {
+              endian = base;
+              base = 10;
             }
-            this._init(number || 0, base2 || 10, endian || "be");
+            this._init(number || 0, base || 10, endian || "be");
           }
         }
         __name(BN, "BN");
@@ -5999,17 +5999,17 @@ var NearWalletAdapterWidget = (() => {
           if (left.cmp(right) < 0) return left;
           return right;
         }, "min");
-        BN.prototype._init = /* @__PURE__ */ __name(function init(number, base2, endian) {
+        BN.prototype._init = /* @__PURE__ */ __name(function init(number, base, endian) {
           if (typeof number === "number") {
-            return this._initNumber(number, base2, endian);
+            return this._initNumber(number, base, endian);
           }
           if (typeof number === "object") {
-            return this._initArray(number, base2, endian);
+            return this._initArray(number, base, endian);
           }
-          if (base2 === "hex") {
-            base2 = 16;
+          if (base === "hex") {
+            base = 16;
           }
-          assert(base2 === (base2 | 0) && base2 >= 2 && base2 <= 36);
+          assert(base === (base | 0) && base >= 2 && base <= 36);
           number = number.toString().replace(/\s+/g, "");
           var start = 0;
           if (number[0] === "-") {
@@ -6017,17 +6017,17 @@ var NearWalletAdapterWidget = (() => {
             this.negative = 1;
           }
           if (start < number.length) {
-            if (base2 === 16) {
+            if (base === 16) {
               this._parseHex(number, start, endian);
             } else {
-              this._parseBase(number, base2, start);
+              this._parseBase(number, base, start);
               if (endian === "le") {
-                this._initArray(this.toArray(), base2, endian);
+                this._initArray(this.toArray(), base, endian);
               }
             }
           }
         }, "init");
-        BN.prototype._initNumber = /* @__PURE__ */ __name(function _initNumber(number, base2, endian) {
+        BN.prototype._initNumber = /* @__PURE__ */ __name(function _initNumber(number, base, endian) {
           if (number < 0) {
             this.negative = 1;
             number = -number;
@@ -6051,9 +6051,9 @@ var NearWalletAdapterWidget = (() => {
             this.length = 3;
           }
           if (endian !== "le") return;
-          this._initArray(this.toArray(), base2, endian);
+          this._initArray(this.toArray(), base, endian);
         }, "_initNumber");
-        BN.prototype._initArray = /* @__PURE__ */ __name(function _initArray(number, base2, endian) {
+        BN.prototype._initArray = /* @__PURE__ */ __name(function _initArray(number, base, endian) {
           assert(typeof number.length === "number");
           if (number.length <= 0) {
             this.words = [0];
@@ -6165,20 +6165,20 @@ var NearWalletAdapterWidget = (() => {
           return r;
         }
         __name(parseBase, "parseBase");
-        BN.prototype._parseBase = /* @__PURE__ */ __name(function _parseBase(number, base2, start) {
+        BN.prototype._parseBase = /* @__PURE__ */ __name(function _parseBase(number, base, start) {
           this.words = [0];
           this.length = 1;
-          for (var limbLen = 0, limbPow = 1; limbPow <= 67108863; limbPow *= base2) {
+          for (var limbLen = 0, limbPow = 1; limbPow <= 67108863; limbPow *= base) {
             limbLen++;
           }
           limbLen--;
-          limbPow = limbPow / base2 | 0;
+          limbPow = limbPow / base | 0;
           var total = number.length - start;
-          var mod2 = total % limbLen;
-          var end = Math.min(total, total - mod2) + start;
+          var mod = total % limbLen;
+          var end = Math.min(total, total - mod) + start;
           var word = 0;
           for (var i = start; i < end; i += limbLen) {
-            word = parseBase(number, i, i + limbLen, base2);
+            word = parseBase(number, i, i + limbLen, base);
             this.imuln(limbPow);
             if (this.words[0] + word < 67108864) {
               this.words[0] += word;
@@ -6186,13 +6186,13 @@ var NearWalletAdapterWidget = (() => {
               this._iaddn(word);
             }
           }
-          if (mod2 !== 0) {
-            var pow3 = 1;
-            word = parseBase(number, i, number.length, base2);
-            for (i = 0; i < mod2; i++) {
-              pow3 *= base2;
+          if (mod !== 0) {
+            var pow = 1;
+            word = parseBase(number, i, number.length, base);
+            for (i = 0; i < mod; i++) {
+              pow *= base;
             }
-            this.imuln(pow3);
+            this.imuln(pow);
             if (this.words[0] + word < 67108864) {
               this.words[0] += word;
             } else {
@@ -6342,11 +6342,11 @@ var NearWalletAdapterWidget = (() => {
           52521875,
           60466176
         ];
-        BN.prototype.toString = /* @__PURE__ */ __name(function toString(base2, padding) {
-          base2 = base2 || 10;
+        BN.prototype.toString = /* @__PURE__ */ __name(function toString(base, padding) {
+          base = base || 10;
           padding = padding | 0 || 1;
           var out;
-          if (base2 === 16 || base2 === "hex") {
+          if (base === 16 || base === "hex") {
             out = "";
             var off = 0;
             var carry = 0;
@@ -6376,14 +6376,14 @@ var NearWalletAdapterWidget = (() => {
             }
             return out;
           }
-          if (base2 === (base2 | 0) && base2 >= 2 && base2 <= 36) {
-            var groupSize = groupSizes[base2];
-            var groupBase = groupBases[base2];
+          if (base === (base | 0) && base >= 2 && base <= 36) {
+            var groupSize = groupSizes[base];
+            var groupBase = groupBases[base];
             out = "";
             var c = this.clone();
             c.negative = 0;
             while (!c.isZero()) {
-              var r = c.modn(groupBase).toString(base2);
+              var r = c.modn(groupBase).toString(base);
               c = c.idivn(groupBase);
               if (!c.isZero()) {
                 out = zeros[groupSize - r.length] + r + out;
@@ -6713,7 +6713,7 @@ var NearWalletAdapterWidget = (() => {
           }
           return this;
         }, "iadd");
-        BN.prototype.add = /* @__PURE__ */ __name(function add2(num) {
+        BN.prototype.add = /* @__PURE__ */ __name(function add(num) {
           var res;
           if (num.negative !== 0 && this.negative === 0) {
             num.negative = 0;
@@ -7606,7 +7606,7 @@ var NearWalletAdapterWidget = (() => {
         BN.prototype.isqr = /* @__PURE__ */ __name(function isqr() {
           return this.imul(this.clone());
         }, "isqr");
-        BN.prototype.pow = /* @__PURE__ */ __name(function pow3(num) {
+        BN.prototype.pow = /* @__PURE__ */ __name(function pow(num) {
           var w = toBitArray(num);
           if (w.length === 0) return new BN(1);
           var res = this;
@@ -7905,21 +7905,21 @@ var NearWalletAdapterWidget = (() => {
               mod: new BN(0)
             };
           }
-          var div, mod2, res;
+          var div, mod, res;
           if (this.negative !== 0 && num.negative === 0) {
             res = this.neg().divmod(num, mode);
             if (mode !== "mod") {
               div = res.div.neg();
             }
             if (mode !== "div") {
-              mod2 = res.mod.neg();
-              if (positive && mod2.negative !== 0) {
-                mod2.iadd(num);
+              mod = res.mod.neg();
+              if (positive && mod.negative !== 0) {
+                mod.iadd(num);
               }
             }
             return {
               div,
-              mod: mod2
+              mod
             };
           }
           if (this.negative === 0 && num.negative !== 0) {
@@ -7935,14 +7935,14 @@ var NearWalletAdapterWidget = (() => {
           if ((this.negative & num.negative) !== 0) {
             res = this.neg().divmod(num.neg(), mode);
             if (mode !== "div") {
-              mod2 = res.mod.neg();
-              if (positive && mod2.negative !== 0) {
-                mod2.isub(num);
+              mod = res.mod.neg();
+              if (positive && mod.negative !== 0) {
+                mod.isub(num);
               }
             }
             return {
               div: res.div,
-              mod: mod2
+              mod
             };
           }
           if (num.length > this.length || this.cmp(num) < 0) {
@@ -7974,7 +7974,7 @@ var NearWalletAdapterWidget = (() => {
         BN.prototype.div = /* @__PURE__ */ __name(function div(num) {
           return this.divmod(num, "div", false).div;
         }, "div");
-        BN.prototype.mod = /* @__PURE__ */ __name(function mod2(num) {
+        BN.prototype.mod = /* @__PURE__ */ __name(function mod(num) {
           return this.divmod(num, "mod", false).mod;
         }, "mod");
         BN.prototype.umod = /* @__PURE__ */ __name(function umod(num) {
@@ -7983,10 +7983,10 @@ var NearWalletAdapterWidget = (() => {
         BN.prototype.divRound = /* @__PURE__ */ __name(function divRound(num) {
           var dm = this.divmod(num);
           if (dm.mod.isZero()) return dm.div;
-          var mod2 = dm.div.negative !== 0 ? dm.mod.isub(num) : dm.mod;
+          var mod = dm.div.negative !== 0 ? dm.mod.isub(num) : dm.mod;
           var half = num.ushrn(1);
           var r2 = num.andln(1);
-          var cmp = mod2.cmp(half);
+          var cmp = mod.cmp(half);
           if (cmp < 0 || r2 === 1 && cmp === 0) return dm.div;
           return dm.div.negative !== 0 ? dm.div.isubn(1) : dm.div.iaddn(1);
         }, "divRound");
@@ -8393,7 +8393,7 @@ var NearWalletAdapterWidget = (() => {
           }
           return r;
         }, "ireduce");
-        MPrime.prototype.split = /* @__PURE__ */ __name(function split2(input, out) {
+        MPrime.prototype.split = /* @__PURE__ */ __name(function split(input, out) {
           input.iushrn(this.n, 0, out);
         }, "split");
         MPrime.prototype.imulK = /* @__PURE__ */ __name(function imulK(num) {
@@ -8408,7 +8408,7 @@ var NearWalletAdapterWidget = (() => {
         }
         __name(K256, "K256");
         inherits(K256, MPrime);
-        K256.prototype.split = /* @__PURE__ */ __name(function split2(input, output) {
+        K256.prototype.split = /* @__PURE__ */ __name(function split(input, output) {
           var mask = 4194303;
           var outLen = Math.min(input.length, 9);
           for (var i = 0; i < outLen; i++) {
@@ -8545,7 +8545,7 @@ var NearWalletAdapterWidget = (() => {
           }
           return this.m.sub(a)._forceRed(this);
         }, "neg");
-        Red.prototype.add = /* @__PURE__ */ __name(function add2(a, b) {
+        Red.prototype.add = /* @__PURE__ */ __name(function add(a, b) {
           this._verify2(a, b);
           var res = a.add(b);
           if (res.cmp(this.m) >= 0) {
@@ -8600,8 +8600,8 @@ var NearWalletAdapterWidget = (() => {
           var mod3 = this.m.andln(3);
           assert(mod3 % 2 === 1);
           if (mod3 === 3) {
-            var pow3 = this.m.add(new BN(1)).iushrn(2);
-            return this.pow(a, pow3);
+            var pow = this.m.add(new BN(1)).iushrn(2);
+            return this.pow(a, pow);
           }
           var q = this.m.subn(1);
           var s = 0;
@@ -8645,7 +8645,7 @@ var NearWalletAdapterWidget = (() => {
             return this.imod(inv);
           }
         }, "invm");
-        Red.prototype.pow = /* @__PURE__ */ __name(function pow3(a, num) {
+        Red.prototype.pow = /* @__PURE__ */ __name(function pow(a, num) {
           if (num.isZero()) return new BN(1).toRed(this);
           if (num.cmpn(1) === 0) return a.clone();
           var windowSize = 4;
@@ -8827,7 +8827,7 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(toHex, "toHex");
       utils.toHex = toHex;
-      utils.encode = /* @__PURE__ */ __name(function encode(arr, enc) {
+      utils.encode = /* @__PURE__ */ __name(function encode2(arr, enc) {
         if (enc === "hex")
           return toHex(arr);
         else
@@ -8859,12 +8859,12 @@ var NearWalletAdapterWidget = (() => {
         var k = num.clone();
         for (i = 0; i < naf.length; i++) {
           var z;
-          var mod2 = k.andln(ws - 1);
+          var mod = k.andln(ws - 1);
           if (k.isOdd()) {
-            if (mod2 > (ws >> 1) - 1)
-              z = (ws >> 1) - mod2;
+            if (mod > (ws >> 1) - 1)
+              z = (ws >> 1) - mod;
             else
-              z = mod2;
+              z = mod;
             k.isubn(z);
           } else {
             z = 0;
@@ -8992,16 +8992,16 @@ var NearWalletAdapterWidget = (() => {
         }
       } else {
         try {
-          crypto4 = __require("crypto");
-          if (typeof crypto4.randomBytes !== "function")
+          crypto3 = __require("crypto");
+          if (typeof crypto3.randomBytes !== "function")
             throw new Error("Not supported");
           Rand.prototype._rand = /* @__PURE__ */ __name(function _rand(n) {
-            return crypto4.randomBytes(n);
+            return crypto3.randomBytes(n);
           }, "_rand");
         } catch (e) {
         }
       }
-      var crypto4;
+      var crypto3;
     }
   });
 
@@ -9264,7 +9264,7 @@ var NearWalletAdapterWidget = (() => {
           return [this.getY().isEven() ? 2 : 3].concat(x);
         return [4].concat(x, this.getY().toArray("be", len));
       }, "_encode");
-      BasePoint.prototype.encode = /* @__PURE__ */ __name(function encode(enc, compact) {
+      BasePoint.prototype.encode = /* @__PURE__ */ __name(function encode2(enc, compact) {
         return utils.encode(this._encode(compact), enc);
       }, "encode");
       BasePoint.prototype.precompute = /* @__PURE__ */ __name(function precompute(power) {
@@ -9547,21 +9547,21 @@ var NearWalletAdapterWidget = (() => {
         var npoints = this._endoWnafT1;
         var ncoeffs = this._endoWnafT2;
         for (var i = 0; i < points.length; i++) {
-          var split2 = this._endoSplit(coeffs[i]);
+          var split = this._endoSplit(coeffs[i]);
           var p = points[i];
           var beta = p._getBeta();
-          if (split2.k1.negative) {
-            split2.k1.ineg();
+          if (split.k1.negative) {
+            split.k1.ineg();
             p = p.neg(true);
           }
-          if (split2.k2.negative) {
-            split2.k2.ineg();
+          if (split.k2.negative) {
+            split.k2.ineg();
             beta = beta.neg(true);
           }
           npoints[i * 2] = p;
           npoints[i * 2 + 1] = beta;
-          ncoeffs[i * 2] = split2.k1;
-          ncoeffs[i * 2 + 1] = split2.k2;
+          ncoeffs[i * 2] = split.k1;
+          ncoeffs[i * 2 + 1] = split.k2;
         }
         var res = this._wnafMulAdd(1, npoints, ncoeffs, i * 2, jacobianResult);
         for (var j = 0; j < i * 2; j++) {
@@ -9671,7 +9671,7 @@ var NearWalletAdapterWidget = (() => {
       Point.prototype.isInfinity = /* @__PURE__ */ __name(function isInfinity() {
         return this.inf;
       }, "isInfinity");
-      Point.prototype.add = /* @__PURE__ */ __name(function add2(p) {
+      Point.prototype.add = /* @__PURE__ */ __name(function add(p) {
         if (this.inf)
           return p;
         if (p.inf)
@@ -9803,7 +9803,7 @@ var NearWalletAdapterWidget = (() => {
       JPoint.prototype.neg = /* @__PURE__ */ __name(function neg() {
         return this.curve.jpoint(this.x, this.y.redNeg(), this.z);
       }, "neg");
-      JPoint.prototype.add = /* @__PURE__ */ __name(function add2(p) {
+      JPoint.prototype.add = /* @__PURE__ */ __name(function add(p) {
         if (this.isInfinity())
           return p;
         if (p.isInfinity())
@@ -9856,17 +9856,17 @@ var NearWalletAdapterWidget = (() => {
         var nz = this.z.redMul(h);
         return this.curve.jpoint(nx, ny, nz);
       }, "mixedAdd");
-      JPoint.prototype.dblp = /* @__PURE__ */ __name(function dblp(pow3) {
-        if (pow3 === 0)
+      JPoint.prototype.dblp = /* @__PURE__ */ __name(function dblp(pow) {
+        if (pow === 0)
           return this;
         if (this.isInfinity())
           return this;
-        if (!pow3)
+        if (!pow)
           return this.dbl();
         var i;
         if (this.curve.zeroA || this.curve.threeA) {
           var r = this;
-          for (i = 0; i < pow3; i++)
+          for (i = 0; i < pow; i++)
             r = r.dbl();
           return r;
         }
@@ -9877,7 +9877,7 @@ var NearWalletAdapterWidget = (() => {
         var jz = this.z;
         var jz4 = jz.redSqr().redSqr();
         var jyd = jy.redAdd(jy);
-        for (i = 0; i < pow3; i++) {
+        for (i = 0; i < pow; i++) {
           var jx2 = jx.redSqr();
           var jyd2 = jyd.redSqr();
           var jyd4 = jyd2.redSqr();
@@ -9888,7 +9888,7 @@ var NearWalletAdapterWidget = (() => {
           var dny = c.redMul(t2);
           dny = dny.redIAdd(dny).redISub(jyd4);
           var nz = jyd.redMul(jz);
-          if (i + 1 < pow3)
+          if (i + 1 < pow)
             jz4 = jz4.redMul(jyd4);
           jx = nx;
           jz = nz;
@@ -10154,7 +10154,7 @@ var NearWalletAdapterWidget = (() => {
         var nz = c.redMul(bb.redAdd(this.curve.a24.redMul(c)));
         return this.curve.point(nx, nz);
       }, "dbl");
-      Point.prototype.add = /* @__PURE__ */ __name(function add2() {
+      Point.prototype.add = /* @__PURE__ */ __name(function add() {
         throw new Error("Not supported on Montgomery curve");
       }, "add");
       Point.prototype.diffAdd = /* @__PURE__ */ __name(function diffAdd(p, diff) {
@@ -10437,7 +10437,7 @@ var NearWalletAdapterWidget = (() => {
         }
         return this.curve.point(nx, ny, nz);
       }, "_projAdd");
-      Point.prototype.add = /* @__PURE__ */ __name(function add2(p) {
+      Point.prototype.add = /* @__PURE__ */ __name(function add(p) {
         if (this.isInfinity())
           return p;
         if (p.isInfinity())
@@ -11084,9 +11084,9 @@ var NearWalletAdapterWidget = (() => {
         3204031479,
         3329325298
       ];
-      function SHA2562() {
-        if (!(this instanceof SHA2562))
-          return new SHA2562();
+      function SHA256() {
+        if (!(this instanceof SHA256))
+          return new SHA256();
         BlockHash.call(this);
         this.h = [
           1779033703,
@@ -11101,14 +11101,14 @@ var NearWalletAdapterWidget = (() => {
         this.k = sha256_K;
         this.W = new Array(64);
       }
-      __name(SHA2562, "SHA256");
-      utils.inherits(SHA2562, BlockHash);
-      module2.exports = SHA2562;
-      SHA2562.blockSize = 512;
-      SHA2562.outSize = 256;
-      SHA2562.hmacStrength = 192;
-      SHA2562.padLength = 64;
-      SHA2562.prototype._update = /* @__PURE__ */ __name(function _update(msg, start) {
+      __name(SHA256, "SHA256");
+      utils.inherits(SHA256, BlockHash);
+      module2.exports = SHA256;
+      SHA256.blockSize = 512;
+      SHA256.outSize = 256;
+      SHA256.hmacStrength = 192;
+      SHA256.padLength = 64;
+      SHA256.prototype._update = /* @__PURE__ */ __name(function _update(msg, start) {
         var W = this.W;
         for (var i = 0; i < 16; i++)
           W[i] = msg[start + i];
@@ -11144,7 +11144,7 @@ var NearWalletAdapterWidget = (() => {
         this.h[6] = sum32(this.h[6], g);
         this.h[7] = sum32(this.h[7], h);
       }, "_update");
-      SHA2562.prototype._digest = /* @__PURE__ */ __name(function digest(enc) {
+      SHA256.prototype._digest = /* @__PURE__ */ __name(function digest(enc) {
         if (enc === "hex")
           return utils.toHex32(this.h, "big");
         else
@@ -11158,11 +11158,11 @@ var NearWalletAdapterWidget = (() => {
     "../../node_modules/hash.js/lib/hash/sha/224.js"(exports2, module2) {
       "use strict";
       var utils = require_utils6();
-      var SHA2562 = require__2();
+      var SHA256 = require__2();
       function SHA224() {
         if (!(this instanceof SHA224))
           return new SHA224();
-        SHA2562.call(this);
+        SHA256.call(this);
         this.h = [
           3238371032,
           914150663,
@@ -11175,7 +11175,7 @@ var NearWalletAdapterWidget = (() => {
         ];
       }
       __name(SHA224, "SHA224");
-      utils.inherits(SHA224, SHA2562);
+      utils.inherits(SHA224, SHA256);
       module2.exports = SHA224;
       SHA224.blockSize = 512;
       SHA224.outSize = 224;
@@ -11371,9 +11371,9 @@ var NearWalletAdapterWidget = (() => {
         1816402316,
         1246189591
       ];
-      function SHA5122() {
-        if (!(this instanceof SHA5122))
-          return new SHA5122();
+      function SHA512() {
+        if (!(this instanceof SHA512))
+          return new SHA512();
         BlockHash.call(this);
         this.h = [
           1779033703,
@@ -11396,14 +11396,14 @@ var NearWalletAdapterWidget = (() => {
         this.k = sha512_K;
         this.W = new Array(160);
       }
-      __name(SHA5122, "SHA512");
-      utils.inherits(SHA5122, BlockHash);
-      module2.exports = SHA5122;
-      SHA5122.blockSize = 1024;
-      SHA5122.outSize = 512;
-      SHA5122.hmacStrength = 192;
-      SHA5122.padLength = 128;
-      SHA5122.prototype._prepareBlock = /* @__PURE__ */ __name(function _prepareBlock(msg, start) {
+      __name(SHA512, "SHA512");
+      utils.inherits(SHA512, BlockHash);
+      module2.exports = SHA512;
+      SHA512.blockSize = 1024;
+      SHA512.outSize = 512;
+      SHA512.hmacStrength = 192;
+      SHA512.padLength = 128;
+      SHA512.prototype._prepareBlock = /* @__PURE__ */ __name(function _prepareBlock(msg, start) {
         var W = this.W;
         for (var i = 0; i < 32; i++)
           W[i] = msg[start + i];
@@ -11438,7 +11438,7 @@ var NearWalletAdapterWidget = (() => {
           );
         }
       }, "_prepareBlock");
-      SHA5122.prototype._update = /* @__PURE__ */ __name(function _update(msg, start) {
+      SHA512.prototype._update = /* @__PURE__ */ __name(function _update(msg, start) {
         this._prepareBlock(msg, start);
         var W = this.W;
         var ah = this.h[0];
@@ -11525,7 +11525,7 @@ var NearWalletAdapterWidget = (() => {
         sum64(this.h, 12, gh, gl);
         sum64(this.h, 14, hh, hl);
       }, "_update");
-      SHA5122.prototype._digest = /* @__PURE__ */ __name(function digest(enc) {
+      SHA512.prototype._digest = /* @__PURE__ */ __name(function digest(enc) {
         if (enc === "hex")
           return utils.toHex32(this.h, "big");
         else
@@ -11647,11 +11647,11 @@ var NearWalletAdapterWidget = (() => {
     "../../node_modules/hash.js/lib/hash/sha/384.js"(exports2, module2) {
       "use strict";
       var utils = require_utils6();
-      var SHA5122 = require__4();
+      var SHA512 = require__4();
       function SHA384() {
         if (!(this instanceof SHA384))
           return new SHA384();
-        SHA5122.call(this);
+        SHA512.call(this);
         this.h = [
           3418070365,
           3238371032,
@@ -11672,7 +11672,7 @@ var NearWalletAdapterWidget = (() => {
         ];
       }
       __name(SHA384, "SHA384");
-      utils.inherits(SHA384, SHA5122);
+      utils.inherits(SHA384, SHA512);
       module2.exports = SHA384;
       SHA384.blockSize = 1024;
       SHA384.outSize = 384;
@@ -13223,32 +13223,32 @@ var NearWalletAdapterWidget = (() => {
         this.K = this._hmac().update(this.V).update([1]).update(seed).digest();
         this.V = this._hmac().update(this.V).digest();
       }, "update");
-      HmacDRBG.prototype.reseed = /* @__PURE__ */ __name(function reseed(entropy, entropyEnc, add2, addEnc) {
+      HmacDRBG.prototype.reseed = /* @__PURE__ */ __name(function reseed(entropy, entropyEnc, add, addEnc) {
         if (typeof entropyEnc !== "string") {
-          addEnc = add2;
-          add2 = entropyEnc;
+          addEnc = add;
+          add = entropyEnc;
           entropyEnc = null;
         }
         entropy = utils.toArray(entropy, entropyEnc);
-        add2 = utils.toArray(add2, addEnc);
+        add = utils.toArray(add, addEnc);
         assert(
           entropy.length >= this.minEntropy / 8,
           "Not enough entropy. Minimum is: " + this.minEntropy + " bits"
         );
-        this._update(entropy.concat(add2 || []));
+        this._update(entropy.concat(add || []));
         this._reseed = 1;
       }, "reseed");
-      HmacDRBG.prototype.generate = /* @__PURE__ */ __name(function generate(len, enc, add2, addEnc) {
+      HmacDRBG.prototype.generate = /* @__PURE__ */ __name(function generate(len, enc, add, addEnc) {
         if (this._reseed > this.reseedInterval)
           throw new Error("Reseed is required");
         if (typeof enc !== "string") {
-          addEnc = add2;
-          add2 = enc;
+          addEnc = add;
+          add = enc;
           enc = null;
         }
-        if (add2) {
-          add2 = utils.toArray(add2, addEnc || "hex");
-          this._update(add2);
+        if (add) {
+          add = utils.toArray(add, addEnc || "hex");
+          this._update(add);
         }
         var temp = [];
         while (temp.length < len) {
@@ -13256,7 +13256,7 @@ var NearWalletAdapterWidget = (() => {
           temp = temp.concat(this.V);
         }
         var res = temp.slice(0, len);
-        this._update(add2);
+        this._update(add);
         this._reseed++;
         return utils.encode(res, enc);
       }, "generate");
@@ -13842,7 +13842,7 @@ var NearWalletAdapterWidget = (() => {
       cachedProperty(Signature, "Sencoded", /* @__PURE__ */ __name(function Sencoded() {
         return this.eddsa.encodeInt(this.S());
       }, "Sencoded"));
-      Signature.prototype.toBytes = /* @__PURE__ */ __name(function toBytes3() {
+      Signature.prototype.toBytes = /* @__PURE__ */ __name(function toBytes() {
         return this.Rencoded().concat(this.Sencoded());
       }, "toBytes");
       Signature.prototype.toHex = /* @__PURE__ */ __name(function toHex() {
@@ -14233,8 +14233,8 @@ var NearWalletAdapterWidget = (() => {
           const point = pair.getPublic().mul(scalar);
           if (hashfn === void 0) {
             const data2 = point.encode(null, true);
-            const sha2562 = ec.hash().update(data2).digest();
-            for (let i = 0; i < 32; ++i) output[i] = sha2562[i];
+            const sha256 = ec.hash().update(data2).digest();
+            for (let i = 0; i < 32; ++i) output[i] = sha256[i];
           } else {
             if (!xbuf) xbuf = new Uint8Array(32);
             const x = point.getX().toArray("be", 32);
@@ -14275,8 +14275,8 @@ var NearWalletAdapterWidget = (() => {
   var require_public_key = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/lib/commonjs/public_key.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.PublicKey = void 0;
@@ -14306,7 +14306,7 @@ var NearWalletAdapterWidget = (() => {
         }
       }
       __name(str_to_key_type, "str_to_key_type");
-      function resolveEnumKeyName2(keyType) {
+      function resolveEnumKeyName(keyType) {
         switch (keyType) {
           case constants_1.KeyType.ED25519: {
             return "ed25519Key";
@@ -14319,8 +14319,8 @@ var NearWalletAdapterWidget = (() => {
           }
         }
       }
-      __name(resolveEnumKeyName2, "resolveEnumKeyName");
-      var Enum2 = class {
+      __name(resolveEnumKeyName, "resolveEnumKeyName");
+      var Enum = class {
         static {
           __name(this, "Enum");
         }
@@ -14333,7 +14333,7 @@ var NearWalletAdapterWidget = (() => {
           });
         }
       };
-      var PublicKey3 = class _PublicKey extends Enum2 {
+      var PublicKey2 = class _PublicKey extends Enum {
         static {
           __name(this, "PublicKey");
         }
@@ -14341,7 +14341,7 @@ var NearWalletAdapterWidget = (() => {
         ed25519Key;
         secp256k1Key;
         constructor(publicKey) {
-          const keyName = resolveEnumKeyName2(publicKey.keyType);
+          const keyName = resolveEnumKeyName(publicKey.keyType);
           super({ [keyName]: publicKey });
           this[keyName] = publicKey;
           this.enum = keyName;
@@ -14420,7 +14420,7 @@ var NearWalletAdapterWidget = (() => {
           return this.keyPair.data;
         }
       };
-      exports2.PublicKey = PublicKey3;
+      exports2.PublicKey = PublicKey2;
     }
   });
 
@@ -14428,8 +14428,8 @@ var NearWalletAdapterWidget = (() => {
   var require_key_pair_ed25519 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/lib/commonjs/key_pair_ed25519.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyPairEd25519 = void 0;
@@ -14439,7 +14439,7 @@ var NearWalletAdapterWidget = (() => {
       var constants_1 = require_constants();
       var key_pair_base_1 = require_key_pair_base();
       var public_key_1 = require_public_key();
-      var KeyPairEd255192 = class _KeyPairEd25519 extends key_pair_base_1.KeyPairBase {
+      var KeyPairEd25519 = class _KeyPairEd25519 extends key_pair_base_1.KeyPairBase {
         static {
           __name(this, "KeyPairEd25519");
         }
@@ -14509,7 +14509,7 @@ var NearWalletAdapterWidget = (() => {
           return this.publicKey;
         }
       };
-      exports2.KeyPairEd25519 = KeyPairEd255192;
+      exports2.KeyPairEd25519 = KeyPairEd25519;
     }
   });
 
@@ -14517,8 +14517,8 @@ var NearWalletAdapterWidget = (() => {
   var require_key_pair_secp256k1 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/crypto/lib/commonjs/key_pair_secp256k1.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyPairSecp256k1 = void 0;
@@ -14528,7 +14528,7 @@ var NearWalletAdapterWidget = (() => {
       var constants_1 = require_constants();
       var key_pair_base_1 = require_key_pair_base();
       var public_key_1 = require_public_key();
-      var KeyPairSecp256k12 = class _KeyPairSecp256k1 extends key_pair_base_1.KeyPairBase {
+      var KeyPairSecp256k1 = class _KeyPairSecp256k1 extends key_pair_base_1.KeyPairBase {
         static {
           __name(this, "KeyPairSecp256k1");
         }
@@ -14584,7 +14584,7 @@ var NearWalletAdapterWidget = (() => {
           return this.publicKey;
         }
       };
-      exports2.KeyPairSecp256k1 = KeyPairSecp256k12;
+      exports2.KeyPairSecp256k1 = KeyPairSecp256k1;
     }
   });
 
@@ -14675,24 +14675,24 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.exponentialBackoff = void 0;
-      async function exponentialBackoff2(startWaitTime, retryNumber, waitBackoff, getResult) {
+      async function exponentialBackoff(startWaitTime, retryNumber, waitBackoff, getResult) {
         let waitTime = startWaitTime;
         for (let i = 0; i < retryNumber; i++) {
           const result = await getResult();
           if (result) {
             return result;
           }
-          await sleep2(waitTime);
+          await sleep(waitTime);
           waitTime *= waitBackoff;
         }
         return null;
       }
-      __name(exponentialBackoff2, "exponentialBackoff");
-      exports2.exponentialBackoff = exponentialBackoff2;
-      function sleep2(millis) {
+      __name(exponentialBackoff, "exponentialBackoff");
+      exports2.exponentialBackoff = exponentialBackoff;
+      function sleep(millis) {
         return new Promise((resolve) => setTimeout(resolve, millis));
       }
-      __name(sleep2, "sleep");
+      __name(sleep, "sleep");
     }
   });
 
@@ -14785,8 +14785,8 @@ var NearWalletAdapterWidget = (() => {
   var require_errors4 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/providers/node_modules/@near-js/utils/lib/commonjs/errors/errors.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorMessages = void 0;
@@ -14801,7 +14801,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Assignable = void 0;
-      var Assignable2 = class {
+      var Assignable = class {
         static {
           __name(this, "Assignable");
         }
@@ -14811,7 +14811,7 @@ var NearWalletAdapterWidget = (() => {
           });
         }
       };
-      exports2.Assignable = Assignable2;
+      exports2.Assignable = Assignable;
     }
   });
 
@@ -14821,7 +14821,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Enum = void 0;
-      var Enum2 = class {
+      var Enum = class {
         static {
           __name(this, "Enum");
         }
@@ -14834,7 +14834,7 @@ var NearWalletAdapterWidget = (() => {
           });
         }
       };
-      exports2.Enum = Enum2;
+      exports2.Enum = Enum;
     }
   });
 
@@ -14844,7 +14844,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorContext = exports2.TypedError = exports2.ArgumentTypeError = exports2.PositionalArgsError = void 0;
-      var PositionalArgsError2 = class extends Error {
+      var PositionalArgsError = class extends Error {
         static {
           __name(this, "PositionalArgsError");
         }
@@ -14852,8 +14852,8 @@ var NearWalletAdapterWidget = (() => {
           super("Contract method calls expect named arguments wrapped in object, e.g. { argName1: argValue1, argName2: argValue2 }");
         }
       };
-      exports2.PositionalArgsError = PositionalArgsError2;
-      var ArgumentTypeError2 = class extends Error {
+      exports2.PositionalArgsError = PositionalArgsError;
+      var ArgumentTypeError = class extends Error {
         static {
           __name(this, "ArgumentTypeError");
         }
@@ -14861,8 +14861,8 @@ var NearWalletAdapterWidget = (() => {
           super(`Expected ${argType} for '${argName}' argument, but got '${JSON.stringify(argValue)}'`);
         }
       };
-      exports2.ArgumentTypeError = ArgumentTypeError2;
-      var TypedError2 = class extends Error {
+      exports2.ArgumentTypeError = ArgumentTypeError;
+      var TypedError = class extends Error {
         static {
           __name(this, "TypedError");
         }
@@ -14874,8 +14874,8 @@ var NearWalletAdapterWidget = (() => {
           this.context = context;
         }
       };
-      exports2.TypedError = TypedError2;
-      var ErrorContext2 = class {
+      exports2.TypedError = TypedError;
+      var ErrorContext = class {
         static {
           __name(this, "ErrorContext");
         }
@@ -14884,7 +14884,7 @@ var NearWalletAdapterWidget = (() => {
           this.transactionHash = transactionHash;
         }
       };
-      exports2.ErrorContext = ErrorContext2;
+      exports2.ErrorContext = ErrorContext;
     }
   });
 
@@ -14894,11 +14894,11 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.IdType = void 0;
-      var IdType2;
-      (function(IdType3) {
-        IdType3["Transaction"] = "transaction";
-        IdType3["Receipt"] = "receipt";
-      })(IdType2 || (exports2.IdType = IdType2 = {}));
+      var IdType;
+      (function(IdType2) {
+        IdType2["Transaction"] = "transaction";
+        IdType2["Receipt"] = "receipt";
+      })(IdType || (exports2.IdType = IdType = {}));
     }
   });
 
@@ -14908,18 +14908,18 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.FinalExecutionStatusBasic = exports2.ExecutionStatusBasic = void 0;
-      var ExecutionStatusBasic2;
-      (function(ExecutionStatusBasic3) {
-        ExecutionStatusBasic3["Unknown"] = "Unknown";
-        ExecutionStatusBasic3["Pending"] = "Pending";
-        ExecutionStatusBasic3["Failure"] = "Failure";
-      })(ExecutionStatusBasic2 || (exports2.ExecutionStatusBasic = ExecutionStatusBasic2 = {}));
-      var FinalExecutionStatusBasic2;
-      (function(FinalExecutionStatusBasic3) {
-        FinalExecutionStatusBasic3["NotStarted"] = "NotStarted";
-        FinalExecutionStatusBasic3["Started"] = "Started";
-        FinalExecutionStatusBasic3["Failure"] = "Failure";
-      })(FinalExecutionStatusBasic2 || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic2 = {}));
+      var ExecutionStatusBasic;
+      (function(ExecutionStatusBasic2) {
+        ExecutionStatusBasic2["Unknown"] = "Unknown";
+        ExecutionStatusBasic2["Pending"] = "Pending";
+        ExecutionStatusBasic2["Failure"] = "Failure";
+      })(ExecutionStatusBasic || (exports2.ExecutionStatusBasic = ExecutionStatusBasic = {}));
+      var FinalExecutionStatusBasic;
+      (function(FinalExecutionStatusBasic2) {
+        FinalExecutionStatusBasic2["NotStarted"] = "NotStarted";
+        FinalExecutionStatusBasic2["Started"] = "Started";
+        FinalExecutionStatusBasic2["Failure"] = "Failure";
+      })(FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic = {}));
     }
   });
 
@@ -14975,74 +14975,74 @@ var NearWalletAdapterWidget = (() => {
   var require_format2 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/providers/node_modules/@near-js/utils/lib/commonjs/format.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.baseDecode = exports2.baseEncode = exports2.parseNearAmount = exports2.formatNearAmount = exports2.NEAR_NOMINATION = exports2.NEAR_NOMINATION_EXP = void 0;
       var bs58_1 = __importDefault(require_bs58());
       exports2.NEAR_NOMINATION_EXP = 24;
       exports2.NEAR_NOMINATION = 10n ** BigInt(exports2.NEAR_NOMINATION_EXP);
-      var ROUNDING_OFFSETS2 = [];
-      var BN102 = 10n;
-      for (let i = 0, offset = 5n; i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN102) {
-        ROUNDING_OFFSETS2[i] = offset;
+      var ROUNDING_OFFSETS = [];
+      var BN10 = 10n;
+      for (let i = 0, offset = 5n; i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN10) {
+        ROUNDING_OFFSETS[i] = offset;
       }
-      function formatNearAmount2(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
+      function formatNearAmount(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
         let balanceBN = BigInt(balance);
         if (fracDigits !== exports2.NEAR_NOMINATION_EXP) {
           const roundingExp = exports2.NEAR_NOMINATION_EXP - fracDigits - 1;
           if (roundingExp > 0) {
-            balanceBN += ROUNDING_OFFSETS2[roundingExp];
+            balanceBN += ROUNDING_OFFSETS[roundingExp];
           }
         }
         balance = balanceBN.toString();
         const wholeStr = balance.substring(0, balance.length - exports2.NEAR_NOMINATION_EXP) || "0";
         const fractionStr = balance.substring(balance.length - exports2.NEAR_NOMINATION_EXP).padStart(exports2.NEAR_NOMINATION_EXP, "0").substring(0, fracDigits);
-        return trimTrailingZeroes2(`${formatWithCommas2(wholeStr)}.${fractionStr}`);
+        return trimTrailingZeroes(`${formatWithCommas(wholeStr)}.${fractionStr}`);
       }
-      __name(formatNearAmount2, "formatNearAmount");
-      exports2.formatNearAmount = formatNearAmount2;
-      function parseNearAmount2(amt) {
+      __name(formatNearAmount, "formatNearAmount");
+      exports2.formatNearAmount = formatNearAmount;
+      function parseNearAmount(amt) {
         if (!amt) {
           return null;
         }
-        amt = cleanupAmount2(amt);
-        const split2 = amt.split(".");
-        const wholePart = split2[0];
-        const fracPart = split2[1] || "";
-        if (split2.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
+        amt = cleanupAmount(amt);
+        const split = amt.split(".");
+        const wholePart = split[0];
+        const fracPart = split[1] || "";
+        if (split.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
           throw new Error(`Cannot parse '${amt}' as NEAR amount`);
         }
-        return trimLeadingZeroes2(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
+        return trimLeadingZeroes(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
       }
-      __name(parseNearAmount2, "parseNearAmount");
-      exports2.parseNearAmount = parseNearAmount2;
-      function cleanupAmount2(amount) {
+      __name(parseNearAmount, "parseNearAmount");
+      exports2.parseNearAmount = parseNearAmount;
+      function cleanupAmount(amount) {
         return amount.replace(/,/g, "").trim();
       }
-      __name(cleanupAmount2, "cleanupAmount");
-      function trimTrailingZeroes2(value) {
+      __name(cleanupAmount, "cleanupAmount");
+      function trimTrailingZeroes(value) {
         return value.replace(/\.?0*$/, "");
       }
-      __name(trimTrailingZeroes2, "trimTrailingZeroes");
-      function trimLeadingZeroes2(value) {
+      __name(trimTrailingZeroes, "trimTrailingZeroes");
+      function trimLeadingZeroes(value) {
         value = value.replace(/^0+/, "");
         if (value === "") {
           return "0";
         }
         return value;
       }
-      __name(trimLeadingZeroes2, "trimLeadingZeroes");
-      function formatWithCommas2(value) {
+      __name(trimLeadingZeroes, "trimLeadingZeroes");
+      function formatWithCommas(value) {
         const pattern = /(-?\d+)(\d{3})/;
         while (pattern.test(value)) {
           value = value.replace(pattern, "$1,$2");
         }
         return value;
       }
-      __name(formatWithCommas2, "formatWithCommas");
-      function baseEncode2(value) {
+      __name(formatWithCommas, "formatWithCommas");
+      function baseEncode(value) {
         if (typeof value === "string") {
           const bytes = [];
           for (let c = 0; c < value.length; c++) {
@@ -15052,13 +15052,13 @@ var NearWalletAdapterWidget = (() => {
         }
         return bs58_1.default.encode(value);
       }
-      __name(baseEncode2, "baseEncode");
-      exports2.baseEncode = baseEncode2;
-      function baseDecode2(value) {
+      __name(baseEncode, "baseEncode");
+      exports2.baseEncode = baseEncode;
+      function baseDecode(value) {
         return new Uint8Array(bs58_1.default.decode(value));
       }
-      __name(baseDecode2, "baseDecode");
-      exports2.baseDecode = baseDecode2;
+      __name(baseDecode, "baseDecode");
+      exports2.baseDecode = baseDecode;
     }
   });
 
@@ -16017,8 +16017,8 @@ var NearWalletAdapterWidget = (() => {
   var require_rpc_errors2 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/providers/node_modules/@near-js/utils/lib/commonjs/errors/rpc_errors.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getErrorTypeFromErrorMessage = exports2.formatError = exports2.parseResultError = exports2.parseRpcError = exports2.ServerError = void 0;
@@ -16027,65 +16027,65 @@ var NearWalletAdapterWidget = (() => {
       var format_1 = require_format2();
       var errors_1 = require_errors4();
       var rpc_error_schema_json_1 = __importDefault(require_rpc_error_schema2());
-      var mustacheHelpers2 = {
-        formatNear: /* @__PURE__ */ __name(() => (n, render3) => (0, format_1.formatNearAmount)(render3(n)), "formatNear")
+      var mustacheHelpers = {
+        formatNear: /* @__PURE__ */ __name(() => (n, render) => (0, format_1.formatNearAmount)(render(n)), "formatNear")
       };
-      var ServerError2 = class extends types_1.TypedError {
+      var ServerError = class extends types_1.TypedError {
         static {
           __name(this, "ServerError");
         }
       };
-      exports2.ServerError = ServerError2;
-      var ServerTransactionError2 = class extends ServerError2 {
+      exports2.ServerError = ServerError;
+      var ServerTransactionError = class extends ServerError {
         static {
           __name(this, "ServerTransactionError");
         }
         transaction_outcome;
       };
-      function parseRpcError2(errorObj) {
+      function parseRpcError(errorObj) {
         const result = {};
-        const errorClassName = walkSubtype2(errorObj, rpc_error_schema_json_1.default.schema, result, "");
-        const error = new ServerError2(formatError2(errorClassName, result), errorClassName);
+        const errorClassName = walkSubtype(errorObj, rpc_error_schema_json_1.default.schema, result, "");
+        const error = new ServerError(formatError(errorClassName, result), errorClassName);
         Object.assign(error, result);
         return error;
       }
-      __name(parseRpcError2, "parseRpcError");
-      exports2.parseRpcError = parseRpcError2;
-      function parseResultError2(result) {
-        const server_error = parseRpcError2(result.status.Failure);
-        const server_tx_error = new ServerTransactionError2();
+      __name(parseRpcError, "parseRpcError");
+      exports2.parseRpcError = parseRpcError;
+      function parseResultError(result) {
+        const server_error = parseRpcError(result.status.Failure);
+        const server_tx_error = new ServerTransactionError();
         Object.assign(server_tx_error, server_error);
         server_tx_error.type = server_error.type;
         server_tx_error.message = server_error.message;
         server_tx_error.transaction_outcome = result.transaction_outcome;
         return server_tx_error;
       }
-      __name(parseResultError2, "parseResultError");
-      exports2.parseResultError = parseResultError2;
-      function formatError2(errorClassName, errorData) {
+      __name(parseResultError, "parseResultError");
+      exports2.parseResultError = parseResultError;
+      function formatError(errorClassName, errorData) {
         if (typeof errors_1.ErrorMessages[errorClassName] === "string") {
           return mustache_1.default.render(errors_1.ErrorMessages[errorClassName], {
             ...errorData,
-            ...mustacheHelpers2
+            ...mustacheHelpers
           });
         }
         return JSON.stringify(errorData);
       }
-      __name(formatError2, "formatError");
-      exports2.formatError = formatError2;
-      function walkSubtype2(errorObj, schema, result, typeName) {
+      __name(formatError, "formatError");
+      exports2.formatError = formatError;
+      function walkSubtype(errorObj, schema, result, typeName) {
         let error;
         let type;
         let errorTypeName;
         for (const errorName in schema) {
-          if (isString2(errorObj[errorName])) {
+          if (isString(errorObj[errorName])) {
             return errorObj[errorName];
           }
-          if (isObject2(errorObj[errorName])) {
+          if (isObject(errorObj[errorName])) {
             error = errorObj[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
-          } else if (isObject2(errorObj.kind) && isObject2(errorObj.kind[errorName])) {
+          } else if (isObject(errorObj.kind) && isObject(errorObj.kind[errorName])) {
             error = errorObj.kind[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
@@ -16097,14 +16097,14 @@ var NearWalletAdapterWidget = (() => {
           for (const prop of Object.keys(type.props)) {
             result[prop] = error[prop];
           }
-          return walkSubtype2(error, schema, result, errorTypeName);
+          return walkSubtype(error, schema, result, errorTypeName);
         } else {
           result.kind = errorObj;
           return typeName;
         }
       }
-      __name(walkSubtype2, "walkSubtype");
-      function getErrorTypeFromErrorMessage2(errorMessage, errorType) {
+      __name(walkSubtype, "walkSubtype");
+      function getErrorTypeFromErrorMessage(errorMessage, errorType) {
         switch (true) {
           case /^account .*? does not exist while viewing$/.test(errorMessage):
             return "AccountDoesNotExist";
@@ -16126,16 +16126,16 @@ var NearWalletAdapterWidget = (() => {
             return errorType;
         }
       }
-      __name(getErrorTypeFromErrorMessage2, "getErrorTypeFromErrorMessage");
-      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage2;
-      function isObject2(n) {
+      __name(getErrorTypeFromErrorMessage, "getErrorTypeFromErrorMessage");
+      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage;
+      function isObject(n) {
         return Object.prototype.toString.call(n) === "[object Object]";
       }
-      __name(isObject2, "isObject");
-      function isString2(n) {
+      __name(isObject, "isObject");
+      function isString(n) {
         return Object.prototype.toString.call(n) === "[object String]";
       }
-      __name(isString2, "isString");
+      __name(isString, "isString");
     }
   });
 
@@ -16174,7 +16174,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ConsoleLogger = void 0;
-      var ConsoleLogger2 = class {
+      var ConsoleLogger = class {
         static {
           __name(this, "ConsoleLogger");
         }
@@ -16230,7 +16230,7 @@ var NearWalletAdapterWidget = (() => {
           this.print("fatal", message2, ...optionalParams);
         }
       };
-      exports2.ConsoleLogger = ConsoleLogger2;
+      exports2.ConsoleLogger = ConsoleLogger;
     }
   });
 
@@ -16241,7 +16241,7 @@ var NearWalletAdapterWidget = (() => {
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Logger = void 0;
       var console_logger_1 = require_console_logger2();
-      var DEFAULT_LOG_LEVELS2 = [
+      var DEFAULT_LOG_LEVELS = [
         "verbose",
         "debug",
         "log",
@@ -16249,12 +16249,12 @@ var NearWalletAdapterWidget = (() => {
         "error",
         "fatal"
       ];
-      var DEFAULT_LOGGER2 = new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS2);
-      var Logger2 = class {
+      var DEFAULT_LOGGER = new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS);
+      var Logger = class {
         static {
           __name(this, "Logger");
         }
-        static instanceRef = DEFAULT_LOGGER2;
+        static instanceRef = DEFAULT_LOGGER;
         static overrideLogger = /* @__PURE__ */ __name((logger) => {
           this.instanceRef = logger;
         }, "overrideLogger");
@@ -16289,7 +16289,7 @@ var NearWalletAdapterWidget = (() => {
           this.instanceRef?.fatal?.(message2, ...optionalParams);
         }
       };
-      exports2.Logger = Logger2;
+      exports2.Logger = Logger;
     }
   });
 
@@ -16318,7 +16318,7 @@ var NearWalletAdapterWidget = (() => {
       exports2.printTxOutcomeLogs = exports2.printTxOutcomeLogsAndFailures = void 0;
       var errors_1 = require_errors6();
       var logger_1 = require_logger4();
-      function printTxOutcomeLogsAndFailures2({ contractId, outcome }) {
+      function printTxOutcomeLogsAndFailures({ contractId, outcome }) {
         const flatLogs = [outcome.transaction_outcome, ...outcome.receipts_outcome].reduce((acc, it) => {
           const isFailure = typeof it.outcome.status === "object" && typeof it.outcome.status.Failure === "object";
           if (it.outcome.logs.length || isFailure) {
@@ -16333,7 +16333,7 @@ var NearWalletAdapterWidget = (() => {
         }, []);
         for (const result of flatLogs) {
           logger_1.Logger.log(`Receipt${result.receiptIds.length > 1 ? "s" : ""}: ${result.receiptIds.join(", ")}`);
-          printTxOutcomeLogs2({
+          printTxOutcomeLogs({
             contractId,
             logs: result.logs,
             prefix: "	"
@@ -16343,15 +16343,15 @@ var NearWalletAdapterWidget = (() => {
           }
         }
       }
-      __name(printTxOutcomeLogsAndFailures2, "printTxOutcomeLogsAndFailures");
-      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures2;
-      function printTxOutcomeLogs2({ contractId, logs, prefix = "" }) {
+      __name(printTxOutcomeLogsAndFailures, "printTxOutcomeLogsAndFailures");
+      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures;
+      function printTxOutcomeLogs({ contractId, logs, prefix = "" }) {
         for (const log2 of logs) {
           logger_1.Logger.log(`${prefix}Log [${contractId}]: ${log2}`);
         }
       }
-      __name(printTxOutcomeLogs2, "printTxOutcomeLogs");
-      exports2.printTxOutcomeLogs = printTxOutcomeLogs2;
+      __name(printTxOutcomeLogs, "printTxOutcomeLogs");
+      exports2.printTxOutcomeLogs = printTxOutcomeLogs;
     }
   });
 
@@ -16361,7 +16361,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getTransactionLastResult = void 0;
-      function getTransactionLastResult2(txResult) {
+      function getTransactionLastResult(txResult) {
         if (typeof txResult.status === "object" && typeof txResult.status.SuccessValue === "string") {
           const value = Buffer.from(txResult.status.SuccessValue, "base64").toString();
           try {
@@ -16372,8 +16372,8 @@ var NearWalletAdapterWidget = (() => {
         }
         return null;
       }
-      __name(getTransactionLastResult2, "getTransactionLastResult");
-      exports2.getTransactionLastResult = getTransactionLastResult2;
+      __name(getTransactionLastResult, "getTransactionLastResult");
+      exports2.getTransactionLastResult = getTransactionLastResult;
     }
   });
 
@@ -16383,11 +16383,11 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.sortBigIntAsc = void 0;
-      function sortBigIntAsc2(a, b) {
+      function sortBigIntAsc(a, b) {
         return a < b ? -1 : a > b ? 1 : 0;
       }
-      __name(sortBigIntAsc2, "sortBigIntAsc");
-      exports2.sortBigIntAsc = sortBigIntAsc2;
+      __name(sortBigIntAsc, "sortBigIntAsc");
+      exports2.sortBigIntAsc = sortBigIntAsc;
     }
   });
 
@@ -16395,14 +16395,14 @@ var NearWalletAdapterWidget = (() => {
   var require_validators2 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/providers/node_modules/@near-js/utils/lib/commonjs/validators.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.diffEpochValidators = exports2.findSeatPrice = void 0;
       var depd_1 = __importDefault(require_depd());
       var utils_1 = require_utils7();
-      function findSeatPrice2(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
+      function findSeatPrice(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
         if (protocolVersion && protocolVersion < 49) {
           return findSeatPriceForProtocolBefore49(validators, maxNumberOfSeats);
         }
@@ -16413,8 +16413,8 @@ var NearWalletAdapterWidget = (() => {
         }
         return findSeatPriceForProtocolAfter49(validators, maxNumberOfSeats, minimumStakeRatio);
       }
-      __name(findSeatPrice2, "findSeatPrice");
-      exports2.findSeatPrice = findSeatPrice2;
+      __name(findSeatPrice, "findSeatPrice");
+      exports2.findSeatPrice = findSeatPrice;
       function findSeatPriceForProtocolBefore49(validators, numSeats) {
         const stakes = validators.map((v) => BigInt(v.stake)).sort(utils_1.sortBigIntAsc);
         const num = BigInt(numSeats);
@@ -16455,7 +16455,7 @@ var NearWalletAdapterWidget = (() => {
         }
       }
       __name(findSeatPriceForProtocolAfter49, "findSeatPriceForProtocolAfter49");
-      function diffEpochValidators2(currentValidators, nextValidators) {
+      function diffEpochValidators(currentValidators, nextValidators) {
         const validatorsMap = /* @__PURE__ */ new Map();
         currentValidators.forEach((v) => validatorsMap.set(v.account_id, v));
         const nextValidatorsSet = new Set(nextValidators.map((v) => v.account_id));
@@ -16465,8 +16465,8 @@ var NearWalletAdapterWidget = (() => {
           changedValidators: nextValidators.filter((v) => validatorsMap.has(v.account_id) && validatorsMap.get(v.account_id).stake != v.stake).map((v) => ({ current: validatorsMap.get(v.account_id), next: v }))
         };
       }
-      __name(diffEpochValidators2, "diffEpochValidators");
-      exports2.diffEpochValidators = diffEpochValidators2;
+      __name(diffEpochValidators, "diffEpochValidators");
+      exports2.diffEpochValidators = diffEpochValidators;
     }
   });
 
@@ -16508,7 +16508,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Assignable = void 0;
-      var Assignable2 = class {
+      var Assignable = class {
         static {
           __name(this, "Assignable");
         }
@@ -16518,7 +16518,7 @@ var NearWalletAdapterWidget = (() => {
           });
         }
       };
-      exports2.Assignable = Assignable2;
+      exports2.Assignable = Assignable;
     }
   });
 
@@ -16528,7 +16528,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Enum = void 0;
-      var Enum2 = class {
+      var Enum = class {
         static {
           __name(this, "Enum");
         }
@@ -16541,7 +16541,7 @@ var NearWalletAdapterWidget = (() => {
           });
         }
       };
-      exports2.Enum = Enum2;
+      exports2.Enum = Enum;
     }
   });
 
@@ -16551,7 +16551,7 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorContext = exports2.TypedError = exports2.ArgumentTypeError = exports2.PositionalArgsError = void 0;
-      var PositionalArgsError2 = class extends Error {
+      var PositionalArgsError = class extends Error {
         static {
           __name(this, "PositionalArgsError");
         }
@@ -16559,8 +16559,8 @@ var NearWalletAdapterWidget = (() => {
           super("Contract method calls expect named arguments wrapped in object, e.g. { argName1: argValue1, argName2: argValue2 }");
         }
       };
-      exports2.PositionalArgsError = PositionalArgsError2;
-      var ArgumentTypeError2 = class extends Error {
+      exports2.PositionalArgsError = PositionalArgsError;
+      var ArgumentTypeError = class extends Error {
         static {
           __name(this, "ArgumentTypeError");
         }
@@ -16568,8 +16568,8 @@ var NearWalletAdapterWidget = (() => {
           super(`Expected ${argType} for '${argName}' argument, but got '${JSON.stringify(argValue)}'`);
         }
       };
-      exports2.ArgumentTypeError = ArgumentTypeError2;
-      var TypedError2 = class extends Error {
+      exports2.ArgumentTypeError = ArgumentTypeError;
+      var TypedError = class extends Error {
         static {
           __name(this, "TypedError");
         }
@@ -16581,8 +16581,8 @@ var NearWalletAdapterWidget = (() => {
           this.context = context;
         }
       };
-      exports2.TypedError = TypedError2;
-      var ErrorContext2 = class {
+      exports2.TypedError = TypedError;
+      var ErrorContext = class {
         static {
           __name(this, "ErrorContext");
         }
@@ -16591,7 +16591,7 @@ var NearWalletAdapterWidget = (() => {
           this.transactionHash = transactionHash;
         }
       };
-      exports2.ErrorContext = ErrorContext2;
+      exports2.ErrorContext = ErrorContext;
     }
   });
 
@@ -16601,11 +16601,11 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.IdType = void 0;
-      var IdType2;
-      (function(IdType3) {
-        IdType3["Transaction"] = "transaction";
-        IdType3["Receipt"] = "receipt";
-      })(IdType2 || (exports2.IdType = IdType2 = {}));
+      var IdType;
+      (function(IdType2) {
+        IdType2["Transaction"] = "transaction";
+        IdType2["Receipt"] = "receipt";
+      })(IdType || (exports2.IdType = IdType = {}));
     }
   });
 
@@ -16615,18 +16615,18 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.FinalExecutionStatusBasic = exports2.ExecutionStatusBasic = void 0;
-      var ExecutionStatusBasic2;
-      (function(ExecutionStatusBasic3) {
-        ExecutionStatusBasic3["Unknown"] = "Unknown";
-        ExecutionStatusBasic3["Pending"] = "Pending";
-        ExecutionStatusBasic3["Failure"] = "Failure";
-      })(ExecutionStatusBasic2 || (exports2.ExecutionStatusBasic = ExecutionStatusBasic2 = {}));
-      var FinalExecutionStatusBasic2;
-      (function(FinalExecutionStatusBasic3) {
-        FinalExecutionStatusBasic3["NotStarted"] = "NotStarted";
-        FinalExecutionStatusBasic3["Started"] = "Started";
-        FinalExecutionStatusBasic3["Failure"] = "Failure";
-      })(FinalExecutionStatusBasic2 || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic2 = {}));
+      var ExecutionStatusBasic;
+      (function(ExecutionStatusBasic2) {
+        ExecutionStatusBasic2["Unknown"] = "Unknown";
+        ExecutionStatusBasic2["Pending"] = "Pending";
+        ExecutionStatusBasic2["Failure"] = "Failure";
+      })(ExecutionStatusBasic || (exports2.ExecutionStatusBasic = ExecutionStatusBasic = {}));
+      var FinalExecutionStatusBasic;
+      (function(FinalExecutionStatusBasic2) {
+        FinalExecutionStatusBasic2["NotStarted"] = "NotStarted";
+        FinalExecutionStatusBasic2["Started"] = "Started";
+        FinalExecutionStatusBasic2["Failure"] = "Failure";
+      })(FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic = {}));
     }
   });
 
@@ -16685,7 +16685,7 @@ var NearWalletAdapterWidget = (() => {
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Action = exports2.SignedDelegate = exports2.DeleteAccount = exports2.DeleteKey = exports2.AddKey = exports2.Stake = exports2.Transfer = exports2.FunctionCall = exports2.DeployContract = exports2.CreateAccount = exports2.AccessKey = exports2.AccessKeyPermission = exports2.FullAccessPermission = exports2.FunctionCallPermission = void 0;
       var types_1 = require_commonjs6();
-      var FunctionCallPermission2 = class {
+      var FunctionCallPermission = class {
         static {
           __name(this, "FunctionCallPermission");
         }
@@ -16698,14 +16698,14 @@ var NearWalletAdapterWidget = (() => {
           this.methodNames = methodNames;
         }
       };
-      exports2.FunctionCallPermission = FunctionCallPermission2;
-      var FullAccessPermission2 = class {
+      exports2.FunctionCallPermission = FunctionCallPermission;
+      var FullAccessPermission = class {
         static {
           __name(this, "FullAccessPermission");
         }
       };
-      exports2.FullAccessPermission = FullAccessPermission2;
-      var AccessKeyPermission2 = class extends types_1.Enum {
+      exports2.FullAccessPermission = FullAccessPermission;
+      var AccessKeyPermission = class extends types_1.Enum {
         static {
           __name(this, "AccessKeyPermission");
         }
@@ -16720,8 +16720,8 @@ var NearWalletAdapterWidget = (() => {
           }
         }
       };
-      exports2.AccessKeyPermission = AccessKeyPermission2;
-      var AccessKey2 = class {
+      exports2.AccessKeyPermission = AccessKeyPermission;
+      var AccessKey = class {
         static {
           __name(this, "AccessKey");
         }
@@ -16732,14 +16732,14 @@ var NearWalletAdapterWidget = (() => {
           this.permission = permission;
         }
       };
-      exports2.AccessKey = AccessKey2;
-      var CreateAccount2 = class {
+      exports2.AccessKey = AccessKey;
+      var CreateAccount = class {
         static {
           __name(this, "CreateAccount");
         }
       };
-      exports2.CreateAccount = CreateAccount2;
-      var DeployContract2 = class {
+      exports2.CreateAccount = CreateAccount;
+      var DeployContract = class {
         static {
           __name(this, "DeployContract");
         }
@@ -16748,8 +16748,8 @@ var NearWalletAdapterWidget = (() => {
           this.code = code;
         }
       };
-      exports2.DeployContract = DeployContract2;
-      var FunctionCall2 = class {
+      exports2.DeployContract = DeployContract;
+      var FunctionCall = class {
         static {
           __name(this, "FunctionCall");
         }
@@ -16764,8 +16764,8 @@ var NearWalletAdapterWidget = (() => {
           this.deposit = deposit;
         }
       };
-      exports2.FunctionCall = FunctionCall2;
-      var Transfer2 = class {
+      exports2.FunctionCall = FunctionCall;
+      var Transfer = class {
         static {
           __name(this, "Transfer");
         }
@@ -16774,20 +16774,20 @@ var NearWalletAdapterWidget = (() => {
           this.deposit = deposit;
         }
       };
-      exports2.Transfer = Transfer2;
-      var Stake2 = class {
+      exports2.Transfer = Transfer;
+      var Stake = class {
         static {
           __name(this, "Stake");
         }
         stake;
         publicKey;
-        constructor({ stake: stake4, publicKey }) {
-          this.stake = stake4;
+        constructor({ stake, publicKey }) {
+          this.stake = stake;
           this.publicKey = publicKey;
         }
       };
-      exports2.Stake = Stake2;
-      var AddKey2 = class {
+      exports2.Stake = Stake;
+      var AddKey = class {
         static {
           __name(this, "AddKey");
         }
@@ -16798,8 +16798,8 @@ var NearWalletAdapterWidget = (() => {
           this.accessKey = accessKey;
         }
       };
-      exports2.AddKey = AddKey2;
-      var DeleteKey2 = class {
+      exports2.AddKey = AddKey;
+      var DeleteKey = class {
         static {
           __name(this, "DeleteKey");
         }
@@ -16808,8 +16808,8 @@ var NearWalletAdapterWidget = (() => {
           this.publicKey = publicKey;
         }
       };
-      exports2.DeleteKey = DeleteKey2;
-      var DeleteAccount2 = class {
+      exports2.DeleteKey = DeleteKey;
+      var DeleteAccount = class {
         static {
           __name(this, "DeleteAccount");
         }
@@ -16818,8 +16818,8 @@ var NearWalletAdapterWidget = (() => {
           this.beneficiaryId = beneficiaryId;
         }
       };
-      exports2.DeleteAccount = DeleteAccount2;
-      var SignedDelegate2 = class {
+      exports2.DeleteAccount = DeleteAccount;
+      var SignedDelegate = class {
         static {
           __name(this, "SignedDelegate");
         }
@@ -16830,8 +16830,8 @@ var NearWalletAdapterWidget = (() => {
           this.signature = signature;
         }
       };
-      exports2.SignedDelegate = SignedDelegate2;
-      var Action2 = class extends types_1.Enum {
+      exports2.SignedDelegate = SignedDelegate;
+      var Action = class extends types_1.Enum {
         static {
           __name(this, "Action");
         }
@@ -16853,7 +16853,7 @@ var NearWalletAdapterWidget = (() => {
           }
         }
       };
-      exports2.Action = Action2;
+      exports2.Action = Action;
     }
   });
 
@@ -16864,7 +16864,7 @@ var NearWalletAdapterWidget = (() => {
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.actionCreators = exports2.stringifyJsonOrBytes = void 0;
       var actions_1 = require_actions();
-      function fullAccessKey4() {
+      function fullAccessKey() {
         return new actions_1.AccessKey({
           nonce: 0n,
           permission: new actions_1.AccessKeyPermission({
@@ -16872,8 +16872,8 @@ var NearWalletAdapterWidget = (() => {
           })
         });
       }
-      __name(fullAccessKey4, "fullAccessKey");
-      function functionCallAccessKey4(receiverId, methodNames, allowance) {
+      __name(fullAccessKey, "fullAccessKey");
+      function functionCallAccessKey(receiverId, methodNames, allowance) {
         return new actions_1.AccessKey({
           nonce: 0n,
           permission: new actions_1.AccessKeyPermission({
@@ -16885,22 +16885,22 @@ var NearWalletAdapterWidget = (() => {
           })
         });
       }
-      __name(functionCallAccessKey4, "functionCallAccessKey");
-      function createAccount4() {
+      __name(functionCallAccessKey, "functionCallAccessKey");
+      function createAccount() {
         return new actions_1.Action({ createAccount: new actions_1.CreateAccount() });
       }
-      __name(createAccount4, "createAccount");
-      function deployContract6(code) {
+      __name(createAccount, "createAccount");
+      function deployContract(code) {
         return new actions_1.Action({ deployContract: new actions_1.DeployContract({ code }) });
       }
-      __name(deployContract6, "deployContract");
-      function stringifyJsonOrBytes2(args2) {
+      __name(deployContract, "deployContract");
+      function stringifyJsonOrBytes(args2) {
         const isUint8Array = args2.byteLength !== void 0 && args2.byteLength === args2.length;
         return isUint8Array ? args2 : Buffer.from(JSON.stringify(args2));
       }
-      __name(stringifyJsonOrBytes2, "stringifyJsonOrBytes");
-      exports2.stringifyJsonOrBytes = stringifyJsonOrBytes2;
-      function functionCall6(methodName, args2, gas = 0n, deposit = 0n, stringify = stringifyJsonOrBytes2, jsContract = false) {
+      __name(stringifyJsonOrBytes, "stringifyJsonOrBytes");
+      exports2.stringifyJsonOrBytes = stringifyJsonOrBytes;
+      function functionCall(methodName, args2, gas = 0n, deposit = 0n, stringify2 = stringifyJsonOrBytes, jsContract = false) {
         if (jsContract) {
           return new actions_1.Action({
             functionCall: new actions_1.FunctionCall({ methodName, args: args2, gas, deposit })
@@ -16909,51 +16909,51 @@ var NearWalletAdapterWidget = (() => {
         return new actions_1.Action({
           functionCall: new actions_1.FunctionCall({
             methodName,
-            args: stringify(args2),
+            args: stringify2(args2),
             gas,
             deposit
           })
         });
       }
-      __name(functionCall6, "functionCall");
-      function transfer4(deposit = 0n) {
+      __name(functionCall, "functionCall");
+      function transfer(deposit = 0n) {
         return new actions_1.Action({ transfer: new actions_1.Transfer({ deposit }) });
       }
-      __name(transfer4, "transfer");
-      function stake4(stake5 = 0n, publicKey) {
-        return new actions_1.Action({ stake: new actions_1.Stake({ stake: stake5, publicKey }) });
+      __name(transfer, "transfer");
+      function stake(stake2 = 0n, publicKey) {
+        return new actions_1.Action({ stake: new actions_1.Stake({ stake: stake2, publicKey }) });
       }
-      __name(stake4, "stake");
-      function addKey5(publicKey, accessKey) {
+      __name(stake, "stake");
+      function addKey(publicKey, accessKey) {
         return new actions_1.Action({ addKey: new actions_1.AddKey({ publicKey, accessKey }) });
       }
-      __name(addKey5, "addKey");
-      function deleteKey5(publicKey) {
+      __name(addKey, "addKey");
+      function deleteKey(publicKey) {
         return new actions_1.Action({ deleteKey: new actions_1.DeleteKey({ publicKey }) });
       }
-      __name(deleteKey5, "deleteKey");
-      function deleteAccount4(beneficiaryId) {
+      __name(deleteKey, "deleteKey");
+      function deleteAccount(beneficiaryId) {
         return new actions_1.Action({ deleteAccount: new actions_1.DeleteAccount({ beneficiaryId }) });
       }
-      __name(deleteAccount4, "deleteAccount");
-      function signedDelegate2({ delegateAction, signature }) {
+      __name(deleteAccount, "deleteAccount");
+      function signedDelegate({ delegateAction, signature }) {
         return new actions_1.Action({
           signedDelegate: new actions_1.SignedDelegate({ delegateAction, signature })
         });
       }
-      __name(signedDelegate2, "signedDelegate");
+      __name(signedDelegate, "signedDelegate");
       exports2.actionCreators = {
-        addKey: addKey5,
-        createAccount: createAccount4,
-        deleteAccount: deleteAccount4,
-        deleteKey: deleteKey5,
-        deployContract: deployContract6,
-        fullAccessKey: fullAccessKey4,
-        functionCall: functionCall6,
-        functionCallAccessKey: functionCallAccessKey4,
-        signedDelegate: signedDelegate2,
-        stake: stake4,
-        transfer: transfer4
+        addKey,
+        createAccount,
+        deleteAccount,
+        deleteKey,
+        deployContract,
+        fullAccessKey,
+        functionCall,
+        functionCallAccessKey,
+        signedDelegate,
+        stake,
+        transfer
       };
     }
   });
@@ -17222,13 +17222,13 @@ var NearWalletAdapterWidget = (() => {
       } : function(o, v) {
         o["default"] = v;
       });
-      var __importStar = exports2 && exports2.__importStar || function(mod2) {
-        if (mod2 && mod2.__esModule) return mod2;
+      var __importStar = exports2 && exports2.__importStar || function(mod) {
+        if (mod && mod.__esModule) return mod;
         var result = {};
-        if (mod2 != null) {
-          for (var k in mod2) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k)) __createBinding(result, mod2, k);
+        if (mod != null) {
+          for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
         }
-        __setModuleDefault(result, mod2);
+        __setModuleDefault(result, mod);
         return result;
       };
       exports2.__esModule = true;
@@ -17567,13 +17567,13 @@ var NearWalletAdapterWidget = (() => {
       } : function(o, v) {
         o["default"] = v;
       });
-      var __importStar = exports2 && exports2.__importStar || function(mod2) {
-        if (mod2 && mod2.__esModule) return mod2;
+      var __importStar = exports2 && exports2.__importStar || function(mod) {
+        if (mod && mod.__esModule) return mod;
         var result = {};
-        if (mod2 != null) {
-          for (var k in mod2) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k)) __createBinding(result, mod2, k);
+        if (mod != null) {
+          for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
         }
-        __setModuleDefault(result, mod2);
+        __setModuleDefault(result, mod);
         return result;
       };
       exports2.__esModule = true;
@@ -17592,7 +17592,7 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(serialize2, "serialize");
       exports2.serialize = serialize2;
-      function deserialize2(schema, buffer, validate) {
+      function deserialize(schema, buffer, validate) {
         if (validate === void 0) {
           validate = true;
         }
@@ -17601,8 +17601,8 @@ var NearWalletAdapterWidget = (() => {
         var deserializer = new deserialize_js_1.BorshDeserializer(buffer);
         return deserializer.decode(schema);
       }
-      __name(deserialize2, "deserialize");
-      exports2.deserialize = deserialize2;
+      __name(deserialize, "deserialize");
+      exports2.deserialize = deserialize;
     }
   });
 
@@ -17654,36 +17654,36 @@ var NearWalletAdapterWidget = (() => {
       exports2.SCHEMA = exports2.SignedTransaction = exports2.Transaction = exports2.decodeSignedTransaction = exports2.decodeTransaction = exports2.encodeTransaction = exports2.encodeSignedDelegate = exports2.encodeDelegateAction = void 0;
       var borsh_1 = require_cjs();
       var prefix_1 = require_prefix();
-      function encodeDelegateAction2(delegateAction) {
+      function encodeDelegateAction(delegateAction) {
         return new Uint8Array([
           ...(0, borsh_1.serialize)(exports2.SCHEMA.DelegateActionPrefix, new prefix_1.DelegateActionPrefix()),
           ...(0, borsh_1.serialize)(exports2.SCHEMA.DelegateAction, delegateAction)
         ]);
       }
-      __name(encodeDelegateAction2, "encodeDelegateAction");
-      exports2.encodeDelegateAction = encodeDelegateAction2;
-      function encodeSignedDelegate2(signedDelegate2) {
-        return (0, borsh_1.serialize)(exports2.SCHEMA.SignedDelegate, signedDelegate2);
+      __name(encodeDelegateAction, "encodeDelegateAction");
+      exports2.encodeDelegateAction = encodeDelegateAction;
+      function encodeSignedDelegate(signedDelegate) {
+        return (0, borsh_1.serialize)(exports2.SCHEMA.SignedDelegate, signedDelegate);
       }
-      __name(encodeSignedDelegate2, "encodeSignedDelegate");
-      exports2.encodeSignedDelegate = encodeSignedDelegate2;
-      function encodeTransaction2(transaction) {
-        const schema = transaction instanceof SignedTransaction2 ? exports2.SCHEMA.SignedTransaction : exports2.SCHEMA.Transaction;
+      __name(encodeSignedDelegate, "encodeSignedDelegate");
+      exports2.encodeSignedDelegate = encodeSignedDelegate;
+      function encodeTransaction(transaction) {
+        const schema = transaction instanceof SignedTransaction ? exports2.SCHEMA.SignedTransaction : exports2.SCHEMA.Transaction;
         return (0, borsh_1.serialize)(schema, transaction);
       }
-      __name(encodeTransaction2, "encodeTransaction");
-      exports2.encodeTransaction = encodeTransaction2;
-      function decodeTransaction2(bytes) {
-        return new Transaction2((0, borsh_1.deserialize)(exports2.SCHEMA.Transaction, bytes));
+      __name(encodeTransaction, "encodeTransaction");
+      exports2.encodeTransaction = encodeTransaction;
+      function decodeTransaction(bytes) {
+        return new Transaction((0, borsh_1.deserialize)(exports2.SCHEMA.Transaction, bytes));
       }
-      __name(decodeTransaction2, "decodeTransaction");
-      exports2.decodeTransaction = decodeTransaction2;
-      function decodeSignedTransaction2(bytes) {
-        return new SignedTransaction2((0, borsh_1.deserialize)(exports2.SCHEMA.SignedTransaction, bytes));
+      __name(decodeTransaction, "decodeTransaction");
+      exports2.decodeTransaction = decodeTransaction;
+      function decodeSignedTransaction(bytes) {
+        return new SignedTransaction((0, borsh_1.deserialize)(exports2.SCHEMA.SignedTransaction, bytes));
       }
-      __name(decodeSignedTransaction2, "decodeSignedTransaction");
-      exports2.decodeSignedTransaction = decodeSignedTransaction2;
-      var Transaction2 = class {
+      __name(decodeSignedTransaction, "decodeSignedTransaction");
+      exports2.decodeSignedTransaction = decodeSignedTransaction;
+      var Transaction = class {
         static {
           __name(this, "Transaction");
         }
@@ -17702,14 +17702,14 @@ var NearWalletAdapterWidget = (() => {
           this.blockHash = blockHash;
         }
         encode() {
-          return encodeTransaction2(this);
+          return encodeTransaction(this);
         }
         static decode(bytes) {
-          return decodeTransaction2(bytes);
+          return decodeTransaction(bytes);
         }
       };
-      exports2.Transaction = Transaction2;
-      var SignedTransaction2 = class {
+      exports2.Transaction = Transaction;
+      var SignedTransaction = class {
         static {
           __name(this, "SignedTransaction");
         }
@@ -17720,13 +17720,13 @@ var NearWalletAdapterWidget = (() => {
           this.signature = signature;
         }
         encode() {
-          return encodeTransaction2(this);
+          return encodeTransaction(this);
         }
         static decode(bytes) {
-          return decodeSignedTransaction2(bytes);
+          return decodeSignedTransaction(bytes);
         }
       };
-      exports2.SignedTransaction = SignedTransaction2;
+      exports2.SignedTransaction = SignedTransaction;
       exports2.SCHEMA = new class BorshSchema {
         static {
           __name(this, "BorshSchema");
@@ -17901,7 +17901,7 @@ var NearWalletAdapterWidget = (() => {
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.createTransaction = void 0;
       var schema_1 = require_schema();
-      function createTransaction2(signerId, publicKey, receiverId, nonce, actions, blockHash) {
+      function createTransaction(signerId, publicKey, receiverId, nonce, actions, blockHash) {
         const txNonce = typeof nonce === "bigint" ? nonce : BigInt(nonce);
         return new schema_1.Transaction({
           signerId,
@@ -17912,8 +17912,8 @@ var NearWalletAdapterWidget = (() => {
           blockHash
         });
       }
-      __name(createTransaction2, "createTransaction");
-      exports2.createTransaction = createTransaction2;
+      __name(createTransaction, "createTransaction");
+      exports2.createTransaction = createTransaction;
     }
   });
 
@@ -17924,8 +17924,8 @@ var NearWalletAdapterWidget = (() => {
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.buildDelegateAction = exports2.DelegateAction = void 0;
       var action_creators_1 = require_action_creators();
-      var { addKey: addKey5, createAccount: createAccount4, deleteAccount: deleteAccount4, deleteKey: deleteKey5, deployContract: deployContract6, functionCall: functionCall6, stake: stake4, transfer: transfer4 } = action_creators_1.actionCreators;
-      var DelegateAction2 = class {
+      var { addKey, createAccount, deleteAccount, deleteKey, deployContract, functionCall, stake, transfer } = action_creators_1.actionCreators;
+      var DelegateAction = class {
         static {
           __name(this, "DelegateAction");
         }
@@ -17944,9 +17944,9 @@ var NearWalletAdapterWidget = (() => {
           this.publicKey = publicKey;
         }
       };
-      exports2.DelegateAction = DelegateAction2;
-      function buildDelegateAction2({ actions, maxBlockHeight, nonce, publicKey, receiverId, senderId }) {
-        return new DelegateAction2({
+      exports2.DelegateAction = DelegateAction;
+      function buildDelegateAction({ actions, maxBlockHeight, nonce, publicKey, receiverId, senderId }) {
+        return new DelegateAction({
           senderId,
           receiverId,
           actions: actions.map((a) => {
@@ -17956,30 +17956,30 @@ var NearWalletAdapterWidget = (() => {
             switch (a.type) {
               case "AddKey": {
                 const { publicKey: publicKey2, accessKey } = a.params;
-                return addKey5(publicKey2, accessKey);
+                return addKey(publicKey2, accessKey);
               }
               case "CreateAccount": {
-                return createAccount4(a.params.createAccount);
+                return createAccount(a.params.createAccount);
               }
               case "DeleteAccount": {
-                return deleteAccount4(a.params.deleteAccount);
+                return deleteAccount(a.params.deleteAccount);
               }
               case "DeleteKey": {
-                return deleteKey5(a.params.publicKey);
+                return deleteKey(a.params.publicKey);
               }
               case "DeployContract": {
-                return deployContract6(a.params.code);
+                return deployContract(a.params.code);
               }
               case "FunctionCall": {
                 const { methodName, args: args2, gas, deposit } = a.params;
-                return functionCall6(methodName, args2, gas, deposit);
+                return functionCall(methodName, args2, gas, deposit);
               }
               case "Stake": {
-                return stake4(a.params.stake, a.params.publicKey);
+                return stake(a.params.stake, a.params.publicKey);
               }
               case "Transfer": {
                 const { deposit } = a.params;
-                return transfer4(deposit);
+                return transfer(deposit);
               }
             }
             throw new Error("Unrecognized action");
@@ -17989,8 +17989,8 @@ var NearWalletAdapterWidget = (() => {
           publicKey
         });
       }
-      __name(buildDelegateAction2, "buildDelegateAction");
-      exports2.buildDelegateAction = buildDelegateAction2;
+      __name(buildDelegateAction, "buildDelegateAction");
+      exports2.buildDelegateAction = buildDelegateAction;
     }
   });
 
@@ -18012,12 +18012,12 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(bool, "bool");
       exports2.bool = bool;
-      function isBytes4(a) {
+      function isBytes(a) {
         return a instanceof Uint8Array || a != null && typeof a === "object" && a.constructor.name === "Uint8Array";
       }
-      __name(isBytes4, "isBytes");
+      __name(isBytes, "isBytes");
       function bytes(b, ...lengths) {
-        if (!isBytes4(b))
+        if (!isBytes(b))
           throw new Error("Expected Uint8Array");
         if (lengths.length > 0 && !lengths.includes(b.length))
           throw new Error(`Expected Uint8Array of length ${lengths}, not of length=${b.length}`);
@@ -18060,8 +18060,8 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.crypto = void 0;
-      var nc2 = __require("node:crypto");
-      exports2.crypto = nc2 && typeof nc2 === "object" && "webcrypto" in nc2 ? nc2.webcrypto : void 0;
+      var nc = __require("node:crypto");
+      exports2.crypto = nc && typeof nc === "object" && "webcrypto" in nc ? nc.webcrypto : void 0;
     }
   });
 
@@ -18076,41 +18076,41 @@ var NearWalletAdapterWidget = (() => {
       exports2.u8 = u8;
       var u32 = /* @__PURE__ */ __name((arr) => new Uint32Array(arr.buffer, arr.byteOffset, Math.floor(arr.byteLength / 4)), "u32");
       exports2.u32 = u32;
-      function isBytes4(a) {
+      function isBytes(a) {
         return a instanceof Uint8Array || a != null && typeof a === "object" && a.constructor.name === "Uint8Array";
       }
-      __name(isBytes4, "isBytes");
-      var createView3 = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
-      exports2.createView = createView3;
-      var rotr2 = /* @__PURE__ */ __name((word, shift) => word << 32 - shift | word >>> shift, "rotr");
-      exports2.rotr = rotr2;
+      __name(isBytes, "isBytes");
+      var createView = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
+      exports2.createView = createView;
+      var rotr = /* @__PURE__ */ __name((word, shift) => word << 32 - shift | word >>> shift, "rotr");
+      exports2.rotr = rotr;
       exports2.isLE = new Uint8Array(new Uint32Array([287454020]).buffer)[0] === 68;
       if (!exports2.isLE)
         throw new Error("Non little-endian hardware is not supported");
-      var hexes2 = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
-      function bytesToHex2(bytes) {
-        if (!isBytes4(bytes))
+      var hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
+      function bytesToHex(bytes) {
+        if (!isBytes(bytes))
           throw new Error("Uint8Array expected");
         let hex = "";
         for (let i = 0; i < bytes.length; i++) {
-          hex += hexes2[bytes[i]];
+          hex += hexes[bytes[i]];
         }
         return hex;
       }
-      __name(bytesToHex2, "bytesToHex");
-      exports2.bytesToHex = bytesToHex2;
-      var asciis2 = { _0: 48, _9: 57, _A: 65, _F: 70, _a: 97, _f: 102 };
-      function asciiToBase162(char) {
-        if (char >= asciis2._0 && char <= asciis2._9)
-          return char - asciis2._0;
-        if (char >= asciis2._A && char <= asciis2._F)
-          return char - (asciis2._A - 10);
-        if (char >= asciis2._a && char <= asciis2._f)
-          return char - (asciis2._a - 10);
+      __name(bytesToHex, "bytesToHex");
+      exports2.bytesToHex = bytesToHex;
+      var asciis = { _0: 48, _9: 57, _A: 65, _F: 70, _a: 97, _f: 102 };
+      function asciiToBase16(char) {
+        if (char >= asciis._0 && char <= asciis._9)
+          return char - asciis._0;
+        if (char >= asciis._A && char <= asciis._F)
+          return char - (asciis._A - 10);
+        if (char >= asciis._a && char <= asciis._f)
+          return char - (asciis._a - 10);
         return;
       }
-      __name(asciiToBase162, "asciiToBase16");
-      function hexToBytes2(hex) {
+      __name(asciiToBase16, "asciiToBase16");
+      function hexToBytes(hex) {
         if (typeof hex !== "string")
           throw new Error("hex string expected, got " + typeof hex);
         const hl = hex.length;
@@ -18119,8 +18119,8 @@ var NearWalletAdapterWidget = (() => {
           throw new Error("padded hex string expected, got unpadded hex of length " + hl);
         const array = new Uint8Array(al);
         for (let ai = 0, hi = 0; ai < al; ai++, hi += 2) {
-          const n1 = asciiToBase162(hex.charCodeAt(hi));
-          const n2 = asciiToBase162(hex.charCodeAt(hi + 1));
+          const n1 = asciiToBase16(hex.charCodeAt(hi));
+          const n2 = asciiToBase16(hex.charCodeAt(hi + 1));
           if (n1 === void 0 || n2 === void 0) {
             const char = hex[hi] + hex[hi + 1];
             throw new Error('hex string expected, got non-hex character "' + char + '" at index ' + hi);
@@ -18129,8 +18129,8 @@ var NearWalletAdapterWidget = (() => {
         }
         return array;
       }
-      __name(hexToBytes2, "hexToBytes");
-      exports2.hexToBytes = hexToBytes2;
+      __name(hexToBytes, "hexToBytes");
+      exports2.hexToBytes = hexToBytes;
       var nextTick = /* @__PURE__ */ __name(async () => {
       }, "nextTick");
       exports2.nextTick = nextTick;
@@ -18147,27 +18147,27 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(asyncLoop, "asyncLoop");
       exports2.asyncLoop = asyncLoop;
-      function utf8ToBytes3(str) {
+      function utf8ToBytes(str) {
         if (typeof str !== "string")
           throw new Error(`utf8ToBytes expected string, got ${typeof str}`);
         return new Uint8Array(new TextEncoder().encode(str));
       }
-      __name(utf8ToBytes3, "utf8ToBytes");
-      exports2.utf8ToBytes = utf8ToBytes3;
-      function toBytes3(data) {
+      __name(utf8ToBytes, "utf8ToBytes");
+      exports2.utf8ToBytes = utf8ToBytes;
+      function toBytes(data) {
         if (typeof data === "string")
-          data = utf8ToBytes3(data);
-        if (!isBytes4(data))
+          data = utf8ToBytes(data);
+        if (!isBytes(data))
           throw new Error(`expected Uint8Array, got ${typeof data}`);
         return data;
       }
-      __name(toBytes3, "toBytes");
-      exports2.toBytes = toBytes3;
-      function concatBytes3(...arrays) {
+      __name(toBytes, "toBytes");
+      exports2.toBytes = toBytes;
+      function concatBytes(...arrays) {
         let sum = 0;
         for (let i = 0; i < arrays.length; i++) {
           const a = arrays[i];
-          if (!isBytes4(a))
+          if (!isBytes(a))
             throw new Error("Uint8Array expected");
           sum += a.length;
         }
@@ -18179,9 +18179,9 @@ var NearWalletAdapterWidget = (() => {
         }
         return res;
       }
-      __name(concatBytes3, "concatBytes");
-      exports2.concatBytes = concatBytes3;
-      var Hash3 = class {
+      __name(concatBytes, "concatBytes");
+      exports2.concatBytes = concatBytes;
+      var Hash = class {
         static {
           __name(this, "Hash");
         }
@@ -18190,7 +18190,7 @@ var NearWalletAdapterWidget = (() => {
           return this._cloneInto();
         }
       };
-      exports2.Hash = Hash3;
+      exports2.Hash = Hash;
       var toStr = {}.toString;
       function checkOpts(defaults, opts) {
         if (opts !== void 0 && toStr.call(opts) !== "[object Object]")
@@ -18200,18 +18200,18 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(checkOpts, "checkOpts");
       exports2.checkOpts = checkOpts;
-      function wrapConstructor3(hashCons) {
-        const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes3(msg)).digest(), "hashC");
+      function wrapConstructor(hashCons) {
+        const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes(msg)).digest(), "hashC");
         const tmp = hashCons();
         hashC.outputLen = tmp.outputLen;
         hashC.blockLen = tmp.blockLen;
         hashC.create = () => hashCons();
         return hashC;
       }
-      __name(wrapConstructor3, "wrapConstructor");
-      exports2.wrapConstructor = wrapConstructor3;
+      __name(wrapConstructor, "wrapConstructor");
+      exports2.wrapConstructor = wrapConstructor;
       function wrapConstructorWithOpts(hashCons) {
-        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes3(msg)).digest(), "hashC");
+        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes(msg)).digest(), "hashC");
         const tmp = hashCons({});
         hashC.outputLen = tmp.outputLen;
         hashC.blockLen = tmp.blockLen;
@@ -18221,7 +18221,7 @@ var NearWalletAdapterWidget = (() => {
       __name(wrapConstructorWithOpts, "wrapConstructorWithOpts");
       exports2.wrapConstructorWithOpts = wrapConstructorWithOpts;
       function wrapXOFConstructorWithOpts(hashCons) {
-        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes3(msg)).digest(), "hashC");
+        const hashC = /* @__PURE__ */ __name((msg, opts) => hashCons(opts).update(toBytes(msg)).digest(), "hashC");
         const tmp = hashCons({});
         hashC.outputLen = tmp.outputLen;
         hashC.blockLen = tmp.blockLen;
@@ -18230,14 +18230,14 @@ var NearWalletAdapterWidget = (() => {
       }
       __name(wrapXOFConstructorWithOpts, "wrapXOFConstructorWithOpts");
       exports2.wrapXOFConstructorWithOpts = wrapXOFConstructorWithOpts;
-      function randomBytes2(bytesLength = 32) {
+      function randomBytes(bytesLength = 32) {
         if (crypto_1.crypto && typeof crypto_1.crypto.getRandomValues === "function") {
           return crypto_1.crypto.getRandomValues(new Uint8Array(bytesLength));
         }
         throw new Error("crypto.getRandomValues must be defined");
       }
-      __name(randomBytes2, "randomBytes");
-      exports2.randomBytes = randomBytes2;
+      __name(randomBytes, "randomBytes");
+      exports2.randomBytes = randomBytes;
     }
   });
 
@@ -18249,19 +18249,19 @@ var NearWalletAdapterWidget = (() => {
       exports2.SHA2 = void 0;
       var _assert_js_1 = require_assert2();
       var utils_js_1 = require_utils9();
-      function setBigUint643(view, byteOffset, value, isLE) {
+      function setBigUint64(view, byteOffset, value, isLE) {
         if (typeof view.setBigUint64 === "function")
           return view.setBigUint64(byteOffset, value, isLE);
-        const _32n2 = BigInt(32);
+        const _32n = BigInt(32);
         const _u32_max = BigInt(4294967295);
-        const wh = Number(value >> _32n2 & _u32_max);
+        const wh = Number(value >> _32n & _u32_max);
         const wl = Number(value & _u32_max);
         const h = isLE ? 4 : 0;
         const l = isLE ? 0 : 4;
         view.setUint32(byteOffset + h, wh, isLE);
         view.setUint32(byteOffset + l, wl, isLE);
       }
-      __name(setBigUint643, "setBigUint64");
+      __name(setBigUint64, "setBigUint64");
       var SHA2 = class extends utils_js_1.Hash {
         static {
           __name(this, "SHA2");
@@ -18318,7 +18318,7 @@ var NearWalletAdapterWidget = (() => {
           }
           for (let i = pos; i < blockLen; i++)
             buffer[i] = 0;
-          setBigUint643(view, blockLen - 8, BigInt(this.length * 8), isLE);
+          setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE);
           this.process(view, 0);
           const oview = (0, utils_js_1.createView)(out);
           const len = this.outputLen;
@@ -18363,9 +18363,9 @@ var NearWalletAdapterWidget = (() => {
       exports2.sha224 = exports2.sha256 = void 0;
       var _sha2_js_1 = require_sha22();
       var utils_js_1 = require_utils9();
-      var Chi2 = /* @__PURE__ */ __name((a, b, c) => a & b ^ ~a & c, "Chi");
-      var Maj2 = /* @__PURE__ */ __name((a, b, c) => a & b ^ a & c ^ b & c, "Maj");
-      var SHA256_K2 = /* @__PURE__ */ new Uint32Array([
+      var Chi = /* @__PURE__ */ __name((a, b, c) => a & b ^ ~a & c, "Chi");
+      var Maj = /* @__PURE__ */ __name((a, b, c) => a & b ^ a & c ^ b & c, "Maj");
+      var SHA256_K = /* @__PURE__ */ new Uint32Array([
         1116352408,
         1899447441,
         3049323471,
@@ -18441,8 +18441,8 @@ var NearWalletAdapterWidget = (() => {
         528734635,
         1541459225
       ]);
-      var SHA256_W2 = /* @__PURE__ */ new Uint32Array(64);
-      var SHA2562 = class extends _sha2_js_1.SHA2 {
+      var SHA256_W = /* @__PURE__ */ new Uint32Array(64);
+      var SHA256 = class extends _sha2_js_1.SHA2 {
         static {
           __name(this, "SHA256");
         }
@@ -18474,20 +18474,20 @@ var NearWalletAdapterWidget = (() => {
         }
         process(view, offset) {
           for (let i = 0; i < 16; i++, offset += 4)
-            SHA256_W2[i] = view.getUint32(offset, false);
+            SHA256_W[i] = view.getUint32(offset, false);
           for (let i = 16; i < 64; i++) {
-            const W15 = SHA256_W2[i - 15];
-            const W2 = SHA256_W2[i - 2];
+            const W15 = SHA256_W[i - 15];
+            const W2 = SHA256_W[i - 2];
             const s0 = (0, utils_js_1.rotr)(W15, 7) ^ (0, utils_js_1.rotr)(W15, 18) ^ W15 >>> 3;
             const s1 = (0, utils_js_1.rotr)(W2, 17) ^ (0, utils_js_1.rotr)(W2, 19) ^ W2 >>> 10;
-            SHA256_W2[i] = s1 + SHA256_W2[i - 7] + s0 + SHA256_W2[i - 16] | 0;
+            SHA256_W[i] = s1 + SHA256_W[i - 7] + s0 + SHA256_W[i - 16] | 0;
           }
           let { A, B, C, D, E, F, G, H } = this;
           for (let i = 0; i < 64; i++) {
             const sigma1 = (0, utils_js_1.rotr)(E, 6) ^ (0, utils_js_1.rotr)(E, 11) ^ (0, utils_js_1.rotr)(E, 25);
-            const T1 = H + sigma1 + Chi2(E, F, G) + SHA256_K2[i] + SHA256_W2[i] | 0;
+            const T1 = H + sigma1 + Chi(E, F, G) + SHA256_K[i] + SHA256_W[i] | 0;
             const sigma0 = (0, utils_js_1.rotr)(A, 2) ^ (0, utils_js_1.rotr)(A, 13) ^ (0, utils_js_1.rotr)(A, 22);
-            const T2 = sigma0 + Maj2(A, B, C) | 0;
+            const T2 = sigma0 + Maj(A, B, C) | 0;
             H = G;
             G = F;
             F = E;
@@ -18508,14 +18508,14 @@ var NearWalletAdapterWidget = (() => {
           this.set(A, B, C, D, E, F, G, H);
         }
         roundClean() {
-          SHA256_W2.fill(0);
+          SHA256_W.fill(0);
         }
         destroy() {
           this.set(0, 0, 0, 0, 0, 0, 0, 0);
           this.buffer.fill(0);
         }
       };
-      var SHA224 = class extends SHA2562 {
+      var SHA224 = class extends SHA256 {
         static {
           __name(this, "SHA224");
         }
@@ -18532,7 +18532,7 @@ var NearWalletAdapterWidget = (() => {
           this.outputLen = 28;
         }
       };
-      exports2.sha256 = (0, utils_js_1.wrapConstructor)(() => new SHA2562());
+      exports2.sha256 = (0, utils_js_1.wrapConstructor)(() => new SHA256());
       exports2.sha224 = (0, utils_js_1.wrapConstructor)(() => new SHA224());
     }
   });
@@ -18545,7 +18545,7 @@ var NearWalletAdapterWidget = (() => {
       exports2.Signature = void 0;
       var crypto_1 = require_commonjs3();
       var types_1 = require_commonjs6();
-      function resolveEnumKeyName2(keyType) {
+      function resolveEnumKeyName(keyType) {
         switch (keyType) {
           case crypto_1.KeyType.ED25519: {
             return "ed25519Signature";
@@ -18558,7 +18558,7 @@ var NearWalletAdapterWidget = (() => {
           }
         }
       }
-      __name(resolveEnumKeyName2, "resolveEnumKeyName");
+      __name(resolveEnumKeyName, "resolveEnumKeyName");
       var Signature = class extends types_1.Enum {
         static {
           __name(this, "Signature");
@@ -18567,7 +18567,7 @@ var NearWalletAdapterWidget = (() => {
         ed25519Signature;
         secp256k1Signature;
         constructor(signature) {
-          const keyName = resolveEnumKeyName2(signature.keyType);
+          const keyName = resolveEnumKeyName(signature.keyType);
           super({ [keyName]: signature });
           this[keyName] = signature;
           this.enum = keyName;
@@ -18598,7 +18598,7 @@ var NearWalletAdapterWidget = (() => {
       var schema_1 = require_schema();
       var signature_1 = require_signature3();
       var crypto_1 = require_commonjs3();
-      async function signTransactionObject2(transaction, signer, accountId, networkId) {
+      async function signTransactionObject(transaction, signer, accountId, networkId) {
         const message2 = (0, schema_1.encodeTransaction)(transaction);
         const hash = new Uint8Array((0, sha256_1.sha256)(message2));
         const signature = await signer.signMessage(message2, accountId, networkId);
@@ -18609,21 +18609,21 @@ var NearWalletAdapterWidget = (() => {
         });
         return [hash, signedTx];
       }
-      __name(signTransactionObject2, "signTransactionObject");
-      async function signTransaction2(...args2) {
+      __name(signTransactionObject, "signTransactionObject");
+      async function signTransaction(...args2) {
         if (args2[0].constructor === schema_1.Transaction) {
           const [transaction, signer, accountId, networkId] = args2;
-          return signTransactionObject2(transaction, signer, accountId, networkId);
+          return signTransactionObject(transaction, signer, accountId, networkId);
         } else {
           const [receiverId, nonce, actions, blockHash, signer, accountId, networkId] = args2;
           const publicKey = await signer.getPublicKey(accountId, networkId);
           const transaction = (0, create_transaction_1.createTransaction)(accountId, publicKey, receiverId, nonce, actions, blockHash);
-          return signTransactionObject2(transaction, signer, accountId, networkId);
+          return signTransactionObject(transaction, signer, accountId, networkId);
         }
       }
-      __name(signTransaction2, "signTransaction");
-      exports2.signTransaction = signTransaction2;
-      async function signDelegateAction2({ delegateAction, signer }) {
+      __name(signTransaction, "signTransaction");
+      exports2.signTransaction = signTransaction;
+      async function signDelegateAction({ delegateAction, signer }) {
         const message2 = (0, schema_1.encodeDelegateAction)(delegateAction);
         const signature = await signer.sign(message2);
         const keyType = delegateAction.publicKey.ed25519Key ? crypto_1.KeyType.ED25519 : crypto_1.KeyType.SECP256K1;
@@ -18639,8 +18639,8 @@ var NearWalletAdapterWidget = (() => {
           signedDelegateAction
         };
       }
-      __name(signDelegateAction2, "signDelegateAction");
-      exports2.signDelegateAction = signDelegateAction2;
+      __name(signDelegateAction, "signDelegateAction");
+      exports2.signDelegateAction = signDelegateAction;
     }
   });
 
@@ -18681,12 +18681,12 @@ var NearWalletAdapterWidget = (() => {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Provider = void 0;
-      var Provider2 = class {
+      var Provider = class {
         static {
           __name(this, "Provider");
         }
       };
-      exports2.Provider = Provider2;
+      exports2.Provider = Provider;
     }
   });
 
@@ -18811,9 +18811,9 @@ var NearWalletAdapterWidget = (() => {
           Object.defineProperty(Delay2.prototype, "delay", {
             get: /* @__PURE__ */ __name(function() {
               var constant = this.options.startingDelay;
-              var base2 = this.options.timeMultiple;
+              var base = this.options.timeMultiple;
               var power = this.numOfDelayedAttempts;
-              var delay = constant * Math.pow(base2, power);
+              var delay = constant * Math.pow(base, power);
               return Math.min(delay, this.options.maxDelay);
             }, "get"),
             enumerable: true,
@@ -18855,14 +18855,14 @@ var NearWalletAdapterWidget = (() => {
           d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
         };
       }();
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -19062,14 +19062,14 @@ var NearWalletAdapterWidget = (() => {
   var require_backoff = __commonJS({
     "../../node_modules/exponential-backoff/dist/backoff.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -20096,10 +20096,10 @@ var NearWalletAdapterWidget = (() => {
         return /^[A-Za-z]:$/.test(string);
       }
       __name(isNormalizedWindowsDriveLetter, "isNormalizedWindowsDriveLetter");
-      function URLStateMachine(input, base2, encodingOverride, url, stateOverride) {
+      function URLStateMachine(input, base, encodingOverride, url, stateOverride) {
         this.pointer = 0;
         this.input = input;
-        this.base = base2 || null;
+        this.base = base || null;
         this.encodingOverride = encodingOverride || "utf-8";
         this.stateOverride = stateOverride;
         this.url = url;
@@ -20774,10 +20774,10 @@ var NearWalletAdapterWidget = (() => {
         }
         constructor(constructorArgs) {
           const url = constructorArgs[0];
-          const base2 = constructorArgs[1];
+          const base = constructorArgs[1];
           let parsedBase = null;
-          if (base2 !== void 0) {
-            parsedBase = usm.basicURLParse(base2);
+          if (base !== void 0) {
+            parsedBase = usm.basicURLParse(base);
             if (parsedBase === "failure") {
               throw new TypeError("Invalid base URL");
             }
@@ -24686,14 +24686,14 @@ var NearWalletAdapterWidget = (() => {
       iconv.encodings = null;
       iconv.defaultCharUnicode = "\uFFFD";
       iconv.defaultCharSingleByte = "?";
-      iconv.encode = /* @__PURE__ */ __name(function encode(str, encoding, options) {
+      iconv.encode = /* @__PURE__ */ __name(function encode2(str, encoding, options) {
         str = "" + (str || "");
         var encoder = iconv.getEncoder(encoding, options);
         var res = encoder.write(str);
         var trail = encoder.end();
         return trail && trail.length > 0 ? Buffer2.concat([res, trail]) : res;
       }, "encode");
-      iconv.decode = /* @__PURE__ */ __name(function decode(buf, encoding, options) {
+      iconv.decode = /* @__PURE__ */ __name(function decode2(buf, encoding, options) {
         if (typeof buf === "string") {
           if (!iconv.skipDecodeWarning) {
             console.error("Iconv-lite warning: decode()-ing strings is deprecated. Refer to https://github.com/ashtuchkin/iconv-lite/wiki/Use-Buffers-when-decoding");
@@ -26138,8 +26138,8 @@ var NearWalletAdapterWidget = (() => {
   var require_fetch_json = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/providers/lib/commonjs/fetch_json.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.fetchJsonRpc = void 0;
@@ -26210,11 +26210,11 @@ var NearWalletAdapterWidget = (() => {
       var exponential_backoff_1 = require_exponential_backoff();
       var provider_1 = require_provider6();
       var fetch_json_1 = require_fetch_json();
-      var REQUEST_RETRY_NUMBER2 = 12;
-      var REQUEST_RETRY_WAIT2 = 500;
-      var REQUEST_RETRY_WAIT_BACKOFF2 = 1.5;
-      var _nextId2 = 123;
-      var JsonRpcProvider2 = class extends provider_1.Provider {
+      var REQUEST_RETRY_NUMBER = 12;
+      var REQUEST_RETRY_WAIT = 500;
+      var REQUEST_RETRY_WAIT_BACKOFF = 1.5;
+      var _nextId = 123;
+      var JsonRpcProvider = class extends provider_1.Provider {
         static {
           __name(this, "JsonRpcProvider");
         }
@@ -26229,9 +26229,9 @@ var NearWalletAdapterWidget = (() => {
           super();
           this.connection = connectionInfo || { url: "" };
           const defaultOptions = {
-            retries: REQUEST_RETRY_NUMBER2,
-            wait: REQUEST_RETRY_WAIT2,
-            backoff: REQUEST_RETRY_WAIT_BACKOFF2
+            retries: REQUEST_RETRY_NUMBER,
+            wait: REQUEST_RETRY_WAIT,
+            backoff: REQUEST_RETRY_WAIT_BACKOFF
           };
           this.options = Object.assign({}, defaultOptions, options);
         }
@@ -26496,7 +26496,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               const request = {
                 method: method2,
                 params: params2,
-                id: _nextId2++,
+                id: _nextId++,
                 jsonrpc: "2.0"
               };
               const response2 = await (0, fetch_json_1.fetchJsonRpc)(this.connection.url, request, this.connection.headers);
@@ -26539,7 +26539,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return result;
         }
       };
-      exports2.JsonRpcProvider = JsonRpcProvider2;
+      exports2.JsonRpcProvider = JsonRpcProvider;
     }
   });
 
@@ -26552,7 +26552,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var utils_1 = require_commonjs5();
       var types_1 = require_commonjs4();
       var provider_1 = require_provider6();
-      var FailoverRpcProvider2 = class extends provider_1.Provider {
+      var FailoverRpcProvider = class extends provider_1.Provider {
         static {
           __name(this, "FailoverRpcProvider");
         }
@@ -26770,7 +26770,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return this.withBackoff((currentProvider) => currentProvider.gasPrice(blockId));
         }
       };
-      exports2.FailoverRpcProvider = FailoverRpcProvider2;
+      exports2.FailoverRpcProvider = FailoverRpcProvider;
     }
   });
 
@@ -26805,7 +26805,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Assignable = void 0;
-      var Assignable2 = class {
+      var Assignable = class {
         static {
           __name(this, "Assignable");
         }
@@ -26815,7 +26815,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Assignable = Assignable2;
+      exports2.Assignable = Assignable;
     }
   });
 
@@ -26825,7 +26825,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Enum = void 0;
-      var Enum2 = class {
+      var Enum = class {
         static {
           __name(this, "Enum");
         }
@@ -26838,7 +26838,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Enum = Enum2;
+      exports2.Enum = Enum;
     }
   });
 
@@ -26848,7 +26848,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorContext = exports2.TypedError = exports2.ArgumentTypeError = exports2.PositionalArgsError = void 0;
-      var PositionalArgsError2 = class extends Error {
+      var PositionalArgsError = class extends Error {
         static {
           __name(this, "PositionalArgsError");
         }
@@ -26856,8 +26856,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super("Contract method calls expect named arguments wrapped in object, e.g. { argName1: argValue1, argName2: argValue2 }");
         }
       };
-      exports2.PositionalArgsError = PositionalArgsError2;
-      var ArgumentTypeError2 = class extends Error {
+      exports2.PositionalArgsError = PositionalArgsError;
+      var ArgumentTypeError = class extends Error {
         static {
           __name(this, "ArgumentTypeError");
         }
@@ -26865,8 +26865,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Expected ${argType} for '${argName}' argument, but got '${JSON.stringify(argValue)}'`);
         }
       };
-      exports2.ArgumentTypeError = ArgumentTypeError2;
-      var TypedError2 = class extends Error {
+      exports2.ArgumentTypeError = ArgumentTypeError;
+      var TypedError = class extends Error {
         static {
           __name(this, "TypedError");
         }
@@ -26878,8 +26878,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.context = context;
         }
       };
-      exports2.TypedError = TypedError2;
-      var ErrorContext2 = class {
+      exports2.TypedError = TypedError;
+      var ErrorContext = class {
         static {
           __name(this, "ErrorContext");
         }
@@ -26888,7 +26888,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.transactionHash = transactionHash;
         }
       };
-      exports2.ErrorContext = ErrorContext2;
+      exports2.ErrorContext = ErrorContext;
     }
   });
 
@@ -26898,11 +26898,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.IdType = void 0;
-      var IdType2;
-      (function(IdType3) {
-        IdType3["Transaction"] = "transaction";
-        IdType3["Receipt"] = "receipt";
-      })(IdType2 || (exports2.IdType = IdType2 = {}));
+      var IdType;
+      (function(IdType2) {
+        IdType2["Transaction"] = "transaction";
+        IdType2["Receipt"] = "receipt";
+      })(IdType || (exports2.IdType = IdType = {}));
     }
   });
 
@@ -26912,18 +26912,18 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.FinalExecutionStatusBasic = exports2.ExecutionStatusBasic = void 0;
-      var ExecutionStatusBasic2;
-      (function(ExecutionStatusBasic3) {
-        ExecutionStatusBasic3["Unknown"] = "Unknown";
-        ExecutionStatusBasic3["Pending"] = "Pending";
-        ExecutionStatusBasic3["Failure"] = "Failure";
-      })(ExecutionStatusBasic2 || (exports2.ExecutionStatusBasic = ExecutionStatusBasic2 = {}));
-      var FinalExecutionStatusBasic2;
-      (function(FinalExecutionStatusBasic3) {
-        FinalExecutionStatusBasic3["NotStarted"] = "NotStarted";
-        FinalExecutionStatusBasic3["Started"] = "Started";
-        FinalExecutionStatusBasic3["Failure"] = "Failure";
-      })(FinalExecutionStatusBasic2 || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic2 = {}));
+      var ExecutionStatusBasic;
+      (function(ExecutionStatusBasic2) {
+        ExecutionStatusBasic2["Unknown"] = "Unknown";
+        ExecutionStatusBasic2["Pending"] = "Pending";
+        ExecutionStatusBasic2["Failure"] = "Failure";
+      })(ExecutionStatusBasic || (exports2.ExecutionStatusBasic = ExecutionStatusBasic = {}));
+      var FinalExecutionStatusBasic;
+      (function(FinalExecutionStatusBasic2) {
+        FinalExecutionStatusBasic2["NotStarted"] = "NotStarted";
+        FinalExecutionStatusBasic2["Started"] = "Started";
+        FinalExecutionStatusBasic2["Failure"] = "Failure";
+      })(FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = FinalExecutionStatusBasic = {}));
     }
   });
 
@@ -27064,8 +27064,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_errors9 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/accounts/node_modules/@near-js/utils/lib/commonjs/errors/errors.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorMessages = void 0;
@@ -27078,74 +27078,74 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_format3 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/accounts/node_modules/@near-js/utils/lib/commonjs/format.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.baseDecode = exports2.baseEncode = exports2.parseNearAmount = exports2.formatNearAmount = exports2.NEAR_NOMINATION = exports2.NEAR_NOMINATION_EXP = void 0;
       var bs58_1 = __importDefault(require_bs58());
       exports2.NEAR_NOMINATION_EXP = 24;
       exports2.NEAR_NOMINATION = 10n ** BigInt(exports2.NEAR_NOMINATION_EXP);
-      var ROUNDING_OFFSETS2 = [];
-      var BN102 = 10n;
-      for (let i = 0, offset = 5n; i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN102) {
-        ROUNDING_OFFSETS2[i] = offset;
+      var ROUNDING_OFFSETS = [];
+      var BN10 = 10n;
+      for (let i = 0, offset = 5n; i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN10) {
+        ROUNDING_OFFSETS[i] = offset;
       }
-      function formatNearAmount2(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
+      function formatNearAmount(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
         let balanceBN = BigInt(balance);
         if (fracDigits !== exports2.NEAR_NOMINATION_EXP) {
           const roundingExp = exports2.NEAR_NOMINATION_EXP - fracDigits - 1;
           if (roundingExp > 0) {
-            balanceBN += ROUNDING_OFFSETS2[roundingExp];
+            balanceBN += ROUNDING_OFFSETS[roundingExp];
           }
         }
         balance = balanceBN.toString();
         const wholeStr = balance.substring(0, balance.length - exports2.NEAR_NOMINATION_EXP) || "0";
         const fractionStr = balance.substring(balance.length - exports2.NEAR_NOMINATION_EXP).padStart(exports2.NEAR_NOMINATION_EXP, "0").substring(0, fracDigits);
-        return trimTrailingZeroes2(`${formatWithCommas2(wholeStr)}.${fractionStr}`);
+        return trimTrailingZeroes(`${formatWithCommas(wholeStr)}.${fractionStr}`);
       }
-      __name(formatNearAmount2, "formatNearAmount");
-      exports2.formatNearAmount = formatNearAmount2;
-      function parseNearAmount2(amt) {
+      __name(formatNearAmount, "formatNearAmount");
+      exports2.formatNearAmount = formatNearAmount;
+      function parseNearAmount(amt) {
         if (!amt) {
           return null;
         }
-        amt = cleanupAmount2(amt);
-        const split2 = amt.split(".");
-        const wholePart = split2[0];
-        const fracPart = split2[1] || "";
-        if (split2.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
+        amt = cleanupAmount(amt);
+        const split = amt.split(".");
+        const wholePart = split[0];
+        const fracPart = split[1] || "";
+        if (split.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
           throw new Error(`Cannot parse '${amt}' as NEAR amount`);
         }
-        return trimLeadingZeroes2(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
+        return trimLeadingZeroes(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
       }
-      __name(parseNearAmount2, "parseNearAmount");
-      exports2.parseNearAmount = parseNearAmount2;
-      function cleanupAmount2(amount) {
+      __name(parseNearAmount, "parseNearAmount");
+      exports2.parseNearAmount = parseNearAmount;
+      function cleanupAmount(amount) {
         return amount.replace(/,/g, "").trim();
       }
-      __name(cleanupAmount2, "cleanupAmount");
-      function trimTrailingZeroes2(value) {
+      __name(cleanupAmount, "cleanupAmount");
+      function trimTrailingZeroes(value) {
         return value.replace(/\.?0*$/, "");
       }
-      __name(trimTrailingZeroes2, "trimTrailingZeroes");
-      function trimLeadingZeroes2(value) {
+      __name(trimTrailingZeroes, "trimTrailingZeroes");
+      function trimLeadingZeroes(value) {
         value = value.replace(/^0+/, "");
         if (value === "") {
           return "0";
         }
         return value;
       }
-      __name(trimLeadingZeroes2, "trimLeadingZeroes");
-      function formatWithCommas2(value) {
+      __name(trimLeadingZeroes, "trimLeadingZeroes");
+      function formatWithCommas(value) {
         const pattern = /(-?\d+)(\d{3})/;
         while (pattern.test(value)) {
           value = value.replace(pattern, "$1,$2");
         }
         return value;
       }
-      __name(formatWithCommas2, "formatWithCommas");
-      function baseEncode2(value) {
+      __name(formatWithCommas, "formatWithCommas");
+      function baseEncode(value) {
         if (typeof value === "string") {
           const bytes = [];
           for (let c = 0; c < value.length; c++) {
@@ -27155,13 +27155,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return bs58_1.default.encode(value);
       }
-      __name(baseEncode2, "baseEncode");
-      exports2.baseEncode = baseEncode2;
-      function baseDecode2(value) {
+      __name(baseEncode, "baseEncode");
+      exports2.baseEncode = baseEncode;
+      function baseDecode(value) {
         return new Uint8Array(bs58_1.default.decode(value));
       }
-      __name(baseDecode2, "baseDecode");
-      exports2.baseDecode = baseDecode2;
+      __name(baseDecode, "baseDecode");
+      exports2.baseDecode = baseDecode;
     }
   });
 
@@ -28120,8 +28120,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_rpc_errors3 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/accounts/node_modules/@near-js/utils/lib/commonjs/errors/rpc_errors.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getErrorTypeFromErrorMessage = exports2.formatError = exports2.parseResultError = exports2.parseRpcError = exports2.ServerError = void 0;
@@ -28130,65 +28130,65 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var format_1 = require_format3();
       var errors_1 = require_errors9();
       var rpc_error_schema_json_1 = __importDefault(require_rpc_error_schema3());
-      var mustacheHelpers2 = {
-        formatNear: /* @__PURE__ */ __name(() => (n, render3) => (0, format_1.formatNearAmount)(render3(n)), "formatNear")
+      var mustacheHelpers = {
+        formatNear: /* @__PURE__ */ __name(() => (n, render) => (0, format_1.formatNearAmount)(render(n)), "formatNear")
       };
-      var ServerError2 = class extends types_1.TypedError {
+      var ServerError = class extends types_1.TypedError {
         static {
           __name(this, "ServerError");
         }
       };
-      exports2.ServerError = ServerError2;
-      var ServerTransactionError2 = class extends ServerError2 {
+      exports2.ServerError = ServerError;
+      var ServerTransactionError = class extends ServerError {
         static {
           __name(this, "ServerTransactionError");
         }
         transaction_outcome;
       };
-      function parseRpcError2(errorObj) {
+      function parseRpcError(errorObj) {
         const result = {};
-        const errorClassName = walkSubtype2(errorObj, rpc_error_schema_json_1.default.schema, result, "");
-        const error = new ServerError2(formatError2(errorClassName, result), errorClassName);
+        const errorClassName = walkSubtype(errorObj, rpc_error_schema_json_1.default.schema, result, "");
+        const error = new ServerError(formatError(errorClassName, result), errorClassName);
         Object.assign(error, result);
         return error;
       }
-      __name(parseRpcError2, "parseRpcError");
-      exports2.parseRpcError = parseRpcError2;
-      function parseResultError2(result) {
-        const server_error = parseRpcError2(result.status.Failure);
-        const server_tx_error = new ServerTransactionError2();
+      __name(parseRpcError, "parseRpcError");
+      exports2.parseRpcError = parseRpcError;
+      function parseResultError(result) {
+        const server_error = parseRpcError(result.status.Failure);
+        const server_tx_error = new ServerTransactionError();
         Object.assign(server_tx_error, server_error);
         server_tx_error.type = server_error.type;
         server_tx_error.message = server_error.message;
         server_tx_error.transaction_outcome = result.transaction_outcome;
         return server_tx_error;
       }
-      __name(parseResultError2, "parseResultError");
-      exports2.parseResultError = parseResultError2;
-      function formatError2(errorClassName, errorData) {
+      __name(parseResultError, "parseResultError");
+      exports2.parseResultError = parseResultError;
+      function formatError(errorClassName, errorData) {
         if (typeof errors_1.ErrorMessages[errorClassName] === "string") {
           return mustache_1.default.render(errors_1.ErrorMessages[errorClassName], {
             ...errorData,
-            ...mustacheHelpers2
+            ...mustacheHelpers
           });
         }
         return JSON.stringify(errorData);
       }
-      __name(formatError2, "formatError");
-      exports2.formatError = formatError2;
-      function walkSubtype2(errorObj, schema, result, typeName) {
+      __name(formatError, "formatError");
+      exports2.formatError = formatError;
+      function walkSubtype(errorObj, schema, result, typeName) {
         let error;
         let type;
         let errorTypeName;
         for (const errorName in schema) {
-          if (isString2(errorObj[errorName])) {
+          if (isString(errorObj[errorName])) {
             return errorObj[errorName];
           }
-          if (isObject2(errorObj[errorName])) {
+          if (isObject(errorObj[errorName])) {
             error = errorObj[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
-          } else if (isObject2(errorObj.kind) && isObject2(errorObj.kind[errorName])) {
+          } else if (isObject(errorObj.kind) && isObject(errorObj.kind[errorName])) {
             error = errorObj.kind[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
@@ -28200,14 +28200,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           for (const prop of Object.keys(type.props)) {
             result[prop] = error[prop];
           }
-          return walkSubtype2(error, schema, result, errorTypeName);
+          return walkSubtype(error, schema, result, errorTypeName);
         } else {
           result.kind = errorObj;
           return typeName;
         }
       }
-      __name(walkSubtype2, "walkSubtype");
-      function getErrorTypeFromErrorMessage2(errorMessage, errorType) {
+      __name(walkSubtype, "walkSubtype");
+      function getErrorTypeFromErrorMessage(errorMessage, errorType) {
         switch (true) {
           case /^account .*? does not exist while viewing$/.test(errorMessage):
             return "AccountDoesNotExist";
@@ -28229,16 +28229,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return errorType;
         }
       }
-      __name(getErrorTypeFromErrorMessage2, "getErrorTypeFromErrorMessage");
-      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage2;
-      function isObject2(n) {
+      __name(getErrorTypeFromErrorMessage, "getErrorTypeFromErrorMessage");
+      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage;
+      function isObject(n) {
         return Object.prototype.toString.call(n) === "[object Object]";
       }
-      __name(isObject2, "isObject");
-      function isString2(n) {
+      __name(isObject, "isObject");
+      function isString(n) {
         return Object.prototype.toString.call(n) === "[object String]";
       }
-      __name(isString2, "isString");
+      __name(isString, "isString");
     }
   });
 
@@ -28277,7 +28277,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ConsoleLogger = void 0;
-      var ConsoleLogger2 = class {
+      var ConsoleLogger = class {
         static {
           __name(this, "ConsoleLogger");
         }
@@ -28333,7 +28333,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.print("fatal", message2, ...optionalParams);
         }
       };
-      exports2.ConsoleLogger = ConsoleLogger2;
+      exports2.ConsoleLogger = ConsoleLogger;
     }
   });
 
@@ -28344,7 +28344,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Logger = void 0;
       var console_logger_1 = require_console_logger3();
-      var DEFAULT_LOG_LEVELS2 = [
+      var DEFAULT_LOG_LEVELS = [
         "verbose",
         "debug",
         "log",
@@ -28352,12 +28352,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         "error",
         "fatal"
       ];
-      var DEFAULT_LOGGER2 = new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS2);
-      var Logger2 = class {
+      var DEFAULT_LOGGER = new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS);
+      var Logger = class {
         static {
           __name(this, "Logger");
         }
-        static instanceRef = DEFAULT_LOGGER2;
+        static instanceRef = DEFAULT_LOGGER;
         static overrideLogger = /* @__PURE__ */ __name((logger) => {
           this.instanceRef = logger;
         }, "overrideLogger");
@@ -28392,7 +28392,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.instanceRef?.fatal?.(message2, ...optionalParams);
         }
       };
-      exports2.Logger = Logger2;
+      exports2.Logger = Logger;
     }
   });
 
@@ -28421,7 +28421,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.printTxOutcomeLogs = exports2.printTxOutcomeLogsAndFailures = void 0;
       var errors_1 = require_errors10();
       var logger_1 = require_logger6();
-      function printTxOutcomeLogsAndFailures2({ contractId, outcome }) {
+      function printTxOutcomeLogsAndFailures({ contractId, outcome }) {
         const flatLogs = [outcome.transaction_outcome, ...outcome.receipts_outcome].reduce((acc, it) => {
           const isFailure = typeof it.outcome.status === "object" && typeof it.outcome.status.Failure === "object";
           if (it.outcome.logs.length || isFailure) {
@@ -28436,7 +28436,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }, []);
         for (const result of flatLogs) {
           logger_1.Logger.log(`Receipt${result.receiptIds.length > 1 ? "s" : ""}: ${result.receiptIds.join(", ")}`);
-          printTxOutcomeLogs2({
+          printTxOutcomeLogs({
             contractId,
             logs: result.logs,
             prefix: "	"
@@ -28446,15 +28446,15 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
         }
       }
-      __name(printTxOutcomeLogsAndFailures2, "printTxOutcomeLogsAndFailures");
-      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures2;
-      function printTxOutcomeLogs2({ contractId, logs, prefix = "" }) {
+      __name(printTxOutcomeLogsAndFailures, "printTxOutcomeLogsAndFailures");
+      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures;
+      function printTxOutcomeLogs({ contractId, logs, prefix = "" }) {
         for (const log2 of logs) {
           logger_1.Logger.log(`${prefix}Log [${contractId}]: ${log2}`);
         }
       }
-      __name(printTxOutcomeLogs2, "printTxOutcomeLogs");
-      exports2.printTxOutcomeLogs = printTxOutcomeLogs2;
+      __name(printTxOutcomeLogs, "printTxOutcomeLogs");
+      exports2.printTxOutcomeLogs = printTxOutcomeLogs;
     }
   });
 
@@ -28464,7 +28464,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getTransactionLastResult = void 0;
-      function getTransactionLastResult2(txResult) {
+      function getTransactionLastResult(txResult) {
         if (typeof txResult.status === "object" && typeof txResult.status.SuccessValue === "string") {
           const value = Buffer.from(txResult.status.SuccessValue, "base64").toString();
           try {
@@ -28475,8 +28475,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return null;
       }
-      __name(getTransactionLastResult2, "getTransactionLastResult");
-      exports2.getTransactionLastResult = getTransactionLastResult2;
+      __name(getTransactionLastResult, "getTransactionLastResult");
+      exports2.getTransactionLastResult = getTransactionLastResult;
     }
   });
 
@@ -28486,11 +28486,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.sortBigIntAsc = void 0;
-      function sortBigIntAsc2(a, b) {
+      function sortBigIntAsc(a, b) {
         return a < b ? -1 : a > b ? 1 : 0;
       }
-      __name(sortBigIntAsc2, "sortBigIntAsc");
-      exports2.sortBigIntAsc = sortBigIntAsc2;
+      __name(sortBigIntAsc, "sortBigIntAsc");
+      exports2.sortBigIntAsc = sortBigIntAsc;
     }
   });
 
@@ -28498,14 +28498,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_validators3 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/accounts/node_modules/@near-js/utils/lib/commonjs/validators.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.diffEpochValidators = exports2.findSeatPrice = void 0;
       var depd_1 = __importDefault(require_depd());
       var utils_1 = require_utils11();
-      function findSeatPrice2(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
+      function findSeatPrice(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
         if (protocolVersion && protocolVersion < 49) {
           return findSeatPriceForProtocolBefore49(validators, maxNumberOfSeats);
         }
@@ -28516,8 +28516,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return findSeatPriceForProtocolAfter49(validators, maxNumberOfSeats, minimumStakeRatio);
       }
-      __name(findSeatPrice2, "findSeatPrice");
-      exports2.findSeatPrice = findSeatPrice2;
+      __name(findSeatPrice, "findSeatPrice");
+      exports2.findSeatPrice = findSeatPrice;
       function findSeatPriceForProtocolBefore49(validators, numSeats) {
         const stakes = validators.map((v) => BigInt(v.stake)).sort(utils_1.sortBigIntAsc);
         const num = BigInt(numSeats);
@@ -28558,7 +28558,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
       }
       __name(findSeatPriceForProtocolAfter49, "findSeatPriceForProtocolAfter49");
-      function diffEpochValidators2(currentValidators, nextValidators) {
+      function diffEpochValidators(currentValidators, nextValidators) {
         const validatorsMap = /* @__PURE__ */ new Map();
         currentValidators.forEach((v) => validatorsMap.set(v.account_id, v));
         const nextValidatorsSet = new Set(nextValidators.map((v) => v.account_id));
@@ -28568,8 +28568,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           changedValidators: nextValidators.filter((v) => validatorsMap.has(v.account_id) && validatorsMap.get(v.account_id).stake != v.stake).map((v) => ({ current: validatorsMap.get(v.account_id), next: v }))
         };
       }
-      __name(diffEpochValidators2, "diffEpochValidators");
-      exports2.diffEpochValidators = diffEpochValidators2;
+      __name(diffEpochValidators, "diffEpochValidators");
+      exports2.diffEpochValidators = diffEpochValidators;
     }
   });
 
@@ -28613,15 +28613,15 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.viewFunction = exports2.viewState = exports2.encodeJSContractArgs = exports2.validateArgs = void 0;
       var types_1 = require_commonjs9();
       var utils_1 = require_commonjs10();
-      function parseJsonFromRawResponse2(response) {
+      function parseJsonFromRawResponse(response) {
         return JSON.parse(Buffer.from(response).toString());
       }
-      __name(parseJsonFromRawResponse2, "parseJsonFromRawResponse");
-      function bytesJsonStringify2(input) {
+      __name(parseJsonFromRawResponse, "parseJsonFromRawResponse");
+      function bytesJsonStringify(input) {
         return Buffer.from(JSON.stringify(input));
       }
-      __name(bytesJsonStringify2, "bytesJsonStringify");
-      function validateArgs2(args2) {
+      __name(bytesJsonStringify, "bytesJsonStringify");
+      function validateArgs(args2) {
         const isUint8Array = args2.byteLength !== void 0 && args2.byteLength === args2.length;
         if (isUint8Array) {
           return;
@@ -28630,14 +28630,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           throw new types_1.PositionalArgsError();
         }
       }
-      __name(validateArgs2, "validateArgs");
-      exports2.validateArgs = validateArgs2;
-      function encodeJSContractArgs2(contractId, method2, args2) {
+      __name(validateArgs, "validateArgs");
+      exports2.validateArgs = validateArgs;
+      function encodeJSContractArgs(contractId, method2, args2) {
         return Buffer.concat([Buffer.from(contractId), Buffer.from([0]), Buffer.from(method2), Buffer.from([0]), Buffer.from(args2)]);
       }
-      __name(encodeJSContractArgs2, "encodeJSContractArgs");
-      exports2.encodeJSContractArgs = encodeJSContractArgs2;
-      async function viewState2(connection, accountId, prefix, blockQuery = { finality: "optimistic" }) {
+      __name(encodeJSContractArgs, "encodeJSContractArgs");
+      exports2.encodeJSContractArgs = encodeJSContractArgs;
+      async function viewState(connection, accountId, prefix, blockQuery = { finality: "optimistic" }) {
         const { values } = await connection.provider.query({
           request_type: "view_state",
           ...blockQuery,
@@ -28649,15 +28649,15 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           value: Buffer.from(value, "base64")
         }));
       }
-      __name(viewState2, "viewState");
-      exports2.viewState = viewState2;
-      async function viewFunction2(connection, { contractId, methodName, args: args2 = {}, parse: parse3 = parseJsonFromRawResponse2, stringify = bytesJsonStringify2, jsContract = false, blockQuery = { finality: "optimistic" } }) {
+      __name(viewState, "viewState");
+      exports2.viewState = viewState;
+      async function viewFunction(connection, { contractId, methodName, args: args2 = {}, parse: parse2 = parseJsonFromRawResponse, stringify: stringify2 = bytesJsonStringify, jsContract = false, blockQuery = { finality: "optimistic" } }) {
         let encodedArgs;
-        validateArgs2(args2);
+        validateArgs(args2);
         if (jsContract) {
-          encodedArgs = encodeJSContractArgs2(contractId, methodName, Object.keys(args2).length > 0 ? JSON.stringify(args2) : "");
+          encodedArgs = encodeJSContractArgs(contractId, methodName, Object.keys(args2).length > 0 ? JSON.stringify(args2) : "");
         } else {
-          encodedArgs = stringify(args2);
+          encodedArgs = stringify2(args2);
         }
         const result = await connection.provider.query({
           request_type: "call_function",
@@ -28669,10 +28669,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         if (result.logs) {
           (0, utils_1.printTxOutcomeLogs)({ contractId, logs: result.logs });
         }
-        return result.result && result.result.length > 0 && parse3(Buffer.from(result.result));
+        return result.result && result.result.length > 0 && parse2(Buffer.from(result.result));
       }
-      __name(viewFunction2, "viewFunction");
-      exports2.viewFunction = viewFunction2;
+      __name(viewFunction, "viewFunction");
+      exports2.viewFunction = viewFunction;
     }
   });
 
@@ -28688,11 +28688,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var types_1 = require_commonjs9();
       var utils_1 = require_commonjs10();
       var utils_2 = require_utils12();
-      var { addKey: addKey5, createAccount: createAccount4, deleteAccount: deleteAccount4, deleteKey: deleteKey5, deployContract: deployContract6, fullAccessKey: fullAccessKey4, functionCall: functionCall6, functionCallAccessKey: functionCallAccessKey4, stake: stake4, transfer: transfer4 } = transactions_1.actionCreators;
-      var TX_NONCE_RETRY_NUMBER2 = 12;
-      var TX_NONCE_RETRY_WAIT2 = 500;
-      var TX_NONCE_RETRY_WAIT_BACKOFF2 = 1.5;
-      var Account2 = class _Account {
+      var { addKey, createAccount, deleteAccount, deleteKey, deployContract, fullAccessKey, functionCall, functionCallAccessKey, stake, transfer } = transactions_1.actionCreators;
+      var TX_NONCE_RETRY_NUMBER = 12;
+      var TX_NONCE_RETRY_WAIT = 500;
+      var TX_NONCE_RETRY_WAIT_BACKOFF = 1.5;
+      var Account = class _Account {
         static {
           __name(this, "Account");
         }
@@ -28745,7 +28745,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          */
         async signAndSendTransaction({ receiverId, actions, returnError }) {
           let txHash, signedTx;
-          const result = await (0, providers_1.exponentialBackoff)(TX_NONCE_RETRY_WAIT2, TX_NONCE_RETRY_NUMBER2, TX_NONCE_RETRY_WAIT_BACKOFF2, async () => {
+          const result = await (0, providers_1.exponentialBackoff)(TX_NONCE_RETRY_WAIT, TX_NONCE_RETRY_NUMBER, TX_NONCE_RETRY_WAIT_BACKOFF, async () => {
             [txHash, signedTx] = await this.signTransaction(receiverId, actions);
             const publicKey = signedTx.transaction.publicKey;
             try {
@@ -28830,10 +28830,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param amount of NEAR to transfer to the created contract account. Transfer enough to pay for storage https://docs.near.org/docs/concepts/storage-staking
          */
         async createAndDeployContract(contractId, publicKey, data, amount) {
-          const accessKey = fullAccessKey4();
+          const accessKey = fullAccessKey();
           await this.signAndSendTransaction({
             receiverId: contractId,
-            actions: [createAccount4(), transfer4(amount), addKey5(crypto_1.PublicKey.from(publicKey), accessKey), deployContract6(data)]
+            actions: [createAccount(), transfer(amount), addKey(crypto_1.PublicKey.from(publicKey), accessKey), deployContract(data)]
           });
           const contractAccount = new _Account(this.connection, contractId);
           return contractAccount;
@@ -28845,7 +28845,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         async sendMoney(receiverId, amount) {
           return this.signAndSendTransaction({
             receiverId,
-            actions: [transfer4(amount)]
+            actions: [transfer(amount)]
           });
         }
         /**
@@ -28853,10 +28853,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param publicKey A public key created from the masterAccount
          */
         async createAccount(newAccountId, publicKey, amount) {
-          const accessKey = fullAccessKey4();
+          const accessKey = fullAccessKey();
           return this.signAndSendTransaction({
             receiverId: newAccountId,
-            actions: [createAccount4(), transfer4(amount), addKey5(crypto_1.PublicKey.from(publicKey), accessKey)]
+            actions: [createAccount(), transfer(amount), addKey(crypto_1.PublicKey.from(publicKey), accessKey)]
           });
         }
         /**
@@ -28866,7 +28866,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           utils_1.Logger.log("Deleting an account does not automatically transfer NFTs and FTs to the beneficiary address. Ensure to transfer assets before deleting.");
           return this.signAndSendTransaction({
             receiverId: this.accountId,
-            actions: [deleteAccount4(beneficiaryId)]
+            actions: [deleteAccount(beneficiaryId)]
           });
         }
         /**
@@ -28875,7 +28875,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         async deployContract(data) {
           return this.signAndSendTransaction({
             receiverId: this.accountId,
-            actions: [deployContract6(data)]
+            actions: [deployContract(data)]
           });
         }
         /** @hidden */
@@ -28896,20 +28896,20 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           * @param options.jsContract Whether the contract is from JS SDK, automatically encodes args from JS SDK to binary.
           * @returns {Promise<FinalExecutionOutcome>} A promise that resolves to the final execution outcome of the function call.
           */
-        async functionCall({ contractId, methodName, args: args2 = {}, gas = utils_1.DEFAULT_FUNCTION_CALL_GAS, attachedDeposit, walletMeta, walletCallbackUrl, stringify, jsContract }) {
+        async functionCall({ contractId, methodName, args: args2 = {}, gas = utils_1.DEFAULT_FUNCTION_CALL_GAS, attachedDeposit, walletMeta, walletCallbackUrl, stringify: stringify2, jsContract }) {
           this.validateArgs(args2);
           let functionCallArgs;
           if (jsContract) {
             const encodedArgs = this.encodeJSContractArgs(contractId, methodName, JSON.stringify(args2));
             functionCallArgs = ["call_js_contract", encodedArgs, gas, attachedDeposit, null, true];
           } else {
-            const stringifyArg = stringify === void 0 ? transactions_1.stringifyJsonOrBytes : stringify;
+            const stringifyArg = stringify2 === void 0 ? transactions_1.stringifyJsonOrBytes : stringify2;
             functionCallArgs = [methodName, args2, gas, attachedDeposit, stringifyArg, false];
           }
           return this.signAndSendTransaction({
             receiverId: jsContract ? this.connection.jsvmAccountId : contractId,
             // eslint-disable-next-line prefer-spread
-            actions: [functionCall6.apply(void 0, functionCallArgs)],
+            actions: [functionCall.apply(void 0, functionCallArgs)],
             walletMeta,
             walletCallbackUrl
           });
@@ -28931,13 +28931,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           let accessKey;
           if (!contractId) {
-            accessKey = fullAccessKey4();
+            accessKey = fullAccessKey();
           } else {
-            accessKey = functionCallAccessKey4(contractId, methodNames, amount);
+            accessKey = functionCallAccessKey(contractId, methodNames, amount);
           }
           return this.signAndSendTransaction({
             receiverId: this.accountId,
-            actions: [addKey5(crypto_1.PublicKey.from(publicKey), accessKey)]
+            actions: [addKey(crypto_1.PublicKey.from(publicKey), accessKey)]
           });
         }
         /**
@@ -28947,7 +28947,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         async deleteKey(publicKey) {
           return this.signAndSendTransaction({
             receiverId: this.accountId,
-            actions: [deleteKey5(crypto_1.PublicKey.from(publicKey))]
+            actions: [deleteKey(crypto_1.PublicKey.from(publicKey))]
           });
         }
         /**
@@ -28959,7 +28959,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         async stake(publicKey, amount) {
           return this.signAndSendTransaction({
             receiverId: this.accountId,
-            actions: [stake4(amount, crypto_1.PublicKey.from(publicKey))]
+            actions: [stake(amount, crypto_1.PublicKey.from(publicKey))]
           });
         }
         /**
@@ -29133,7 +29133,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           };
         }
       };
-      exports2.Account = Account2;
+      exports2.Account = Account;
     }
   });
 
@@ -29159,21 +29159,21 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.MultisigStateStatus = exports2.MultisigDeleteRequestRejectionError = void 0;
-      var MultisigDeleteRequestRejectionError2;
-      (function(MultisigDeleteRequestRejectionError3) {
-        MultisigDeleteRequestRejectionError3["CANNOT_DESERIALIZE_STATE"] = "Cannot deserialize the contract state";
-        MultisigDeleteRequestRejectionError3["MULTISIG_NOT_INITIALIZED"] = "Smart contract panicked: Multisig contract should be initialized before usage";
-        MultisigDeleteRequestRejectionError3["NO_SUCH_REQUEST"] = "Smart contract panicked: panicked at 'No such request: either wrong number or already confirmed'";
-        MultisigDeleteRequestRejectionError3["REQUEST_COOLDOWN_ERROR"] = "Request cannot be deleted immediately after creation.";
-        MultisigDeleteRequestRejectionError3["METHOD_NOT_FOUND"] = "Contract method is not found";
-      })(MultisigDeleteRequestRejectionError2 || (exports2.MultisigDeleteRequestRejectionError = MultisigDeleteRequestRejectionError2 = {}));
-      var MultisigStateStatus2;
-      (function(MultisigStateStatus3) {
-        MultisigStateStatus3[MultisigStateStatus3["INVALID_STATE"] = 0] = "INVALID_STATE";
-        MultisigStateStatus3[MultisigStateStatus3["STATE_NOT_INITIALIZED"] = 1] = "STATE_NOT_INITIALIZED";
-        MultisigStateStatus3[MultisigStateStatus3["VALID_STATE"] = 2] = "VALID_STATE";
-        MultisigStateStatus3[MultisigStateStatus3["UNKNOWN_STATE"] = 3] = "UNKNOWN_STATE";
-      })(MultisigStateStatus2 || (exports2.MultisigStateStatus = MultisigStateStatus2 = {}));
+      var MultisigDeleteRequestRejectionError;
+      (function(MultisigDeleteRequestRejectionError2) {
+        MultisigDeleteRequestRejectionError2["CANNOT_DESERIALIZE_STATE"] = "Cannot deserialize the contract state";
+        MultisigDeleteRequestRejectionError2["MULTISIG_NOT_INITIALIZED"] = "Smart contract panicked: Multisig contract should be initialized before usage";
+        MultisigDeleteRequestRejectionError2["NO_SUCH_REQUEST"] = "Smart contract panicked: panicked at 'No such request: either wrong number or already confirmed'";
+        MultisigDeleteRequestRejectionError2["REQUEST_COOLDOWN_ERROR"] = "Request cannot be deleted immediately after creation.";
+        MultisigDeleteRequestRejectionError2["METHOD_NOT_FOUND"] = "Contract method is not found";
+      })(MultisigDeleteRequestRejectionError || (exports2.MultisigDeleteRequestRejectionError = MultisigDeleteRequestRejectionError = {}));
+      var MultisigStateStatus;
+      (function(MultisigStateStatus2) {
+        MultisigStateStatus2[MultisigStateStatus2["INVALID_STATE"] = 0] = "INVALID_STATE";
+        MultisigStateStatus2[MultisigStateStatus2["STATE_NOT_INITIALIZED"] = 1] = "STATE_NOT_INITIALIZED";
+        MultisigStateStatus2[MultisigStateStatus2["VALID_STATE"] = 2] = "VALID_STATE";
+        MultisigStateStatus2[MultisigStateStatus2["UNKNOWN_STATE"] = 3] = "UNKNOWN_STATE";
+      })(MultisigStateStatus || (exports2.MultisigStateStatus = MultisigStateStatus = {}));
     }
   });
 
@@ -29188,17 +29188,17 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var account_1 = require_account();
       var constants_1 = require_constants5();
       var types_1 = require_types2();
-      var { deployContract: deployContract6, functionCall: functionCall6 } = transactions_1.actionCreators;
-      var MultisigCodeStatus2;
-      (function(MultisigCodeStatus3) {
-        MultisigCodeStatus3[MultisigCodeStatus3["INVALID_CODE"] = 0] = "INVALID_CODE";
-        MultisigCodeStatus3[MultisigCodeStatus3["VALID_CODE"] = 1] = "VALID_CODE";
-        MultisigCodeStatus3[MultisigCodeStatus3["UNKNOWN_CODE"] = 2] = "UNKNOWN_CODE";
-      })(MultisigCodeStatus2 || (MultisigCodeStatus2 = {}));
-      var storageFallback2 = {
+      var { deployContract, functionCall } = transactions_1.actionCreators;
+      var MultisigCodeStatus;
+      (function(MultisigCodeStatus2) {
+        MultisigCodeStatus2[MultisigCodeStatus2["INVALID_CODE"] = 0] = "INVALID_CODE";
+        MultisigCodeStatus2[MultisigCodeStatus2["VALID_CODE"] = 1] = "VALID_CODE";
+        MultisigCodeStatus2[MultisigCodeStatus2["UNKNOWN_CODE"] = 2] = "UNKNOWN_CODE";
+      })(MultisigCodeStatus || (MultisigCodeStatus = {}));
+      var storageFallback = {
         [constants_1.MULTISIG_STORAGE_KEY]: null
       };
-      var AccountMultisig2 = class extends account_1.Account {
+      var AccountMultisig = class extends account_1.Account {
         static {
           __name(this, "AccountMultisig");
         }
@@ -29246,7 +29246,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             result = await super.signAndSendTransaction({
               receiverId: accountId,
               actions: [
-                functionCall6("add_request_and_confirm", args2, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
+                functionCall("add_request_and_confirm", args2, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
               ]
             });
           } catch (e) {
@@ -29283,20 +29283,20 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          */
         async checkMultisigCodeAndStateStatus(contractBytes) {
           const u32_max = 4294967295;
-          const validCodeStatusIfNoDeploy = contractBytes ? MultisigCodeStatus2.UNKNOWN_CODE : MultisigCodeStatus2.VALID_CODE;
+          const validCodeStatusIfNoDeploy = contractBytes ? MultisigCodeStatus.UNKNOWN_CODE : MultisigCodeStatus.VALID_CODE;
           try {
             if (contractBytes) {
               await super.signAndSendTransaction({
                 receiverId: this.accountId,
                 actions: [
-                  deployContract6(contractBytes),
-                  functionCall6("delete_request", { request_id: u32_max }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
+                  deployContract(contractBytes),
+                  functionCall("delete_request", { request_id: u32_max }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
                 ]
               });
             } else {
               await this.deleteRequest(u32_max);
             }
-            return { codeStatus: MultisigCodeStatus2.VALID_CODE, stateStatus: types_1.MultisigStateStatus.VALID_STATE };
+            return { codeStatus: MultisigCodeStatus.VALID_CODE, stateStatus: types_1.MultisigStateStatus.VALID_STATE };
           } catch (e) {
             if (new RegExp(types_1.MultisigDeleteRequestRejectionError.CANNOT_DESERIALIZE_STATE).test(e && e.kind && e.kind.ExecutionError)) {
               return { codeStatus: validCodeStatusIfNoDeploy, stateStatus: types_1.MultisigStateStatus.INVALID_STATE };
@@ -29305,7 +29305,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             } else if (new RegExp(types_1.MultisigDeleteRequestRejectionError.NO_SUCH_REQUEST).test(e && e.kind && e.kind.ExecutionError)) {
               return { codeStatus: validCodeStatusIfNoDeploy, stateStatus: types_1.MultisigStateStatus.VALID_STATE };
             } else if (new RegExp(types_1.MultisigDeleteRequestRejectionError.METHOD_NOT_FOUND).test(e && e.message)) {
-              return { codeStatus: MultisigCodeStatus2.INVALID_CODE, stateStatus: types_1.MultisigStateStatus.UNKNOWN_STATE };
+              return { codeStatus: MultisigCodeStatus.INVALID_CODE, stateStatus: types_1.MultisigStateStatus.UNKNOWN_STATE };
             }
             throw e;
           }
@@ -29318,7 +29318,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         deleteRequest(request_id) {
           return super.signAndSendTransaction({
             receiverId: this.accountId,
-            actions: [functionCall6("delete_request", { request_id }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
+            actions: [functionCall("delete_request", { request_id }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
           });
         }
         /**
@@ -29345,7 +29345,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             try {
               await super.signAndSendTransaction({
                 receiverId: this.accountId,
-                actions: [functionCall6("delete_request", { request_id: requestIdToDelete }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
+                actions: [functionCall("delete_request", { request_id: requestIdToDelete }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
               });
             } catch (e) {
               utils_1.Logger.warn("Attempt to delete an earlier request before 15 minutes failed. Will try again.");
@@ -29363,16 +29363,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           if (this.storage) {
             return JSON.parse(this.storage.getItem(constants_1.MULTISIG_STORAGE_KEY) || "{}");
           }
-          return storageFallback2[constants_1.MULTISIG_STORAGE_KEY];
+          return storageFallback[constants_1.MULTISIG_STORAGE_KEY];
         }
         setRequest(data) {
           if (this.storage) {
             return this.storage.setItem(constants_1.MULTISIG_STORAGE_KEY, JSON.stringify(data));
           }
-          storageFallback2[constants_1.MULTISIG_STORAGE_KEY] = data;
+          storageFallback[constants_1.MULTISIG_STORAGE_KEY] = data;
         }
       };
-      exports2.AccountMultisig = AccountMultisig2;
+      exports2.AccountMultisig = AccountMultisig;
       var convertPKForContract = /* @__PURE__ */ __name((pk) => pk.toString().replace("ed25519:", ""), "convertPKForContract");
       var convertActions = /* @__PURE__ */ __name((actions, accountId, receiverId) => actions.map((a) => {
         const type = a.enum;
@@ -29414,8 +29414,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_account_2fa = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/accounts/lib/commonjs/account_2fa.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Account2FA = void 0;
@@ -29427,8 +29427,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var account_multisig_1 = require_account_multisig();
       var constants_1 = require_constants5();
       var types_2 = require_types2();
-      var { addKey: addKey5, deleteKey: deleteKey5, deployContract: deployContract6, fullAccessKey: fullAccessKey4, functionCall: functionCall6, functionCallAccessKey: functionCallAccessKey4 } = transactions_1.actionCreators;
-      var Account2FA2 = class extends account_multisig_1.AccountMultisig {
+      var { addKey, deleteKey, deployContract, fullAccessKey, functionCall, functionCallAccessKey } = transactions_1.actionCreators;
+      var Account2FA = class extends account_multisig_1.AccountMultisig {
         static {
           __name(this, "Account2FA");
         }
@@ -29483,12 +29483,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           const confirmOnlyKey = toPK((await this.postSignedJson("/2fa/getAccessKey", { accountId })).publicKey);
           const newArgs = Buffer.from(JSON.stringify({ "num_confirmations": 2 }));
           const actions = [
-            ...fak2lak.map((pk) => deleteKey5(pk)),
-            ...fak2lak.map((pk) => addKey5(pk, functionCallAccessKey4(accountId, constants_1.MULTISIG_CHANGE_METHODS, null))),
-            addKey5(confirmOnlyKey, functionCallAccessKey4(accountId, constants_1.MULTISIG_CONFIRM_METHODS, null)),
-            deployContract6(contractBytes)
+            ...fak2lak.map((pk) => deleteKey(pk)),
+            ...fak2lak.map((pk) => addKey(pk, functionCallAccessKey(accountId, constants_1.MULTISIG_CHANGE_METHODS, null))),
+            addKey(confirmOnlyKey, functionCallAccessKey(accountId, constants_1.MULTISIG_CONFIRM_METHODS, null)),
+            deployContract(contractBytes)
           ];
-          const newFunctionCallActionBatch = actions.concat(functionCall6("new", newArgs, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT));
+          const newFunctionCallActionBatch = actions.concat(functionCall("new", newArgs, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT));
           utils_1.Logger.log("deploying multisig contract for", accountId);
           const { stateStatus: multisigStateStatus } = await this.checkMultisigCodeAndStateStatus(contractBytes);
           switch (multisigStateStatus) {
@@ -29519,7 +29519,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           const actions = [
             ...cleanupActions,
             ...keyConversionActions,
-            deployContract6(contractBytes)
+            deployContract(contractBytes)
           ];
           const accessKeyInfo = await this.findAccessKey(this.accountId, actions);
           if (accessKeyInfo && accessKeyInfo.accessKey && accessKeyInfo.accessKey.permission !== "FullAccess") {
@@ -29542,8 +29542,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
           const currentAccountStateKeys = currentAccountState.map(({ key }) => key.toString("base64"));
           return currentAccountState.length ? [
-            deployContract6(cleanupContractBytes),
-            functionCall6("clean", { keys: currentAccountStateKeys }, constants_1.MULTISIG_GAS, 0n)
+            deployContract(cleanupContractBytes),
+            functionCall("clean", { keys: currentAccountStateKeys }, constants_1.MULTISIG_GAS, 0n)
           ] : [];
         }
         /**
@@ -29559,9 +29559,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
           const confirmOnlyKey = crypto_1.PublicKey.from((await this.postSignedJson("/2fa/getAccessKey", { accountId })).publicKey);
           return [
-            deleteKey5(confirmOnlyKey),
-            ...lak2fak.map(({ public_key }) => deleteKey5(crypto_1.PublicKey.from(public_key))),
-            ...lak2fak.map(({ public_key }) => addKey5(crypto_1.PublicKey.from(public_key), fullAccessKey4()))
+            deleteKey(confirmOnlyKey),
+            ...lak2fak.map(({ public_key }) => deleteKey(crypto_1.PublicKey.from(public_key))),
+            ...lak2fak.map(({ public_key }) => addKey(crypto_1.PublicKey.from(public_key), fullAccessKey()))
           ];
         }
         /**
@@ -29586,7 +29586,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           const actions = [
             ...cleanupActions,
             ...await this.get2faDisableKeyConversionActions(),
-            deployContract6(contractBytes)
+            deployContract(contractBytes)
           ];
           utils_1.Logger.log("disabling 2fa for", this.accountId);
           return await this.signAndSendTransaction({
@@ -29701,7 +29701,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Account2FA = Account2FA2;
+      exports2.Account2FA = Account2FA;
       var toPK = /* @__PURE__ */ __name((pk) => crypto_1.PublicKey.from(pk), "toPK");
     }
   });
@@ -29710,19 +29710,19 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_account_creator = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/accounts/lib/commonjs/account_creator.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.UrlAccountCreator = exports2.LocalAccountCreator = exports2.AccountCreator = void 0;
       var isomorphic_unfetch_1 = __importDefault(require_isomorphic_unfetch());
-      var AccountCreator2 = class {
+      var AccountCreator = class {
         static {
           __name(this, "AccountCreator");
         }
       };
-      exports2.AccountCreator = AccountCreator2;
-      var LocalAccountCreator2 = class extends AccountCreator2 {
+      exports2.AccountCreator = AccountCreator;
+      var LocalAccountCreator = class extends AccountCreator {
         static {
           __name(this, "LocalAccountCreator");
         }
@@ -29743,8 +29743,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           await this.masterAccount.createAccount(newAccountId, publicKey, this.initialBalance);
         }
       };
-      exports2.LocalAccountCreator = LocalAccountCreator2;
-      var UrlAccountCreator2 = class extends AccountCreator2 {
+      exports2.LocalAccountCreator = LocalAccountCreator;
+      var UrlAccountCreator = class extends AccountCreator {
         static {
           __name(this, "UrlAccountCreator");
         }
@@ -29769,7 +29769,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.UrlAccountCreator = UrlAccountCreator2;
+      exports2.UrlAccountCreator = UrlAccountCreator;
     }
   });
 
@@ -29779,12 +29779,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyStore = void 0;
-      var KeyStore2 = class {
+      var KeyStore = class {
         static {
           __name(this, "KeyStore");
         }
       };
-      exports2.KeyStore = KeyStore2;
+      exports2.KeyStore = KeyStore;
     }
   });
 
@@ -29796,7 +29796,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.InMemoryKeyStore = void 0;
       var crypto_1 = require_commonjs3();
       var keystore_1 = require_keystore();
-      var InMemoryKeyStore2 = class extends keystore_1.KeyStore {
+      var InMemoryKeyStore = class extends keystore_1.KeyStore {
         static {
           __name(this, "InMemoryKeyStore");
         }
@@ -29873,7 +29873,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return "InMemoryKeyStore";
         }
       };
-      exports2.InMemoryKeyStore = InMemoryKeyStore2;
+      exports2.InMemoryKeyStore = InMemoryKeyStore;
     }
   });
 
@@ -29884,7 +29884,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.MergeKeyStore = void 0;
       var keystore_1 = require_keystore();
-      var MergeKeyStore2 = class extends keystore_1.KeyStore {
+      var MergeKeyStore = class extends keystore_1.KeyStore {
         static {
           __name(this, "MergeKeyStore");
         }
@@ -29895,10 +29895,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param options KeyStore options
          * @param options.writeKeyStoreIndex the keystore index that will receive all write calls
          */
-        constructor(keyStores, options = { writeKeyStoreIndex: 0 }) {
+        constructor(keyStores2, options = { writeKeyStoreIndex: 0 }) {
           super();
           this.options = options;
-          this.keyStores = keyStores;
+          this.keyStores = keyStores2;
         }
         /**
          * Store a {@link KeyPair} to the first index of a key store array
@@ -29973,7 +29973,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return `MergeKeyStore(${this.keyStores.join(", ")})`;
         }
       };
-      exports2.MergeKeyStore = MergeKeyStore2;
+      exports2.MergeKeyStore = MergeKeyStore;
     }
   });
 
@@ -29983,12 +29983,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.MultiContractKeyStore = void 0;
-      var MultiContractKeyStore2 = class {
+      var MultiContractKeyStore = class {
         static {
           __name(this, "MultiContractKeyStore");
         }
       };
-      exports2.MultiContractKeyStore = MultiContractKeyStore2;
+      exports2.MultiContractKeyStore = MultiContractKeyStore;
     }
   });
 
@@ -30023,12 +30023,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Signer = void 0;
-      var Signer2 = class {
+      var Signer = class {
         static {
           __name(this, "Signer");
         }
       };
-      exports2.Signer = Signer2;
+      exports2.Signer = Signer;
     }
   });
 
@@ -30042,7 +30042,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var keystores_1 = require_commonjs11();
       var sha256_1 = require_sha256();
       var signer_1 = require_signer();
-      var InMemorySigner2 = class _InMemorySigner extends signer_1.Signer {
+      var InMemorySigner = class _InMemorySigner extends signer_1.Signer {
         static {
           __name(this, "InMemorySigner");
         }
@@ -30110,7 +30110,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return `InMemorySigner(${this.keyStore})`;
         }
       };
-      exports2.InMemorySigner = InMemorySigner2;
+      exports2.InMemorySigner = InMemorySigner;
     }
   });
 
@@ -30139,7 +30139,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.Connection = void 0;
       var signers_1 = require_commonjs12();
       var providers_1 = require_commonjs8();
-      function getProvider2(config) {
+      function getProvider(config) {
         switch (config.type) {
           case void 0:
             return config;
@@ -30153,8 +30153,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             throw new Error(`Unknown provider type ${config.type}`);
         }
       }
-      __name(getProvider2, "getProvider");
-      function getSigner2(config) {
+      __name(getProvider, "getProvider");
+      function getSigner(config) {
         switch (config.type) {
           case void 0:
             return config;
@@ -30165,8 +30165,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             throw new Error(`Unknown signer type ${config.type}`);
         }
       }
-      __name(getSigner2, "getSigner");
-      var Connection2 = class _Connection {
+      __name(getSigner, "getSigner");
+      var Connection = class _Connection {
         static {
           __name(this, "Connection");
         }
@@ -30187,12 +30187,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param config Contains connection info details
          */
         static fromConfig(config) {
-          const provider = getProvider2(config.provider);
-          const signer = getSigner2(config.signer);
+          const provider = getProvider(config.provider);
+          const signer = getSigner(config.signer);
           return new _Connection(config.networkId, provider, signer, config.jsvmAccountId);
         }
       };
-      exports2.Connection = Connection2;
+      exports2.Connection = Connection;
     }
   });
 
@@ -30881,7 +30881,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         var lines = [];
         var indent = 0;
         var vars = {};
-        var push2 = /* @__PURE__ */ __name(function(str) {
+        var push = /* @__PURE__ */ __name(function(str) {
           var spaces = "";
           while (spaces.length < indent * 2) spaces += "  ";
           lines.push(spaces + str);
@@ -30889,21 +30889,21 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         var pushLine = /* @__PURE__ */ __name(function(line2) {
           if (INDENT_END.test(line2.trim()[0]) && INDENT_START.test(line2[line2.length - 1])) {
             indent--;
-            push2(line2);
+            push(line2);
             indent++;
             return;
           }
           if (INDENT_START.test(line2[line2.length - 1])) {
-            push2(line2);
+            push(line2);
             indent++;
             return;
           }
           if (INDENT_END.test(line2.trim()[0])) {
             indent--;
-            push2(line2);
+            push(line2);
             return;
           }
-          push2(line2);
+          push(line2);
         }, "pushLine");
         var line = /* @__PURE__ */ __name(function(fmt) {
           if (!fmt) return line;
@@ -31714,7 +31714,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ConflictingOptions = exports2.ArgumentSchemaError = exports2.UnknownArgumentError = exports2.UnsupportedSerializationError = void 0;
-      var UnsupportedSerializationError2 = class extends Error {
+      var UnsupportedSerializationError = class extends Error {
         static {
           __name(this, "UnsupportedSerializationError");
         }
@@ -31722,8 +31722,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Contract method '${methodName}' is using an unsupported serialization type ${serializationType}`);
         }
       };
-      exports2.UnsupportedSerializationError = UnsupportedSerializationError2;
-      var UnknownArgumentError2 = class extends Error {
+      exports2.UnsupportedSerializationError = UnsupportedSerializationError;
+      var UnknownArgumentError = class extends Error {
         static {
           __name(this, "UnknownArgumentError");
         }
@@ -31731,8 +31731,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Unrecognized argument '${actualArgName}', expected '${JSON.stringify(expectedArgNames)}'`);
         }
       };
-      exports2.UnknownArgumentError = UnknownArgumentError2;
-      var ArgumentSchemaError2 = class extends Error {
+      exports2.UnknownArgumentError = UnknownArgumentError;
+      var ArgumentSchemaError = class extends Error {
         static {
           __name(this, "ArgumentSchemaError");
         }
@@ -31740,8 +31740,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Argument '${argName}' does not conform to the specified ABI schema: '${JSON.stringify(errors)}'`);
         }
       };
-      exports2.ArgumentSchemaError = ArgumentSchemaError2;
-      var ConflictingOptions2 = class extends Error {
+      exports2.ArgumentSchemaError = ArgumentSchemaError;
+      var ConflictingOptions = class extends Error {
         static {
           __name(this, "ConflictingOptions");
         }
@@ -31749,7 +31749,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super("Conflicting contract method options have been passed. You can either specify ABI or a list of view/call methods.");
         }
       };
-      exports2.ConflictingOptions = ConflictingOptions2;
+      exports2.ConflictingOptions = ConflictingOptions;
     }
   });
 
@@ -31757,8 +31757,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_contract = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/accounts/lib/commonjs/contract.cjs"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Contract = void 0;
@@ -31780,7 +31780,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       }
       __name(nameFunction, "nameFunction");
       function validateArguments(args2, abiFunction, abiRoot) {
-        if (!isObject2(args2))
+        if (!isObject(args2))
           return;
         if (abiFunction.params && abiFunction.params.serialization_type !== near_abi_1.AbiSerializationType.Json) {
           throw new errors_1.UnsupportedSerializationError(abiFunction.name, abiFunction.params.serialization_type);
@@ -31808,7 +31808,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       }
       __name(validateArguments, "validateArguments");
       var isUint8Array = /* @__PURE__ */ __name((x) => x && x.byteLength !== void 0 && x.byteLength === x.length, "isUint8Array");
-      var isObject2 = /* @__PURE__ */ __name((x) => Object.prototype.toString.call(x) === "[object Object]", "isObject");
+      var isObject = /* @__PURE__ */ __name((x) => Object.prototype.toString.call(x) === "[object Object]", "isObject");
       var Contract = class {
         static {
           __name(this, "Contract");
@@ -31853,7 +31853,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               writable: false,
               enumerable: true,
               value: nameFunction(name, async (args2 = {}, options2 = {}, ...ignored) => {
-                if (ignored.length || !(isObject2(args2) || isUint8Array(args2)) || !isObject2(options2)) {
+                if (ignored.length || !(isObject(args2) || isUint8Array(args2)) || !isObject(options2)) {
                   throw new types_1.PositionalArgsError();
                 }
                 if (abi) {
@@ -31894,7 +31894,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               writable: false,
               enumerable: true,
               value: nameFunction(name, async (...args2) => {
-                if (args2.length && (args2.length > 3 || !(isObject2(args2[0]) || isUint8Array(args2[0])))) {
+                if (args2.length && (args2.length > 3 || !(isObject(args2[0]) || isUint8Array(args2[0])))) {
                   throw new types_1.PositionalArgsError();
                 }
                 if (args2.length > 1 || !(args2[0] && args2[0].args)) {
@@ -32148,7 +32148,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return method2;
         }, "createMethod");
         var nodeWrap2 = /* @__PURE__ */ __name(function(method2, is2242) {
-          var crypto4 = __require("crypto");
+          var crypto3 = __require("crypto");
           var Buffer2 = __require("buffer").Buffer;
           var algorithm2 = is2242 ? "sha224" : "sha256";
           var bufferFrom;
@@ -32161,7 +32161,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           var nodeMethod2 = /* @__PURE__ */ __name(function(message2) {
             if (typeof message2 === "string") {
-              return crypto4.createHash(algorithm2).update(message2, "utf8").digest("hex");
+              return crypto3.createHash(algorithm2).update(message2, "utf8").digest("hex");
             } else {
               if (message2 === null || message2 === void 0) {
                 throw new Error(ERROR2);
@@ -32170,7 +32170,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               }
             }
             if (Array.isArray(message2) || ArrayBuffer.isView(message2) || message2.constructor === Buffer2) {
-              return crypto4.createHash(algorithm2).update(bufferFrom(message2)).digest("hex");
+              return crypto3.createHash(algorithm2).update(bufferFrom(message2)).digest("hex");
             } else {
               return method2(message2);
             }
@@ -32561,7 +32561,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           ctor.prototype.constructor = ctor;
         }
         __name(inherits, "inherits");
-        function BN(number, base2, endian) {
+        function BN(number, base, endian) {
           if (BN.isBN(number)) {
             return number;
           }
@@ -32570,11 +32570,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.length = 0;
           this.red = null;
           if (number !== null) {
-            if (base2 === "le" || base2 === "be") {
-              endian = base2;
-              base2 = 10;
+            if (base === "le" || base === "be") {
+              endian = base;
+              base = 10;
             }
-            this._init(number || 0, base2 || 10, endian || "be");
+            this._init(number || 0, base || 10, endian || "be");
           }
         }
         __name(BN, "BN");
@@ -32608,17 +32608,17 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           if (left.cmp(right) < 0) return left;
           return right;
         }, "min");
-        BN.prototype._init = /* @__PURE__ */ __name(function init(number, base2, endian) {
+        BN.prototype._init = /* @__PURE__ */ __name(function init(number, base, endian) {
           if (typeof number === "number") {
-            return this._initNumber(number, base2, endian);
+            return this._initNumber(number, base, endian);
           }
           if (typeof number === "object") {
-            return this._initArray(number, base2, endian);
+            return this._initArray(number, base, endian);
           }
-          if (base2 === "hex") {
-            base2 = 16;
+          if (base === "hex") {
+            base = 16;
           }
-          assert(base2 === (base2 | 0) && base2 >= 2 && base2 <= 36);
+          assert(base === (base | 0) && base >= 2 && base <= 36);
           number = number.toString().replace(/\s+/g, "");
           var start = 0;
           if (number[0] === "-") {
@@ -32626,17 +32626,17 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             this.negative = 1;
           }
           if (start < number.length) {
-            if (base2 === 16) {
+            if (base === 16) {
               this._parseHex(number, start, endian);
             } else {
-              this._parseBase(number, base2, start);
+              this._parseBase(number, base, start);
               if (endian === "le") {
-                this._initArray(this.toArray(), base2, endian);
+                this._initArray(this.toArray(), base, endian);
               }
             }
           }
         }, "init");
-        BN.prototype._initNumber = /* @__PURE__ */ __name(function _initNumber(number, base2, endian) {
+        BN.prototype._initNumber = /* @__PURE__ */ __name(function _initNumber(number, base, endian) {
           if (number < 0) {
             this.negative = 1;
             number = -number;
@@ -32660,9 +32660,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             this.length = 3;
           }
           if (endian !== "le") return;
-          this._initArray(this.toArray(), base2, endian);
+          this._initArray(this.toArray(), base, endian);
         }, "_initNumber");
-        BN.prototype._initArray = /* @__PURE__ */ __name(function _initArray(number, base2, endian) {
+        BN.prototype._initArray = /* @__PURE__ */ __name(function _initArray(number, base, endian) {
           assert(typeof number.length === "number");
           if (number.length <= 0) {
             this.words = [0];
@@ -32779,20 +32779,20 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return r;
         }
         __name(parseBase, "parseBase");
-        BN.prototype._parseBase = /* @__PURE__ */ __name(function _parseBase(number, base2, start) {
+        BN.prototype._parseBase = /* @__PURE__ */ __name(function _parseBase(number, base, start) {
           this.words = [0];
           this.length = 1;
-          for (var limbLen = 0, limbPow = 1; limbPow <= 67108863; limbPow *= base2) {
+          for (var limbLen = 0, limbPow = 1; limbPow <= 67108863; limbPow *= base) {
             limbLen++;
           }
           limbLen--;
-          limbPow = limbPow / base2 | 0;
+          limbPow = limbPow / base | 0;
           var total = number.length - start;
-          var mod2 = total % limbLen;
-          var end = Math.min(total, total - mod2) + start;
+          var mod = total % limbLen;
+          var end = Math.min(total, total - mod) + start;
           var word = 0;
           for (var i = start; i < end; i += limbLen) {
-            word = parseBase(number, i, i + limbLen, base2);
+            word = parseBase(number, i, i + limbLen, base);
             this.imuln(limbPow);
             if (this.words[0] + word < 67108864) {
               this.words[0] += word;
@@ -32800,13 +32800,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               this._iaddn(word);
             }
           }
-          if (mod2 !== 0) {
-            var pow3 = 1;
-            word = parseBase(number, i, number.length, base2);
-            for (i = 0; i < mod2; i++) {
-              pow3 *= base2;
+          if (mod !== 0) {
+            var pow = 1;
+            word = parseBase(number, i, number.length, base);
+            for (i = 0; i < mod; i++) {
+              pow *= base;
             }
-            this.imuln(pow3);
+            this.imuln(pow);
             if (this.words[0] + word < 67108864) {
               this.words[0] += word;
             } else {
@@ -32976,11 +32976,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           52521875,
           60466176
         ];
-        BN.prototype.toString = /* @__PURE__ */ __name(function toString(base2, padding) {
-          base2 = base2 || 10;
+        BN.prototype.toString = /* @__PURE__ */ __name(function toString(base, padding) {
+          base = base || 10;
           padding = padding | 0 || 1;
           var out;
-          if (base2 === 16 || base2 === "hex") {
+          if (base === 16 || base === "hex") {
             out = "";
             var off = 0;
             var carry = 0;
@@ -33010,14 +33010,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             }
             return out;
           }
-          if (base2 === (base2 | 0) && base2 >= 2 && base2 <= 36) {
-            var groupSize = groupSizes[base2];
-            var groupBase = groupBases[base2];
+          if (base === (base | 0) && base >= 2 && base <= 36) {
+            var groupSize = groupSizes[base];
+            var groupBase = groupBases[base];
             out = "";
             var c = this.clone();
             c.negative = 0;
             while (!c.isZero()) {
-              var r = c.modrn(groupBase).toString(base2);
+              var r = c.modrn(groupBase).toString(base);
               c = c.idivn(groupBase);
               if (!c.isZero()) {
                 out = zeros[groupSize - r.length] + r + out;
@@ -33394,7 +33394,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return this;
         }, "iadd");
-        BN.prototype.add = /* @__PURE__ */ __name(function add2(num) {
+        BN.prototype.add = /* @__PURE__ */ __name(function add(num) {
           var res;
           if (num.negative !== 0 && this.negative === 0) {
             num.negative = 0;
@@ -34288,7 +34288,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         BN.prototype.isqr = /* @__PURE__ */ __name(function isqr() {
           return this.imul(this.clone());
         }, "isqr");
-        BN.prototype.pow = /* @__PURE__ */ __name(function pow3(num) {
+        BN.prototype.pow = /* @__PURE__ */ __name(function pow(num) {
           var w = toBitArray(num);
           if (w.length === 0) return new BN(1);
           var res = this;
@@ -34587,21 +34587,21 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               mod: new BN(0)
             };
           }
-          var div, mod2, res;
+          var div, mod, res;
           if (this.negative !== 0 && num.negative === 0) {
             res = this.neg().divmod(num, mode);
             if (mode !== "mod") {
               div = res.div.neg();
             }
             if (mode !== "div") {
-              mod2 = res.mod.neg();
-              if (positive && mod2.negative !== 0) {
-                mod2.iadd(num);
+              mod = res.mod.neg();
+              if (positive && mod.negative !== 0) {
+                mod.iadd(num);
               }
             }
             return {
               div,
-              mod: mod2
+              mod
             };
           }
           if (this.negative === 0 && num.negative !== 0) {
@@ -34617,14 +34617,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           if ((this.negative & num.negative) !== 0) {
             res = this.neg().divmod(num.neg(), mode);
             if (mode !== "div") {
-              mod2 = res.mod.neg();
-              if (positive && mod2.negative !== 0) {
-                mod2.isub(num);
+              mod = res.mod.neg();
+              if (positive && mod.negative !== 0) {
+                mod.isub(num);
               }
             }
             return {
               div: res.div,
-              mod: mod2
+              mod
             };
           }
           if (num.length > this.length || this.cmp(num) < 0) {
@@ -34656,7 +34656,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         BN.prototype.div = /* @__PURE__ */ __name(function div(num) {
           return this.divmod(num, "div", false).div;
         }, "div");
-        BN.prototype.mod = /* @__PURE__ */ __name(function mod2(num) {
+        BN.prototype.mod = /* @__PURE__ */ __name(function mod(num) {
           return this.divmod(num, "mod", false).mod;
         }, "mod");
         BN.prototype.umod = /* @__PURE__ */ __name(function umod(num) {
@@ -34665,10 +34665,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         BN.prototype.divRound = /* @__PURE__ */ __name(function divRound(num) {
           var dm = this.divmod(num);
           if (dm.mod.isZero()) return dm.div;
-          var mod2 = dm.div.negative !== 0 ? dm.mod.isub(num) : dm.mod;
+          var mod = dm.div.negative !== 0 ? dm.mod.isub(num) : dm.mod;
           var half = num.ushrn(1);
           var r2 = num.andln(1);
-          var cmp = mod2.cmp(half);
+          var cmp = mod.cmp(half);
           if (cmp < 0 || r2 === 1 && cmp === 0) return dm.div;
           return dm.div.negative !== 0 ? dm.div.isubn(1) : dm.div.iaddn(1);
         }, "divRound");
@@ -35083,7 +35083,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return r;
         }, "ireduce");
-        MPrime.prototype.split = /* @__PURE__ */ __name(function split2(input, out) {
+        MPrime.prototype.split = /* @__PURE__ */ __name(function split(input, out) {
           input.iushrn(this.n, 0, out);
         }, "split");
         MPrime.prototype.imulK = /* @__PURE__ */ __name(function imulK(num) {
@@ -35098,7 +35098,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         __name(K256, "K256");
         inherits(K256, MPrime);
-        K256.prototype.split = /* @__PURE__ */ __name(function split2(input, output) {
+        K256.prototype.split = /* @__PURE__ */ __name(function split(input, output) {
           var mask = 4194303;
           var outLen = Math.min(input.length, 9);
           for (var i = 0; i < outLen; i++) {
@@ -35236,7 +35236,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return this.m.sub(a)._forceRed(this);
         }, "neg");
-        Red.prototype.add = /* @__PURE__ */ __name(function add2(a, b) {
+        Red.prototype.add = /* @__PURE__ */ __name(function add(a, b) {
           this._verify2(a, b);
           var res = a.add(b);
           if (res.cmp(this.m) >= 0) {
@@ -35291,8 +35291,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           var mod3 = this.m.andln(3);
           assert(mod3 % 2 === 1);
           if (mod3 === 3) {
-            var pow3 = this.m.add(new BN(1)).iushrn(2);
-            return this.pow(a, pow3);
+            var pow = this.m.add(new BN(1)).iushrn(2);
+            return this.pow(a, pow);
           }
           var q = this.m.subn(1);
           var s = 0;
@@ -35336,7 +35336,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return this.imod(inv);
           }
         }, "invm");
-        Red.prototype.pow = /* @__PURE__ */ __name(function pow3(a, num) {
+        Red.prototype.pow = /* @__PURE__ */ __name(function pow(a, num) {
           if (num.isZero()) return new BN(1).toRed(this);
           if (num.cmpn(1) === 0) return a.clone();
           var windowSize = 4;
@@ -35488,8 +35488,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return transactions_1.actionCreators.transfer(BigInt(deposit));
           }
           case "Stake": {
-            const { stake: stake4, publicKey } = action.params;
-            return transactions_1.actionCreators.stake(BigInt(stake4), crypto_1.PublicKey.from(publicKey));
+            const { stake, publicKey } = action.params;
+            return transactions_1.actionCreators.stake(BigInt(stake), crypto_1.PublicKey.from(publicKey));
           }
           case "AddKey": {
             const { publicKey, accessKey } = action.params;
@@ -35533,17 +35533,17 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       } : function(o, v) {
         o["default"] = v;
       });
-      var __importStar = exports2 && exports2.__importStar || function(mod2) {
-        if (mod2 && mod2.__esModule) return mod2;
+      var __importStar = exports2 && exports2.__importStar || function(mod) {
+        if (mod && mod.__esModule) return mod;
         var result = {};
-        if (mod2 != null) {
-          for (var k in mod2) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k)) __createBinding(result, mod2, k);
+        if (mod != null) {
+          for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
         }
-        __setModuleDefault(result, mod2);
+        __setModuleDefault(result, mod);
         return result;
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.verifySignature = exports2.authPayloadSchema = exports2.AuthPayload = void 0;
@@ -35574,7 +35574,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           callbackUrl: { option: "string" }
         }
       };
-      function verifySignature2(request, result) {
+      function verifySignature(request, result) {
         const payload = new AuthPayload(request);
         const borsh_payload = borsh.serialize(exports2.authPayloadSchema, payload);
         const to_sign = Uint8Array.from(js_sha256_1.default.sha256.array(borsh_payload));
@@ -35582,8 +35582,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         const myPK = crypto_1.PublicKey.from(result.publicKey);
         return myPK.verify(to_sign, real_signature);
       }
-      __name(verifySignature2, "verifySignature");
-      exports2.verifySignature = verifySignature2;
+      __name(verifySignature, "verifySignature");
+      exports2.verifySignature = verifySignature;
     }
   });
 
@@ -35647,14 +35647,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_utils13 = __commonJS({
     "../../node_modules/@here-wallet/core/build/helpers/utils.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -35678,8 +35678,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.isValidAccessKey = exports2.internalThrow = exports2.getPublicKeys = exports2.serializeActions = exports2.isMobile = exports2.getDeviceId = void 0;
@@ -35781,14 +35781,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_JSONStorage = __commonJS({
     "../../node_modules/@here-wallet/core/build/storage/JSONStorage.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -35867,14 +35867,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_HereKeyStore = __commonJS({
     "../../node_modules/@here-wallet/core/build/storage/HereKeyStore.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -36151,7 +36151,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ConsoleLogger = void 0;
-      var ConsoleLogger2 = class {
+      var ConsoleLogger = class {
         static {
           __name(this, "ConsoleLogger");
         }
@@ -36206,7 +36206,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.print("fatal", message2, ...optionalParams);
         }
       };
-      exports2.ConsoleLogger = ConsoleLogger2;
+      exports2.ConsoleLogger = ConsoleLogger;
     }
   });
 
@@ -36218,7 +36218,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Logger = void 0;
       var console_logger_1 = require_console_logger4();
-      var DEFAULT_LOG_LEVELS2 = [
+      var DEFAULT_LOG_LEVELS = [
         "verbose",
         "debug",
         "log",
@@ -36226,8 +36226,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         "error",
         "fatal"
       ];
-      var DEFAULT_LOGGER2 = typeof process === "object" && process.env.NEAR_NO_LOGS ? void 0 : new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS2);
-      var Logger2 = class {
+      var DEFAULT_LOGGER = typeof process === "object" && process.env.NEAR_NO_LOGS ? void 0 : new console_logger_1.ConsoleLogger(DEFAULT_LOG_LEVELS);
+      var Logger = class {
         static {
           __name(this, "Logger");
         }
@@ -36268,10 +36268,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           (_c = (_b = this.instanceRef) === null || _b === void 0 ? void 0 : _b.fatal) === null || _c === void 0 ? void 0 : _c.call(_b, message2, ...optionalParams);
         }
       };
-      exports2.Logger = Logger2;
-      _a = Logger2;
-      Logger2.instanceRef = DEFAULT_LOGGER2;
-      Logger2.overrideLogger = (logger) => {
+      exports2.Logger = Logger;
+      _a = Logger;
+      Logger.instanceRef = DEFAULT_LOGGER;
+      Logger.overrideLogger = (logger) => {
         _a.instanceRef = logger;
       };
     }
@@ -36312,7 +36312,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Assignable = void 0;
-      var Assignable2 = class {
+      var Assignable = class {
         static {
           __name(this, "Assignable");
         }
@@ -36322,7 +36322,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Assignable = Assignable2;
+      exports2.Assignable = Assignable;
     }
   });
 
@@ -36332,7 +36332,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorContext = exports2.TypedError = exports2.ArgumentTypeError = exports2.PositionalArgsError = void 0;
-      var PositionalArgsError2 = class extends Error {
+      var PositionalArgsError = class extends Error {
         static {
           __name(this, "PositionalArgsError");
         }
@@ -36340,8 +36340,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super("Contract method calls expect named arguments wrapped in object, e.g. { argName1: argValue1, argName2: argValue2 }");
         }
       };
-      exports2.PositionalArgsError = PositionalArgsError2;
-      var ArgumentTypeError2 = class extends Error {
+      exports2.PositionalArgsError = PositionalArgsError;
+      var ArgumentTypeError = class extends Error {
         static {
           __name(this, "ArgumentTypeError");
         }
@@ -36349,8 +36349,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Expected ${argType} for '${argName}' argument, but got '${JSON.stringify(argValue)}'`);
         }
       };
-      exports2.ArgumentTypeError = ArgumentTypeError2;
-      var TypedError2 = class extends Error {
+      exports2.ArgumentTypeError = ArgumentTypeError;
+      var TypedError = class extends Error {
         static {
           __name(this, "TypedError");
         }
@@ -36360,8 +36360,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.context = context;
         }
       };
-      exports2.TypedError = TypedError2;
-      var ErrorContext2 = class {
+      exports2.TypedError = TypedError;
+      var ErrorContext = class {
         static {
           __name(this, "ErrorContext");
         }
@@ -36369,7 +36369,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.transactionHash = transactionHash;
         }
       };
-      exports2.ErrorContext = ErrorContext2;
+      exports2.ErrorContext = ErrorContext;
     }
   });
 
@@ -36379,11 +36379,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.IdType = void 0;
-      var IdType2;
-      (function(IdType3) {
-        IdType3["Transaction"] = "transaction";
-        IdType3["Receipt"] = "receipt";
-      })(IdType2 = exports2.IdType || (exports2.IdType = {}));
+      var IdType;
+      (function(IdType2) {
+        IdType2["Transaction"] = "transaction";
+        IdType2["Receipt"] = "receipt";
+      })(IdType = exports2.IdType || (exports2.IdType = {}));
     }
   });
 
@@ -36393,18 +36393,18 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.FinalExecutionStatusBasic = exports2.ExecutionStatusBasic = void 0;
-      var ExecutionStatusBasic2;
-      (function(ExecutionStatusBasic3) {
-        ExecutionStatusBasic3["Unknown"] = "Unknown";
-        ExecutionStatusBasic3["Pending"] = "Pending";
-        ExecutionStatusBasic3["Failure"] = "Failure";
-      })(ExecutionStatusBasic2 = exports2.ExecutionStatusBasic || (exports2.ExecutionStatusBasic = {}));
-      var FinalExecutionStatusBasic2;
-      (function(FinalExecutionStatusBasic3) {
-        FinalExecutionStatusBasic3["NotStarted"] = "NotStarted";
-        FinalExecutionStatusBasic3["Started"] = "Started";
-        FinalExecutionStatusBasic3["Failure"] = "Failure";
-      })(FinalExecutionStatusBasic2 = exports2.FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = {}));
+      var ExecutionStatusBasic;
+      (function(ExecutionStatusBasic2) {
+        ExecutionStatusBasic2["Unknown"] = "Unknown";
+        ExecutionStatusBasic2["Pending"] = "Pending";
+        ExecutionStatusBasic2["Failure"] = "Failure";
+      })(ExecutionStatusBasic = exports2.ExecutionStatusBasic || (exports2.ExecutionStatusBasic = {}));
+      var FinalExecutionStatusBasic;
+      (function(FinalExecutionStatusBasic2) {
+        FinalExecutionStatusBasic2["NotStarted"] = "NotStarted";
+        FinalExecutionStatusBasic2["Started"] = "Started";
+        FinalExecutionStatusBasic2["Failure"] = "Failure";
+      })(FinalExecutionStatusBasic = exports2.FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = {}));
     }
   });
 
@@ -36459,74 +36459,74 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_format4 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/utils/lib/format.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.baseDecode = exports2.baseEncode = exports2.parseNearAmount = exports2.formatNearAmount = exports2.NEAR_NOMINATION = exports2.NEAR_NOMINATION_EXP = void 0;
       var bs58_1 = __importDefault(require_bs58());
       exports2.NEAR_NOMINATION_EXP = 24;
       exports2.NEAR_NOMINATION = BigInt(10) ** BigInt(exports2.NEAR_NOMINATION_EXP);
-      var ROUNDING_OFFSETS2 = [];
-      var BN102 = BigInt(10);
-      for (let i = 0, offset = BigInt(5); i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN102) {
-        ROUNDING_OFFSETS2[i] = offset;
+      var ROUNDING_OFFSETS = [];
+      var BN10 = BigInt(10);
+      for (let i = 0, offset = BigInt(5); i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset * BN10) {
+        ROUNDING_OFFSETS[i] = offset;
       }
-      function formatNearAmount2(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
+      function formatNearAmount(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
         let balanceBN = BigInt(balance);
         if (fracDigits !== exports2.NEAR_NOMINATION_EXP) {
           const roundingExp = exports2.NEAR_NOMINATION_EXP - fracDigits - 1;
           if (roundingExp > 0) {
-            balanceBN += ROUNDING_OFFSETS2[roundingExp];
+            balanceBN += ROUNDING_OFFSETS[roundingExp];
           }
         }
         balance = balanceBN.toString();
         const wholeStr = balance.substring(0, balance.length - exports2.NEAR_NOMINATION_EXP) || "0";
         const fractionStr = balance.substring(balance.length - exports2.NEAR_NOMINATION_EXP).padStart(exports2.NEAR_NOMINATION_EXP, "0").substring(0, fracDigits);
-        return trimTrailingZeroes2(`${formatWithCommas2(wholeStr)}.${fractionStr}`);
+        return trimTrailingZeroes(`${formatWithCommas(wholeStr)}.${fractionStr}`);
       }
-      __name(formatNearAmount2, "formatNearAmount");
-      exports2.formatNearAmount = formatNearAmount2;
-      function parseNearAmount2(amt) {
+      __name(formatNearAmount, "formatNearAmount");
+      exports2.formatNearAmount = formatNearAmount;
+      function parseNearAmount(amt) {
         if (!amt) {
           return null;
         }
-        amt = cleanupAmount2(amt);
-        const split2 = amt.split(".");
-        const wholePart = split2[0];
-        const fracPart = split2[1] || "";
-        if (split2.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
+        amt = cleanupAmount(amt);
+        const split = amt.split(".");
+        const wholePart = split[0];
+        const fracPart = split[1] || "";
+        if (split.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
           throw new Error(`Cannot parse '${amt}' as NEAR amount`);
         }
-        return trimLeadingZeroes2(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
+        return trimLeadingZeroes(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
       }
-      __name(parseNearAmount2, "parseNearAmount");
-      exports2.parseNearAmount = parseNearAmount2;
-      function cleanupAmount2(amount) {
+      __name(parseNearAmount, "parseNearAmount");
+      exports2.parseNearAmount = parseNearAmount;
+      function cleanupAmount(amount) {
         return amount.replace(/,/g, "").trim();
       }
-      __name(cleanupAmount2, "cleanupAmount");
-      function trimTrailingZeroes2(value) {
+      __name(cleanupAmount, "cleanupAmount");
+      function trimTrailingZeroes(value) {
         return value.replace(/\.?0*$/, "");
       }
-      __name(trimTrailingZeroes2, "trimTrailingZeroes");
-      function trimLeadingZeroes2(value) {
+      __name(trimTrailingZeroes, "trimTrailingZeroes");
+      function trimLeadingZeroes(value) {
         value = value.replace(/^0+/, "");
         if (value === "") {
           return "0";
         }
         return value;
       }
-      __name(trimLeadingZeroes2, "trimLeadingZeroes");
-      function formatWithCommas2(value) {
+      __name(trimLeadingZeroes, "trimLeadingZeroes");
+      function formatWithCommas(value) {
         const pattern = /(-?\d+)(\d{3})/;
         while (pattern.test(value)) {
           value = value.replace(pattern, "$1,$2");
         }
         return value;
       }
-      __name(formatWithCommas2, "formatWithCommas");
-      function baseEncode2(value) {
+      __name(formatWithCommas, "formatWithCommas");
+      function baseEncode(value) {
         if (typeof value === "string") {
           const bytes = [];
           for (let c = 0; c < value.length; c++) {
@@ -36536,13 +36536,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return bs58_1.default.encode(value);
       }
-      __name(baseEncode2, "baseEncode");
-      exports2.baseEncode = baseEncode2;
-      function baseDecode2(value) {
+      __name(baseEncode, "baseEncode");
+      exports2.baseEncode = baseEncode;
+      function baseDecode(value) {
         return new Uint8Array(bs58_1.default.decode(value));
       }
-      __name(baseDecode2, "baseDecode");
-      exports2.baseDecode = baseDecode2;
+      __name(baseDecode, "baseDecode");
+      exports2.baseDecode = baseDecode;
     }
   });
 
@@ -37544,8 +37544,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_rpc_errors4 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/utils/lib/errors/rpc_errors.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getErrorTypeFromErrorMessage = exports2.formatError = exports2.parseResultError = exports2.parseRpcError = exports2.ServerError = void 0;
@@ -37554,61 +37554,61 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var format_1 = require_format4();
       var error_messages_json_1 = __importDefault(require_error_messages4());
       var rpc_error_schema_json_1 = __importDefault(require_rpc_error_schema4());
-      var mustacheHelpers2 = {
-        formatNear: /* @__PURE__ */ __name(() => (n, render3) => (0, format_1.formatNearAmount)(render3(n)), "formatNear")
+      var mustacheHelpers = {
+        formatNear: /* @__PURE__ */ __name(() => (n, render) => (0, format_1.formatNearAmount)(render(n)), "formatNear")
       };
-      var ServerError2 = class extends types_1.TypedError {
+      var ServerError = class extends types_1.TypedError {
         static {
           __name(this, "ServerError");
         }
       };
-      exports2.ServerError = ServerError2;
-      var ServerTransactionError2 = class extends ServerError2 {
+      exports2.ServerError = ServerError;
+      var ServerTransactionError = class extends ServerError {
         static {
           __name(this, "ServerTransactionError");
         }
       };
-      function parseRpcError2(errorObj) {
+      function parseRpcError(errorObj) {
         const result = {};
-        const errorClassName = walkSubtype2(errorObj, rpc_error_schema_json_1.default.schema, result, "");
-        const error = new ServerError2(formatError2(errorClassName, result), errorClassName);
+        const errorClassName = walkSubtype(errorObj, rpc_error_schema_json_1.default.schema, result, "");
+        const error = new ServerError(formatError(errorClassName, result), errorClassName);
         Object.assign(error, result);
         return error;
       }
-      __name(parseRpcError2, "parseRpcError");
-      exports2.parseRpcError = parseRpcError2;
-      function parseResultError2(result) {
-        const server_error = parseRpcError2(result.status.Failure);
-        const server_tx_error = new ServerTransactionError2();
+      __name(parseRpcError, "parseRpcError");
+      exports2.parseRpcError = parseRpcError;
+      function parseResultError(result) {
+        const server_error = parseRpcError(result.status.Failure);
+        const server_tx_error = new ServerTransactionError();
         Object.assign(server_tx_error, server_error);
         server_tx_error.type = server_error.type;
         server_tx_error.message = server_error.message;
         server_tx_error.transaction_outcome = result.transaction_outcome;
         return server_tx_error;
       }
-      __name(parseResultError2, "parseResultError");
-      exports2.parseResultError = parseResultError2;
-      function formatError2(errorClassName, errorData) {
+      __name(parseResultError, "parseResultError");
+      exports2.parseResultError = parseResultError;
+      function formatError(errorClassName, errorData) {
         if (typeof error_messages_json_1.default[errorClassName] === "string") {
-          return mustache_1.default.render(error_messages_json_1.default[errorClassName], Object.assign(Object.assign({}, errorData), mustacheHelpers2));
+          return mustache_1.default.render(error_messages_json_1.default[errorClassName], Object.assign(Object.assign({}, errorData), mustacheHelpers));
         }
         return JSON.stringify(errorData);
       }
-      __name(formatError2, "formatError");
-      exports2.formatError = formatError2;
-      function walkSubtype2(errorObj, schema, result, typeName) {
+      __name(formatError, "formatError");
+      exports2.formatError = formatError;
+      function walkSubtype(errorObj, schema, result, typeName) {
         let error;
         let type;
         let errorTypeName;
         for (const errorName in schema) {
-          if (isString2(errorObj[errorName])) {
+          if (isString(errorObj[errorName])) {
             return errorObj[errorName];
           }
-          if (isObject2(errorObj[errorName])) {
+          if (isObject(errorObj[errorName])) {
             error = errorObj[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
-          } else if (isObject2(errorObj.kind) && isObject2(errorObj.kind[errorName])) {
+          } else if (isObject(errorObj.kind) && isObject(errorObj.kind[errorName])) {
             error = errorObj.kind[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
@@ -37620,14 +37620,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           for (const prop of Object.keys(type.props)) {
             result[prop] = error[prop];
           }
-          return walkSubtype2(error, schema, result, errorTypeName);
+          return walkSubtype(error, schema, result, errorTypeName);
         } else {
           result.kind = errorObj;
           return typeName;
         }
       }
-      __name(walkSubtype2, "walkSubtype");
-      function getErrorTypeFromErrorMessage2(errorMessage, errorType) {
+      __name(walkSubtype, "walkSubtype");
+      function getErrorTypeFromErrorMessage(errorMessage, errorType) {
         switch (true) {
           case /^account .*? does not exist while viewing$/.test(errorMessage):
             return "AccountDoesNotExist";
@@ -37649,16 +37649,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return errorType;
         }
       }
-      __name(getErrorTypeFromErrorMessage2, "getErrorTypeFromErrorMessage");
-      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage2;
-      function isObject2(n) {
+      __name(getErrorTypeFromErrorMessage, "getErrorTypeFromErrorMessage");
+      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage;
+      function isObject(n) {
         return Object.prototype.toString.call(n) === "[object Object]";
       }
-      __name(isObject2, "isObject");
-      function isString2(n) {
+      __name(isObject, "isObject");
+      function isString(n) {
         return Object.prototype.toString.call(n) === "[object String]";
       }
-      __name(isString2, "isString");
+      __name(isString, "isString");
     }
   });
 
@@ -37699,7 +37699,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.printTxOutcomeLogs = exports2.printTxOutcomeLogsAndFailures = void 0;
       var errors_1 = require_errors14();
       var logger_1 = require_logger8();
-      function printTxOutcomeLogsAndFailures2({ contractId, outcome }) {
+      function printTxOutcomeLogsAndFailures({ contractId, outcome }) {
         const flatLogs = [outcome.transaction_outcome, ...outcome.receipts_outcome].reduce((acc, it) => {
           const isFailure = typeof it.outcome.status === "object" && typeof it.outcome.status.Failure === "object";
           if (it.outcome.logs.length || isFailure) {
@@ -37714,7 +37714,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }, []);
         for (const result of flatLogs) {
           logger_1.Logger.log(`Receipt${result.receiptIds.length > 1 ? "s" : ""}: ${result.receiptIds.join(", ")}`);
-          printTxOutcomeLogs2({
+          printTxOutcomeLogs({
             contractId,
             logs: result.logs,
             prefix: "	"
@@ -37724,15 +37724,15 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
         }
       }
-      __name(printTxOutcomeLogsAndFailures2, "printTxOutcomeLogsAndFailures");
-      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures2;
-      function printTxOutcomeLogs2({ contractId, logs, prefix = "" }) {
+      __name(printTxOutcomeLogsAndFailures, "printTxOutcomeLogsAndFailures");
+      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures;
+      function printTxOutcomeLogs({ contractId, logs, prefix = "" }) {
         for (const log2 of logs) {
           logger_1.Logger.log(`${prefix}Log [${contractId}]: ${log2}`);
         }
       }
-      __name(printTxOutcomeLogs2, "printTxOutcomeLogs");
-      exports2.printTxOutcomeLogs = printTxOutcomeLogs2;
+      __name(printTxOutcomeLogs, "printTxOutcomeLogs");
+      exports2.printTxOutcomeLogs = printTxOutcomeLogs;
     }
   });
 
@@ -37742,7 +37742,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getTransactionLastResult = void 0;
-      function getTransactionLastResult2(txResult) {
+      function getTransactionLastResult(txResult) {
         if (typeof txResult.status === "object" && typeof txResult.status.SuccessValue === "string") {
           const value = Buffer.from(txResult.status.SuccessValue, "base64").toString();
           try {
@@ -37753,8 +37753,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return null;
       }
-      __name(getTransactionLastResult2, "getTransactionLastResult");
-      exports2.getTransactionLastResult = getTransactionLastResult2;
+      __name(getTransactionLastResult, "getTransactionLastResult");
+      exports2.getTransactionLastResult = getTransactionLastResult;
     }
   });
 
@@ -37764,11 +37764,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.sortBigIntAsc = void 0;
-      function sortBigIntAsc2(a, b) {
+      function sortBigIntAsc(a, b) {
         return a < b ? -1 : a > b ? 1 : 0;
       }
-      __name(sortBigIntAsc2, "sortBigIntAsc");
-      exports2.sortBigIntAsc = sortBigIntAsc2;
+      __name(sortBigIntAsc, "sortBigIntAsc");
+      exports2.sortBigIntAsc = sortBigIntAsc;
     }
   });
 
@@ -37776,14 +37776,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_validators4 = __commonJS({
     "../../node_modules/@here-wallet/core/node_modules/@near-js/utils/lib/validators.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.diffEpochValidators = exports2.findSeatPrice = void 0;
       var depd_1 = __importDefault(require_depd());
       var utils_1 = require_utils14();
-      function findSeatPrice2(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
+      function findSeatPrice(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
         if (protocolVersion && protocolVersion < 49) {
           return findSeatPriceForProtocolBefore49(validators, maxNumberOfSeats);
         }
@@ -37794,8 +37794,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return findSeatPriceForProtocolAfter49(validators, maxNumberOfSeats, minimumStakeRatio);
       }
-      __name(findSeatPrice2, "findSeatPrice");
-      exports2.findSeatPrice = findSeatPrice2;
+      __name(findSeatPrice, "findSeatPrice");
+      exports2.findSeatPrice = findSeatPrice;
       function findSeatPriceForProtocolBefore49(validators, numSeats) {
         const stakes = validators.map((v) => BigInt(v.stake)).sort(utils_1.sortBigIntAsc);
         const num = BigInt(numSeats);
@@ -37836,7 +37836,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
       }
       __name(findSeatPriceForProtocolAfter49, "findSeatPriceForProtocolAfter49");
-      function diffEpochValidators2(currentValidators, nextValidators) {
+      function diffEpochValidators(currentValidators, nextValidators) {
         const validatorsMap = /* @__PURE__ */ new Map();
         currentValidators.forEach((v) => validatorsMap.set(v.account_id, v));
         const nextValidatorsSet = new Set(nextValidators.map((v) => v.account_id));
@@ -37846,8 +37846,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           changedValidators: nextValidators.filter((v) => validatorsMap.has(v.account_id) && validatorsMap.get(v.account_id).stake != v.stake).map((v) => ({ current: validatorsMap.get(v.account_id), next: v }))
         };
       }
-      __name(diffEpochValidators2, "diffEpochValidators");
-      exports2.diffEpochValidators = diffEpochValidators2;
+      __name(diffEpochValidators, "diffEpochValidators");
+      exports2.diffEpochValidators = diffEpochValidators;
     }
   });
 
@@ -37887,14 +37887,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_proxyMethods = __commonJS({
     "../../node_modules/@here-wallet/core/build/helpers/proxyMethods.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -37918,8 +37918,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.createRequest = exports2.computeRequestId = exports2.deleteRequest = exports2.getResponse = exports2.getRequest = exports2.proxyApi = void 0;
@@ -37994,14 +37994,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_HereStrategy = __commonJS({
     "../../node_modules/@here-wallet/core/build/strategies/HereStrategy.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -38162,14 +38162,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_WidgetStrategy = __commonJS({
     "../../node_modules/@here-wallet/core/build/strategies/WidgetStrategy.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -38304,14 +38304,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_TelegramAppStrategy = __commonJS({
     "../../node_modules/@here-wallet/core/build/strategies/TelegramAppStrategy.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -38464,14 +38464,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_InjectedStrategy = __commonJS({
     "../../node_modules/@here-wallet/core/build/strategies/InjectedStrategy.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -38495,8 +38495,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.InjectedStrategy = void 0;
@@ -38549,14 +38549,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_telegramEthereumProvider = __commonJS({
     "../../node_modules/@here-wallet/core/build/telegramEthereumProvider.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -38580,8 +38580,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.hereWalletProvider = void 0;
@@ -38643,14 +38643,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_wallet = __commonJS({
     "../../node_modules/@here-wallet/core/build/wallet.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -38685,8 +38685,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
         return t;
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.HereWallet = void 0;
@@ -39123,14 +39123,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_WindowStrategy = __commonJS({
     "../../node_modules/@here-wallet/core/build/strategies/WindowStrategy.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -39255,124 +39255,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
     }
   });
 
-  // ../../node_modules/base64-js/index.js
-  var require_base64_js = __commonJS({
-    "../../node_modules/base64-js/index.js"(exports2) {
-      "use strict";
-      exports2.byteLength = byteLength;
-      exports2.toByteArray = toByteArray2;
-      exports2.fromByteArray = fromByteArray2;
-      var lookup2 = [];
-      var revLookup = [];
-      var Arr = typeof Uint8Array !== "undefined" ? Uint8Array : Array;
-      var code = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
-      for (i = 0, len = code.length; i < len; ++i) {
-        lookup2[i] = code[i];
-        revLookup[code.charCodeAt(i)] = i;
-      }
-      var i;
-      var len;
-      revLookup["-".charCodeAt(0)] = 62;
-      revLookup["_".charCodeAt(0)] = 63;
-      function getLens(b64) {
-        var len2 = b64.length;
-        if (len2 % 4 > 0) {
-          throw new Error("Invalid string. Length must be a multiple of 4");
-        }
-        var validLen = b64.indexOf("=");
-        if (validLen === -1) validLen = len2;
-        var placeHoldersLen = validLen === len2 ? 0 : 4 - validLen % 4;
-        return [validLen, placeHoldersLen];
-      }
-      __name(getLens, "getLens");
-      function byteLength(b64) {
-        var lens = getLens(b64);
-        var validLen = lens[0];
-        var placeHoldersLen = lens[1];
-        return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
-      }
-      __name(byteLength, "byteLength");
-      function _byteLength(b64, validLen, placeHoldersLen) {
-        return (validLen + placeHoldersLen) * 3 / 4 - placeHoldersLen;
-      }
-      __name(_byteLength, "_byteLength");
-      function toByteArray2(b64) {
-        var tmp;
-        var lens = getLens(b64);
-        var validLen = lens[0];
-        var placeHoldersLen = lens[1];
-        var arr = new Arr(_byteLength(b64, validLen, placeHoldersLen));
-        var curByte = 0;
-        var len2 = placeHoldersLen > 0 ? validLen - 4 : validLen;
-        var i2;
-        for (i2 = 0; i2 < len2; i2 += 4) {
-          tmp = revLookup[b64.charCodeAt(i2)] << 18 | revLookup[b64.charCodeAt(i2 + 1)] << 12 | revLookup[b64.charCodeAt(i2 + 2)] << 6 | revLookup[b64.charCodeAt(i2 + 3)];
-          arr[curByte++] = tmp >> 16 & 255;
-          arr[curByte++] = tmp >> 8 & 255;
-          arr[curByte++] = tmp & 255;
-        }
-        if (placeHoldersLen === 2) {
-          tmp = revLookup[b64.charCodeAt(i2)] << 2 | revLookup[b64.charCodeAt(i2 + 1)] >> 4;
-          arr[curByte++] = tmp & 255;
-        }
-        if (placeHoldersLen === 1) {
-          tmp = revLookup[b64.charCodeAt(i2)] << 10 | revLookup[b64.charCodeAt(i2 + 1)] << 4 | revLookup[b64.charCodeAt(i2 + 2)] >> 2;
-          arr[curByte++] = tmp >> 8 & 255;
-          arr[curByte++] = tmp & 255;
-        }
-        return arr;
-      }
-      __name(toByteArray2, "toByteArray");
-      function tripletToBase64(num) {
-        return lookup2[num >> 18 & 63] + lookup2[num >> 12 & 63] + lookup2[num >> 6 & 63] + lookup2[num & 63];
-      }
-      __name(tripletToBase64, "tripletToBase64");
-      function encodeChunk(uint8, start, end) {
-        var tmp;
-        var output = [];
-        for (var i2 = start; i2 < end; i2 += 3) {
-          tmp = (uint8[i2] << 16 & 16711680) + (uint8[i2 + 1] << 8 & 65280) + (uint8[i2 + 2] & 255);
-          output.push(tripletToBase64(tmp));
-        }
-        return output.join("");
-      }
-      __name(encodeChunk, "encodeChunk");
-      function fromByteArray2(uint8) {
-        var tmp;
-        var len2 = uint8.length;
-        var extraBytes = len2 % 3;
-        var parts = [];
-        var maxChunkLength = 16383;
-        for (var i2 = 0, len22 = len2 - extraBytes; i2 < len22; i2 += maxChunkLength) {
-          parts.push(encodeChunk(uint8, i2, i2 + maxChunkLength > len22 ? len22 : i2 + maxChunkLength));
-        }
-        if (extraBytes === 1) {
-          tmp = uint8[len2 - 1];
-          parts.push(
-            lookup2[tmp >> 2] + lookup2[tmp << 4 & 63] + "=="
-          );
-        } else if (extraBytes === 2) {
-          tmp = (uint8[len2 - 2] << 8) + uint8[len2 - 1];
-          parts.push(
-            lookup2[tmp >> 10] + lookup2[tmp >> 4 & 63] + lookup2[tmp << 2 & 63] + "="
-          );
-        }
-        return parts.join("");
-      }
-      __name(fromByteArray2, "fromByteArray");
-    }
-  });
-
   // ../../node_modules/@near-js/crypto/lib/constants.js
   var require_constants7 = __commonJS({
     "../../node_modules/@near-js/crypto/lib/constants.js"(exports2) {
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyType = void 0;
-      var KeyType2;
-      (function(KeyType3) {
-        KeyType3[KeyType3["ED25519"] = 0] = "ED25519";
-      })(KeyType2 = exports2.KeyType || (exports2.KeyType = {}));
+      var KeyType;
+      (function(KeyType2) {
+        KeyType2[KeyType2["ED25519"] = 0] = "ED25519";
+      })(KeyType = exports2.KeyType || (exports2.KeyType = {}));
     }
   });
 
@@ -39382,12 +39274,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyPairBase = void 0;
-      var KeyPairBase2 = class {
+      var KeyPairBase = class {
         static {
           __name(this, "KeyPairBase");
         }
       };
-      exports2.KeyPairBase = KeyPairBase2;
+      exports2.KeyPairBase = KeyPairBase;
     }
   });
 
@@ -39401,7 +39293,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           if (init) for (i = 0; i < init.length; i++) r[i] = init[i];
           return r;
         }, "gf");
-        var randombytes3 = /* @__PURE__ */ __name(function() {
+        var randombytes = /* @__PURE__ */ __name(function() {
           throw new Error("no PRNG");
         }, "randombytes");
         var _0 = new Uint8Array(16);
@@ -40695,7 +40587,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         __name(crypto_scalarmult_base, "crypto_scalarmult_base");
         function crypto_box_keypair(y, x) {
-          randombytes3(x, 32);
+          randombytes(x, 32);
           return crypto_scalarmult_base(y, x);
         }
         __name(crypto_box_keypair, "crypto_box_keypair");
@@ -41209,7 +41101,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return 0;
         }
         __name(crypto_hash, "crypto_hash");
-        function add2(p, q) {
+        function add(p, q) {
           var a = gf(), b = gf(), c = gf(), d = gf(), e = gf(), f = gf(), g = gf(), h = gf(), t = gf();
           Z(a, p[1], p[0]);
           Z(t, q[1], q[0]);
@@ -41230,7 +41122,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           M(p[2], g, f);
           M(p[3], e, h);
         }
-        __name(add2, "add");
+        __name(add, "add");
         function cswap(p, q, b) {
           var i;
           for (i = 0; i < 4; i++) {
@@ -41256,8 +41148,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           for (i = 255; i >= 0; --i) {
             b = s[i / 8 | 0] >> (i & 7) & 1;
             cswap(p, q, b);
-            add2(q, p);
-            add2(p, p);
+            add(q, p);
+            add(p, p);
             cswap(p, q, b);
           }
         }
@@ -41275,7 +41167,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           var d = new Uint8Array(64);
           var p = [gf(), gf(), gf(), gf()];
           var i;
-          if (!seeded) randombytes3(sk, 32);
+          if (!seeded) randombytes(sk, 32);
           crypto_hash(d, sk, 32);
           d[0] &= 248;
           d[31] &= 127;
@@ -41389,7 +41281,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           reduce(h);
           scalarmult(p, q, h);
           scalarbase(q, sm.subarray(32));
-          add2(p, q);
+          add(p, q);
           pack(t, p);
           n -= 64;
           if (crypto_verify_32(sm, 0, t, 0)) {
@@ -41451,7 +41343,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           S,
           Z,
           pow2523,
-          add: add2,
+          add,
           set25519,
           modL,
           scalarmult,
@@ -41480,7 +41372,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         __name(cleanup, "cleanup");
         nacl.randomBytes = function(n) {
           var b = new Uint8Array(n);
-          randombytes3(b, n);
+          randombytes(b, n);
           return b;
         };
         nacl.secretbox = function(msg, nonce, key) {
@@ -41638,25 +41530,25 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return vn(x, 0, y, 0, x.length) === 0 ? true : false;
         };
         nacl.setPRNG = function(fn2) {
-          randombytes3 = fn2;
+          randombytes = fn2;
         };
         (function() {
-          var crypto4 = typeof self !== "undefined" ? self.crypto || self.msCrypto : null;
-          if (crypto4 && crypto4.getRandomValues) {
+          var crypto3 = typeof self !== "undefined" ? self.crypto || self.msCrypto : null;
+          if (crypto3 && crypto3.getRandomValues) {
             var QUOTA = 65536;
             nacl.setPRNG(function(x, n) {
               var i, v = new Uint8Array(n);
               for (i = 0; i < n; i += QUOTA) {
-                crypto4.getRandomValues(v.subarray(i, i + Math.min(n - i, QUOTA)));
+                crypto3.getRandomValues(v.subarray(i, i + Math.min(n - i, QUOTA)));
               }
               for (i = 0; i < n; i++) x[i] = v[i];
               cleanup(v);
             });
           } else if (typeof __require !== "undefined") {
-            crypto4 = __require("crypto");
-            if (crypto4 && crypto4.randomBytes) {
+            crypto3 = __require("crypto");
+            if (crypto3 && crypto3.randomBytes) {
               nacl.setPRNG(function(x, n) {
-                var i, v = crypto4.randomBytes(n);
+                var i, v = crypto3.randomBytes(n);
                 for (i = 0; i < n; i++) x[i] = v[i];
                 cleanup(v);
               });
@@ -41673,7 +41565,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Assignable = void 0;
-      var Assignable2 = class {
+      var Assignable = class {
         static {
           __name(this, "Assignable");
         }
@@ -41683,7 +41575,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Assignable = Assignable2;
+      exports2.Assignable = Assignable;
     }
   });
 
@@ -41693,7 +41585,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ErrorContext = exports2.TypedError = exports2.ArgumentTypeError = exports2.PositionalArgsError = void 0;
-      var PositionalArgsError2 = class extends Error {
+      var PositionalArgsError = class extends Error {
         static {
           __name(this, "PositionalArgsError");
         }
@@ -41701,8 +41593,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super("Contract method calls expect named arguments wrapped in object, e.g. { argName1: argValue1, argName2: argValue2 }");
         }
       };
-      exports2.PositionalArgsError = PositionalArgsError2;
-      var ArgumentTypeError2 = class extends Error {
+      exports2.PositionalArgsError = PositionalArgsError;
+      var ArgumentTypeError = class extends Error {
         static {
           __name(this, "ArgumentTypeError");
         }
@@ -41710,8 +41602,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Expected ${argType} for '${argName}' argument, but got '${JSON.stringify(argValue)}'`);
         }
       };
-      exports2.ArgumentTypeError = ArgumentTypeError2;
-      var TypedError2 = class extends Error {
+      exports2.ArgumentTypeError = ArgumentTypeError;
+      var TypedError = class extends Error {
         static {
           __name(this, "TypedError");
         }
@@ -41721,8 +41613,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.context = context;
         }
       };
-      exports2.TypedError = TypedError2;
-      var ErrorContext2 = class {
+      exports2.TypedError = TypedError;
+      var ErrorContext = class {
         static {
           __name(this, "ErrorContext");
         }
@@ -41730,7 +41622,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.transactionHash = transactionHash;
         }
       };
-      exports2.ErrorContext = ErrorContext2;
+      exports2.ErrorContext = ErrorContext;
     }
   });
 
@@ -41740,11 +41632,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.IdType = void 0;
-      var IdType2;
-      (function(IdType3) {
-        IdType3["Transaction"] = "transaction";
-        IdType3["Receipt"] = "receipt";
-      })(IdType2 = exports2.IdType || (exports2.IdType = {}));
+      var IdType;
+      (function(IdType2) {
+        IdType2["Transaction"] = "transaction";
+        IdType2["Receipt"] = "receipt";
+      })(IdType = exports2.IdType || (exports2.IdType = {}));
     }
   });
 
@@ -41754,18 +41646,18 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.FinalExecutionStatusBasic = exports2.ExecutionStatusBasic = void 0;
-      var ExecutionStatusBasic2;
-      (function(ExecutionStatusBasic3) {
-        ExecutionStatusBasic3["Unknown"] = "Unknown";
-        ExecutionStatusBasic3["Pending"] = "Pending";
-        ExecutionStatusBasic3["Failure"] = "Failure";
-      })(ExecutionStatusBasic2 = exports2.ExecutionStatusBasic || (exports2.ExecutionStatusBasic = {}));
-      var FinalExecutionStatusBasic2;
-      (function(FinalExecutionStatusBasic3) {
-        FinalExecutionStatusBasic3["NotStarted"] = "NotStarted";
-        FinalExecutionStatusBasic3["Started"] = "Started";
-        FinalExecutionStatusBasic3["Failure"] = "Failure";
-      })(FinalExecutionStatusBasic2 = exports2.FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = {}));
+      var ExecutionStatusBasic;
+      (function(ExecutionStatusBasic2) {
+        ExecutionStatusBasic2["Unknown"] = "Unknown";
+        ExecutionStatusBasic2["Pending"] = "Pending";
+        ExecutionStatusBasic2["Failure"] = "Failure";
+      })(ExecutionStatusBasic = exports2.ExecutionStatusBasic || (exports2.ExecutionStatusBasic = {}));
+      var FinalExecutionStatusBasic;
+      (function(FinalExecutionStatusBasic2) {
+        FinalExecutionStatusBasic2["NotStarted"] = "NotStarted";
+        FinalExecutionStatusBasic2["Started"] = "Started";
+        FinalExecutionStatusBasic2["Failure"] = "Failure";
+      })(FinalExecutionStatusBasic = exports2.FinalExecutionStatusBasic || (exports2.FinalExecutionStatusBasic = {}));
     }
   });
 
@@ -41820,8 +41712,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_public_key2 = __commonJS({
     "../../node_modules/@near-js/crypto/lib/public_key.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.PublicKey = void 0;
@@ -41847,7 +41739,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
       }
       __name(str_to_key_type, "str_to_key_type");
-      var PublicKey3 = class _PublicKey extends types_1.Assignable {
+      var PublicKey2 = class _PublicKey extends types_1.Assignable {
         static {
           __name(this, "PublicKey");
         }
@@ -41887,7 +41779,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
         }
       };
-      exports2.PublicKey = PublicKey3;
+      exports2.PublicKey = PublicKey2;
     }
   });
 
@@ -41895,8 +41787,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_key_pair_ed255192 = __commonJS({
     "../../node_modules/@near-js/crypto/lib/key_pair_ed25519.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyPairEd25519 = void 0;
@@ -41905,7 +41797,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var constants_1 = require_constants7();
       var key_pair_base_1 = require_key_pair_base2();
       var public_key_1 = require_public_key2();
-      var KeyPairEd255192 = class _KeyPairEd25519 extends key_pair_base_1.KeyPairBase {
+      var KeyPairEd25519 = class _KeyPairEd25519 extends key_pair_base_1.KeyPairBase {
         static {
           __name(this, "KeyPairEd25519");
         }
@@ -41948,7 +41840,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return this.publicKey;
         }
       };
-      exports2.KeyPairEd25519 = KeyPairEd255192;
+      exports2.KeyPairEd25519 = KeyPairEd25519;
     }
   });
 
@@ -42027,12 +41919,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.KeyStore = void 0;
-      var KeyStore2 = class {
+      var KeyStore = class {
         static {
           __name(this, "KeyStore");
         }
       };
-      exports2.KeyStore = KeyStore2;
+      exports2.KeyStore = KeyStore;
     }
   });
 
@@ -42040,14 +41932,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_in_memory_key_store2 = __commonJS({
     "../../node_modules/@near-js/keystores/lib/in_memory_key_store.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -42075,7 +41967,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.InMemoryKeyStore = void 0;
       var crypto_1 = require_lib8();
       var keystore_1 = require_keystore2();
-      var InMemoryKeyStore2 = class extends keystore_1.KeyStore {
+      var InMemoryKeyStore = class extends keystore_1.KeyStore {
         static {
           __name(this, "InMemoryKeyStore");
         }
@@ -42162,7 +42054,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return "InMemoryKeyStore";
         }
       };
-      exports2.InMemoryKeyStore = InMemoryKeyStore2;
+      exports2.InMemoryKeyStore = InMemoryKeyStore;
     }
   });
 
@@ -42170,14 +42062,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_merge_key_store2 = __commonJS({
     "../../node_modules/@near-js/keystores/lib/merge_key_store.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -42204,7 +42096,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.MergeKeyStore = void 0;
       var keystore_1 = require_keystore2();
-      var MergeKeyStore2 = class extends keystore_1.KeyStore {
+      var MergeKeyStore = class extends keystore_1.KeyStore {
         static {
           __name(this, "MergeKeyStore");
         }
@@ -42212,10 +42104,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param keyStores read calls are attempted from start to end of array
          * @param options.writeKeyStoreIndex the keystore index that will receive all write calls
          */
-        constructor(keyStores, options = { writeKeyStoreIndex: 0 }) {
+        constructor(keyStores2, options = { writeKeyStoreIndex: 0 }) {
           super();
           this.options = options;
-          this.keyStores = keyStores;
+          this.keyStores = keyStores2;
         }
         /**
          * Store a {@link utils/key_pair!KeyPair} to the first index of a key store array
@@ -42302,7 +42194,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return `MergeKeyStore(${this.keyStores.join(", ")})`;
         }
       };
-      exports2.MergeKeyStore = MergeKeyStore2;
+      exports2.MergeKeyStore = MergeKeyStore;
     }
   });
 
@@ -42357,14 +42249,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_browser_local_storage_key_store = __commonJS({
     "../../node_modules/@near-js/keystores-browser/lib/browser_local_storage_key_store.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -42392,8 +42284,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.BrowserLocalStorageKeyStore = void 0;
       var crypto_1 = require_lib8();
       var keystores_1 = require_lib9();
-      var LOCAL_STORAGE_KEY_PREFIX2 = "near-api-js:keystore:";
-      var BrowserLocalStorageKeyStore2 = class extends keystores_1.KeyStore {
+      var LOCAL_STORAGE_KEY_PREFIX = "near-api-js:keystore:";
+      var BrowserLocalStorageKeyStore = class extends keystores_1.KeyStore {
         static {
           __name(this, "BrowserLocalStorageKeyStore");
         }
@@ -42401,7 +42293,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param localStorage defaults to window.localStorage
          * @param prefix defaults to `near-api-js:keystore:`
          */
-        constructor(localStorage2 = window.localStorage, prefix = LOCAL_STORAGE_KEY_PREFIX2) {
+        constructor(localStorage2 = window.localStorage, prefix = LOCAL_STORAGE_KEY_PREFIX) {
           super();
           this.localStorage = localStorage2;
           this.prefix = prefix;
@@ -42505,7 +42397,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
         }
       };
-      exports2.BrowserLocalStorageKeyStore = BrowserLocalStorageKeyStore2;
+      exports2.BrowserLocalStorageKeyStore = BrowserLocalStorageKeyStore;
     }
   });
 
@@ -42539,14 +42431,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_unencrypted_file_system_keystore = __commonJS({
     "../../node_modules/@near-js/keystores-node/lib/unencrypted_file_system_keystore.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -42570,8 +42462,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.UnencryptedFileSystemKeyStore = exports2.readKeyFile = void 0;
@@ -42806,8 +42698,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_constants8 = __commonJS({
     "../../node_modules/@near-js/utils/lib/constants.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.DEFAULT_FUNCTION_CALL_GAS = void 0;
@@ -42839,41 +42731,41 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         typeof exports2 === "object" && typeof module2 !== "undefined" ? module2.exports = factory() : typeof define === "function" && define.amd ? define(factory) : (global2 = global2 || self, global2.Mustache = factory());
       })(exports2, function() {
         "use strict";
-        var objectToString2 = Object.prototype.toString;
-        var isArray2 = Array.isArray || /* @__PURE__ */ __name(function isArrayPolyfill2(object) {
-          return objectToString2.call(object) === "[object Array]";
+        var objectToString = Object.prototype.toString;
+        var isArray = Array.isArray || /* @__PURE__ */ __name(function isArrayPolyfill(object) {
+          return objectToString.call(object) === "[object Array]";
         }, "isArrayPolyfill");
-        function isFunction2(object) {
+        function isFunction(object) {
           return typeof object === "function";
         }
-        __name(isFunction2, "isFunction");
-        function typeStr2(obj) {
-          return isArray2(obj) ? "array" : typeof obj;
+        __name(isFunction, "isFunction");
+        function typeStr(obj) {
+          return isArray(obj) ? "array" : typeof obj;
         }
-        __name(typeStr2, "typeStr");
-        function escapeRegExp2(string) {
+        __name(typeStr, "typeStr");
+        function escapeRegExp(string) {
           return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
         }
-        __name(escapeRegExp2, "escapeRegExp");
-        function hasProperty2(obj, propName) {
+        __name(escapeRegExp, "escapeRegExp");
+        function hasProperty(obj, propName) {
           return obj != null && typeof obj === "object" && propName in obj;
         }
-        __name(hasProperty2, "hasProperty");
-        function primitiveHasOwnProperty2(primitive, propName) {
+        __name(hasProperty, "hasProperty");
+        function primitiveHasOwnProperty(primitive, propName) {
           return primitive != null && typeof primitive !== "object" && primitive.hasOwnProperty && primitive.hasOwnProperty(propName);
         }
-        __name(primitiveHasOwnProperty2, "primitiveHasOwnProperty");
-        var regExpTest2 = RegExp.prototype.test;
-        function testRegExp2(re, string) {
-          return regExpTest2.call(re, string);
+        __name(primitiveHasOwnProperty, "primitiveHasOwnProperty");
+        var regExpTest = RegExp.prototype.test;
+        function testRegExp(re, string) {
+          return regExpTest.call(re, string);
         }
-        __name(testRegExp2, "testRegExp");
-        var nonSpaceRe2 = /\S/;
-        function isWhitespace2(string) {
-          return !testRegExp2(nonSpaceRe2, string);
+        __name(testRegExp, "testRegExp");
+        var nonSpaceRe = /\S/;
+        function isWhitespace(string) {
+          return !testRegExp(nonSpaceRe, string);
         }
-        __name(isWhitespace2, "isWhitespace");
-        var entityMap2 = {
+        __name(isWhitespace, "isWhitespace");
+        var entityMap = {
           "&": "&amp;",
           "<": "&lt;",
           ">": "&gt;",
@@ -42883,18 +42775,18 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           "`": "&#x60;",
           "=": "&#x3D;"
         };
-        function escapeHtml2(string) {
+        function escapeHtml(string) {
           return String(string).replace(/[&<>"'`=\/]/g, /* @__PURE__ */ __name(function fromEntityMap(s) {
-            return entityMap2[s];
+            return entityMap[s];
           }, "fromEntityMap"));
         }
-        __name(escapeHtml2, "escapeHtml");
-        var whiteRe2 = /\s*/;
-        var spaceRe2 = /\s+/;
-        var equalsRe2 = /\s*=/;
-        var curlyRe2 = /\s*\}/;
-        var tagRe2 = /#|\^|\/|>|\{|&|=|!/;
-        function parseTemplate2(template, tags) {
+        __name(escapeHtml, "escapeHtml");
+        var whiteRe = /\s*/;
+        var spaceRe = /\s+/;
+        var equalsRe = /\s*=/;
+        var curlyRe = /\s*\}/;
+        var tagRe = /#|\^|\/|>|\{|&|=|!/;
+        function parseTemplate(template, tags) {
           if (!template)
             return [];
           var lineHasNonSpace = false;
@@ -42919,16 +42811,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           var openingTagRe, closingTagRe, closingCurlyRe;
           function compileTags(tagsToCompile) {
             if (typeof tagsToCompile === "string")
-              tagsToCompile = tagsToCompile.split(spaceRe2, 2);
-            if (!isArray2(tagsToCompile) || tagsToCompile.length !== 2)
+              tagsToCompile = tagsToCompile.split(spaceRe, 2);
+            if (!isArray(tagsToCompile) || tagsToCompile.length !== 2)
               throw new Error("Invalid tags: " + tagsToCompile);
-            openingTagRe = new RegExp(escapeRegExp2(tagsToCompile[0]) + "\\s*");
-            closingTagRe = new RegExp("\\s*" + escapeRegExp2(tagsToCompile[1]));
-            closingCurlyRe = new RegExp("\\s*" + escapeRegExp2("}" + tagsToCompile[1]));
+            openingTagRe = new RegExp(escapeRegExp(tagsToCompile[0]) + "\\s*");
+            closingTagRe = new RegExp("\\s*" + escapeRegExp(tagsToCompile[1]));
+            closingCurlyRe = new RegExp("\\s*" + escapeRegExp("}" + tagsToCompile[1]));
           }
           __name(compileTags, "compileTags");
-          compileTags(tags || mustache2.tags);
-          var scanner = new Scanner2(template);
+          compileTags(tags || mustache.tags);
+          var scanner = new Scanner(template);
           var start, type, value, chr, token, openSection;
           while (!scanner.eos()) {
             start = scanner.pos;
@@ -42936,7 +42828,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             if (value) {
               for (var i = 0, valueLength = value.length; i < valueLength; ++i) {
                 chr = value.charAt(i);
-                if (isWhitespace2(chr)) {
+                if (isWhitespace(chr)) {
                   spaces.push(tokens.length);
                   indentation += chr;
                 } else {
@@ -42957,15 +42849,15 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             if (!scanner.scan(openingTagRe))
               break;
             hasTag = true;
-            type = scanner.scan(tagRe2) || "name";
-            scanner.scan(whiteRe2);
+            type = scanner.scan(tagRe) || "name";
+            scanner.scan(whiteRe);
             if (type === "=") {
-              value = scanner.scanUntil(equalsRe2);
-              scanner.scan(equalsRe2);
+              value = scanner.scanUntil(equalsRe);
+              scanner.scan(equalsRe);
               scanner.scanUntil(closingTagRe);
             } else if (type === "{") {
               value = scanner.scanUntil(closingCurlyRe);
-              scanner.scan(curlyRe2);
+              scanner.scan(curlyRe);
               scanner.scanUntil(closingTagRe);
               type = "&";
             } else {
@@ -42998,10 +42890,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           openSection = sections.pop();
           if (openSection)
             throw new Error('Unclosed section "' + openSection[1] + '" at ' + scanner.pos);
-          return nestTokens2(squashTokens2(tokens));
+          return nestTokens(squashTokens(tokens));
         }
-        __name(parseTemplate2, "parseTemplate");
-        function squashTokens2(tokens) {
+        __name(parseTemplate, "parseTemplate");
+        function squashTokens(tokens) {
           var squashedTokens = [];
           var token, lastToken;
           for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
@@ -43018,8 +42910,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return squashedTokens;
         }
-        __name(squashTokens2, "squashTokens");
-        function nestTokens2(tokens) {
+        __name(squashTokens, "squashTokens");
+        function nestTokens(tokens) {
           var nestedTokens = [];
           var collector = nestedTokens;
           var sections = [];
@@ -43044,17 +42936,17 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return nestedTokens;
         }
-        __name(nestTokens2, "nestTokens");
-        function Scanner2(string) {
+        __name(nestTokens, "nestTokens");
+        function Scanner(string) {
           this.string = string;
           this.tail = string;
           this.pos = 0;
         }
-        __name(Scanner2, "Scanner");
-        Scanner2.prototype.eos = /* @__PURE__ */ __name(function eos2() {
+        __name(Scanner, "Scanner");
+        Scanner.prototype.eos = /* @__PURE__ */ __name(function eos() {
           return this.tail === "";
         }, "eos");
-        Scanner2.prototype.scan = /* @__PURE__ */ __name(function scan2(re) {
+        Scanner.prototype.scan = /* @__PURE__ */ __name(function scan(re) {
           var match = this.tail.match(re);
           if (!match || match.index !== 0)
             return "";
@@ -43063,7 +42955,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.pos += string.length;
           return string;
         }, "scan");
-        Scanner2.prototype.scanUntil = /* @__PURE__ */ __name(function scanUntil2(re) {
+        Scanner.prototype.scanUntil = /* @__PURE__ */ __name(function scanUntil(re) {
           var index = this.tail.search(re), match;
           switch (index) {
             case -1:
@@ -43080,16 +42972,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           this.pos += match.length;
           return match;
         }, "scanUntil");
-        function Context2(view, parentContext) {
+        function Context(view, parentContext) {
           this.view = view;
           this.cache = { ".": this.view };
           this.parent = parentContext;
         }
-        __name(Context2, "Context");
-        Context2.prototype.push = /* @__PURE__ */ __name(function push2(view) {
-          return new Context2(view, this);
+        __name(Context, "Context");
+        Context.prototype.push = /* @__PURE__ */ __name(function push(view) {
+          return new Context(view, this);
         }, "push");
-        Context2.prototype.lookup = /* @__PURE__ */ __name(function lookup2(name) {
+        Context.prototype.lookup = /* @__PURE__ */ __name(function lookup(name) {
           var cache = this.cache;
           var value;
           if (cache.hasOwnProperty(name)) {
@@ -43103,12 +42995,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
                 index = 0;
                 while (intermediateValue != null && index < names.length) {
                   if (index === names.length - 1)
-                    lookupHit = hasProperty2(intermediateValue, names[index]) || primitiveHasOwnProperty2(intermediateValue, names[index]);
+                    lookupHit = hasProperty(intermediateValue, names[index]) || primitiveHasOwnProperty(intermediateValue, names[index]);
                   intermediateValue = intermediateValue[names[index++]];
                 }
               } else {
                 intermediateValue = context.view[name];
-                lookupHit = hasProperty2(context.view, name);
+                lookupHit = hasProperty(context.view, name);
               }
               if (lookupHit) {
                 value = intermediateValue;
@@ -43118,11 +43010,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             }
             cache[name] = value;
           }
-          if (isFunction2(value))
+          if (isFunction(value))
             value = value.call(this.view);
           return value;
         }, "lookup");
-        function Writer2() {
+        function Writer() {
           this.templateCache = {
             _cache: {},
             set: /* @__PURE__ */ __name(function set(key, value) {
@@ -43136,30 +43028,30 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             }, "clear")
           };
         }
-        __name(Writer2, "Writer");
-        Writer2.prototype.clearCache = /* @__PURE__ */ __name(function clearCache3() {
+        __name(Writer, "Writer");
+        Writer.prototype.clearCache = /* @__PURE__ */ __name(function clearCache() {
           if (typeof this.templateCache !== "undefined") {
             this.templateCache.clear();
           }
         }, "clearCache");
-        Writer2.prototype.parse = /* @__PURE__ */ __name(function parse3(template, tags) {
+        Writer.prototype.parse = /* @__PURE__ */ __name(function parse2(template, tags) {
           var cache = this.templateCache;
-          var cacheKey = template + ":" + (tags || mustache2.tags).join(":");
+          var cacheKey = template + ":" + (tags || mustache.tags).join(":");
           var isCacheEnabled = typeof cache !== "undefined";
           var tokens = isCacheEnabled ? cache.get(cacheKey) : void 0;
           if (tokens == void 0) {
-            tokens = parseTemplate2(template, tags);
+            tokens = parseTemplate(template, tags);
             isCacheEnabled && cache.set(cacheKey, tokens);
           }
           return tokens;
         }, "parse");
-        Writer2.prototype.render = /* @__PURE__ */ __name(function render3(template, view, partials, config) {
+        Writer.prototype.render = /* @__PURE__ */ __name(function render(template, view, partials, config) {
           var tags = this.getConfigTags(config);
           var tokens = this.parse(template, tags);
-          var context = view instanceof Context2 ? view : new Context2(view, void 0);
+          var context = view instanceof Context ? view : new Context(view, void 0);
           return this.renderTokens(tokens, context, partials, template, config);
         }, "render");
-        Writer2.prototype.renderTokens = /* @__PURE__ */ __name(function renderTokens2(tokens, context, partials, originalTemplate, config) {
+        Writer.prototype.renderTokens = /* @__PURE__ */ __name(function renderTokens(tokens, context, partials, originalTemplate, config) {
           var buffer = "";
           var token, symbol, value;
           for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
@@ -43177,7 +43069,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return buffer;
         }, "renderTokens");
-        Writer2.prototype.renderSection = /* @__PURE__ */ __name(function renderSection2(token, context, partials, originalTemplate, config) {
+        Writer.prototype.renderSection = /* @__PURE__ */ __name(function renderSection(token, context, partials, originalTemplate, config) {
           var self2 = this;
           var buffer = "";
           var value = context.lookup(token[1]);
@@ -43186,13 +43078,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           __name(subRender, "subRender");
           if (!value) return;
-          if (isArray2(value)) {
+          if (isArray(value)) {
             for (var j = 0, valueLength = value.length; j < valueLength; ++j) {
               buffer += this.renderTokens(token[4], context.push(value[j]), partials, originalTemplate, config);
             }
           } else if (typeof value === "object" || typeof value === "string" || typeof value === "number") {
             buffer += this.renderTokens(token[4], context.push(value), partials, originalTemplate, config);
-          } else if (isFunction2(value)) {
+          } else if (isFunction(value)) {
             if (typeof originalTemplate !== "string")
               throw new Error("Cannot use higher-order sections without the original template");
             value = value.call(context.view, originalTemplate.slice(token[3], token[5]), subRender);
@@ -43203,12 +43095,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return buffer;
         }, "renderSection");
-        Writer2.prototype.renderInverted = /* @__PURE__ */ __name(function renderInverted2(token, context, partials, originalTemplate, config) {
+        Writer.prototype.renderInverted = /* @__PURE__ */ __name(function renderInverted(token, context, partials, originalTemplate, config) {
           var value = context.lookup(token[1]);
-          if (!value || isArray2(value) && value.length === 0)
+          if (!value || isArray(value) && value.length === 0)
             return this.renderTokens(token[4], context, partials, originalTemplate, config);
         }, "renderInverted");
-        Writer2.prototype.indentPartial = /* @__PURE__ */ __name(function indentPartial2(partial, indentation, lineHasNonSpace) {
+        Writer.prototype.indentPartial = /* @__PURE__ */ __name(function indentPartial(partial, indentation, lineHasNonSpace) {
           var filteredIndentation = indentation.replace(/[^ \t]/g, "");
           var partialByNl = partial.split("\n");
           for (var i = 0; i < partialByNl.length; i++) {
@@ -43218,10 +43110,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
           return partialByNl.join("\n");
         }, "indentPartial");
-        Writer2.prototype.renderPartial = /* @__PURE__ */ __name(function renderPartial2(token, context, partials, config) {
+        Writer.prototype.renderPartial = /* @__PURE__ */ __name(function renderPartial(token, context, partials, config) {
           if (!partials) return;
           var tags = this.getConfigTags(config);
-          var value = isFunction2(partials) ? partials(token[1]) : partials[token[1]];
+          var value = isFunction(partials) ? partials(token[1]) : partials[token[1]];
           if (value != null) {
             var lineHasNonSpace = token[6];
             var tagIndex = token[5];
@@ -43234,22 +43126,22 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return this.renderTokens(tokens, context, partials, indentedValue, config);
           }
         }, "renderPartial");
-        Writer2.prototype.unescapedValue = /* @__PURE__ */ __name(function unescapedValue2(token, context) {
+        Writer.prototype.unescapedValue = /* @__PURE__ */ __name(function unescapedValue(token, context) {
           var value = context.lookup(token[1]);
           if (value != null)
             return value;
         }, "unescapedValue");
-        Writer2.prototype.escapedValue = /* @__PURE__ */ __name(function escapedValue2(token, context, config) {
-          var escape2 = this.getConfigEscape(config) || mustache2.escape;
+        Writer.prototype.escapedValue = /* @__PURE__ */ __name(function escapedValue(token, context, config) {
+          var escape2 = this.getConfigEscape(config) || mustache.escape;
           var value = context.lookup(token[1]);
           if (value != null)
-            return typeof value === "number" && escape2 === mustache2.escape ? String(value) : escape2(value);
+            return typeof value === "number" && escape2 === mustache.escape ? String(value) : escape2(value);
         }, "escapedValue");
-        Writer2.prototype.rawValue = /* @__PURE__ */ __name(function rawValue2(token) {
+        Writer.prototype.rawValue = /* @__PURE__ */ __name(function rawValue(token) {
           return token[1];
         }, "rawValue");
-        Writer2.prototype.getConfigTags = /* @__PURE__ */ __name(function getConfigTags2(config) {
-          if (isArray2(config)) {
+        Writer.prototype.getConfigTags = /* @__PURE__ */ __name(function getConfigTags(config) {
+          if (isArray(config)) {
             return config;
           } else if (config && typeof config === "object") {
             return config.tags;
@@ -43257,14 +43149,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return void 0;
           }
         }, "getConfigTags");
-        Writer2.prototype.getConfigEscape = /* @__PURE__ */ __name(function getConfigEscape2(config) {
-          if (config && typeof config === "object" && !isArray2(config)) {
+        Writer.prototype.getConfigEscape = /* @__PURE__ */ __name(function getConfigEscape(config) {
+          if (config && typeof config === "object" && !isArray(config)) {
             return config.escape;
           } else {
             return void 0;
           }
         }, "getConfigEscape");
-        var mustache2 = {
+        var mustache = {
           name: "mustache.js",
           version: "4.2.0",
           tags: ["{{", "}}"],
@@ -43281,33 +43173,33 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
            * the cache by setting it to the literal `undefined`.
            */
           set templateCache(cache) {
-            defaultWriter2.templateCache = cache;
+            defaultWriter.templateCache = cache;
           },
           /**
            * Gets the default or overridden caching object from the default writer.
            */
           get templateCache() {
-            return defaultWriter2.templateCache;
+            return defaultWriter.templateCache;
           }
         };
-        var defaultWriter2 = new Writer2();
-        mustache2.clearCache = /* @__PURE__ */ __name(function clearCache3() {
-          return defaultWriter2.clearCache();
+        var defaultWriter = new Writer();
+        mustache.clearCache = /* @__PURE__ */ __name(function clearCache() {
+          return defaultWriter.clearCache();
         }, "clearCache");
-        mustache2.parse = /* @__PURE__ */ __name(function parse3(template, tags) {
-          return defaultWriter2.parse(template, tags);
+        mustache.parse = /* @__PURE__ */ __name(function parse2(template, tags) {
+          return defaultWriter.parse(template, tags);
         }, "parse");
-        mustache2.render = /* @__PURE__ */ __name(function render3(template, view, partials, config) {
+        mustache.render = /* @__PURE__ */ __name(function render(template, view, partials, config) {
           if (typeof template !== "string") {
-            throw new TypeError('Invalid template! Template should be a "string" but "' + typeStr2(template) + '" was given as the first argument for mustache#render(template, view, partials)');
+            throw new TypeError('Invalid template! Template should be a "string" but "' + typeStr(template) + '" was given as the first argument for mustache#render(template, view, partials)');
           }
-          return defaultWriter2.render(template, view, partials, config);
+          return defaultWriter.render(template, view, partials, config);
         }, "render");
-        mustache2.escape = escapeHtml2;
-        mustache2.Scanner = Scanner2;
-        mustache2.Context = Context2;
-        mustache2.Writer = Writer2;
-        return mustache2;
+        mustache.escape = escapeHtml;
+        mustache.Scanner = Scanner;
+        mustache.Context = Context;
+        mustache.Writer = Writer;
+        return mustache;
       });
     }
   });
@@ -43316,73 +43208,73 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_format5 = __commonJS({
     "../../node_modules/@near-js/utils/lib/format.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.parseNearAmount = exports2.formatNearAmount = exports2.NEAR_NOMINATION = exports2.NEAR_NOMINATION_EXP = void 0;
       var bn_js_1 = __importDefault(require_bn2());
       exports2.NEAR_NOMINATION_EXP = 24;
       exports2.NEAR_NOMINATION = new bn_js_1.default("10", 10).pow(new bn_js_1.default(exports2.NEAR_NOMINATION_EXP, 10));
-      var ROUNDING_OFFSETS2 = [];
-      var BN102 = new bn_js_1.default(10);
-      for (let i = 0, offset = new bn_js_1.default(5); i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset.mul(BN102)) {
-        ROUNDING_OFFSETS2[i] = offset;
+      var ROUNDING_OFFSETS = [];
+      var BN10 = new bn_js_1.default(10);
+      for (let i = 0, offset = new bn_js_1.default(5); i < exports2.NEAR_NOMINATION_EXP; i++, offset = offset.mul(BN10)) {
+        ROUNDING_OFFSETS[i] = offset;
       }
-      function formatNearAmount2(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
+      function formatNearAmount(balance, fracDigits = exports2.NEAR_NOMINATION_EXP) {
         const balanceBN = new bn_js_1.default(balance, 10);
         if (fracDigits !== exports2.NEAR_NOMINATION_EXP) {
           const roundingExp = exports2.NEAR_NOMINATION_EXP - fracDigits - 1;
           if (roundingExp > 0) {
-            balanceBN.iadd(ROUNDING_OFFSETS2[roundingExp]);
+            balanceBN.iadd(ROUNDING_OFFSETS[roundingExp]);
           }
         }
         balance = balanceBN.toString();
         const wholeStr = balance.substring(0, balance.length - exports2.NEAR_NOMINATION_EXP) || "0";
         const fractionStr = balance.substring(balance.length - exports2.NEAR_NOMINATION_EXP).padStart(exports2.NEAR_NOMINATION_EXP, "0").substring(0, fracDigits);
-        return trimTrailingZeroes2(`${formatWithCommas2(wholeStr)}.${fractionStr}`);
+        return trimTrailingZeroes(`${formatWithCommas(wholeStr)}.${fractionStr}`);
       }
-      __name(formatNearAmount2, "formatNearAmount");
-      exports2.formatNearAmount = formatNearAmount2;
-      function parseNearAmount2(amt) {
+      __name(formatNearAmount, "formatNearAmount");
+      exports2.formatNearAmount = formatNearAmount;
+      function parseNearAmount(amt) {
         if (!amt) {
           return null;
         }
-        amt = cleanupAmount2(amt);
-        const split2 = amt.split(".");
-        const wholePart = split2[0];
-        const fracPart = split2[1] || "";
-        if (split2.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
+        amt = cleanupAmount(amt);
+        const split = amt.split(".");
+        const wholePart = split[0];
+        const fracPart = split[1] || "";
+        if (split.length > 2 || fracPart.length > exports2.NEAR_NOMINATION_EXP) {
           throw new Error(`Cannot parse '${amt}' as NEAR amount`);
         }
-        return trimLeadingZeroes2(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
+        return trimLeadingZeroes(wholePart + fracPart.padEnd(exports2.NEAR_NOMINATION_EXP, "0"));
       }
-      __name(parseNearAmount2, "parseNearAmount");
-      exports2.parseNearAmount = parseNearAmount2;
-      function cleanupAmount2(amount) {
+      __name(parseNearAmount, "parseNearAmount");
+      exports2.parseNearAmount = parseNearAmount;
+      function cleanupAmount(amount) {
         return amount.replace(/,/g, "").trim();
       }
-      __name(cleanupAmount2, "cleanupAmount");
-      function trimTrailingZeroes2(value) {
+      __name(cleanupAmount, "cleanupAmount");
+      function trimTrailingZeroes(value) {
         return value.replace(/\.?0*$/, "");
       }
-      __name(trimTrailingZeroes2, "trimTrailingZeroes");
-      function trimLeadingZeroes2(value) {
+      __name(trimTrailingZeroes, "trimTrailingZeroes");
+      function trimLeadingZeroes(value) {
         value = value.replace(/^0+/, "");
         if (value === "") {
           return "0";
         }
         return value;
       }
-      __name(trimLeadingZeroes2, "trimLeadingZeroes");
-      function formatWithCommas2(value) {
+      __name(trimLeadingZeroes, "trimLeadingZeroes");
+      function formatWithCommas(value) {
         const pattern = /(-?\d+)(\d{3})/;
         while (pattern.test(value)) {
           value = value.replace(pattern, "$1,$2");
         }
         return value;
       }
-      __name(formatWithCommas2, "formatWithCommas");
+      __name(formatWithCommas, "formatWithCommas");
     }
   });
 
@@ -44337,8 +44229,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_rpc_errors5 = __commonJS({
     "../../node_modules/@near-js/utils/lib/errors/rpc_errors.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getErrorTypeFromErrorMessage = exports2.formatError = exports2.parseResultError = exports2.parseRpcError = exports2.ServerError = void 0;
@@ -44347,61 +44239,61 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var format_1 = require_format5();
       var error_messages_json_1 = __importDefault(require_error_messages5());
       var rpc_error_schema_json_1 = __importDefault(require_rpc_error_schema5());
-      var mustacheHelpers2 = {
-        formatNear: /* @__PURE__ */ __name(() => (n, render3) => (0, format_1.formatNearAmount)(render3(n)), "formatNear")
+      var mustacheHelpers = {
+        formatNear: /* @__PURE__ */ __name(() => (n, render) => (0, format_1.formatNearAmount)(render(n)), "formatNear")
       };
-      var ServerError2 = class extends types_1.TypedError {
+      var ServerError = class extends types_1.TypedError {
         static {
           __name(this, "ServerError");
         }
       };
-      exports2.ServerError = ServerError2;
-      var ServerTransactionError2 = class extends ServerError2 {
+      exports2.ServerError = ServerError;
+      var ServerTransactionError = class extends ServerError {
         static {
           __name(this, "ServerTransactionError");
         }
       };
-      function parseRpcError2(errorObj) {
+      function parseRpcError(errorObj) {
         const result = {};
-        const errorClassName = walkSubtype2(errorObj, rpc_error_schema_json_1.default.schema, result, "");
-        const error = new ServerError2(formatError2(errorClassName, result), errorClassName);
+        const errorClassName = walkSubtype(errorObj, rpc_error_schema_json_1.default.schema, result, "");
+        const error = new ServerError(formatError(errorClassName, result), errorClassName);
         Object.assign(error, result);
         return error;
       }
-      __name(parseRpcError2, "parseRpcError");
-      exports2.parseRpcError = parseRpcError2;
-      function parseResultError2(result) {
-        const server_error = parseRpcError2(result.status.Failure);
-        const server_tx_error = new ServerTransactionError2();
+      __name(parseRpcError, "parseRpcError");
+      exports2.parseRpcError = parseRpcError;
+      function parseResultError(result) {
+        const server_error = parseRpcError(result.status.Failure);
+        const server_tx_error = new ServerTransactionError();
         Object.assign(server_tx_error, server_error);
         server_tx_error.type = server_error.type;
         server_tx_error.message = server_error.message;
         server_tx_error.transaction_outcome = result.transaction_outcome;
         return server_tx_error;
       }
-      __name(parseResultError2, "parseResultError");
-      exports2.parseResultError = parseResultError2;
-      function formatError2(errorClassName, errorData) {
+      __name(parseResultError, "parseResultError");
+      exports2.parseResultError = parseResultError;
+      function formatError(errorClassName, errorData) {
         if (typeof error_messages_json_1.default[errorClassName] === "string") {
-          return mustache_1.default.render(error_messages_json_1.default[errorClassName], Object.assign(Object.assign({}, errorData), mustacheHelpers2));
+          return mustache_1.default.render(error_messages_json_1.default[errorClassName], Object.assign(Object.assign({}, errorData), mustacheHelpers));
         }
         return JSON.stringify(errorData);
       }
-      __name(formatError2, "formatError");
-      exports2.formatError = formatError2;
-      function walkSubtype2(errorObj, schema, result, typeName) {
+      __name(formatError, "formatError");
+      exports2.formatError = formatError;
+      function walkSubtype(errorObj, schema, result, typeName) {
         let error;
         let type;
         let errorTypeName;
         for (const errorName in schema) {
-          if (isString2(errorObj[errorName])) {
+          if (isString(errorObj[errorName])) {
             return errorObj[errorName];
           }
-          if (isObject2(errorObj[errorName])) {
+          if (isObject(errorObj[errorName])) {
             error = errorObj[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
-          } else if (isObject2(errorObj.kind) && isObject2(errorObj.kind[errorName])) {
+          } else if (isObject(errorObj.kind) && isObject(errorObj.kind[errorName])) {
             error = errorObj.kind[errorName];
             type = schema[errorName];
             errorTypeName = errorName;
@@ -44413,14 +44305,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           for (const prop of Object.keys(type.props)) {
             result[prop] = error[prop];
           }
-          return walkSubtype2(error, schema, result, errorTypeName);
+          return walkSubtype(error, schema, result, errorTypeName);
         } else {
           result.kind = errorObj;
           return typeName;
         }
       }
-      __name(walkSubtype2, "walkSubtype");
-      function getErrorTypeFromErrorMessage2(errorMessage, errorType) {
+      __name(walkSubtype, "walkSubtype");
+      function getErrorTypeFromErrorMessage(errorMessage, errorType) {
         switch (true) {
           case /^account .*? does not exist while viewing$/.test(errorMessage):
             return "AccountDoesNotExist";
@@ -44436,16 +44328,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return errorType;
         }
       }
-      __name(getErrorTypeFromErrorMessage2, "getErrorTypeFromErrorMessage");
-      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage2;
-      function isObject2(n) {
+      __name(getErrorTypeFromErrorMessage, "getErrorTypeFromErrorMessage");
+      exports2.getErrorTypeFromErrorMessage = getErrorTypeFromErrorMessage;
+      function isObject(n) {
         return Object.prototype.toString.call(n) === "[object Object]";
       }
-      __name(isObject2, "isObject");
-      function isString2(n) {
+      __name(isObject, "isObject");
+      function isString(n) {
         return Object.prototype.toString.call(n) === "[object String]";
       }
-      __name(isString2, "isString");
+      __name(isString, "isString");
     }
   });
 
@@ -44486,7 +44378,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.printTxOutcomeLogs = exports2.printTxOutcomeLogsAndFailures = void 0;
       var errors_1 = require_errors17();
       var SUPPRESS_LOGGING = !!process.env.NEAR_NO_LOGS;
-      function printTxOutcomeLogsAndFailures2({ contractId, outcome }) {
+      function printTxOutcomeLogsAndFailures({ contractId, outcome }) {
         if (SUPPRESS_LOGGING) {
           return;
         }
@@ -44504,7 +44396,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }, []);
         for (const result of flatLogs) {
           console.log(`Receipt${result.receiptIds.length > 1 ? "s" : ""}: ${result.receiptIds.join(", ")}`);
-          printTxOutcomeLogs2({
+          printTxOutcomeLogs({
             contractId,
             logs: result.logs,
             prefix: "	"
@@ -44514,9 +44406,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           }
         }
       }
-      __name(printTxOutcomeLogsAndFailures2, "printTxOutcomeLogsAndFailures");
-      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures2;
-      function printTxOutcomeLogs2({ contractId, logs, prefix = "" }) {
+      __name(printTxOutcomeLogsAndFailures, "printTxOutcomeLogsAndFailures");
+      exports2.printTxOutcomeLogsAndFailures = printTxOutcomeLogsAndFailures;
+      function printTxOutcomeLogs({ contractId, logs, prefix = "" }) {
         if (SUPPRESS_LOGGING) {
           return;
         }
@@ -44524,8 +44416,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           console.log(`${prefix}Log [${contractId}]: ${log2}`);
         }
       }
-      __name(printTxOutcomeLogs2, "printTxOutcomeLogs");
-      exports2.printTxOutcomeLogs = printTxOutcomeLogs2;
+      __name(printTxOutcomeLogs, "printTxOutcomeLogs");
+      exports2.printTxOutcomeLogs = printTxOutcomeLogs;
     }
   });
 
@@ -44535,7 +44427,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.getTransactionLastResult = void 0;
-      function getTransactionLastResult2(txResult) {
+      function getTransactionLastResult(txResult) {
         if (typeof txResult.status === "object" && typeof txResult.status.SuccessValue === "string") {
           const value = Buffer.from(txResult.status.SuccessValue, "base64").toString();
           try {
@@ -44546,8 +44438,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return null;
       }
-      __name(getTransactionLastResult2, "getTransactionLastResult");
-      exports2.getTransactionLastResult = getTransactionLastResult2;
+      __name(getTransactionLastResult, "getTransactionLastResult");
+      exports2.getTransactionLastResult = getTransactionLastResult;
     }
   });
 
@@ -44555,14 +44447,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_validators5 = __commonJS({
     "../../node_modules/@near-js/utils/lib/validators.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.diffEpochValidators = exports2.findSeatPrice = void 0;
       var bn_js_1 = __importDefault(require_bn2());
       var depd_1 = __importDefault(require_depd());
-      function findSeatPrice2(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
+      function findSeatPrice(validators, maxNumberOfSeats, minimumStakeRatio, protocolVersion) {
         if (protocolVersion && protocolVersion < 49) {
           return findSeatPriceForProtocolBefore49(validators, maxNumberOfSeats);
         }
@@ -44573,8 +44465,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return findSeatPriceForProtocolAfter49(validators, maxNumberOfSeats, minimumStakeRatio);
       }
-      __name(findSeatPrice2, "findSeatPrice");
-      exports2.findSeatPrice = findSeatPrice2;
+      __name(findSeatPrice, "findSeatPrice");
+      exports2.findSeatPrice = findSeatPrice;
       function findSeatPriceForProtocolBefore49(validators, numSeats) {
         const stakes = validators.map((v) => new bn_js_1.default(v.stake, 10)).sort((a, b) => a.cmp(b));
         const num = new bn_js_1.default(numSeats);
@@ -44615,7 +44507,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
       }
       __name(findSeatPriceForProtocolAfter49, "findSeatPriceForProtocolAfter49");
-      function diffEpochValidators2(currentValidators, nextValidators) {
+      function diffEpochValidators(currentValidators, nextValidators) {
         const validatorsMap = /* @__PURE__ */ new Map();
         currentValidators.forEach((v) => validatorsMap.set(v.account_id, v));
         const nextValidatorsSet = new Set(nextValidators.map((v) => v.account_id));
@@ -44625,8 +44517,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           changedValidators: nextValidators.filter((v) => validatorsMap.has(v.account_id) && validatorsMap.get(v.account_id).stake != v.stake).map((v) => ({ current: validatorsMap.get(v.account_id), next: v }))
         };
       }
-      __name(diffEpochValidators2, "diffEpochValidators");
-      exports2.diffEpochValidators = diffEpochValidators2;
+      __name(diffEpochValidators, "diffEpochValidators");
+      exports2.diffEpochValidators = diffEpochValidators;
     }
   });
 
@@ -44664,14 +44556,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_exponential_backoff2 = __commonJS({
     "../../node_modules/@near-js/providers/lib/exponential-backoff.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -44697,7 +44589,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.exponentialBackoff = void 0;
-      function exponentialBackoff2(startWaitTime, retryNumber, waitBackoff, getResult) {
+      function exponentialBackoff(startWaitTime, retryNumber, waitBackoff, getResult) {
         return __awaiter(this, void 0, void 0, function* () {
           let waitTime = startWaitTime;
           for (let i = 0; i < retryNumber; i++) {
@@ -44705,18 +44597,18 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             if (result) {
               return result;
             }
-            yield sleep2(waitTime);
+            yield sleep(waitTime);
             waitTime *= waitBackoff;
           }
           return null;
         });
       }
-      __name(exponentialBackoff2, "exponentialBackoff");
-      exports2.exponentialBackoff = exponentialBackoff2;
-      function sleep2(millis) {
+      __name(exponentialBackoff, "exponentialBackoff");
+      exports2.exponentialBackoff = exponentialBackoff;
+      function sleep(millis) {
         return new Promise((resolve) => setTimeout(resolve, millis));
       }
-      __name(sleep2, "sleep");
+      __name(sleep, "sleep");
     }
   });
 
@@ -44727,7 +44619,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Action = exports2.SignedDelegate = exports2.DeleteAccount = exports2.DeleteKey = exports2.AddKey = exports2.Stake = exports2.Transfer = exports2.FunctionCall = exports2.DeployContract = exports2.CreateAccount = exports2.IAction = exports2.AccessKey = exports2.AccessKeyPermission = exports2.FullAccessPermission = exports2.FunctionCallPermission = void 0;
       var types_1 = require_lib7();
-      var Enum2 = class {
+      var Enum = class {
         static {
           __name(this, "Enum");
         }
@@ -44741,96 +44633,96 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      var FunctionCallPermission2 = class extends types_1.Assignable {
+      var FunctionCallPermission = class extends types_1.Assignable {
         static {
           __name(this, "FunctionCallPermission");
         }
       };
-      exports2.FunctionCallPermission = FunctionCallPermission2;
-      var FullAccessPermission2 = class extends types_1.Assignable {
+      exports2.FunctionCallPermission = FunctionCallPermission;
+      var FullAccessPermission = class extends types_1.Assignable {
         static {
           __name(this, "FullAccessPermission");
         }
       };
-      exports2.FullAccessPermission = FullAccessPermission2;
-      var AccessKeyPermission2 = class extends Enum2 {
+      exports2.FullAccessPermission = FullAccessPermission;
+      var AccessKeyPermission = class extends Enum {
         static {
           __name(this, "AccessKeyPermission");
         }
       };
-      exports2.AccessKeyPermission = AccessKeyPermission2;
-      var AccessKey2 = class extends types_1.Assignable {
+      exports2.AccessKeyPermission = AccessKeyPermission;
+      var AccessKey = class extends types_1.Assignable {
         static {
           __name(this, "AccessKey");
         }
       };
-      exports2.AccessKey = AccessKey2;
+      exports2.AccessKey = AccessKey;
       var IAction = class extends types_1.Assignable {
         static {
           __name(this, "IAction");
         }
       };
       exports2.IAction = IAction;
-      var CreateAccount2 = class extends IAction {
+      var CreateAccount = class extends IAction {
         static {
           __name(this, "CreateAccount");
         }
       };
-      exports2.CreateAccount = CreateAccount2;
-      var DeployContract2 = class extends IAction {
+      exports2.CreateAccount = CreateAccount;
+      var DeployContract = class extends IAction {
         static {
           __name(this, "DeployContract");
         }
       };
-      exports2.DeployContract = DeployContract2;
-      var FunctionCall2 = class extends IAction {
+      exports2.DeployContract = DeployContract;
+      var FunctionCall = class extends IAction {
         static {
           __name(this, "FunctionCall");
         }
       };
-      exports2.FunctionCall = FunctionCall2;
-      var Transfer2 = class extends IAction {
+      exports2.FunctionCall = FunctionCall;
+      var Transfer = class extends IAction {
         static {
           __name(this, "Transfer");
         }
       };
-      exports2.Transfer = Transfer2;
-      var Stake2 = class extends IAction {
+      exports2.Transfer = Transfer;
+      var Stake = class extends IAction {
         static {
           __name(this, "Stake");
         }
       };
-      exports2.Stake = Stake2;
-      var AddKey2 = class extends IAction {
+      exports2.Stake = Stake;
+      var AddKey = class extends IAction {
         static {
           __name(this, "AddKey");
         }
       };
-      exports2.AddKey = AddKey2;
-      var DeleteKey2 = class extends IAction {
+      exports2.AddKey = AddKey;
+      var DeleteKey = class extends IAction {
         static {
           __name(this, "DeleteKey");
         }
       };
-      exports2.DeleteKey = DeleteKey2;
-      var DeleteAccount2 = class extends IAction {
+      exports2.DeleteKey = DeleteKey;
+      var DeleteAccount = class extends IAction {
         static {
           __name(this, "DeleteAccount");
         }
       };
-      exports2.DeleteAccount = DeleteAccount2;
-      var SignedDelegate2 = class extends IAction {
+      exports2.DeleteAccount = DeleteAccount;
+      var SignedDelegate = class extends IAction {
         static {
           __name(this, "SignedDelegate");
         }
       };
-      exports2.SignedDelegate = SignedDelegate2;
-      var Action2 = class extends Enum2 {
+      exports2.SignedDelegate = SignedDelegate;
+      var Action = class extends Enum {
         static {
           __name(this, "Action");
         }
       };
-      exports2.Action = Action2;
+      exports2.Action = Action;
     }
   });
 
@@ -44841,86 +44733,86 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.actionCreators = exports2.stringifyJsonOrBytes = void 0;
       var actions_1 = require_actions3();
-      function fullAccessKey4() {
+      function fullAccessKey() {
         return new actions_1.AccessKey({
           permission: new actions_1.AccessKeyPermission({
             fullAccess: new actions_1.FullAccessPermission({})
           })
         });
       }
-      __name(fullAccessKey4, "fullAccessKey");
-      function functionCallAccessKey4(receiverId, methodNames, allowance) {
+      __name(fullAccessKey, "fullAccessKey");
+      function functionCallAccessKey(receiverId, methodNames, allowance) {
         return new actions_1.AccessKey({
           permission: new actions_1.AccessKeyPermission({
             functionCall: new actions_1.FunctionCallPermission({ receiverId, allowance, methodNames })
           })
         });
       }
-      __name(functionCallAccessKey4, "functionCallAccessKey");
-      function createAccount4() {
+      __name(functionCallAccessKey, "functionCallAccessKey");
+      function createAccount() {
         return new actions_1.Action({ createAccount: new actions_1.CreateAccount({}) });
       }
-      __name(createAccount4, "createAccount");
-      function deployContract6(code) {
+      __name(createAccount, "createAccount");
+      function deployContract(code) {
         return new actions_1.Action({ deployContract: new actions_1.DeployContract({ code }) });
       }
-      __name(deployContract6, "deployContract");
-      function stringifyJsonOrBytes2(args2) {
+      __name(deployContract, "deployContract");
+      function stringifyJsonOrBytes(args2) {
         const isUint8Array = args2.byteLength !== void 0 && args2.byteLength === args2.length;
         return isUint8Array ? args2 : Buffer.from(JSON.stringify(args2));
       }
-      __name(stringifyJsonOrBytes2, "stringifyJsonOrBytes");
-      exports2.stringifyJsonOrBytes = stringifyJsonOrBytes2;
-      function functionCall6(methodName, args2, gas, deposit, stringify = stringifyJsonOrBytes2, jsContract = false) {
+      __name(stringifyJsonOrBytes, "stringifyJsonOrBytes");
+      exports2.stringifyJsonOrBytes = stringifyJsonOrBytes;
+      function functionCall(methodName, args2, gas, deposit, stringify2 = stringifyJsonOrBytes, jsContract = false) {
         if (jsContract) {
           return new actions_1.Action({ functionCall: new actions_1.FunctionCall({ methodName, args: args2, gas, deposit }) });
         }
         return new actions_1.Action({
           functionCall: new actions_1.FunctionCall({
             methodName,
-            args: stringify(args2),
+            args: stringify2(args2),
             gas,
             deposit
           })
         });
       }
-      __name(functionCall6, "functionCall");
-      function transfer4(deposit) {
+      __name(functionCall, "functionCall");
+      function transfer(deposit) {
         return new actions_1.Action({ transfer: new actions_1.Transfer({ deposit }) });
       }
-      __name(transfer4, "transfer");
-      function stake4(stake5, publicKey) {
-        return new actions_1.Action({ stake: new actions_1.Stake({ stake: stake5, publicKey }) });
+      __name(transfer, "transfer");
+      function stake(stake2, publicKey) {
+        return new actions_1.Action({ stake: new actions_1.Stake({ stake: stake2, publicKey }) });
       }
-      __name(stake4, "stake");
-      function addKey5(publicKey, accessKey) {
+      __name(stake, "stake");
+      function addKey(publicKey, accessKey) {
         return new actions_1.Action({ addKey: new actions_1.AddKey({ publicKey, accessKey }) });
       }
-      __name(addKey5, "addKey");
-      function deleteKey5(publicKey) {
+      __name(addKey, "addKey");
+      function deleteKey(publicKey) {
         return new actions_1.Action({ deleteKey: new actions_1.DeleteKey({ publicKey }) });
       }
-      __name(deleteKey5, "deleteKey");
-      function deleteAccount4(beneficiaryId) {
+      __name(deleteKey, "deleteKey");
+      function deleteAccount(beneficiaryId) {
         return new actions_1.Action({ deleteAccount: new actions_1.DeleteAccount({ beneficiaryId }) });
       }
-      __name(deleteAccount4, "deleteAccount");
-      function signedDelegate2({ delegateAction, signature }) {
+      __name(deleteAccount, "deleteAccount");
+      function signedDelegate({ delegateAction, signature }) {
         return new actions_1.Action({ signedDelegate: new actions_1.SignedDelegate({ delegateAction, signature }) });
       }
-      __name(signedDelegate2, "signedDelegate");
+      __name(signedDelegate, "signedDelegate");
       exports2.actionCreators = {
-        addKey: addKey5,
-        createAccount: createAccount4,
-        deleteAccount: deleteAccount4,
-        deleteKey: deleteKey5,
-        deployContract: deployContract6,
-        fullAccessKey: fullAccessKey4,
-        functionCall: functionCall6,
-        functionCallAccessKey: functionCallAccessKey4,
-        signedDelegate: signedDelegate2,
-        stake: stake4,
-        transfer: transfer4
+        addKey,
+        createAccount,
+        deleteAccount,
+        deleteKey,
+        deployContract,
+        fullAccessKey,
+        functionCall,
+        functionCallAccessKey,
+        signedDelegate,
+        stake,
+        transfer
       };
     }
   });
@@ -44933,15 +44825,15 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.buildDelegateAction = exports2.DelegateAction = void 0;
       var types_1 = require_lib7();
       var action_creators_1 = require_action_creators2();
-      var { addKey: addKey5, createAccount: createAccount4, deleteAccount: deleteAccount4, deleteKey: deleteKey5, deployContract: deployContract6, functionCall: functionCall6, stake: stake4, transfer: transfer4 } = action_creators_1.actionCreators;
-      var DelegateAction2 = class extends types_1.Assignable {
+      var { addKey, createAccount, deleteAccount, deleteKey, deployContract, functionCall, stake, transfer } = action_creators_1.actionCreators;
+      var DelegateAction = class extends types_1.Assignable {
         static {
           __name(this, "DelegateAction");
         }
       };
-      exports2.DelegateAction = DelegateAction2;
-      function buildDelegateAction2({ actions, maxBlockHeight, nonce, publicKey, receiverId, senderId }) {
-        return new DelegateAction2({
+      exports2.DelegateAction = DelegateAction;
+      function buildDelegateAction({ actions, maxBlockHeight, nonce, publicKey, receiverId, senderId }) {
+        return new DelegateAction({
           senderId,
           receiverId,
           actions: actions.map((a) => {
@@ -44951,30 +44843,30 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             switch (a.type) {
               case "AddKey": {
                 const { publicKey: publicKey2, accessKey } = a.params;
-                return addKey5(publicKey2, accessKey);
+                return addKey(publicKey2, accessKey);
               }
               case "CreateAccount": {
-                return createAccount4(a.params.createAccount);
+                return createAccount(a.params.createAccount);
               }
               case "DeleteAccount": {
-                return deleteAccount4(a.params.deleteAccount);
+                return deleteAccount(a.params.deleteAccount);
               }
               case "DeleteKey": {
-                return deleteKey5(a.params.publicKey);
+                return deleteKey(a.params.publicKey);
               }
               case "DeployContract": {
-                return deployContract6(a.params.code);
+                return deployContract(a.params.code);
               }
               case "FunctionCall": {
                 const { methodName, args: args2, gas, deposit } = a.params;
-                return functionCall6(methodName, args2, gas, deposit);
+                return functionCall(methodName, args2, gas, deposit);
               }
               case "Stake": {
-                return stake4(a.params.stake, a.params.publicKey);
+                return stake(a.params.stake, a.params.publicKey);
               }
               case "Transfer": {
                 const { deposit } = a.params;
-                return transfer4(deposit);
+                return transfer(deposit);
               }
             }
             throw new Error("Unrecognized action");
@@ -44984,8 +44876,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           publicKey
         });
       }
-      __name(buildDelegateAction2, "buildDelegateAction");
-      exports2.buildDelegateAction = buildDelegateAction2;
+      __name(buildDelegateAction, "buildDelegateAction");
+      exports2.buildDelegateAction = buildDelegateAction;
     }
   });
 
@@ -45055,68 +44947,68 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var delegate_1 = require_delegate2();
       var prefix_1 = require_prefix2();
       var signature_1 = require_signature4();
-      function encodeDelegateAction2(delegateAction) {
+      function encodeDelegateAction(delegateAction) {
         return new Uint8Array([
           ...(0, borsh_1.serialize)(exports2.SCHEMA, new prefix_1.DelegateActionPrefix()),
           ...(0, borsh_1.serialize)(exports2.SCHEMA, delegateAction)
         ]);
       }
-      __name(encodeDelegateAction2, "encodeDelegateAction");
-      exports2.encodeDelegateAction = encodeDelegateAction2;
-      function encodeSignedDelegate2(signedDelegate2) {
-        return (0, borsh_1.serialize)(exports2.SCHEMA, signedDelegate2);
+      __name(encodeDelegateAction, "encodeDelegateAction");
+      exports2.encodeDelegateAction = encodeDelegateAction;
+      function encodeSignedDelegate(signedDelegate) {
+        return (0, borsh_1.serialize)(exports2.SCHEMA, signedDelegate);
       }
-      __name(encodeSignedDelegate2, "encodeSignedDelegate");
-      exports2.encodeSignedDelegate = encodeSignedDelegate2;
-      function encodeTransaction2(transaction) {
+      __name(encodeSignedDelegate, "encodeSignedDelegate");
+      exports2.encodeSignedDelegate = encodeSignedDelegate;
+      function encodeTransaction(transaction) {
         return (0, borsh_1.serialize)(exports2.SCHEMA, transaction);
       }
-      __name(encodeTransaction2, "encodeTransaction");
-      exports2.encodeTransaction = encodeTransaction2;
-      function decodeTransaction2(bytes) {
-        return (0, borsh_1.deserialize)(exports2.SCHEMA, Transaction2, bytes);
+      __name(encodeTransaction, "encodeTransaction");
+      exports2.encodeTransaction = encodeTransaction;
+      function decodeTransaction(bytes) {
+        return (0, borsh_1.deserialize)(exports2.SCHEMA, Transaction, bytes);
       }
-      __name(decodeTransaction2, "decodeTransaction");
-      exports2.decodeTransaction = decodeTransaction2;
-      function decodeSignedTransaction2(bytes) {
-        return (0, borsh_1.deserialize)(exports2.SCHEMA, SignedTransaction2, bytes);
+      __name(decodeTransaction, "decodeTransaction");
+      exports2.decodeTransaction = decodeTransaction;
+      function decodeSignedTransaction(bytes) {
+        return (0, borsh_1.deserialize)(exports2.SCHEMA, SignedTransaction, bytes);
       }
-      __name(decodeSignedTransaction2, "decodeSignedTransaction");
-      exports2.decodeSignedTransaction = decodeSignedTransaction2;
-      var Transaction2 = class extends types_1.Assignable {
+      __name(decodeSignedTransaction, "decodeSignedTransaction");
+      exports2.decodeSignedTransaction = decodeSignedTransaction;
+      var Transaction = class extends types_1.Assignable {
         static {
           __name(this, "Transaction");
         }
         encode() {
-          return encodeTransaction2(this);
+          return encodeTransaction(this);
         }
         static decode(bytes) {
-          return decodeTransaction2(bytes);
+          return decodeTransaction(bytes);
         }
       };
-      exports2.Transaction = Transaction2;
-      var SignedTransaction2 = class extends types_1.Assignable {
+      exports2.Transaction = Transaction;
+      var SignedTransaction = class extends types_1.Assignable {
         static {
           __name(this, "SignedTransaction");
         }
         encode() {
-          return encodeTransaction2(this);
+          return encodeTransaction(this);
         }
         static decode(bytes) {
-          return decodeSignedTransaction2(bytes);
+          return decodeSignedTransaction(bytes);
         }
       };
-      exports2.SignedTransaction = SignedTransaction2;
+      exports2.SignedTransaction = SignedTransaction;
       exports2.SCHEMA = /* @__PURE__ */ new Map([
         [signature_1.Signature, { kind: "struct", fields: [
           ["keyType", "u8"],
           ["data", [64]]
         ] }],
-        [SignedTransaction2, { kind: "struct", fields: [
-          ["transaction", Transaction2],
+        [SignedTransaction, { kind: "struct", fields: [
+          ["transaction", Transaction],
           ["signature", signature_1.Signature]
         ] }],
-        [Transaction2, { kind: "struct", fields: [
+        [Transaction, { kind: "struct", fields: [
           ["signerId", "string"],
           ["publicKey", crypto_1.PublicKey],
           ["nonce", "u64"],
@@ -45206,11 +45098,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.createTransaction = void 0;
       var schema_1 = require_schema2();
-      function createTransaction2(signerId, publicKey, receiverId, nonce, actions, blockHash) {
+      function createTransaction(signerId, publicKey, receiverId, nonce, actions, blockHash) {
         return new schema_1.Transaction({ signerId, publicKey, nonce, receiverId, actions, blockHash });
       }
-      __name(createTransaction2, "createTransaction");
-      exports2.createTransaction = createTransaction2;
+      __name(createTransaction, "createTransaction");
+      exports2.createTransaction = createTransaction;
     }
   });
 
@@ -45729,14 +45621,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_sign2 = __commonJS({
     "../../node_modules/@near-js/transactions/lib/sign.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -45760,8 +45652,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.signDelegateAction = exports2.signTransaction = void 0;
@@ -45770,7 +45662,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var create_transaction_1 = require_create_transaction2();
       var schema_1 = require_schema2();
       var signature_1 = require_signature4();
-      function signTransactionObject2(transaction, signer, accountId, networkId) {
+      function signTransactionObject(transaction, signer, accountId, networkId) {
         return __awaiter(this, void 0, void 0, function* () {
           const message2 = (0, schema_1.encodeTransaction)(transaction);
           const hash = new Uint8Array(js_sha256_1.default.sha256.array(message2));
@@ -45782,23 +45674,23 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return [hash, signedTx];
         });
       }
-      __name(signTransactionObject2, "signTransactionObject");
-      function signTransaction2(...args2) {
+      __name(signTransactionObject, "signTransactionObject");
+      function signTransaction(...args2) {
         return __awaiter(this, void 0, void 0, function* () {
           if (args2[0].constructor === schema_1.Transaction) {
             const [transaction, signer, accountId, networkId] = args2;
-            return signTransactionObject2(transaction, signer, accountId, networkId);
+            return signTransactionObject(transaction, signer, accountId, networkId);
           } else {
             const [receiverId, nonce, actions, blockHash, signer, accountId, networkId] = args2;
             const publicKey = yield signer.getPublicKey(accountId, networkId);
             const transaction = (0, create_transaction_1.createTransaction)(accountId, publicKey, receiverId, nonce, actions, blockHash);
-            return signTransactionObject2(transaction, signer, accountId, networkId);
+            return signTransactionObject(transaction, signer, accountId, networkId);
           }
         });
       }
-      __name(signTransaction2, "signTransaction");
-      exports2.signTransaction = signTransaction2;
-      function signDelegateAction2({ delegateAction, signer }) {
+      __name(signTransaction, "signTransaction");
+      exports2.signTransaction = signTransaction;
+      function signDelegateAction({ delegateAction, signer }) {
         return __awaiter(this, void 0, void 0, function* () {
           const message2 = (0, schema_1.encodeDelegateAction)(delegateAction);
           const signature = yield signer.sign(message2);
@@ -45815,8 +45707,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           };
         });
       }
-      __name(signDelegateAction2, "signDelegateAction");
-      exports2.signDelegateAction = signDelegateAction2;
+      __name(signDelegateAction, "signDelegateAction");
+      exports2.signDelegateAction = signDelegateAction;
     }
   });
 
@@ -45857,12 +45749,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Provider = void 0;
-      var Provider2 = class {
+      var Provider = class {
         static {
           __name(this, "Provider");
         }
       };
-      exports2.Provider = Provider2;
+      exports2.Provider = Provider;
     }
   });
 
@@ -46608,11 +46500,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       __name(createIsHttpErrorFunction, "createIsHttpErrorFunction");
       function createServerErrorConstructor(HttpError, name, code) {
         var className = toClassName(name);
-        function ServerError2(message2) {
+        function ServerError(message2) {
           var msg = message2 != null ? message2 : statuses[code];
           var err = new Error(msg);
-          Error.captureStackTrace(err, ServerError2);
-          setPrototypeOf(err, ServerError2.prototype);
+          Error.captureStackTrace(err, ServerError);
+          setPrototypeOf(err, ServerError.prototype);
           Object.defineProperty(err, "message", {
             enumerable: true,
             configurable: true,
@@ -46627,13 +46519,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
           return err;
         }
-        __name(ServerError2, "ServerError");
-        inherits(ServerError2, HttpError);
-        nameFunc(ServerError2, className);
-        ServerError2.prototype.status = code;
-        ServerError2.prototype.statusCode = code;
-        ServerError2.prototype.expose = false;
-        return ServerError2;
+        __name(ServerError, "ServerError");
+        inherits(ServerError, HttpError);
+        nameFunc(ServerError, className);
+        ServerError.prototype.status = code;
+        ServerError.prototype.statusCode = code;
+        ServerError.prototype.expose = false;
+        return ServerError;
       }
       __name(createServerErrorConstructor, "createServerErrorConstructor");
       function nameFunc(func, name) {
@@ -46678,8 +46570,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_fetch = __commonJS({
     "../../node_modules/@near-js/providers/lib/fetch.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       var node_fetch_1 = __importDefault((init_lib(), __toCommonJS(lib_exports)));
@@ -46725,23 +46617,23 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       } : function(o, v) {
         o["default"] = v;
       });
-      var __importStar = exports2 && exports2.__importStar || function(mod2) {
-        if (mod2 && mod2.__esModule) return mod2;
+      var __importStar = exports2 && exports2.__importStar || function(mod) {
+        if (mod && mod.__esModule) return mod;
         var result = {};
-        if (mod2 != null) {
-          for (var k in mod2) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k)) __createBinding(result, mod2, k);
+        if (mod != null) {
+          for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
         }
-        __setModuleDefault(result, mod2);
+        __setModuleDefault(result, mod);
         return result;
       };
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -46765,8 +46657,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.fetchJson = void 0;
@@ -46826,14 +46718,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_json_rpc_provider2 = __commonJS({
     "../../node_modules/@near-js/providers/lib/json-rpc-provider.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -46877,11 +46769,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var exponential_backoff_1 = require_exponential_backoff2();
       var provider_1 = require_provider13();
       var fetch_json_1 = require_fetch_json2();
-      var REQUEST_RETRY_NUMBER2 = 12;
-      var REQUEST_RETRY_WAIT2 = 500;
-      var REQUEST_RETRY_WAIT_BACKOFF2 = 1.5;
-      var _nextId2 = 123;
-      var JsonRpcProvider2 = class extends provider_1.Provider {
+      var REQUEST_RETRY_NUMBER = 12;
+      var REQUEST_RETRY_WAIT = 500;
+      var REQUEST_RETRY_WAIT_BACKOFF = 1.5;
+      var _nextId = 123;
+      var JsonRpcProvider = class extends provider_1.Provider {
         static {
           __name(this, "JsonRpcProvider");
         }
@@ -47181,12 +47073,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          */
         sendJsonRpc(method2, params2) {
           return __awaiter(this, void 0, void 0, function* () {
-            const response = yield (0, exponential_backoff_1.exponentialBackoff)(REQUEST_RETRY_WAIT2, REQUEST_RETRY_NUMBER2, REQUEST_RETRY_WAIT_BACKOFF2, () => __awaiter(this, void 0, void 0, function* () {
+            const response = yield (0, exponential_backoff_1.exponentialBackoff)(REQUEST_RETRY_WAIT, REQUEST_RETRY_NUMBER, REQUEST_RETRY_WAIT_BACKOFF, () => __awaiter(this, void 0, void 0, function* () {
               try {
                 const request = {
                   method: method2,
                   params: params2,
-                  id: _nextId2++,
+                  id: _nextId++,
                   jsonrpc: "2.0"
                 };
                 const response2 = yield (0, fetch_json_1.fetchJson)(this.connection, JSON.stringify(request));
@@ -47217,13 +47109,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             }));
             const { result } = response;
             if (typeof result === "undefined") {
-              throw new types_1.TypedError(`Exceeded ${REQUEST_RETRY_NUMBER2} attempts for request to ${method2}.`, "RetriesExceeded");
+              throw new types_1.TypedError(`Exceeded ${REQUEST_RETRY_NUMBER} attempts for request to ${method2}.`, "RetriesExceeded");
             }
             return result;
           });
         }
       };
-      exports2.JsonRpcProvider = JsonRpcProvider2;
+      exports2.JsonRpcProvider = JsonRpcProvider;
     }
   });
 
@@ -47404,7 +47296,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "Assignable", { enumerable: true, get: /* @__PURE__ */ __name(function() {
         return types_1.Assignable;
       }, "get") });
-      var Enum2 = class {
+      var Enum = class {
         static {
           __name(this, "Enum");
         }
@@ -47418,7 +47310,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Enum = Enum2;
+      exports2.Enum = Enum;
     }
   });
 
@@ -47473,14 +47365,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_account2 = __commonJS({
     "../../node_modules/@near-js/accounts/lib/account.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -47504,8 +47396,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Account = void 0;
@@ -47516,19 +47408,19 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var utils_1 = require_lib12();
       var bn_js_1 = __importDefault(require_bn2());
       var borsh_1 = require_cjs();
-      var { addKey: addKey5, createAccount: createAccount4, deleteAccount: deleteAccount4, deleteKey: deleteKey5, deployContract: deployContract6, fullAccessKey: fullAccessKey4, functionCall: functionCall6, functionCallAccessKey: functionCallAccessKey4, stake: stake4, transfer: transfer4 } = transactions_1.actionCreators;
-      var TX_NONCE_RETRY_NUMBER2 = 12;
-      var TX_NONCE_RETRY_WAIT2 = 500;
-      var TX_NONCE_RETRY_WAIT_BACKOFF2 = 1.5;
-      function parseJsonFromRawResponse2(response) {
+      var { addKey, createAccount, deleteAccount, deleteKey, deployContract, fullAccessKey, functionCall, functionCallAccessKey, stake, transfer } = transactions_1.actionCreators;
+      var TX_NONCE_RETRY_NUMBER = 12;
+      var TX_NONCE_RETRY_WAIT = 500;
+      var TX_NONCE_RETRY_WAIT_BACKOFF = 1.5;
+      function parseJsonFromRawResponse(response) {
         return JSON.parse(Buffer.from(response).toString());
       }
-      __name(parseJsonFromRawResponse2, "parseJsonFromRawResponse");
-      function bytesJsonStringify2(input) {
+      __name(parseJsonFromRawResponse, "parseJsonFromRawResponse");
+      function bytesJsonStringify(input) {
         return Buffer.from(JSON.stringify(input));
       }
-      __name(bytesJsonStringify2, "bytesJsonStringify");
-      var Account2 = class _Account {
+      __name(bytesJsonStringify, "bytesJsonStringify");
+      var Account = class _Account {
         static {
           __name(this, "Account");
         }
@@ -47576,7 +47468,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         signAndSendTransaction({ receiverId, actions, returnError }) {
           return __awaiter(this, void 0, void 0, function* () {
             let txHash, signedTx;
-            const result = yield (0, providers_1.exponentialBackoff)(TX_NONCE_RETRY_WAIT2, TX_NONCE_RETRY_NUMBER2, TX_NONCE_RETRY_WAIT_BACKOFF2, () => __awaiter(this, void 0, void 0, function* () {
+            const result = yield (0, providers_1.exponentialBackoff)(TX_NONCE_RETRY_WAIT, TX_NONCE_RETRY_NUMBER, TX_NONCE_RETRY_WAIT_BACKOFF, () => __awaiter(this, void 0, void 0, function* () {
               [txHash, signedTx] = yield this.signTransaction(receiverId, actions);
               const publicKey = signedTx.transaction.publicKey;
               try {
@@ -47660,10 +47552,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          */
         createAndDeployContract(contractId, publicKey, data, amount) {
           return __awaiter(this, void 0, void 0, function* () {
-            const accessKey = fullAccessKey4();
+            const accessKey = fullAccessKey();
             yield this.signAndSendTransaction({
               receiverId: contractId,
-              actions: [createAccount4(), transfer4(amount), addKey5(crypto_1.PublicKey.from(publicKey), accessKey), deployContract6(data)]
+              actions: [createAccount(), transfer(amount), addKey(crypto_1.PublicKey.from(publicKey), accessKey), deployContract(data)]
             });
             const contractAccount = new _Account(this.connection, contractId);
             return contractAccount;
@@ -47677,7 +47569,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return __awaiter(this, void 0, void 0, function* () {
             return this.signAndSendTransaction({
               receiverId,
-              actions: [transfer4(amount)]
+              actions: [transfer(amount)]
             });
           });
         }
@@ -47687,10 +47579,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          */
         createAccount(newAccountId, publicKey, amount) {
           return __awaiter(this, void 0, void 0, function* () {
-            const accessKey = fullAccessKey4();
+            const accessKey = fullAccessKey();
             return this.signAndSendTransaction({
               receiverId: newAccountId,
-              actions: [createAccount4(), transfer4(amount), addKey5(crypto_1.PublicKey.from(publicKey), accessKey)]
+              actions: [createAccount(), transfer(amount), addKey(crypto_1.PublicKey.from(publicKey), accessKey)]
             });
           });
         }
@@ -47704,7 +47596,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             }
             return this.signAndSendTransaction({
               receiverId: this.accountId,
-              actions: [deleteAccount4(beneficiaryId)]
+              actions: [deleteAccount(beneficiaryId)]
             });
           });
         }
@@ -47715,7 +47607,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return __awaiter(this, void 0, void 0, function* () {
             return this.signAndSendTransaction({
               receiverId: this.accountId,
-              actions: [deployContract6(data)]
+              actions: [deployContract(data)]
             });
           });
         }
@@ -47727,7 +47619,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * Execute function call
          * @returns {Promise<FinalExecutionOutcome>}
          */
-        functionCall({ contractId, methodName, args: args2 = {}, gas = utils_1.DEFAULT_FUNCTION_CALL_GAS, attachedDeposit, walletMeta, walletCallbackUrl, stringify, jsContract }) {
+        functionCall({ contractId, methodName, args: args2 = {}, gas = utils_1.DEFAULT_FUNCTION_CALL_GAS, attachedDeposit, walletMeta, walletCallbackUrl, stringify: stringify2, jsContract }) {
           return __awaiter(this, void 0, void 0, function* () {
             this.validateArgs(args2);
             let functionCallArgs;
@@ -47735,13 +47627,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               const encodedArgs = this.encodeJSContractArgs(contractId, methodName, JSON.stringify(args2));
               functionCallArgs = ["call_js_contract", encodedArgs, gas, attachedDeposit, null, true];
             } else {
-              const stringifyArg = stringify === void 0 ? transactions_1.stringifyJsonOrBytes : stringify;
+              const stringifyArg = stringify2 === void 0 ? transactions_1.stringifyJsonOrBytes : stringify2;
               functionCallArgs = [methodName, args2, gas, attachedDeposit, stringifyArg, false];
             }
             return this.signAndSendTransaction({
               receiverId: jsContract ? this.connection.jsvmAccountId : contractId,
               // eslint-disable-next-line prefer-spread
-              actions: [functionCall6.apply(void 0, functionCallArgs)],
+              actions: [functionCall.apply(void 0, functionCallArgs)],
               walletMeta,
               walletCallbackUrl
             });
@@ -47765,13 +47657,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             }
             let accessKey;
             if (!contractId) {
-              accessKey = fullAccessKey4();
+              accessKey = fullAccessKey();
             } else {
-              accessKey = functionCallAccessKey4(contractId, methodNames, amount);
+              accessKey = functionCallAccessKey(contractId, methodNames, amount);
             }
             return this.signAndSendTransaction({
               receiverId: this.accountId,
-              actions: [addKey5(crypto_1.PublicKey.from(publicKey), accessKey)]
+              actions: [addKey(crypto_1.PublicKey.from(publicKey), accessKey)]
             });
           });
         }
@@ -47783,7 +47675,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return __awaiter(this, void 0, void 0, function* () {
             return this.signAndSendTransaction({
               receiverId: this.accountId,
-              actions: [deleteKey5(crypto_1.PublicKey.from(publicKey))]
+              actions: [deleteKey(crypto_1.PublicKey.from(publicKey))]
             });
           });
         }
@@ -47797,7 +47689,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return __awaiter(this, void 0, void 0, function* () {
             return this.signAndSendTransaction({
               receiverId: this.accountId,
-              actions: [stake4(amount, crypto_1.PublicKey.from(publicKey))]
+              actions: [stake(amount, crypto_1.PublicKey.from(publicKey))]
             });
           });
         }
@@ -47856,20 +47748,20 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param viewFunctionCallOptions.blockQuery specifies which block to query state at. By default returns last "optimistic" block (i.e. not necessarily finalized).
          * @returns {Promise<any>}
          */
-        viewFunction({ contractId, methodName, args: args2 = {}, parse: parse3 = parseJsonFromRawResponse2, stringify = bytesJsonStringify2, jsContract = false, blockQuery = { finality: "optimistic" } }) {
+        viewFunction({ contractId, methodName, args: args2 = {}, parse: parse2 = parseJsonFromRawResponse, stringify: stringify2 = bytesJsonStringify, jsContract = false, blockQuery = { finality: "optimistic" } }) {
           return __awaiter(this, void 0, void 0, function* () {
             let encodedArgs;
             this.validateArgs(args2);
             if (jsContract) {
               encodedArgs = this.encodeJSContractArgs(contractId, methodName, Object.keys(args2).length > 0 ? JSON.stringify(args2) : "");
             } else {
-              encodedArgs = stringify(args2);
+              encodedArgs = stringify2(args2);
             }
             const result = yield this.connection.provider.query(Object.assign(Object.assign({ request_type: "call_function" }, blockQuery), { account_id: jsContract ? this.connection.jsvmAccountId : contractId, method_name: jsContract ? "view_js_contract" : methodName, args_base64: encodedArgs.toString("base64") }));
             if (result.logs) {
               (0, utils_1.printTxOutcomeLogs)({ contractId, logs: result.logs });
             }
-            return result.result && result.result.length > 0 && parse3(Buffer.from(result.result));
+            return result.result && result.result.length > 0 && parse2(Buffer.from(result.result));
           });
         }
         /**
@@ -47990,7 +47882,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Account = Account2;
+      exports2.Account = Account;
     }
   });
 
@@ -47998,8 +47890,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_constants9 = __commonJS({
     "../../node_modules/@near-js/accounts/lib/constants.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.MULTISIG_CONFIRM_METHODS = exports2.MULTISIG_CHANGE_METHODS = exports2.MULTISIG_DEPOSIT = exports2.MULTISIG_GAS = exports2.MULTISIG_ALLOWANCE = exports2.MULTISIG_STORAGE_KEY = void 0;
@@ -48020,21 +47912,21 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.MultisigStateStatus = exports2.MultisigDeleteRequestRejectionError = void 0;
-      var MultisigDeleteRequestRejectionError2;
-      (function(MultisigDeleteRequestRejectionError3) {
-        MultisigDeleteRequestRejectionError3["CANNOT_DESERIALIZE_STATE"] = "Cannot deserialize the contract state";
-        MultisigDeleteRequestRejectionError3["MULTISIG_NOT_INITIALIZED"] = "Smart contract panicked: Multisig contract should be initialized before usage";
-        MultisigDeleteRequestRejectionError3["NO_SUCH_REQUEST"] = "Smart contract panicked: panicked at 'No such request: either wrong number or already confirmed'";
-        MultisigDeleteRequestRejectionError3["REQUEST_COOLDOWN_ERROR"] = "Request cannot be deleted immediately after creation.";
-        MultisigDeleteRequestRejectionError3["METHOD_NOT_FOUND"] = "Contract method is not found";
-      })(MultisigDeleteRequestRejectionError2 = exports2.MultisigDeleteRequestRejectionError || (exports2.MultisigDeleteRequestRejectionError = {}));
-      var MultisigStateStatus2;
-      (function(MultisigStateStatus3) {
-        MultisigStateStatus3[MultisigStateStatus3["INVALID_STATE"] = 0] = "INVALID_STATE";
-        MultisigStateStatus3[MultisigStateStatus3["STATE_NOT_INITIALIZED"] = 1] = "STATE_NOT_INITIALIZED";
-        MultisigStateStatus3[MultisigStateStatus3["VALID_STATE"] = 2] = "VALID_STATE";
-        MultisigStateStatus3[MultisigStateStatus3["UNKNOWN_STATE"] = 3] = "UNKNOWN_STATE";
-      })(MultisigStateStatus2 = exports2.MultisigStateStatus || (exports2.MultisigStateStatus = {}));
+      var MultisigDeleteRequestRejectionError;
+      (function(MultisigDeleteRequestRejectionError2) {
+        MultisigDeleteRequestRejectionError2["CANNOT_DESERIALIZE_STATE"] = "Cannot deserialize the contract state";
+        MultisigDeleteRequestRejectionError2["MULTISIG_NOT_INITIALIZED"] = "Smart contract panicked: Multisig contract should be initialized before usage";
+        MultisigDeleteRequestRejectionError2["NO_SUCH_REQUEST"] = "Smart contract panicked: panicked at 'No such request: either wrong number or already confirmed'";
+        MultisigDeleteRequestRejectionError2["REQUEST_COOLDOWN_ERROR"] = "Request cannot be deleted immediately after creation.";
+        MultisigDeleteRequestRejectionError2["METHOD_NOT_FOUND"] = "Contract method is not found";
+      })(MultisigDeleteRequestRejectionError = exports2.MultisigDeleteRequestRejectionError || (exports2.MultisigDeleteRequestRejectionError = {}));
+      var MultisigStateStatus;
+      (function(MultisigStateStatus2) {
+        MultisigStateStatus2[MultisigStateStatus2["INVALID_STATE"] = 0] = "INVALID_STATE";
+        MultisigStateStatus2[MultisigStateStatus2["STATE_NOT_INITIALIZED"] = 1] = "STATE_NOT_INITIALIZED";
+        MultisigStateStatus2[MultisigStateStatus2["VALID_STATE"] = 2] = "VALID_STATE";
+        MultisigStateStatus2[MultisigStateStatus2["UNKNOWN_STATE"] = 3] = "UNKNOWN_STATE";
+      })(MultisigStateStatus = exports2.MultisigStateStatus || (exports2.MultisigStateStatus = {}));
     }
   });
 
@@ -48042,14 +47934,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_account_multisig2 = __commonJS({
     "../../node_modules/@near-js/accounts/lib/account_multisig.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -48079,17 +47971,17 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var account_1 = require_account2();
       var constants_1 = require_constants9();
       var types_1 = require_types5();
-      var { deployContract: deployContract6, functionCall: functionCall6 } = transactions_1.actionCreators;
-      var MultisigCodeStatus2;
-      (function(MultisigCodeStatus3) {
-        MultisigCodeStatus3[MultisigCodeStatus3["INVALID_CODE"] = 0] = "INVALID_CODE";
-        MultisigCodeStatus3[MultisigCodeStatus3["VALID_CODE"] = 1] = "VALID_CODE";
-        MultisigCodeStatus3[MultisigCodeStatus3["UNKNOWN_CODE"] = 2] = "UNKNOWN_CODE";
-      })(MultisigCodeStatus2 || (MultisigCodeStatus2 = {}));
-      var storageFallback2 = {
+      var { deployContract, functionCall } = transactions_1.actionCreators;
+      var MultisigCodeStatus;
+      (function(MultisigCodeStatus2) {
+        MultisigCodeStatus2[MultisigCodeStatus2["INVALID_CODE"] = 0] = "INVALID_CODE";
+        MultisigCodeStatus2[MultisigCodeStatus2["VALID_CODE"] = 1] = "VALID_CODE";
+        MultisigCodeStatus2[MultisigCodeStatus2["UNKNOWN_CODE"] = 2] = "UNKNOWN_CODE";
+      })(MultisigCodeStatus || (MultisigCodeStatus = {}));
+      var storageFallback = {
         [constants_1.MULTISIG_STORAGE_KEY]: null
       };
-      var AccountMultisig2 = class extends account_1.Account {
+      var AccountMultisig = class extends account_1.Account {
         static {
           __name(this, "AccountMultisig");
         }
@@ -48123,7 +48015,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               result = yield _super.signAndSendTransaction.call(this, {
                 receiverId: accountId,
                 actions: [
-                  functionCall6("add_request_and_confirm", args2, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
+                  functionCall("add_request_and_confirm", args2, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
                 ]
               });
             } catch (e) {
@@ -48163,20 +48055,20 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
           return __awaiter(this, void 0, void 0, function* () {
             const u32_max = 4294967295;
-            const validCodeStatusIfNoDeploy = contractBytes ? MultisigCodeStatus2.UNKNOWN_CODE : MultisigCodeStatus2.VALID_CODE;
+            const validCodeStatusIfNoDeploy = contractBytes ? MultisigCodeStatus.UNKNOWN_CODE : MultisigCodeStatus.VALID_CODE;
             try {
               if (contractBytes) {
                 yield _super.signAndSendTransaction.call(this, {
                   receiverId: this.accountId,
                   actions: [
-                    deployContract6(contractBytes),
-                    functionCall6("delete_request", { request_id: u32_max }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
+                    deployContract(contractBytes),
+                    functionCall("delete_request", { request_id: u32_max }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)
                   ]
                 });
               } else {
                 yield this.deleteRequest(u32_max);
               }
-              return { codeStatus: MultisigCodeStatus2.VALID_CODE, stateStatus: types_1.MultisigStateStatus.VALID_STATE };
+              return { codeStatus: MultisigCodeStatus.VALID_CODE, stateStatus: types_1.MultisigStateStatus.VALID_STATE };
             } catch (e) {
               if (new RegExp(types_1.MultisigDeleteRequestRejectionError.CANNOT_DESERIALIZE_STATE).test(e && e.kind && e.kind.ExecutionError)) {
                 return { codeStatus: validCodeStatusIfNoDeploy, stateStatus: types_1.MultisigStateStatus.INVALID_STATE };
@@ -48185,7 +48077,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               } else if (new RegExp(types_1.MultisigDeleteRequestRejectionError.NO_SUCH_REQUEST).test(e && e.kind && e.kind.ExecutionError)) {
                 return { codeStatus: validCodeStatusIfNoDeploy, stateStatus: types_1.MultisigStateStatus.VALID_STATE };
               } else if (new RegExp(types_1.MultisigDeleteRequestRejectionError.METHOD_NOT_FOUND).test(e && e.message)) {
-                return { codeStatus: MultisigCodeStatus2.INVALID_CODE, stateStatus: types_1.MultisigStateStatus.UNKNOWN_STATE };
+                return { codeStatus: MultisigCodeStatus.INVALID_CODE, stateStatus: types_1.MultisigStateStatus.UNKNOWN_STATE };
               }
               throw e;
             }
@@ -48194,7 +48086,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         deleteRequest(request_id) {
           return super.signAndSendTransaction({
             receiverId: this.accountId,
-            actions: [functionCall6("delete_request", { request_id }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
+            actions: [functionCall("delete_request", { request_id }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
           });
         }
         deleteAllRequests() {
@@ -48219,7 +48111,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               try {
                 yield _super.signAndSendTransaction.call(this, {
                   receiverId: this.accountId,
-                  actions: [functionCall6("delete_request", { request_id: requestIdToDelete }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
+                  actions: [functionCall("delete_request", { request_id: requestIdToDelete }, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT)]
                 });
               } catch (e) {
                 console.warn("Attempt to delete an earlier request before 15 minutes failed. Will try again.");
@@ -48240,16 +48132,16 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           if (this.storage) {
             return JSON.parse(this.storage.getItem(constants_1.MULTISIG_STORAGE_KEY) || "{}");
           }
-          return storageFallback2[constants_1.MULTISIG_STORAGE_KEY];
+          return storageFallback[constants_1.MULTISIG_STORAGE_KEY];
         }
         setRequest(data) {
           if (this.storage) {
             return this.storage.setItem(constants_1.MULTISIG_STORAGE_KEY, JSON.stringify(data));
           }
-          storageFallback2[constants_1.MULTISIG_STORAGE_KEY] = data;
+          storageFallback[constants_1.MULTISIG_STORAGE_KEY] = data;
         }
       };
-      exports2.AccountMultisig = AccountMultisig2;
+      exports2.AccountMultisig = AccountMultisig;
       var convertPKForContract = /* @__PURE__ */ __name((pk) => pk.toString().replace("ed25519:", ""), "convertPKForContract");
       var convertActions = /* @__PURE__ */ __name((actions, accountId, receiverId) => actions.map((a) => {
         const type = a.enum;
@@ -48291,14 +48183,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_account_2fa2 = __commonJS({
     "../../node_modules/@near-js/accounts/lib/account_2fa.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -48322,8 +48214,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Account2FA = void 0;
@@ -48335,8 +48227,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var account_multisig_1 = require_account_multisig2();
       var constants_1 = require_constants9();
       var types_2 = require_types5();
-      var { addKey: addKey5, deleteKey: deleteKey5, deployContract: deployContract6, fullAccessKey: fullAccessKey4, functionCall: functionCall6, functionCallAccessKey: functionCallAccessKey4 } = transactions_1.actionCreators;
-      var Account2FA2 = class extends account_multisig_1.AccountMultisig {
+      var { addKey, deleteKey, deployContract, fullAccessKey, functionCall, functionCallAccessKey } = transactions_1.actionCreators;
+      var Account2FA = class extends account_multisig_1.AccountMultisig {
         static {
           __name(this, "Account2FA");
         }
@@ -48380,12 +48272,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             const confirmOnlyKey = toPK((yield this.postSignedJson("/2fa/getAccessKey", { accountId })).publicKey);
             const newArgs = Buffer.from(JSON.stringify({ "num_confirmations": 2 }));
             const actions = [
-              ...fak2lak.map((pk) => deleteKey5(pk)),
-              ...fak2lak.map((pk) => addKey5(pk, functionCallAccessKey4(accountId, constants_1.MULTISIG_CHANGE_METHODS, null))),
-              addKey5(confirmOnlyKey, functionCallAccessKey4(accountId, constants_1.MULTISIG_CONFIRM_METHODS, null)),
-              deployContract6(contractBytes)
+              ...fak2lak.map((pk) => deleteKey(pk)),
+              ...fak2lak.map((pk) => addKey(pk, functionCallAccessKey(accountId, constants_1.MULTISIG_CHANGE_METHODS, null))),
+              addKey(confirmOnlyKey, functionCallAccessKey(accountId, constants_1.MULTISIG_CONFIRM_METHODS, null)),
+              deployContract(contractBytes)
             ];
-            const newFunctionCallActionBatch = actions.concat(functionCall6("new", newArgs, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT));
+            const newFunctionCallActionBatch = actions.concat(functionCall("new", newArgs, constants_1.MULTISIG_GAS, constants_1.MULTISIG_DEPOSIT));
             console.log("deploying multisig contract for", accountId);
             const { stateStatus: multisigStateStatus } = yield this.checkMultisigCodeAndStateStatus(contractBytes);
             switch (multisigStateStatus) {
@@ -48411,7 +48303,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             const actions = [
               ...cleanupActions,
               ...keyConversionActions,
-              deployContract6(contractBytes)
+              deployContract(contractBytes)
             ];
             const accessKeyInfo = yield this.findAccessKey(this.accountId, actions);
             if (accessKeyInfo && accessKeyInfo.accessKey && accessKeyInfo.accessKey.permission !== "FullAccess") {
@@ -48431,8 +48323,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             });
             const currentAccountStateKeys = currentAccountState.map(({ key }) => key.toString("base64"));
             return currentAccountState.length ? [
-              deployContract6(cleanupContractBytes),
-              functionCall6("clean", { keys: currentAccountStateKeys }, constants_1.MULTISIG_GAS, new bn_js_1.default("0"))
+              deployContract(cleanupContractBytes),
+              functionCall("clean", { keys: currentAccountStateKeys }, constants_1.MULTISIG_GAS, new bn_js_1.default("0"))
             ] : [];
           });
         }
@@ -48446,9 +48338,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             });
             const confirmOnlyKey = crypto_1.PublicKey.from((yield this.postSignedJson("/2fa/getAccessKey", { accountId })).publicKey);
             return [
-              deleteKey5(confirmOnlyKey),
-              ...lak2fak.map(({ public_key }) => deleteKey5(crypto_1.PublicKey.from(public_key))),
-              ...lak2fak.map(({ public_key }) => addKey5(crypto_1.PublicKey.from(public_key), fullAccessKey4()))
+              deleteKey(confirmOnlyKey),
+              ...lak2fak.map(({ public_key }) => deleteKey(crypto_1.PublicKey.from(public_key))),
+              ...lak2fak.map(({ public_key }) => addKey(crypto_1.PublicKey.from(public_key), fullAccessKey()))
             ];
           });
         }
@@ -48474,7 +48366,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             const actions = [
               ...cleanupActions,
               ...yield this.get2faDisableKeyConversionActions(),
-              deployContract6(contractBytes)
+              deployContract(contractBytes)
             ];
             console.log("disabling 2fa for", this.accountId);
             return yield this.signAndSendTransaction({
@@ -48569,7 +48461,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Account2FA = Account2FA2;
+      exports2.Account2FA = Account2FA;
       var toPK = /* @__PURE__ */ __name((pk) => crypto_1.PublicKey.from(pk), "toPK");
     }
   });
@@ -48578,14 +48470,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_account_creator2 = __commonJS({
     "../../node_modules/@near-js/accounts/lib/account_creator.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -48612,13 +48504,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.UrlAccountCreator = exports2.LocalAccountCreator = exports2.AccountCreator = void 0;
       var providers_1 = require_lib14();
-      var AccountCreator2 = class {
+      var AccountCreator = class {
         static {
           __name(this, "AccountCreator");
         }
       };
-      exports2.AccountCreator = AccountCreator2;
-      var LocalAccountCreator2 = class extends AccountCreator2 {
+      exports2.AccountCreator = AccountCreator;
+      var LocalAccountCreator = class extends AccountCreator {
         static {
           __name(this, "LocalAccountCreator");
         }
@@ -48639,8 +48531,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.LocalAccountCreator = LocalAccountCreator2;
-      var UrlAccountCreator2 = class extends AccountCreator2 {
+      exports2.LocalAccountCreator = LocalAccountCreator;
+      var UrlAccountCreator = class extends AccountCreator {
         static {
           __name(this, "UrlAccountCreator");
         }
@@ -48662,7 +48554,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.UrlAccountCreator = UrlAccountCreator2;
+      exports2.UrlAccountCreator = UrlAccountCreator;
     }
   });
 
@@ -48672,12 +48564,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Signer = void 0;
-      var Signer2 = class {
+      var Signer = class {
         static {
           __name(this, "Signer");
         }
       };
-      exports2.Signer = Signer2;
+      exports2.Signer = Signer;
     }
   });
 
@@ -48685,14 +48577,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_in_memory_signer2 = __commonJS({
     "../../node_modules/@near-js/signers/lib/in_memory_signer.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -48716,8 +48608,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.InMemorySigner = void 0;
@@ -48725,7 +48617,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var keystores_1 = require_lib9();
       var js_sha256_1 = __importDefault(require_sha2563());
       var signer_1 = require_signer2();
-      var InMemorySigner2 = class _InMemorySigner extends signer_1.Signer {
+      var InMemorySigner = class _InMemorySigner extends signer_1.Signer {
         static {
           __name(this, "InMemorySigner");
         }
@@ -48800,7 +48692,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return `InMemorySigner(${this.keyStore})`;
         }
       };
-      exports2.InMemorySigner = InMemorySigner2;
+      exports2.InMemorySigner = InMemorySigner;
     }
   });
 
@@ -48829,7 +48721,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       exports2.Connection = void 0;
       var signers_1 = require_lib15();
       var providers_1 = require_lib14();
-      function getProvider2(config) {
+      function getProvider(config) {
         switch (config.type) {
           case void 0:
             return config;
@@ -48839,8 +48731,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             throw new Error(`Unknown provider type ${config.type}`);
         }
       }
-      __name(getProvider2, "getProvider");
-      function getSigner2(config) {
+      __name(getProvider, "getProvider");
+      function getSigner(config) {
         switch (config.type) {
           case void 0:
             return config;
@@ -48851,8 +48743,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             throw new Error(`Unknown signer type ${config.type}`);
         }
       }
-      __name(getSigner2, "getSigner");
-      var Connection2 = class _Connection {
+      __name(getSigner, "getSigner");
+      var Connection = class _Connection {
         static {
           __name(this, "Connection");
         }
@@ -48866,12 +48758,12 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          * @param config Contains connection info details
          */
         static fromConfig(config) {
-          const provider = getProvider2(config.provider);
-          const signer = getSigner2(config.signer);
+          const provider = getProvider(config.provider);
+          const signer = getSigner(config.signer);
           return new _Connection(config.networkId, provider, signer, config.jsvmAccountId);
         }
       };
-      exports2.Connection = Connection2;
+      exports2.Connection = Connection;
     }
   });
 
@@ -49019,11 +48911,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         return typeof x == "number" || typeof x == "boolean" || x === null ? x : safeStringify(Array.isArray(x) ? x.join(",") : x);
       }
       __name(interpolate, "interpolate");
-      function stringify(x) {
+      function stringify2(x) {
         return new _Code(safeStringify(x));
       }
-      __name(stringify, "stringify");
-      exports2.stringify = stringify;
+      __name(stringify2, "stringify");
+      exports2.stringify = stringify2;
       function safeStringify(x) {
         return JSON.stringify(x).replace(/\u2028/g, "\\u2028").replace(/\u2029/g, "\\u2029");
       }
@@ -52647,24 +52539,24 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var SCHEMES = require_schemes();
       function normalize(uri, options) {
         if (typeof uri === "string") {
-          uri = serialize2(parse3(uri, options), options);
+          uri = serialize2(parse2(uri, options), options);
         } else if (typeof uri === "object") {
-          uri = parse3(serialize2(uri, options), options);
+          uri = parse2(serialize2(uri, options), options);
         }
         return uri;
       }
       __name(normalize, "normalize");
       function resolve(baseURI, relativeURI, options) {
         const schemelessOptions = Object.assign({ scheme: "null" }, options);
-        const resolved = resolveComponents(parse3(baseURI, schemelessOptions), parse3(relativeURI, schemelessOptions), schemelessOptions, true);
+        const resolved = resolveComponents(parse2(baseURI, schemelessOptions), parse2(relativeURI, schemelessOptions), schemelessOptions, true);
         return serialize2(resolved, { ...schemelessOptions, skipEscape: true });
       }
       __name(resolve, "resolve");
-      function resolveComponents(base2, relative2, options, skipNormalization) {
+      function resolveComponents(base, relative2, options, skipNormalization) {
         const target = {};
         if (!skipNormalization) {
-          base2 = parse3(serialize2(base2, options), options);
-          relative2 = parse3(serialize2(relative2, options), options);
+          base = parse2(serialize2(base, options), options);
+          relative2 = parse2(serialize2(relative2, options), options);
         }
         options = options || {};
         if (!options.tolerant && relative2.scheme) {
@@ -52683,32 +52575,32 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             target.query = relative2.query;
           } else {
             if (!relative2.path) {
-              target.path = base2.path;
+              target.path = base.path;
               if (relative2.query !== void 0) {
                 target.query = relative2.query;
               } else {
-                target.query = base2.query;
+                target.query = base.query;
               }
             } else {
               if (relative2.path.charAt(0) === "/") {
                 target.path = removeDotSegments(relative2.path);
               } else {
-                if ((base2.userinfo !== void 0 || base2.host !== void 0 || base2.port !== void 0) && !base2.path) {
+                if ((base.userinfo !== void 0 || base.host !== void 0 || base.port !== void 0) && !base.path) {
                   target.path = "/" + relative2.path;
-                } else if (!base2.path) {
+                } else if (!base.path) {
                   target.path = relative2.path;
                 } else {
-                  target.path = base2.path.slice(0, base2.path.lastIndexOf("/") + 1) + relative2.path;
+                  target.path = base.path.slice(0, base.path.lastIndexOf("/") + 1) + relative2.path;
                 }
                 target.path = removeDotSegments(target.path);
               }
               target.query = relative2.query;
             }
-            target.userinfo = base2.userinfo;
-            target.host = base2.host;
-            target.port = base2.port;
+            target.userinfo = base.userinfo;
+            target.host = base.host;
+            target.port = base.port;
           }
-          target.scheme = base2.scheme;
+          target.scheme = base.scheme;
         }
         target.fragment = relative2.fragment;
         return target;
@@ -52717,13 +52609,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       function equal(uriA, uriB, options) {
         if (typeof uriA === "string") {
           uriA = unescape(uriA);
-          uriA = serialize2(normalizeComponentEncoding(parse3(uriA, options), true), { ...options, skipEscape: true });
+          uriA = serialize2(normalizeComponentEncoding(parse2(uriA, options), true), { ...options, skipEscape: true });
         } else if (typeof uriA === "object") {
           uriA = serialize2(normalizeComponentEncoding(uriA, true), { ...options, skipEscape: true });
         }
         if (typeof uriB === "string") {
           uriB = unescape(uriB);
-          uriB = serialize2(normalizeComponentEncoding(parse3(uriB, options), true), { ...options, skipEscape: true });
+          uriB = serialize2(normalizeComponentEncoding(parse2(uriB, options), true), { ...options, skipEscape: true });
         } else if (typeof uriB === "object") {
           uriB = serialize2(normalizeComponentEncoding(uriB, true), { ...options, skipEscape: true });
         }
@@ -52806,7 +52698,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       }
       __name(nonSimpleDomain, "nonSimpleDomain");
       var URI_PARSE = /^(?:([^#/:?]+):)?(?:\/\/((?:([^#/?@]*)@)?(\[[^#/?\]]+\]|[^#/:?]*)(?::(\d*))?))?([^#?]*)(?:\?([^#]*))?(?:#((?:.|[\n\r])*))?/u;
-      function parse3(uri, opts) {
+      function parse2(uri, opts) {
         const options = Object.assign({}, opts);
         const parsed = {
           scheme: void 0,
@@ -52887,7 +52779,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         return parsed;
       }
-      __name(parse3, "parse");
+      __name(parse2, "parse");
       var fastUri = {
         SCHEMES,
         normalize,
@@ -52895,7 +52787,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         resolveComponents,
         equal,
         serialize: serialize2,
-        parse: parse3
+        parse: parse2
       };
       module2.exports = fastUri;
       module2.exports.default = fastUri;
@@ -54520,20 +54412,20 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           const deps = propertyDeps[prop];
           if (deps.length === 0)
             continue;
-          const hasProperty2 = (0, code_1.propertyInData)(gen, data, prop, it.opts.ownProperties);
+          const hasProperty = (0, code_1.propertyInData)(gen, data, prop, it.opts.ownProperties);
           cxt.setParams({
             property: prop,
             depsCount: deps.length,
             deps: deps.join(", ")
           });
           if (it.allErrors) {
-            gen.if(hasProperty2, () => {
+            gen.if(hasProperty, () => {
               for (const depProp of deps) {
                 (0, code_1.checkReportMissingProp)(cxt, depProp);
               }
             });
           } else {
-            gen.if((0, codegen_1._)`${hasProperty2} && (${(0, code_1.checkMissingProp)(cxt, deps, missing)})`);
+            gen.if((0, codegen_1._)`${hasProperty} && (${(0, code_1.checkMissingProp)(cxt, deps, missing)})`);
             (0, code_1.reportMissingProp)(cxt, missing);
             gen.else();
           }
@@ -55943,7 +55835,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       "use strict";
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ConflictingOptions = exports2.ArgumentSchemaError = exports2.UnknownArgumentError = exports2.UnsupportedSerializationError = void 0;
-      var UnsupportedSerializationError2 = class extends Error {
+      var UnsupportedSerializationError = class extends Error {
         static {
           __name(this, "UnsupportedSerializationError");
         }
@@ -55951,8 +55843,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Contract method '${methodName}' is using an unsupported serialization type ${serializationType}`);
         }
       };
-      exports2.UnsupportedSerializationError = UnsupportedSerializationError2;
-      var UnknownArgumentError2 = class extends Error {
+      exports2.UnsupportedSerializationError = UnsupportedSerializationError;
+      var UnknownArgumentError = class extends Error {
         static {
           __name(this, "UnknownArgumentError");
         }
@@ -55960,8 +55852,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Unrecognized argument '${actualArgName}', expected '${JSON.stringify(expectedArgNames)}'`);
         }
       };
-      exports2.UnknownArgumentError = UnknownArgumentError2;
-      var ArgumentSchemaError2 = class extends Error {
+      exports2.UnknownArgumentError = UnknownArgumentError;
+      var ArgumentSchemaError = class extends Error {
         static {
           __name(this, "ArgumentSchemaError");
         }
@@ -55969,8 +55861,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super(`Argument '${argName}' does not conform to the specified ABI schema: '${JSON.stringify(errors)}'`);
         }
       };
-      exports2.ArgumentSchemaError = ArgumentSchemaError2;
-      var ConflictingOptions2 = class extends Error {
+      exports2.ArgumentSchemaError = ArgumentSchemaError;
+      var ConflictingOptions = class extends Error {
         static {
           __name(this, "ConflictingOptions");
         }
@@ -55978,7 +55870,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           super("Conflicting contract method options have been passed. You can either specify ABI or a list of view/call methods.");
         }
       };
-      exports2.ConflictingOptions = ConflictingOptions2;
+      exports2.ConflictingOptions = ConflictingOptions;
     }
   });
 
@@ -55986,14 +55878,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_contract2 = __commonJS({
     "../../node_modules/@near-js/accounts/lib/contract.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -56017,8 +55909,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Contract = void 0;
@@ -56040,7 +55932,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       __name(nameFunction, "nameFunction");
       function validateArguments(args2, abiFunction, ajv, abiRoot) {
         var _a;
-        if (!isObject2(args2))
+        if (!isObject(args2))
           return;
         if (abiFunction.params && abiFunction.params.serialization_type !== near_abi_1.AbiSerializationType.Json) {
           throw new errors_1.UnsupportedSerializationError(abiFunction.name, abiFunction.params.serialization_type);
@@ -56079,7 +55971,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       }
       __name(createAjv, "createAjv");
       var isUint8Array = /* @__PURE__ */ __name((x) => x && x.byteLength !== void 0 && x.byteLength === x.length, "isUint8Array");
-      var isObject2 = /* @__PURE__ */ __name((x) => Object.prototype.toString.call(x) === "[object Object]", "isObject");
+      var isObject = /* @__PURE__ */ __name((x) => Object.prototype.toString.call(x) === "[object Object]", "isObject");
       var Contract = class {
         static {
           __name(this, "Contract");
@@ -56108,7 +56000,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               writable: false,
               enumerable: true,
               value: nameFunction(name, (args2 = {}, options2 = {}, ...ignored) => __awaiter(this, void 0, void 0, function* () {
-                if (ignored.length || !(isObject2(args2) || isUint8Array(args2)) || !isObject2(options2)) {
+                if (ignored.length || !(isObject(args2) || isUint8Array(args2)) || !isObject(options2)) {
                   throw new types_1.PositionalArgsError();
                 }
                 if (abi) {
@@ -56123,7 +56015,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               writable: false,
               enumerable: true,
               value: nameFunction(name, (...args2) => __awaiter(this, void 0, void 0, function* () {
-                if (args2.length && (args2.length > 3 || !(isObject2(args2[0]) || isUint8Array(args2[0])))) {
+                if (args2.length && (args2.length > 3 || !(isObject(args2[0]) || isUint8Array(args2[0])))) {
                   throw new types_1.PositionalArgsError();
                 }
                 if (args2.length > 1 || !(args2[0] && args2[0].args)) {
@@ -56312,13 +56204,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       } : function(o, v) {
         o["default"] = v;
       });
-      var __importStar = exports2 && exports2.__importStar || function(mod2) {
-        if (mod2 && mod2.__esModule) return mod2;
+      var __importStar = exports2 && exports2.__importStar || function(mod) {
+        if (mod && mod.__esModule) return mod;
         var result = {};
-        if (mod2 != null) {
-          for (var k in mod2) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k)) __createBinding(result, mod2, k);
+        if (mod != null) {
+          for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
         }
-        __setModuleDefault(result, mod2);
+        __setModuleDefault(result, mod);
         return result;
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
@@ -56426,26 +56318,26 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         return transactions_1.encodeDelegateAction;
       }, "get") });
       var transactions_2 = require_lib13();
-      var addKey5 = /* @__PURE__ */ __name((publicKey, accessKey) => transactions_2.actionCreators.addKey(publicKey, accessKey), "addKey");
-      exports2.addKey = addKey5;
-      var createAccount4 = /* @__PURE__ */ __name(() => transactions_2.actionCreators.createAccount(), "createAccount");
-      exports2.createAccount = createAccount4;
-      var deleteAccount4 = /* @__PURE__ */ __name((beneficiaryId) => transactions_2.actionCreators.deleteAccount(beneficiaryId), "deleteAccount");
-      exports2.deleteAccount = deleteAccount4;
-      var deleteKey5 = /* @__PURE__ */ __name((publicKey) => transactions_2.actionCreators.deleteKey(publicKey), "deleteKey");
-      exports2.deleteKey = deleteKey5;
-      var deployContract6 = /* @__PURE__ */ __name((code) => transactions_2.actionCreators.deployContract(code), "deployContract");
-      exports2.deployContract = deployContract6;
-      var fullAccessKey4 = /* @__PURE__ */ __name(() => transactions_2.actionCreators.fullAccessKey(), "fullAccessKey");
-      exports2.fullAccessKey = fullAccessKey4;
-      var functionCall6 = /* @__PURE__ */ __name((methodName, args2, gas, deposit, stringify, jsContract) => transactions_2.actionCreators.functionCall(methodName, args2, gas, deposit, stringify, jsContract), "functionCall");
-      exports2.functionCall = functionCall6;
-      var functionCallAccessKey4 = /* @__PURE__ */ __name((receiverId, methodNames, allowance) => transactions_2.actionCreators.functionCallAccessKey(receiverId, methodNames, allowance), "functionCallAccessKey");
-      exports2.functionCallAccessKey = functionCallAccessKey4;
-      var stake4 = /* @__PURE__ */ __name((stake5, publicKey) => transactions_2.actionCreators.stake(stake5, publicKey), "stake");
-      exports2.stake = stake4;
-      var transfer4 = /* @__PURE__ */ __name((deposit) => transactions_2.actionCreators.transfer(deposit), "transfer");
-      exports2.transfer = transfer4;
+      var addKey = /* @__PURE__ */ __name((publicKey, accessKey) => transactions_2.actionCreators.addKey(publicKey, accessKey), "addKey");
+      exports2.addKey = addKey;
+      var createAccount = /* @__PURE__ */ __name(() => transactions_2.actionCreators.createAccount(), "createAccount");
+      exports2.createAccount = createAccount;
+      var deleteAccount = /* @__PURE__ */ __name((beneficiaryId) => transactions_2.actionCreators.deleteAccount(beneficiaryId), "deleteAccount");
+      exports2.deleteAccount = deleteAccount;
+      var deleteKey = /* @__PURE__ */ __name((publicKey) => transactions_2.actionCreators.deleteKey(publicKey), "deleteKey");
+      exports2.deleteKey = deleteKey;
+      var deployContract = /* @__PURE__ */ __name((code) => transactions_2.actionCreators.deployContract(code), "deployContract");
+      exports2.deployContract = deployContract;
+      var fullAccessKey = /* @__PURE__ */ __name(() => transactions_2.actionCreators.fullAccessKey(), "fullAccessKey");
+      exports2.fullAccessKey = fullAccessKey;
+      var functionCall = /* @__PURE__ */ __name((methodName, args2, gas, deposit, stringify2, jsContract) => transactions_2.actionCreators.functionCall(methodName, args2, gas, deposit, stringify2, jsContract), "functionCall");
+      exports2.functionCall = functionCall;
+      var functionCallAccessKey = /* @__PURE__ */ __name((receiverId, methodNames, allowance) => transactions_2.actionCreators.functionCallAccessKey(receiverId, methodNames, allowance), "functionCallAccessKey");
+      exports2.functionCallAccessKey = functionCallAccessKey;
+      var stake = /* @__PURE__ */ __name((stake2, publicKey) => transactions_2.actionCreators.stake(stake2, publicKey), "stake");
+      exports2.stake = stake;
+      var transfer = /* @__PURE__ */ __name((deposit) => transactions_2.actionCreators.transfer(deposit), "transfer");
+      exports2.transfer = transfer;
     }
   });
 
@@ -56583,14 +56475,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_near = __commonJS({
     "../../node_modules/@near-js/wallet-account/lib/near.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -56614,14 +56506,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.Near = void 0;
       var accounts_1 = require_lib16();
       var bn_js_1 = __importDefault(require_bn2());
-      var Near2 = class {
+      var Near = class {
         static {
           __name(this, "Near");
         }
@@ -56671,7 +56563,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.Near = Near2;
+      exports2.Near = Near;
     }
   });
 
@@ -56679,14 +56571,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_wallet_account = __commonJS({
     "../../node_modules/@near-js/wallet-account/lib/wallet_account.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -56710,8 +56602,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.ConnectedWalletAccount = exports2.WalletConnection = void 0;
@@ -56724,7 +56616,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var MULTISIG_HAS_METHOD = "add_request_and_confirm";
       var LOCAL_STORAGE_KEY_SUFFIX = "_wallet_auth_key";
       var PENDING_ACCESS_KEY_PREFIX = "pending_key";
-      var WalletConnection2 = class {
+      var WalletConnection = class {
         static {
           __name(this, "WalletConnection");
         }
@@ -56909,13 +56801,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
          */
         account() {
           if (!this._connectedAccount) {
-            this._connectedAccount = new ConnectedWalletAccount2(this, this._near.connection, this._authData.accountId);
+            this._connectedAccount = new ConnectedWalletAccount(this, this._near.connection, this._authData.accountId);
           }
           return this._connectedAccount;
         }
       };
-      exports2.WalletConnection = WalletConnection2;
-      var ConnectedWalletAccount2 = class extends accounts_1.Account {
+      exports2.WalletConnection = WalletConnection;
+      var ConnectedWalletAccount = class extends accounts_1.Account {
         static {
           __name(this, "ConnectedWalletAccount");
         }
@@ -56987,9 +56879,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
                 if (actions.length !== 1) {
                   return false;
                 }
-                const [{ functionCall: functionCall6 }] = actions;
-                return functionCall6 && (!functionCall6.deposit || functionCall6.deposit.toString() === "0") && // TODO: Should support charging amount smaller than allowance?
-                (allowedMethods.length === 0 || allowedMethods.includes(functionCall6.methodName));
+                const [{ functionCall }] = actions;
+                return functionCall && (!functionCall.deposit || functionCall.deposit.toString() === "0") && // TODO: Should support charging amount smaller than allowance?
+                (allowedMethods.length === 0 || allowedMethods.includes(functionCall.methodName));
               }
             }
             return false;
@@ -57020,7 +56912,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           });
         }
       };
-      exports2.ConnectedWalletAccount = ConnectedWalletAccount2;
+      exports2.ConnectedWalletAccount = ConnectedWalletAccount;
     }
   });
 
@@ -57095,13 +56987,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       } : function(o, v) {
         o["default"] = v;
       });
-      var __importStar = exports2 && exports2.__importStar || function(mod2) {
-        if (mod2 && mod2.__esModule) return mod2;
+      var __importStar = exports2 && exports2.__importStar || function(mod) {
+        if (mod && mod.__esModule) return mod;
         var result = {};
-        if (mod2 != null) {
-          for (var k in mod2) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k)) __createBinding(result, mod2, k);
+        if (mod != null) {
+          for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
         }
-        __setModuleDefault(result, mod2);
+        __setModuleDefault(result, mod);
         return result;
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
@@ -57159,8 +57051,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_setup_node_fetch = __commonJS({
     "../../node_modules/near-api-js/lib/utils/setup-node-fetch.js"(exports2) {
       "use strict";
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       var node_fetch_1 = __importDefault((init_lib(), __toCommonJS(lib_exports)));
@@ -57188,14 +57080,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   var require_connect = __commonJS({
     "../../node_modules/near-api-js/lib/connect.js"(exports2) {
       "use strict";
-      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P, generator) {
+      var __awaiter = exports2 && exports2.__awaiter || function(thisArg, _arguments, P2, generator) {
         function adopt(value) {
-          return value instanceof P ? value : new P(function(resolve) {
+          return value instanceof P2 ? value : new P2(function(resolve) {
             resolve(value);
           });
         }
         __name(adopt, "adopt");
-        return new (P || (P = Promise))(function(resolve, reject) {
+        return new (P2 || (P2 = Promise))(function(resolve, reject) {
           function fulfilled(value) {
             try {
               step(generator.next(value));
@@ -57219,8 +57111,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           step((generator = generator.apply(thisArg, _arguments || [])).next());
         });
       };
-      var __importDefault = exports2 && exports2.__importDefault || function(mod2) {
-        return mod2 && mod2.__esModule ? mod2 : { "default": mod2 };
+      var __importDefault = exports2 && exports2.__importDefault || function(mod) {
+        return mod && mod.__esModule ? mod : { "default": mod };
       };
       Object.defineProperty(exports2, "__esModule", { value: true });
       exports2.connect = void 0;
@@ -57298,13 +57190,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       } : function(o, v) {
         o["default"] = v;
       });
-      var __importStar = exports2 && exports2.__importStar || function(mod2) {
-        if (mod2 && mod2.__esModule) return mod2;
+      var __importStar = exports2 && exports2.__importStar || function(mod) {
+        if (mod && mod.__esModule) return mod;
         var result = {};
-        if (mod2 != null) {
-          for (var k in mod2) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod2, k)) __createBinding(result, mod2, k);
+        if (mod != null) {
+          for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
         }
-        __setModuleDefault(result, mod2);
+        __setModuleDefault(result, mod);
         return result;
       };
       var __exportStar = exports2 && exports2.__exportStar || function(m, exports3) {
@@ -57511,10 +57403,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var regexSingleDash = new RegExp("-", "g");
       var regexRemoveNonWord = new RegExp("[^\\w\\-]+", "g");
       var regexAllUnderscores = new RegExp("_", "g");
-      function escapeRegExp2(string) {
+      function escapeRegExp(string) {
         return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
       }
-      __name(escapeRegExp2, "escapeRegExp");
+      __name(escapeRegExp, "escapeRegExp");
       var convertToSlug = /* @__PURE__ */ __name((text, { slugDivider = "-", letterCase = "LOWER", normalize = true, excludeCharacters = [] } = {}) => {
         if (!text || text.length === 0) {
           return "";
@@ -57528,7 +57420,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         } else if (letterCase === "UPPER") {
           resp = resp.toUpperCase();
         }
-        return resp.replace(regexAllSpaces, "-").replace(excludeCharacters.length > 0 ? new RegExp(`[^\\w\\-${excludeCharacters.map((c) => escapeRegExp2(c)).join("")}]+`, "g") : regexRemoveNonWord, "").replace(excludeCharacters.includes("_") ? regexAllSpaces : regexAllUnderscores, "-").replace(regexDoubleDashes, "-").replace(regexFirstDash, "").replace(regexLastDash, "").replace(regexSingleDash, slugDivider);
+        return resp.replace(regexAllSpaces, "-").replace(excludeCharacters.length > 0 ? new RegExp(`[^\\w\\-${excludeCharacters.map((c) => escapeRegExp(c)).join("")}]+`, "g") : regexRemoveNonWord, "").replace(excludeCharacters.includes("_") ? regexAllSpaces : regexAllUnderscores, "-").replace(regexDoubleDashes, "-").replace(regexFirstDash, "").replace(regexLastDash, "").replace(regexSingleDash, slugDivider);
       }, "convertToSlug");
       exports2.convertToSlug = convertToSlug;
       var stringToConstantStyledString = /* @__PURE__ */ __name((input) => {
@@ -57814,14 +57706,14 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         if (walletUrl2) {
           return walletUrl2;
         }
-        const base2 = envConfig_1.envConfig.wallet_base_url;
+        const base = envConfig_1.envConfig.wallet_base_url;
         switch (network) {
           case "mainnet":
-            return `${base2}/connect/mainnet`;
+            return `${base}/connect/mainnet`;
           case "testnet":
-            return `${base2}/connect/testnet`;
+            return `${base}/connect/testnet`;
           case "betanet":
-            return `${base2}/connect/betanet`;
+            return `${base}/connect/betanet`;
           default:
             throw new Error("Invalid wallet URL");
         }
@@ -57869,7 +57761,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   // ../../node_modules/nanoid/index.cjs
   var require_nanoid = __commonJS({
     "../../node_modules/nanoid/index.cjs"(exports2, module2) {
-      var crypto4 = __require("crypto");
+      var crypto3 = __require("crypto");
       var { urlAlphabet } = require_url_alphabet();
       var POOL_SIZE_MULTIPLIER = 128;
       var pool;
@@ -57877,10 +57769,10 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var fillPool = /* @__PURE__ */ __name((bytes) => {
         if (!pool || pool.length < bytes) {
           pool = Buffer.allocUnsafe(bytes * POOL_SIZE_MULTIPLIER);
-          crypto4.randomFillSync(pool);
+          crypto3.randomFillSync(pool);
           poolOffset = 0;
         } else if (poolOffset + bytes > pool.length) {
-          crypto4.randomFillSync(pool);
+          crypto3.randomFillSync(pool);
           poolOffset = 0;
         }
         poolOffset += bytes;
@@ -57932,7 +57824,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       var token = "%[a-f0-9]{2}";
       var singleMatcher = new RegExp("(" + token + ")|([^%]+?)", "gi");
       var multiMatcher = new RegExp("(" + token + ")+", "gi");
-      function decodeComponents(components, split2) {
+      function decodeComponents(components, split) {
         try {
           return [decodeURIComponent(components.join(""))];
         } catch (err) {
@@ -57940,13 +57832,13 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         if (components.length === 1) {
           return components;
         }
-        split2 = split2 || 1;
-        var left = components.slice(0, split2);
-        var right = components.slice(split2);
+        split = split || 1;
+        var left = components.slice(0, split);
+        var right = components.slice(split);
         return Array.prototype.concat.call([], decodeComponents(left), decodeComponents(right));
       }
       __name(decodeComponents, "decodeComponents");
-      function decode(input) {
+      function decode2(input) {
         try {
           return decodeURIComponent(input);
         } catch (err) {
@@ -57958,7 +57850,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return input;
         }
       }
-      __name(decode, "decode");
+      __name(decode2, "decode");
       function customDecodeURIComponent(input) {
         var replaceMap = {
           "%FE%FF": "\uFFFD\uFFFD",
@@ -57969,7 +57861,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           try {
             replaceMap[match[0]] = decodeURIComponent(match[0]);
           } catch (err) {
-            var result = decode(match[0]);
+            var result = decode2(match[0]);
             if (result !== match[0]) {
               replaceMap[match[0]] = result;
             }
@@ -58061,11 +57953,11 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
                 return result;
               }
               if (value === null) {
-                return [...result, [encode(key, options), "[", index, "]"].join("")];
+                return [...result, [encode2(key, options), "[", index, "]"].join("")];
               }
               return [
                 ...result,
-                [encode(key, options), "[", encode(index, options), "]=", encode(value, options)].join("")
+                [encode2(key, options), "[", encode2(index, options), "]=", encode2(value, options)].join("")
               ];
             };
           case "bracket":
@@ -58074,9 +57966,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
                 return result;
               }
               if (value === null) {
-                return [...result, [encode(key, options), "[]"].join("")];
+                return [...result, [encode2(key, options), "[]"].join("")];
               }
-              return [...result, [encode(key, options), "[]=", encode(value, options)].join("")];
+              return [...result, [encode2(key, options), "[]=", encode2(value, options)].join("")];
             };
           case "colon-list-separator":
             return (key) => (result, value) => {
@@ -58084,9 +57976,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
                 return result;
               }
               if (value === null) {
-                return [...result, [encode(key, options), ":list="].join("")];
+                return [...result, [encode2(key, options), ":list="].join("")];
               }
-              return [...result, [encode(key, options), ":list=", encode(value, options)].join("")];
+              return [...result, [encode2(key, options), ":list=", encode2(value, options)].join("")];
             };
           case "comma":
           case "separator":
@@ -58098,9 +57990,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
               }
               value = value === null ? "" : value;
               if (result.length === 0) {
-                return [[encode(key, options), keyValueSep, encode(value, options)].join("")];
+                return [[encode2(key, options), keyValueSep, encode2(value, options)].join("")];
               }
-              return [[result, encode(value, options)].join(options.arrayFormatSeparator)];
+              return [[result, encode2(value, options)].join(options.arrayFormatSeparator)];
             };
           }
           default:
@@ -58109,9 +58001,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
                 return result;
               }
               if (value === null) {
-                return [...result, encode(key, options)];
+                return [...result, encode2(key, options)];
               }
-              return [...result, [encode(key, options), "=", encode(value, options)].join("")];
+              return [...result, [encode2(key, options), "=", encode2(value, options)].join("")];
             };
         }
       }
@@ -58163,21 +58055,21 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           case "comma":
           case "separator":
             return (key, value, accumulator) => {
-              const isArray2 = typeof value === "string" && value.includes(options.arrayFormatSeparator);
-              const isEncodedArray = typeof value === "string" && !isArray2 && decode(value, options).includes(options.arrayFormatSeparator);
-              value = isEncodedArray ? decode(value, options) : value;
-              const newValue = isArray2 || isEncodedArray ? value.split(options.arrayFormatSeparator).map((item) => decode(item, options)) : value === null ? value : decode(value, options);
+              const isArray = typeof value === "string" && value.includes(options.arrayFormatSeparator);
+              const isEncodedArray = typeof value === "string" && !isArray && decode2(value, options).includes(options.arrayFormatSeparator);
+              value = isEncodedArray ? decode2(value, options) : value;
+              const newValue = isArray || isEncodedArray ? value.split(options.arrayFormatSeparator).map((item) => decode2(item, options)) : value === null ? value : decode2(value, options);
               accumulator[key] = newValue;
             };
           case "bracket-separator":
             return (key, value, accumulator) => {
-              const isArray2 = /(\[\])$/.test(key);
+              const isArray = /(\[\])$/.test(key);
               key = key.replace(/\[\]$/, "");
-              if (!isArray2) {
-                accumulator[key] = value ? decode(value, options) : value;
+              if (!isArray) {
+                accumulator[key] = value ? decode2(value, options) : value;
                 return;
               }
-              const arrayValue = value === null ? [] : value.split(options.arrayFormatSeparator).map((item) => decode(item, options));
+              const arrayValue = value === null ? [] : value.split(options.arrayFormatSeparator).map((item) => decode2(item, options));
               if (accumulator[key] === void 0) {
                 accumulator[key] = arrayValue;
                 return;
@@ -58201,20 +58093,20 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
       }
       __name(validateArrayFormatSeparator, "validateArrayFormatSeparator");
-      function encode(value, options) {
+      function encode2(value, options) {
         if (options.encode) {
           return options.strict ? strictUriEncode(value) : encodeURIComponent(value);
         }
         return value;
       }
-      __name(encode, "encode");
-      function decode(value, options) {
+      __name(encode2, "encode");
+      function decode2(value, options) {
         if (options.decode) {
           return decodeComponent(value);
         }
         return value;
       }
-      __name(decode, "decode");
+      __name(decode2, "decode");
       function keysSorter(input) {
         if (Array.isArray(input)) {
           return input.sort();
@@ -58260,7 +58152,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         return value;
       }
       __name(parseValue, "parseValue");
-      function parse3(query, options) {
+      function parse2(query, options) {
         options = Object.assign({
           decode: true,
           sort: true,
@@ -58284,8 +58176,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             continue;
           }
           let [key, value] = splitOnFirst(options.decode ? param.replace(/\+/g, " ") : param, "=");
-          value = value === void 0 ? null : ["comma", "separator", "bracket-separator"].includes(options.arrayFormat) ? value : decode(value, options);
-          formatter(decode(key, options), value, ret);
+          value = value === void 0 ? null : ["comma", "separator", "bracket-separator"].includes(options.arrayFormat) ? value : decode2(value, options);
+          formatter(decode2(key, options), value, ret);
         }
         for (const key of Object.keys(ret)) {
           const value = ret[key];
@@ -58310,9 +58202,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
           return result;
         }, /* @__PURE__ */ Object.create(null));
       }
-      __name(parse3, "parse");
+      __name(parse2, "parse");
       exports2.extract = extract;
-      exports2.parse = parse3;
+      exports2.parse = parse2;
       exports2.stringify = (object, options) => {
         if (!object) {
           return "";
@@ -58342,15 +58234,15 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return "";
           }
           if (value === null) {
-            return encode(key, options);
+            return encode2(key, options);
           }
           if (Array.isArray(value)) {
             if (value.length === 0 && options.arrayFormat === "bracket-separator") {
-              return encode(key, options) + "[]";
+              return encode2(key, options) + "[]";
             }
             return value.reduce(formatter(key), []).join("&");
           }
-          return encode(key, options) + "=" + encode(value, options);
+          return encode2(key, options) + "=" + encode2(value, options);
         }).filter((x) => x.length > 0).join("&");
       };
       exports2.parseUrl = (url, options) => {
@@ -58361,9 +58253,9 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         return Object.assign(
           {
             url: url_.split("?")[0] || "",
-            query: parse3(extract(url), options)
+            query: parse2(extract(url), options)
           },
-          options && options.parseFragmentIdentifier && hash ? { fragmentIdentifier: decode(hash, options) } : {}
+          options && options.parseFragmentIdentifier && hash ? { fragmentIdentifier: decode2(hash, options) } : {}
         );
       };
       exports2.stringifyUrl = (object, options) => {
@@ -58382,7 +58274,7 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
         }
         let hash = getHash(object.url);
         if (object.fragmentIdentifier) {
-          hash = `#${options[encodeFragmentIdentifier] ? encode(object.fragmentIdentifier, options) : object.fragmentIdentifier}`;
+          hash = `#${options[encodeFragmentIdentifier] ? encode2(object.fragmentIdentifier, options) : object.fragmentIdentifier}`;
         }
         return `${url}${queryString}${hash}`;
       };
@@ -58896,8 +58788,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
             return transactions_1.actionCreators.transfer(new bn_js_1.BN(deposit));
           }
           case "Stake": {
-            const { stake: stake4, publicKey } = action.params;
-            return transactions_1.actionCreators.stake(new bn_js_1.BN(stake4), crypto_1.PublicKey.from(publicKey));
+            const { stake, publicKey } = action.params;
+            return transactions_1.actionCreators.stake(new bn_js_1.BN(stake), crypto_1.PublicKey.from(publicKey));
           }
           case "AddKey": {
             const { publicKey, accessKey } = action.params;
@@ -59448,8 +59340,8 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   });
 
   // src/index.ts
-  var src_exports = {};
-  __export(src_exports, {
+  var src_exports2 = {};
+  __export(src_exports2, {
     handleLogin: () => handleLogin,
     handleSend: () => handleSend
   });
@@ -59535,8 +59427,552 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   __name(binary_to_base58, "binary_to_base58");
   var binary_to_base58_default = binary_to_base58;
 
-  // src/utils/utils.ts
-  var import_base64_js = __toESM(require_base64_js(), 1);
+  // ../../node_modules/big.js/big.mjs
+  var DP = 20;
+  var RM = 1;
+  var MAX_DP = 1e6;
+  var MAX_POWER = 1e6;
+  var NE = -7;
+  var PE = 21;
+  var STRICT = false;
+  var NAME = "[big.js] ";
+  var INVALID = NAME + "Invalid ";
+  var INVALID_DP = INVALID + "decimal places";
+  var INVALID_RM = INVALID + "rounding mode";
+  var DIV_BY_ZERO = NAME + "Division by zero";
+  var P = {};
+  var UNDEFINED = void 0;
+  var NUMERIC = /^-?(\d+(\.\d*)?|\.\d+)(e[+-]?\d+)?$/i;
+  function _Big_() {
+    function Big2(n) {
+      var x = this;
+      if (!(x instanceof Big2)) return n === UNDEFINED ? _Big_() : new Big2(n);
+      if (n instanceof Big2) {
+        x.s = n.s;
+        x.e = n.e;
+        x.c = n.c.slice();
+      } else {
+        if (typeof n !== "string") {
+          if (Big2.strict === true && typeof n !== "bigint") {
+            throw TypeError(INVALID + "value");
+          }
+          n = n === 0 && 1 / n < 0 ? "-0" : String(n);
+        }
+        parse(x, n);
+      }
+      x.constructor = Big2;
+    }
+    __name(Big2, "Big");
+    Big2.prototype = P;
+    Big2.DP = DP;
+    Big2.RM = RM;
+    Big2.NE = NE;
+    Big2.PE = PE;
+    Big2.strict = STRICT;
+    Big2.roundDown = 0;
+    Big2.roundHalfUp = 1;
+    Big2.roundHalfEven = 2;
+    Big2.roundUp = 3;
+    return Big2;
+  }
+  __name(_Big_, "_Big_");
+  function parse(x, n) {
+    var e, i, nl;
+    if (!NUMERIC.test(n)) {
+      throw Error(INVALID + "number");
+    }
+    x.s = n.charAt(0) == "-" ? (n = n.slice(1), -1) : 1;
+    if ((e = n.indexOf(".")) > -1) n = n.replace(".", "");
+    if ((i = n.search(/e/i)) > 0) {
+      if (e < 0) e = i;
+      e += +n.slice(i + 1);
+      n = n.substring(0, i);
+    } else if (e < 0) {
+      e = n.length;
+    }
+    nl = n.length;
+    for (i = 0; i < nl && n.charAt(i) == "0"; ) ++i;
+    if (i == nl) {
+      x.c = [x.e = 0];
+    } else {
+      for (; nl > 0 && n.charAt(--nl) == "0"; ) ;
+      x.e = e - i - 1;
+      x.c = [];
+      for (e = 0; i <= nl; ) x.c[e++] = +n.charAt(i++);
+    }
+    return x;
+  }
+  __name(parse, "parse");
+  function round(x, sd, rm, more) {
+    var xc = x.c;
+    if (rm === UNDEFINED) rm = x.constructor.RM;
+    if (rm !== 0 && rm !== 1 && rm !== 2 && rm !== 3) {
+      throw Error(INVALID_RM);
+    }
+    if (sd < 1) {
+      more = rm === 3 && (more || !!xc[0]) || sd === 0 && (rm === 1 && xc[0] >= 5 || rm === 2 && (xc[0] > 5 || xc[0] === 5 && (more || xc[1] !== UNDEFINED)));
+      xc.length = 1;
+      if (more) {
+        x.e = x.e - sd + 1;
+        xc[0] = 1;
+      } else {
+        xc[0] = x.e = 0;
+      }
+    } else if (sd < xc.length) {
+      more = rm === 1 && xc[sd] >= 5 || rm === 2 && (xc[sd] > 5 || xc[sd] === 5 && (more || xc[sd + 1] !== UNDEFINED || xc[sd - 1] & 1)) || rm === 3 && (more || !!xc[0]);
+      xc.length = sd;
+      if (more) {
+        for (; ++xc[--sd] > 9; ) {
+          xc[sd] = 0;
+          if (sd === 0) {
+            ++x.e;
+            xc.unshift(1);
+            break;
+          }
+        }
+      }
+      for (sd = xc.length; !xc[--sd]; ) xc.pop();
+    }
+    return x;
+  }
+  __name(round, "round");
+  function stringify(x, doExponential, isNonzero) {
+    var e = x.e, s = x.c.join(""), n = s.length;
+    if (doExponential) {
+      s = s.charAt(0) + (n > 1 ? "." + s.slice(1) : "") + (e < 0 ? "e" : "e+") + e;
+    } else if (e < 0) {
+      for (; ++e; ) s = "0" + s;
+      s = "0." + s;
+    } else if (e > 0) {
+      if (++e > n) {
+        for (e -= n; e--; ) s += "0";
+      } else if (e < n) {
+        s = s.slice(0, e) + "." + s.slice(e);
+      }
+    } else if (n > 1) {
+      s = s.charAt(0) + "." + s.slice(1);
+    }
+    return x.s < 0 && isNonzero ? "-" + s : s;
+  }
+  __name(stringify, "stringify");
+  P.abs = function() {
+    var x = new this.constructor(this);
+    x.s = 1;
+    return x;
+  };
+  P.cmp = function(y) {
+    var isneg, x = this, xc = x.c, yc = (y = new x.constructor(y)).c, i = x.s, j = y.s, k = x.e, l = y.e;
+    if (!xc[0] || !yc[0]) return !xc[0] ? !yc[0] ? 0 : -j : i;
+    if (i != j) return i;
+    isneg = i < 0;
+    if (k != l) return k > l ^ isneg ? 1 : -1;
+    j = (k = xc.length) < (l = yc.length) ? k : l;
+    for (i = -1; ++i < j; ) {
+      if (xc[i] != yc[i]) return xc[i] > yc[i] ^ isneg ? 1 : -1;
+    }
+    return k == l ? 0 : k > l ^ isneg ? 1 : -1;
+  };
+  P.div = function(y) {
+    var x = this, Big2 = x.constructor, a = x.c, b = (y = new Big2(y)).c, k = x.s == y.s ? 1 : -1, dp = Big2.DP;
+    if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
+      throw Error(INVALID_DP);
+    }
+    if (!b[0]) {
+      throw Error(DIV_BY_ZERO);
+    }
+    if (!a[0]) {
+      y.s = k;
+      y.c = [y.e = 0];
+      return y;
+    }
+    var bl, bt, n, cmp, ri, bz = b.slice(), ai = bl = b.length, al = a.length, r = a.slice(0, bl), rl = r.length, q = y, qc = q.c = [], qi = 0, p = dp + (q.e = x.e - y.e) + 1;
+    q.s = k;
+    k = p < 0 ? 0 : p;
+    bz.unshift(0);
+    for (; rl++ < bl; ) r.push(0);
+    do {
+      for (n = 0; n < 10; n++) {
+        if (bl != (rl = r.length)) {
+          cmp = bl > rl ? 1 : -1;
+        } else {
+          for (ri = -1, cmp = 0; ++ri < bl; ) {
+            if (b[ri] != r[ri]) {
+              cmp = b[ri] > r[ri] ? 1 : -1;
+              break;
+            }
+          }
+        }
+        if (cmp < 0) {
+          for (bt = rl == bl ? b : bz; rl; ) {
+            if (r[--rl] < bt[rl]) {
+              ri = rl;
+              for (; ri && !r[--ri]; ) r[ri] = 9;
+              --r[ri];
+              r[rl] += 10;
+            }
+            r[rl] -= bt[rl];
+          }
+          for (; !r[0]; ) r.shift();
+        } else {
+          break;
+        }
+      }
+      qc[qi++] = cmp ? n : ++n;
+      if (r[0] && cmp) r[rl] = a[ai] || 0;
+      else r = [a[ai]];
+    } while ((ai++ < al || r[0] !== UNDEFINED) && k--);
+    if (!qc[0] && qi != 1) {
+      qc.shift();
+      q.e--;
+      p--;
+    }
+    if (qi > p) round(q, p, Big2.RM, r[0] !== UNDEFINED);
+    return q;
+  };
+  P.eq = function(y) {
+    return this.cmp(y) === 0;
+  };
+  P.gt = function(y) {
+    return this.cmp(y) > 0;
+  };
+  P.gte = function(y) {
+    return this.cmp(y) > -1;
+  };
+  P.lt = function(y) {
+    return this.cmp(y) < 0;
+  };
+  P.lte = function(y) {
+    return this.cmp(y) < 1;
+  };
+  P.minus = P.sub = function(y) {
+    var i, j, t, xlty, x = this, Big2 = x.constructor, a = x.s, b = (y = new Big2(y)).s;
+    if (a != b) {
+      y.s = -b;
+      return x.plus(y);
+    }
+    var xc = x.c.slice(), xe = x.e, yc = y.c, ye = y.e;
+    if (!xc[0] || !yc[0]) {
+      if (yc[0]) {
+        y.s = -b;
+      } else if (xc[0]) {
+        y = new Big2(x);
+      } else {
+        y.s = 1;
+      }
+      return y;
+    }
+    if (a = xe - ye) {
+      if (xlty = a < 0) {
+        a = -a;
+        t = xc;
+      } else {
+        ye = xe;
+        t = yc;
+      }
+      t.reverse();
+      for (b = a; b--; ) t.push(0);
+      t.reverse();
+    } else {
+      j = ((xlty = xc.length < yc.length) ? xc : yc).length;
+      for (a = b = 0; b < j; b++) {
+        if (xc[b] != yc[b]) {
+          xlty = xc[b] < yc[b];
+          break;
+        }
+      }
+    }
+    if (xlty) {
+      t = xc;
+      xc = yc;
+      yc = t;
+      y.s = -y.s;
+    }
+    if ((b = (j = yc.length) - (i = xc.length)) > 0) for (; b--; ) xc[i++] = 0;
+    for (b = i; j > a; ) {
+      if (xc[--j] < yc[j]) {
+        for (i = j; i && !xc[--i]; ) xc[i] = 9;
+        --xc[i];
+        xc[j] += 10;
+      }
+      xc[j] -= yc[j];
+    }
+    for (; xc[--b] === 0; ) xc.pop();
+    for (; xc[0] === 0; ) {
+      xc.shift();
+      --ye;
+    }
+    if (!xc[0]) {
+      y.s = 1;
+      xc = [ye = 0];
+    }
+    y.c = xc;
+    y.e = ye;
+    return y;
+  };
+  P.mod = function(y) {
+    var ygtx, x = this, Big2 = x.constructor, a = x.s, b = (y = new Big2(y)).s;
+    if (!y.c[0]) {
+      throw Error(DIV_BY_ZERO);
+    }
+    x.s = y.s = 1;
+    ygtx = y.cmp(x) == 1;
+    x.s = a;
+    y.s = b;
+    if (ygtx) return new Big2(x);
+    a = Big2.DP;
+    b = Big2.RM;
+    Big2.DP = Big2.RM = 0;
+    x = x.div(y);
+    Big2.DP = a;
+    Big2.RM = b;
+    return this.minus(x.times(y));
+  };
+  P.neg = function() {
+    var x = new this.constructor(this);
+    x.s = -x.s;
+    return x;
+  };
+  P.plus = P.add = function(y) {
+    var e, k, t, x = this, Big2 = x.constructor;
+    y = new Big2(y);
+    if (x.s != y.s) {
+      y.s = -y.s;
+      return x.minus(y);
+    }
+    var xe = x.e, xc = x.c, ye = y.e, yc = y.c;
+    if (!xc[0] || !yc[0]) {
+      if (!yc[0]) {
+        if (xc[0]) {
+          y = new Big2(x);
+        } else {
+          y.s = x.s;
+        }
+      }
+      return y;
+    }
+    xc = xc.slice();
+    if (e = xe - ye) {
+      if (e > 0) {
+        ye = xe;
+        t = yc;
+      } else {
+        e = -e;
+        t = xc;
+      }
+      t.reverse();
+      for (; e--; ) t.push(0);
+      t.reverse();
+    }
+    if (xc.length - yc.length < 0) {
+      t = yc;
+      yc = xc;
+      xc = t;
+    }
+    e = yc.length;
+    for (k = 0; e; xc[e] %= 10) k = (xc[--e] = xc[e] + yc[e] + k) / 10 | 0;
+    if (k) {
+      xc.unshift(k);
+      ++ye;
+    }
+    for (e = xc.length; xc[--e] === 0; ) xc.pop();
+    y.c = xc;
+    y.e = ye;
+    return y;
+  };
+  P.pow = function(n) {
+    var x = this, one = new x.constructor("1"), y = one, isneg = n < 0;
+    if (n !== ~~n || n < -MAX_POWER || n > MAX_POWER) {
+      throw Error(INVALID + "exponent");
+    }
+    if (isneg) n = -n;
+    for (; ; ) {
+      if (n & 1) y = y.times(x);
+      n >>= 1;
+      if (!n) break;
+      x = x.times(x);
+    }
+    return isneg ? one.div(y) : y;
+  };
+  P.prec = function(sd, rm) {
+    if (sd !== ~~sd || sd < 1 || sd > MAX_DP) {
+      throw Error(INVALID + "precision");
+    }
+    return round(new this.constructor(this), sd, rm);
+  };
+  P.round = function(dp, rm) {
+    if (dp === UNDEFINED) dp = 0;
+    else if (dp !== ~~dp || dp < -MAX_DP || dp > MAX_DP) {
+      throw Error(INVALID_DP);
+    }
+    return round(new this.constructor(this), dp + this.e + 1, rm);
+  };
+  P.sqrt = function() {
+    var r, c, t, x = this, Big2 = x.constructor, s = x.s, e = x.e, half = new Big2("0.5");
+    if (!x.c[0]) return new Big2(x);
+    if (s < 0) {
+      throw Error(NAME + "No square root");
+    }
+    s = Math.sqrt(+stringify(x, true, true));
+    if (s === 0 || s === 1 / 0) {
+      c = x.c.join("");
+      if (!(c.length + e & 1)) c += "0";
+      s = Math.sqrt(c);
+      e = ((e + 1) / 2 | 0) - (e < 0 || e & 1);
+      r = new Big2((s == 1 / 0 ? "5e" : (s = s.toExponential()).slice(0, s.indexOf("e") + 1)) + e);
+    } else {
+      r = new Big2(s + "");
+    }
+    e = r.e + (Big2.DP += 4);
+    do {
+      t = r;
+      r = half.times(t.plus(x.div(t)));
+    } while (t.c.slice(0, e).join("") !== r.c.slice(0, e).join(""));
+    return round(r, (Big2.DP -= 4) + r.e + 1, Big2.RM);
+  };
+  P.times = P.mul = function(y) {
+    var c, x = this, Big2 = x.constructor, xc = x.c, yc = (y = new Big2(y)).c, a = xc.length, b = yc.length, i = x.e, j = y.e;
+    y.s = x.s == y.s ? 1 : -1;
+    if (!xc[0] || !yc[0]) {
+      y.c = [y.e = 0];
+      return y;
+    }
+    y.e = i + j;
+    if (a < b) {
+      c = xc;
+      xc = yc;
+      yc = c;
+      j = a;
+      a = b;
+      b = j;
+    }
+    for (c = new Array(j = a + b); j--; ) c[j] = 0;
+    for (i = b; i--; ) {
+      b = 0;
+      for (j = a + i; j > i; ) {
+        b = c[j] + yc[i] * xc[j - i - 1] + b;
+        c[j--] = b % 10;
+        b = b / 10 | 0;
+      }
+      c[j] = b;
+    }
+    if (b) ++y.e;
+    else c.shift();
+    for (i = c.length; !c[--i]; ) c.pop();
+    y.c = c;
+    return y;
+  };
+  P.toExponential = function(dp, rm) {
+    var x = this, n = x.c[0];
+    if (dp !== UNDEFINED) {
+      if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
+        throw Error(INVALID_DP);
+      }
+      x = round(new x.constructor(x), ++dp, rm);
+      for (; x.c.length < dp; ) x.c.push(0);
+    }
+    return stringify(x, true, !!n);
+  };
+  P.toFixed = function(dp, rm) {
+    var x = this, n = x.c[0];
+    if (dp !== UNDEFINED) {
+      if (dp !== ~~dp || dp < 0 || dp > MAX_DP) {
+        throw Error(INVALID_DP);
+      }
+      x = round(new x.constructor(x), dp + x.e + 1, rm);
+      for (dp = dp + x.e + 1; x.c.length < dp; ) x.c.push(0);
+    }
+    return stringify(x, false, !!n);
+  };
+  P[Symbol.for("nodejs.util.inspect.custom")] = P.toJSON = P.toString = function() {
+    var x = this, Big2 = x.constructor;
+    return stringify(x, x.e <= Big2.NE || x.e >= Big2.PE, !!x.c[0]);
+  };
+  P.toNumber = function() {
+    var n = +stringify(this, true, true);
+    if (this.constructor.strict === true && !this.eq(n.toString())) {
+      throw Error(NAME + "Imprecise conversion");
+    }
+    return n;
+  };
+  P.toPrecision = function(sd, rm) {
+    var x = this, Big2 = x.constructor, n = x.c[0];
+    if (sd !== UNDEFINED) {
+      if (sd !== ~~sd || sd < 1 || sd > MAX_DP) {
+        throw Error(INVALID + "precision");
+      }
+      x = round(new Big2(x), sd, rm);
+      for (; x.c.length < sd; ) x.c.push(0);
+    }
+    return stringify(x, sd <= x.e || x.e <= Big2.NE || x.e >= Big2.PE, !!n);
+  };
+  P.valueOf = function() {
+    var x = this, Big2 = x.constructor;
+    if (Big2.strict === true) {
+      throw Error(NAME + "valueOf disallowed");
+    }
+    return stringify(x, x.e <= Big2.NE || x.e >= Big2.PE, true);
+  };
+  var Big = _Big_();
+
+  // ../../node_modules/js-base64/base64.mjs
+  var _hasBuffer = typeof Buffer === "function";
+  var _TD = typeof TextDecoder === "function" ? new TextDecoder() : void 0;
+  var _TE = typeof TextEncoder === "function" ? new TextEncoder() : void 0;
+  var b64ch = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
+  var b64chs = Array.prototype.slice.call(b64ch);
+  var b64tab = ((a) => {
+    let tab = {};
+    a.forEach((c, i) => tab[c] = i);
+    return tab;
+  })(b64chs);
+  var b64re = /^(?:[A-Za-z\d+\/]{4})*?(?:[A-Za-z\d+\/]{2}(?:==)?|[A-Za-z\d+\/]{3}=?)?$/;
+  var _fromCC = String.fromCharCode.bind(String);
+  var _U8Afrom = typeof Uint8Array.from === "function" ? Uint8Array.from.bind(Uint8Array) : (it) => new Uint8Array(Array.prototype.slice.call(it, 0));
+  var _tidyB64 = /* @__PURE__ */ __name((s) => s.replace(/[^A-Za-z0-9\+\/]/g, ""), "_tidyB64");
+  var re_btou = /[\xC0-\xDF][\x80-\xBF]|[\xE0-\xEF][\x80-\xBF]{2}|[\xF0-\xF7][\x80-\xBF]{3}/g;
+  var cb_btou = /* @__PURE__ */ __name((cccc) => {
+    switch (cccc.length) {
+      case 4:
+        var cp = (7 & cccc.charCodeAt(0)) << 18 | (63 & cccc.charCodeAt(1)) << 12 | (63 & cccc.charCodeAt(2)) << 6 | 63 & cccc.charCodeAt(3), offset = cp - 65536;
+        return _fromCC((offset >>> 10) + 55296) + _fromCC((offset & 1023) + 56320);
+      case 3:
+        return _fromCC((15 & cccc.charCodeAt(0)) << 12 | (63 & cccc.charCodeAt(1)) << 6 | 63 & cccc.charCodeAt(2));
+      default:
+        return _fromCC((31 & cccc.charCodeAt(0)) << 6 | 63 & cccc.charCodeAt(1));
+    }
+  }, "cb_btou");
+  var btou = /* @__PURE__ */ __name((b) => b.replace(re_btou, cb_btou), "btou");
+  var atobPolyfill = /* @__PURE__ */ __name((asc) => {
+    asc = asc.replace(/\s+/g, "");
+    if (!b64re.test(asc))
+      throw new TypeError("malformed base64.");
+    asc += "==".slice(2 - (asc.length & 3));
+    let u24, bin = "", r1, r2;
+    for (let i = 0; i < asc.length; ) {
+      u24 = b64tab[asc.charAt(i++)] << 18 | b64tab[asc.charAt(i++)] << 12 | (r1 = b64tab[asc.charAt(i++)]) << 6 | (r2 = b64tab[asc.charAt(i++)]);
+      bin += r1 === 64 ? _fromCC(u24 >> 16 & 255) : r2 === 64 ? _fromCC(u24 >> 16 & 255, u24 >> 8 & 255) : _fromCC(u24 >> 16 & 255, u24 >> 8 & 255, u24 & 255);
+    }
+    return bin;
+  }, "atobPolyfill");
+  var _atob = typeof atob === "function" ? (asc) => atob(_tidyB64(asc)) : _hasBuffer ? (asc) => Buffer.from(asc, "base64").toString("binary") : atobPolyfill;
+  var _toUint8Array = _hasBuffer ? (a) => _U8Afrom(Buffer.from(a, "base64")) : (a) => _U8Afrom(_atob(a).split("").map((c) => c.charCodeAt(0)));
+  var _decode = _hasBuffer ? (a) => Buffer.from(a, "base64").toString("utf8") : _TD ? (a) => _TD.decode(_toUint8Array(a)) : (a) => btou(_atob(a));
+  var _unURI = /* @__PURE__ */ __name((a) => _tidyB64(a.replace(/[-_]/g, (m0) => m0 == "-" ? "+" : "/")), "_unURI");
+  var decode = /* @__PURE__ */ __name((src) => _decode(_unURI(src)), "decode");
+
+  // ../utils/src/misc.ts
+  function fromBase64(str) {
+    const binaryString = decode(str);
+    const len = binaryString.length;
+    const bytes = new Uint8Array(len);
+    for (let i = 0; i < len; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return bytes;
+  }
+  __name(fromBase64, "fromBase64");
+
+  // ../utils/src/crypto.ts
   var keyFromString = /* @__PURE__ */ __name((key) => base58_to_binary_default(
     key.includes(":") ? (() => {
       const [curve, keyPart] = key.split(":");
@@ -59546,104 +59982,6 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
       return keyPart;
     })() : key
   ), "keyFromString");
-  function fromBase64(base64) {
-    return (0, import_base64_js.toByteArray)(base64);
-  }
-  __name(fromBase64, "fromBase64");
-
-  // src/utils/actionToWalletSelector.ts
-  var mapActionForWalletSelector = /* @__PURE__ */ __name((action) => {
-    const type = action.type;
-    switch (type) {
-      case "CreateAccount":
-        return action;
-      case "DeployContract": {
-        return { type, params: { code: fromBase64(action.codeBase64) } };
-      }
-      case "FunctionCall": {
-        return {
-          type,
-          params: {
-            methodName: action.methodName,
-            args: action.argsBase64 ? fromBase64(action.argsBase64) : action.args,
-            gas: action.gas,
-            deposit: action.deposit
-          }
-        };
-      }
-      case "Transfer": {
-        return { type, params: { deposit: action.deposit } };
-      }
-      case "Stake": {
-        return {
-          type,
-          params: { stake: action.stake, publicKey: action.publicKey }
-        };
-      }
-      case "AddKey": {
-        return {
-          type,
-          params: {
-            publicKey: action.publicKey,
-            accessKey: action.accessKey
-          }
-        };
-      }
-      case "DeleteKey": {
-        return { type, params: { publicKey: action.publicKey } };
-      }
-      case "DeleteAccount": {
-        return { type, params: { beneficiaryId: action.beneficiaryId } };
-      }
-      default:
-        throw new Error("Invalid action type");
-    }
-  }, "mapActionForWalletSelector");
-
-  // src/adapters/here.ts
-  function createHereAdapter() {
-    return {
-      async signIn({ networkId, contractId, publicKey }) {
-        const here = await import_core.HereWallet.connect({ networkId });
-        const accountId = await here.signIn({ contractId });
-        const key = await here.authStorage.getKey(networkId, accountId);
-        return {
-          state: {
-            accountId,
-            privateKey: key.toString(),
-            networkId
-          }
-        };
-      },
-      async sendTransactions({ state, transactions }) {
-        if (!state?.accountId) {
-          throw new Error("Not signed in");
-        }
-        const wallet = await import_core.HereWallet.connect({ networkId: state?.networkId });
-        try {
-          const response = await wallet.signAndSendTransactions({
-            transactions: transactions.map(
-              ({ signerId, receiverId, actions }) => {
-                if (signerId && signerId !== state.accountId) {
-                  throw new Error("Invalid signer");
-                }
-                return {
-                  signerId: state.accountId,
-                  receiverId,
-                  actions: actions.map(mapActionForWalletSelector)
-                };
-              }
-            )
-          });
-          return { outcomes: response };
-        } catch (error) {
-          console.log(error);
-          throw new Error(error);
-        }
-      }
-    };
-  }
-  __name(createHereAdapter, "createHereAdapter");
 
   // ../../node_modules/borsh/lib/esm/types.js
   var integers = ["u8", "u16", "u32", "u64", "u128", "i8", "i16", "i32", "i64", "i128", "f32", "f64"];
@@ -60164,16 +60502,264 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
     return serializer.encode(value, schema);
   }
   __name(serialize, "serialize");
-  function deserialize(schema, buffer, validate) {
-    if (validate === void 0) {
-      validate = true;
+
+  // ../borsh-schema/src/index.ts
+  var getBorshSchema = (() => {
+    class BorshSchema2 {
+      static {
+        __name(this, "BorshSchema");
+      }
+      Ed25519Signature = {
+        struct: {
+          data: { array: { type: "u8", len: 64 } }
+        }
+      };
+      Secp256k1Signature = {
+        struct: {
+          data: { array: { type: "u8", len: 65 } }
+        }
+      };
+      Signature = {
+        enum: [
+          { struct: { ed25519Signature: this.Ed25519Signature } },
+          { struct: { secp256k1Signature: this.Secp256k1Signature } }
+        ]
+      };
+      Ed25519Data = {
+        struct: {
+          data: { array: { type: "u8", len: 32 } }
+        }
+      };
+      Secp256k1Data = {
+        struct: {
+          data: { array: { type: "u8", len: 64 } }
+        }
+      };
+      PublicKey = {
+        enum: [
+          { struct: { ed25519Key: this.Ed25519Data } },
+          { struct: { secp256k1Key: this.Secp256k1Data } }
+        ]
+      };
+      FunctionCallPermission = {
+        struct: {
+          allowance: { option: "u128" },
+          receiverId: "string",
+          methodNames: { array: { type: "string" } }
+        }
+      };
+      FullAccessPermission = {
+        struct: {}
+      };
+      AccessKeyPermission = {
+        enum: [
+          { struct: { functionCall: this.FunctionCallPermission } },
+          { struct: { fullAccess: this.FullAccessPermission } }
+        ]
+      };
+      AccessKey = {
+        struct: {
+          nonce: "u64",
+          permission: this.AccessKeyPermission
+        }
+      };
+      CreateAccount = {
+        struct: {}
+      };
+      DeployContract = {
+        struct: {
+          code: { array: { type: "u8" } }
+        }
+      };
+      FunctionCall = {
+        struct: {
+          methodName: "string",
+          args: { array: { type: "u8" } },
+          gas: "u64",
+          deposit: "u128"
+        }
+      };
+      Transfer = {
+        struct: {
+          deposit: "u128"
+        }
+      };
+      Stake = {
+        struct: {
+          stake: "u128",
+          publicKey: this.PublicKey
+        }
+      };
+      AddKey = {
+        struct: {
+          publicKey: this.PublicKey,
+          accessKey: this.AccessKey
+        }
+      };
+      DeleteKey = {
+        struct: {
+          publicKey: this.PublicKey
+        }
+      };
+      DeleteAccount = {
+        struct: {
+          beneficiaryId: "string"
+        }
+      };
+      ClassicAction = {
+        enum: [
+          { struct: { createAccount: this.CreateAccount } },
+          { struct: { deployContract: this.DeployContract } },
+          { struct: { functionCall: this.FunctionCall } },
+          { struct: { transfer: this.Transfer } },
+          { struct: { stake: this.Stake } },
+          { struct: { addKey: this.AddKey } },
+          { struct: { deleteKey: this.DeleteKey } },
+          { struct: { deleteAccount: this.DeleteAccount } }
+        ]
+      };
+      DelegateAction = {
+        struct: {
+          senderId: "string",
+          receiverId: "string",
+          actions: { array: { type: this.ClassicAction } },
+          nonce: "u64",
+          maxBlockHeight: "u64",
+          publicKey: this.PublicKey
+        }
+      };
+      SignedDelegate = {
+        struct: {
+          delegateAction: this.DelegateAction,
+          signature: this.Signature
+        }
+      };
+      Action = {
+        enum: [
+          { struct: { createAccount: this.CreateAccount } },
+          { struct: { deployContract: this.DeployContract } },
+          { struct: { functionCall: this.FunctionCall } },
+          { struct: { transfer: this.Transfer } },
+          { struct: { stake: this.Stake } },
+          { struct: { addKey: this.AddKey } },
+          { struct: { deleteKey: this.DeleteKey } },
+          { struct: { deleteAccount: this.DeleteAccount } },
+          { struct: { signedDelegate: this.SignedDelegate } }
+        ]
+      };
+      Transaction = {
+        struct: {
+          signerId: "string",
+          publicKey: this.PublicKey,
+          nonce: "u64",
+          receiverId: "string",
+          blockHash: { array: { type: "u8", len: 32 } },
+          actions: { array: { type: this.Action } }
+        }
+      };
+      SignedTransaction = {
+        struct: {
+          transaction: this.Transaction,
+          signature: this.Signature
+        }
+      };
     }
-    if (validate)
-      validate_schema(schema);
-    var deserializer = new BorshDeserializer(buffer);
-    return deserializer.decode(schema);
+    return new BorshSchema2();
+  })();
+
+  // src/utils/actionToWalletSelector.ts
+  var mapActionForWalletSelector = /* @__PURE__ */ __name((action) => {
+    const type = action.type;
+    switch (type) {
+      case "CreateAccount":
+        return action;
+      case "DeployContract": {
+        return { type, params: { code: fromBase64(action.codeBase64) } };
+      }
+      case "FunctionCall": {
+        return {
+          type,
+          params: {
+            methodName: action.methodName,
+            args: action.argsBase64 ? fromBase64(action.argsBase64) : action.args,
+            gas: action.gas,
+            deposit: action.deposit
+          }
+        };
+      }
+      case "Transfer": {
+        return { type, params: { deposit: action.deposit } };
+      }
+      case "Stake": {
+        return {
+          type,
+          params: { stake: action.stake, publicKey: action.publicKey }
+        };
+      }
+      case "AddKey": {
+        return {
+          type,
+          params: {
+            publicKey: action.publicKey,
+            accessKey: action.accessKey
+          }
+        };
+      }
+      case "DeleteKey": {
+        return { type, params: { publicKey: action.publicKey } };
+      }
+      case "DeleteAccount": {
+        return { type, params: { beneficiaryId: action.beneficiaryId } };
+      }
+      default:
+        throw new Error("Invalid action type");
+    }
+  }, "mapActionForWalletSelector");
+
+  // src/adapters/here.ts
+  function createHereAdapter() {
+    return {
+      async signIn({ networkId, contractId, publicKey }) {
+        const here = await import_core.HereWallet.connect({ networkId });
+        const accountId = await here.signIn({ contractId });
+        const key = await here.authStorage.getKey(networkId, accountId);
+        return {
+          state: {
+            accountId,
+            privateKey: key.toString(),
+            networkId
+          }
+        };
+      },
+      async sendTransactions({ state, transactions }) {
+        if (!state?.accountId) {
+          throw new Error("Not signed in");
+        }
+        const wallet = await import_core.HereWallet.connect({ networkId: state?.networkId });
+        try {
+          const response = await wallet.signAndSendTransactions({
+            transactions: transactions.map(
+              ({ signerId, receiverId, actions }) => {
+                if (signerId && signerId !== state.accountId) {
+                  throw new Error("Invalid signer");
+                }
+                return {
+                  signerId: state.accountId,
+                  receiverId,
+                  actions: actions.map(mapActionForWalletSelector)
+                };
+              }
+            )
+          });
+          return { outcomes: response };
+        } catch (error) {
+          console.log(error);
+          throw new Error(error);
+        }
+      }
+    };
   }
-  __name(deserialize, "deserialize");
+  __name(createHereAdapter, "createHereAdapter");
 
   // src/utils/transaction.ts
   function mapTransaction(jsonTransaction) {
@@ -60505,6485 +61091,17 @@ ${JSON.stringify(result, null, 2)}`, (0, utils_1.getErrorTypeFromErrorMessage)(r
   }
   __name(createNearAdapter, "createNearAdapter");
 
-  // ../../node_modules/meer-api-js/dist/esm/meer-api-js/src/key_stores/index.js
-  var key_stores_exports = {};
-  __export(key_stores_exports, {
-    BrowserLocalStorageKeyStore: () => BrowserLocalStorageKeyStore,
-    InMemoryKeyStore: () => InMemoryKeyStore,
-    KeyStore: () => KeyStore,
-    MergeKeyStore: () => MergeKeyStore
-  });
-
-  // ../../node_modules/@meer-js/crypto/dist/esm/crypto/src/constants.js
-  var KeyType;
-  (function(KeyType2) {
-    KeyType2[KeyType2["ED25519"] = 0] = "ED25519";
-    KeyType2[KeyType2["SECP256K1"] = 1] = "SECP256K1";
-  })(KeyType || (KeyType = {}));
-  var KeySize = {
-    SECRET_KEY: 32,
-    ED25519_PUBLIC_KEY: 32,
-    SECP256k1_PUBLIC_KEY: 64
-  };
-
-  // ../../node_modules/@meer-js/crypto/dist/esm/crypto/src/key_pair_base.js
-  var KeyPairBase = class {
-    static {
-      __name(this, "KeyPairBase");
-    }
-  };
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/constants.js
-  var DEFAULT_FUNCTION_CALL_GAS = 30000000000000n;
-
-  // ../../node_modules/@meer-js/types/dist/esm/types/src/enum.js
-  var Enum = class {
-    static {
-      __name(this, "Enum");
-    }
-    constructor(properties) {
-      if (Object.keys(properties).length !== 1) {
-        throw new Error("Enum can only take single value");
-      }
-      Object.keys(properties).map((key) => {
-        this[key] = properties[key];
-      });
-    }
-  };
-
-  // ../../node_modules/@meer-js/types/dist/esm/types/src/errors.js
-  var PositionalArgsError = class extends Error {
-    static {
-      __name(this, "PositionalArgsError");
-    }
-    constructor() {
-      super("Contract method calls expect named arguments wrapped in object, e.g. { argName1: argValue1, argName2: argValue2 }");
-    }
-  };
-  var TypedError = class extends Error {
-    static {
-      __name(this, "TypedError");
-    }
-    type;
-    context;
-    constructor(message2, type, context) {
-      super(message2);
-      this.type = type || "UntypedError";
-      this.context = context;
-    }
-  };
-  var ErrorContext = class {
-    static {
-      __name(this, "ErrorContext");
-    }
-    transactionHash;
-    constructor(transactionHash) {
-      this.transactionHash = transactionHash;
-    }
-  };
-
-  // ../../node_modules/@meer-js/types/dist/esm/types/src/provider/light_client.js
-  var IdType;
-  (function(IdType2) {
-    IdType2["Transaction"] = "transaction";
-    IdType2["Receipt"] = "receipt";
-  })(IdType || (IdType = {}));
-
-  // ../../node_modules/@meer-js/types/dist/esm/types/src/provider/response.js
-  var ExecutionStatusBasic;
-  (function(ExecutionStatusBasic2) {
-    ExecutionStatusBasic2["Unknown"] = "Unknown";
-    ExecutionStatusBasic2["Pending"] = "Pending";
-    ExecutionStatusBasic2["Failure"] = "Failure";
-  })(ExecutionStatusBasic || (ExecutionStatusBasic = {}));
-  var FinalExecutionStatusBasic;
-  (function(FinalExecutionStatusBasic2) {
-    FinalExecutionStatusBasic2["NotStarted"] = "NotStarted";
-    FinalExecutionStatusBasic2["Started"] = "Started";
-    FinalExecutionStatusBasic2["Failure"] = "Failure";
-  })(FinalExecutionStatusBasic || (FinalExecutionStatusBasic = {}));
-
-  // ../../node_modules/mustache/mustache.mjs
-  var objectToString = Object.prototype.toString;
-  var isArray = Array.isArray || /* @__PURE__ */ __name(function isArrayPolyfill(object) {
-    return objectToString.call(object) === "[object Array]";
-  }, "isArrayPolyfill");
-  function isFunction(object) {
-    return typeof object === "function";
-  }
-  __name(isFunction, "isFunction");
-  function typeStr(obj) {
-    return isArray(obj) ? "array" : typeof obj;
-  }
-  __name(typeStr, "typeStr");
-  function escapeRegExp(string) {
-    return string.replace(/[\-\[\]{}()*+?.,\\\^$|#\s]/g, "\\$&");
-  }
-  __name(escapeRegExp, "escapeRegExp");
-  function hasProperty(obj, propName) {
-    return obj != null && typeof obj === "object" && propName in obj;
-  }
-  __name(hasProperty, "hasProperty");
-  function primitiveHasOwnProperty(primitive, propName) {
-    return primitive != null && typeof primitive !== "object" && primitive.hasOwnProperty && primitive.hasOwnProperty(propName);
-  }
-  __name(primitiveHasOwnProperty, "primitiveHasOwnProperty");
-  var regExpTest = RegExp.prototype.test;
-  function testRegExp(re, string) {
-    return regExpTest.call(re, string);
-  }
-  __name(testRegExp, "testRegExp");
-  var nonSpaceRe = /\S/;
-  function isWhitespace(string) {
-    return !testRegExp(nonSpaceRe, string);
-  }
-  __name(isWhitespace, "isWhitespace");
-  var entityMap = {
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;",
-    "/": "&#x2F;",
-    "`": "&#x60;",
-    "=": "&#x3D;"
-  };
-  function escapeHtml(string) {
-    return String(string).replace(/[&<>"'`=\/]/g, /* @__PURE__ */ __name(function fromEntityMap(s) {
-      return entityMap[s];
-    }, "fromEntityMap"));
-  }
-  __name(escapeHtml, "escapeHtml");
-  var whiteRe = /\s*/;
-  var spaceRe = /\s+/;
-  var equalsRe = /\s*=/;
-  var curlyRe = /\s*\}/;
-  var tagRe = /#|\^|\/|>|\{|&|=|!/;
-  function parseTemplate(template, tags) {
-    if (!template)
-      return [];
-    var lineHasNonSpace = false;
-    var sections = [];
-    var tokens = [];
-    var spaces = [];
-    var hasTag = false;
-    var nonSpace = false;
-    var indentation = "";
-    var tagIndex = 0;
-    function stripSpace() {
-      if (hasTag && !nonSpace) {
-        while (spaces.length)
-          delete tokens[spaces.pop()];
-      } else {
-        spaces = [];
-      }
-      hasTag = false;
-      nonSpace = false;
-    }
-    __name(stripSpace, "stripSpace");
-    var openingTagRe, closingTagRe, closingCurlyRe;
-    function compileTags(tagsToCompile) {
-      if (typeof tagsToCompile === "string")
-        tagsToCompile = tagsToCompile.split(spaceRe, 2);
-      if (!isArray(tagsToCompile) || tagsToCompile.length !== 2)
-        throw new Error("Invalid tags: " + tagsToCompile);
-      openingTagRe = new RegExp(escapeRegExp(tagsToCompile[0]) + "\\s*");
-      closingTagRe = new RegExp("\\s*" + escapeRegExp(tagsToCompile[1]));
-      closingCurlyRe = new RegExp("\\s*" + escapeRegExp("}" + tagsToCompile[1]));
-    }
-    __name(compileTags, "compileTags");
-    compileTags(tags || mustache.tags);
-    var scanner = new Scanner(template);
-    var start, type, value, chr, token, openSection;
-    while (!scanner.eos()) {
-      start = scanner.pos;
-      value = scanner.scanUntil(openingTagRe);
-      if (value) {
-        for (var i = 0, valueLength = value.length; i < valueLength; ++i) {
-          chr = value.charAt(i);
-          if (isWhitespace(chr)) {
-            spaces.push(tokens.length);
-            indentation += chr;
-          } else {
-            nonSpace = true;
-            lineHasNonSpace = true;
-            indentation += " ";
-          }
-          tokens.push(["text", chr, start, start + 1]);
-          start += 1;
-          if (chr === "\n") {
-            stripSpace();
-            indentation = "";
-            tagIndex = 0;
-            lineHasNonSpace = false;
-          }
-        }
-      }
-      if (!scanner.scan(openingTagRe))
-        break;
-      hasTag = true;
-      type = scanner.scan(tagRe) || "name";
-      scanner.scan(whiteRe);
-      if (type === "=") {
-        value = scanner.scanUntil(equalsRe);
-        scanner.scan(equalsRe);
-        scanner.scanUntil(closingTagRe);
-      } else if (type === "{") {
-        value = scanner.scanUntil(closingCurlyRe);
-        scanner.scan(curlyRe);
-        scanner.scanUntil(closingTagRe);
-        type = "&";
-      } else {
-        value = scanner.scanUntil(closingTagRe);
-      }
-      if (!scanner.scan(closingTagRe))
-        throw new Error("Unclosed tag at " + scanner.pos);
-      if (type == ">") {
-        token = [type, value, start, scanner.pos, indentation, tagIndex, lineHasNonSpace];
-      } else {
-        token = [type, value, start, scanner.pos];
-      }
-      tagIndex++;
-      tokens.push(token);
-      if (type === "#" || type === "^") {
-        sections.push(token);
-      } else if (type === "/") {
-        openSection = sections.pop();
-        if (!openSection)
-          throw new Error('Unopened section "' + value + '" at ' + start);
-        if (openSection[1] !== value)
-          throw new Error('Unclosed section "' + openSection[1] + '" at ' + start);
-      } else if (type === "name" || type === "{" || type === "&") {
-        nonSpace = true;
-      } else if (type === "=") {
-        compileTags(value);
-      }
-    }
-    stripSpace();
-    openSection = sections.pop();
-    if (openSection)
-      throw new Error('Unclosed section "' + openSection[1] + '" at ' + scanner.pos);
-    return nestTokens(squashTokens(tokens));
-  }
-  __name(parseTemplate, "parseTemplate");
-  function squashTokens(tokens) {
-    var squashedTokens = [];
-    var token, lastToken;
-    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-      token = tokens[i];
-      if (token) {
-        if (token[0] === "text" && lastToken && lastToken[0] === "text") {
-          lastToken[1] += token[1];
-          lastToken[3] = token[3];
-        } else {
-          squashedTokens.push(token);
-          lastToken = token;
-        }
-      }
-    }
-    return squashedTokens;
-  }
-  __name(squashTokens, "squashTokens");
-  function nestTokens(tokens) {
-    var nestedTokens = [];
-    var collector = nestedTokens;
-    var sections = [];
-    var token, section;
-    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-      token = tokens[i];
-      switch (token[0]) {
-        case "#":
-        case "^":
-          collector.push(token);
-          sections.push(token);
-          collector = token[4] = [];
-          break;
-        case "/":
-          section = sections.pop();
-          section[5] = token[2];
-          collector = sections.length > 0 ? sections[sections.length - 1][4] : nestedTokens;
-          break;
-        default:
-          collector.push(token);
-      }
-    }
-    return nestedTokens;
-  }
-  __name(nestTokens, "nestTokens");
-  function Scanner(string) {
-    this.string = string;
-    this.tail = string;
-    this.pos = 0;
-  }
-  __name(Scanner, "Scanner");
-  Scanner.prototype.eos = /* @__PURE__ */ __name(function eos() {
-    return this.tail === "";
-  }, "eos");
-  Scanner.prototype.scan = /* @__PURE__ */ __name(function scan(re) {
-    var match = this.tail.match(re);
-    if (!match || match.index !== 0)
-      return "";
-    var string = match[0];
-    this.tail = this.tail.substring(string.length);
-    this.pos += string.length;
-    return string;
-  }, "scan");
-  Scanner.prototype.scanUntil = /* @__PURE__ */ __name(function scanUntil(re) {
-    var index = this.tail.search(re), match;
-    switch (index) {
-      case -1:
-        match = this.tail;
-        this.tail = "";
-        break;
-      case 0:
-        match = "";
-        break;
-      default:
-        match = this.tail.substring(0, index);
-        this.tail = this.tail.substring(index);
-    }
-    this.pos += match.length;
-    return match;
-  }, "scanUntil");
-  function Context(view, parentContext) {
-    this.view = view;
-    this.cache = { ".": this.view };
-    this.parent = parentContext;
-  }
-  __name(Context, "Context");
-  Context.prototype.push = /* @__PURE__ */ __name(function push(view) {
-    return new Context(view, this);
-  }, "push");
-  Context.prototype.lookup = /* @__PURE__ */ __name(function lookup(name) {
-    var cache = this.cache;
-    var value;
-    if (cache.hasOwnProperty(name)) {
-      value = cache[name];
-    } else {
-      var context = this, intermediateValue, names, index, lookupHit = false;
-      while (context) {
-        if (name.indexOf(".") > 0) {
-          intermediateValue = context.view;
-          names = name.split(".");
-          index = 0;
-          while (intermediateValue != null && index < names.length) {
-            if (index === names.length - 1)
-              lookupHit = hasProperty(intermediateValue, names[index]) || primitiveHasOwnProperty(intermediateValue, names[index]);
-            intermediateValue = intermediateValue[names[index++]];
-          }
-        } else {
-          intermediateValue = context.view[name];
-          lookupHit = hasProperty(context.view, name);
-        }
-        if (lookupHit) {
-          value = intermediateValue;
-          break;
-        }
-        context = context.parent;
-      }
-      cache[name] = value;
-    }
-    if (isFunction(value))
-      value = value.call(this.view);
-    return value;
-  }, "lookup");
-  function Writer() {
-    this.templateCache = {
-      _cache: {},
-      set: /* @__PURE__ */ __name(function set(key, value) {
-        this._cache[key] = value;
-      }, "set"),
-      get: /* @__PURE__ */ __name(function get(key) {
-        return this._cache[key];
-      }, "get"),
-      clear: /* @__PURE__ */ __name(function clear() {
-        this._cache = {};
-      }, "clear")
-    };
-  }
-  __name(Writer, "Writer");
-  Writer.prototype.clearCache = /* @__PURE__ */ __name(function clearCache() {
-    if (typeof this.templateCache !== "undefined") {
-      this.templateCache.clear();
-    }
-  }, "clearCache");
-  Writer.prototype.parse = /* @__PURE__ */ __name(function parse(template, tags) {
-    var cache = this.templateCache;
-    var cacheKey = template + ":" + (tags || mustache.tags).join(":");
-    var isCacheEnabled = typeof cache !== "undefined";
-    var tokens = isCacheEnabled ? cache.get(cacheKey) : void 0;
-    if (tokens == void 0) {
-      tokens = parseTemplate(template, tags);
-      isCacheEnabled && cache.set(cacheKey, tokens);
-    }
-    return tokens;
-  }, "parse");
-  Writer.prototype.render = /* @__PURE__ */ __name(function render(template, view, partials, config) {
-    var tags = this.getConfigTags(config);
-    var tokens = this.parse(template, tags);
-    var context = view instanceof Context ? view : new Context(view, void 0);
-    return this.renderTokens(tokens, context, partials, template, config);
-  }, "render");
-  Writer.prototype.renderTokens = /* @__PURE__ */ __name(function renderTokens(tokens, context, partials, originalTemplate, config) {
-    var buffer = "";
-    var token, symbol, value;
-    for (var i = 0, numTokens = tokens.length; i < numTokens; ++i) {
-      value = void 0;
-      token = tokens[i];
-      symbol = token[0];
-      if (symbol === "#") value = this.renderSection(token, context, partials, originalTemplate, config);
-      else if (symbol === "^") value = this.renderInverted(token, context, partials, originalTemplate, config);
-      else if (symbol === ">") value = this.renderPartial(token, context, partials, config);
-      else if (symbol === "&") value = this.unescapedValue(token, context);
-      else if (symbol === "name") value = this.escapedValue(token, context, config);
-      else if (symbol === "text") value = this.rawValue(token);
-      if (value !== void 0)
-        buffer += value;
-    }
-    return buffer;
-  }, "renderTokens");
-  Writer.prototype.renderSection = /* @__PURE__ */ __name(function renderSection(token, context, partials, originalTemplate, config) {
-    var self2 = this;
-    var buffer = "";
-    var value = context.lookup(token[1]);
-    function subRender(template) {
-      return self2.render(template, context, partials, config);
-    }
-    __name(subRender, "subRender");
-    if (!value) return;
-    if (isArray(value)) {
-      for (var j = 0, valueLength = value.length; j < valueLength; ++j) {
-        buffer += this.renderTokens(token[4], context.push(value[j]), partials, originalTemplate, config);
-      }
-    } else if (typeof value === "object" || typeof value === "string" || typeof value === "number") {
-      buffer += this.renderTokens(token[4], context.push(value), partials, originalTemplate, config);
-    } else if (isFunction(value)) {
-      if (typeof originalTemplate !== "string")
-        throw new Error("Cannot use higher-order sections without the original template");
-      value = value.call(context.view, originalTemplate.slice(token[3], token[5]), subRender);
-      if (value != null)
-        buffer += value;
-    } else {
-      buffer += this.renderTokens(token[4], context, partials, originalTemplate, config);
-    }
-    return buffer;
-  }, "renderSection");
-  Writer.prototype.renderInverted = /* @__PURE__ */ __name(function renderInverted(token, context, partials, originalTemplate, config) {
-    var value = context.lookup(token[1]);
-    if (!value || isArray(value) && value.length === 0)
-      return this.renderTokens(token[4], context, partials, originalTemplate, config);
-  }, "renderInverted");
-  Writer.prototype.indentPartial = /* @__PURE__ */ __name(function indentPartial(partial, indentation, lineHasNonSpace) {
-    var filteredIndentation = indentation.replace(/[^ \t]/g, "");
-    var partialByNl = partial.split("\n");
-    for (var i = 0; i < partialByNl.length; i++) {
-      if (partialByNl[i].length && (i > 0 || !lineHasNonSpace)) {
-        partialByNl[i] = filteredIndentation + partialByNl[i];
-      }
-    }
-    return partialByNl.join("\n");
-  }, "indentPartial");
-  Writer.prototype.renderPartial = /* @__PURE__ */ __name(function renderPartial(token, context, partials, config) {
-    if (!partials) return;
-    var tags = this.getConfigTags(config);
-    var value = isFunction(partials) ? partials(token[1]) : partials[token[1]];
-    if (value != null) {
-      var lineHasNonSpace = token[6];
-      var tagIndex = token[5];
-      var indentation = token[4];
-      var indentedValue = value;
-      if (tagIndex == 0 && indentation) {
-        indentedValue = this.indentPartial(value, indentation, lineHasNonSpace);
-      }
-      var tokens = this.parse(indentedValue, tags);
-      return this.renderTokens(tokens, context, partials, indentedValue, config);
-    }
-  }, "renderPartial");
-  Writer.prototype.unescapedValue = /* @__PURE__ */ __name(function unescapedValue(token, context) {
-    var value = context.lookup(token[1]);
-    if (value != null)
-      return value;
-  }, "unescapedValue");
-  Writer.prototype.escapedValue = /* @__PURE__ */ __name(function escapedValue(token, context, config) {
-    var escape2 = this.getConfigEscape(config) || mustache.escape;
-    var value = context.lookup(token[1]);
-    if (value != null)
-      return typeof value === "number" && escape2 === mustache.escape ? String(value) : escape2(value);
-  }, "escapedValue");
-  Writer.prototype.rawValue = /* @__PURE__ */ __name(function rawValue(token) {
-    return token[1];
-  }, "rawValue");
-  Writer.prototype.getConfigTags = /* @__PURE__ */ __name(function getConfigTags(config) {
-    if (isArray(config)) {
-      return config;
-    } else if (config && typeof config === "object") {
-      return config.tags;
-    } else {
-      return void 0;
-    }
-  }, "getConfigTags");
-  Writer.prototype.getConfigEscape = /* @__PURE__ */ __name(function getConfigEscape(config) {
-    if (config && typeof config === "object" && !isArray(config)) {
-      return config.escape;
-    } else {
-      return void 0;
-    }
-  }, "getConfigEscape");
-  var mustache = {
-    name: "mustache.js",
-    version: "4.2.0",
-    tags: ["{{", "}}"],
-    clearCache: void 0,
-    escape: void 0,
-    parse: void 0,
-    render: void 0,
-    Scanner: void 0,
-    Context: void 0,
-    Writer: void 0,
-    /**
-     * Allows a user to override the default caching strategy, by providing an
-     * object with set, get and clear methods. This can also be used to disable
-     * the cache by setting it to the literal `undefined`.
-     */
-    set templateCache(cache) {
-      defaultWriter.templateCache = cache;
-    },
-    /**
-     * Gets the default or overridden caching object from the default writer.
-     */
-    get templateCache() {
-      return defaultWriter.templateCache;
-    }
-  };
-  var defaultWriter = new Writer();
-  mustache.clearCache = /* @__PURE__ */ __name(function clearCache2() {
-    return defaultWriter.clearCache();
-  }, "clearCache");
-  mustache.parse = /* @__PURE__ */ __name(function parse2(template, tags) {
-    return defaultWriter.parse(template, tags);
-  }, "parse");
-  mustache.render = /* @__PURE__ */ __name(function render2(template, view, partials, config) {
-    if (typeof template !== "string") {
-      throw new TypeError('Invalid template! Template should be a "string" but "' + typeStr(template) + '" was given as the first argument for mustache#render(template, view, partials)');
-    }
-    return defaultWriter.render(template, view, partials, config);
-  }, "render");
-  mustache.escape = escapeHtml;
-  mustache.Scanner = Scanner;
-  mustache.Context = Context;
-  mustache.Writer = Writer;
-  var mustache_default = mustache;
-
-  // ../../node_modules/base-x/src/esm/index.js
-  function base(ALPHABET2) {
-    if (ALPHABET2.length >= 255) {
-      throw new TypeError("Alphabet too long");
-    }
-    const BASE_MAP = new Uint8Array(256);
-    for (let j = 0; j < BASE_MAP.length; j++) {
-      BASE_MAP[j] = 255;
-    }
-    for (let i = 0; i < ALPHABET2.length; i++) {
-      const x = ALPHABET2.charAt(i);
-      const xc = x.charCodeAt(0);
-      if (BASE_MAP[xc] !== 255) {
-        throw new TypeError(x + " is ambiguous");
-      }
-      BASE_MAP[xc] = i;
-    }
-    const BASE = ALPHABET2.length;
-    const LEADER = ALPHABET2.charAt(0);
-    const FACTOR = Math.log(BASE) / Math.log(256);
-    const iFACTOR = Math.log(256) / Math.log(BASE);
-    function encode(source) {
-      if (source instanceof Uint8Array) {
-      } else if (ArrayBuffer.isView(source)) {
-        source = new Uint8Array(source.buffer, source.byteOffset, source.byteLength);
-      } else if (Array.isArray(source)) {
-        source = Uint8Array.from(source);
-      }
-      if (!(source instanceof Uint8Array)) {
-        throw new TypeError("Expected Uint8Array");
-      }
-      if (source.length === 0) {
-        return "";
-      }
-      let zeroes = 0;
-      let length = 0;
-      let pbegin = 0;
-      const pend = source.length;
-      while (pbegin !== pend && source[pbegin] === 0) {
-        pbegin++;
-        zeroes++;
-      }
-      const size = (pend - pbegin) * iFACTOR + 1 >>> 0;
-      const b58 = new Uint8Array(size);
-      while (pbegin !== pend) {
-        let carry = source[pbegin];
-        let i = 0;
-        for (let it1 = size - 1; (carry !== 0 || i < length) && it1 !== -1; it1--, i++) {
-          carry += 256 * b58[it1] >>> 0;
-          b58[it1] = carry % BASE >>> 0;
-          carry = carry / BASE >>> 0;
-        }
-        if (carry !== 0) {
-          throw new Error("Non-zero carry");
-        }
-        length = i;
-        pbegin++;
-      }
-      let it2 = size - length;
-      while (it2 !== size && b58[it2] === 0) {
-        it2++;
-      }
-      let str = LEADER.repeat(zeroes);
-      for (; it2 < size; ++it2) {
-        str += ALPHABET2.charAt(b58[it2]);
-      }
-      return str;
-    }
-    __name(encode, "encode");
-    function decodeUnsafe(source) {
-      if (typeof source !== "string") {
-        throw new TypeError("Expected String");
-      }
-      if (source.length === 0) {
-        return new Uint8Array();
-      }
-      let psz = 0;
-      let zeroes = 0;
-      let length = 0;
-      while (source[psz] === LEADER) {
-        zeroes++;
-        psz++;
-      }
-      const size = (source.length - psz) * FACTOR + 1 >>> 0;
-      const b256 = new Uint8Array(size);
-      while (source[psz]) {
-        let carry = BASE_MAP[source.charCodeAt(psz)];
-        if (carry === 255) {
-          return;
-        }
-        let i = 0;
-        for (let it3 = size - 1; (carry !== 0 || i < length) && it3 !== -1; it3--, i++) {
-          carry += BASE * b256[it3] >>> 0;
-          b256[it3] = carry % 256 >>> 0;
-          carry = carry / 256 >>> 0;
-        }
-        if (carry !== 0) {
-          throw new Error("Non-zero carry");
-        }
-        length = i;
-        psz++;
-      }
-      let it4 = size - length;
-      while (it4 !== size && b256[it4] === 0) {
-        it4++;
-      }
-      const vch = new Uint8Array(zeroes + (size - it4));
-      let j = zeroes;
-      while (it4 !== size) {
-        vch[j++] = b256[it4++];
-      }
-      return vch;
-    }
-    __name(decodeUnsafe, "decodeUnsafe");
-    function decode(string) {
-      const buffer = decodeUnsafe(string);
-      if (buffer) {
-        return buffer;
-      }
-      throw new Error("Non-base" + BASE + " character");
-    }
-    __name(decode, "decode");
-    return {
-      encode,
-      decodeUnsafe,
-      decode
-    };
-  }
-  __name(base, "base");
-  var esm_default = base;
-
-  // ../../node_modules/@meer-js/utils/node_modules/bs58/src/esm/index.js
-  var ALPHABET = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
-  var esm_default2 = esm_default(ALPHABET);
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/format.js
-  var NEAR_NOMINATION_EXP = 24;
-  var NEAR_NOMINATION = 10n ** BigInt(NEAR_NOMINATION_EXP);
-  var ROUNDING_OFFSETS = [];
-  var BN10 = 10n;
-  for (let i = 0, offset = 5n; i < NEAR_NOMINATION_EXP; i++, offset = offset * BN10) {
-    ROUNDING_OFFSETS[i] = offset;
-  }
-  function formatNearAmount(balance, fracDigits = NEAR_NOMINATION_EXP) {
-    let balanceBN = BigInt(balance);
-    if (fracDigits !== NEAR_NOMINATION_EXP) {
-      const roundingExp = NEAR_NOMINATION_EXP - fracDigits - 1;
-      if (roundingExp > 0) {
-        balanceBN += ROUNDING_OFFSETS[roundingExp];
-      }
-    }
-    balance = balanceBN.toString();
-    const wholeStr = balance.substring(0, balance.length - NEAR_NOMINATION_EXP) || "0";
-    const fractionStr = balance.substring(balance.length - NEAR_NOMINATION_EXP).padStart(NEAR_NOMINATION_EXP, "0").substring(0, fracDigits);
-    return trimTrailingZeroes(`${formatWithCommas(wholeStr)}.${fractionStr}`);
-  }
-  __name(formatNearAmount, "formatNearAmount");
-  function parseNearAmount(amt) {
-    if (!amt) {
-      return null;
-    }
-    amt = cleanupAmount(amt);
-    const split2 = amt.split(".");
-    const wholePart = split2[0];
-    const fracPart = split2[1] || "";
-    if (split2.length > 2 || fracPart.length > NEAR_NOMINATION_EXP) {
-      throw new Error(`Cannot parse '${amt}' as NEAR amount`);
-    }
-    return trimLeadingZeroes(wholePart + fracPart.padEnd(NEAR_NOMINATION_EXP, "0"));
-  }
-  __name(parseNearAmount, "parseNearAmount");
-  function cleanupAmount(amount) {
-    return amount.replace(/,/g, "").trim();
-  }
-  __name(cleanupAmount, "cleanupAmount");
-  function trimTrailingZeroes(value) {
-    return value.replace(/\.?0*$/, "");
-  }
-  __name(trimTrailingZeroes, "trimTrailingZeroes");
-  function trimLeadingZeroes(value) {
-    value = value.replace(/^0+/, "");
-    if (value === "") {
-      return "0";
-    }
-    return value;
-  }
-  __name(trimLeadingZeroes, "trimLeadingZeroes");
-  function formatWithCommas(value) {
-    const pattern = /(-?\d+)(\d{3})/;
-    while (pattern.test(value)) {
-      value = value.replace(pattern, "$1,$2");
-    }
-    return value;
-  }
-  __name(formatWithCommas, "formatWithCommas");
-  function baseEncode(value) {
-    if (typeof value === "string") {
-      const bytes = [];
-      for (let c = 0; c < value.length; c++) {
-        bytes.push(value.charCodeAt(c));
-      }
-      value = new Uint8Array(bytes);
-    }
-    return esm_default2.encode(value);
-  }
-  __name(baseEncode, "baseEncode");
-  function baseDecode(value) {
-    return new Uint8Array(esm_default2.decode(value));
-  }
-  __name(baseDecode, "baseDecode");
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/errors/error_messages.js
-  var errorMessages = {
-    "GasLimitExceeded": "Exceeded the maximum amount of gas allowed to burn per contract",
-    "MethodEmptyName": "Method name is empty",
-    "WasmerCompileError": "Wasmer compilation error: {{msg}}",
-    "GuestPanic": "Smart contract panicked: {{panic_msg}}",
-    "Memory": "Error creating Wasm memory",
-    "GasExceeded": "Exceeded the prepaid gas",
-    "MethodUTF8Error": "Method name is not valid UTF8 string",
-    "BadUTF16": "String encoding is bad UTF-16 sequence",
-    "WasmTrap": "WebAssembly trap: {{msg}}",
-    "GasInstrumentation": "Gas instrumentation failed or contract has denied instructions.",
-    "InvalidPromiseIndex": "{{promise_idx}} does not correspond to existing promises",
-    "InvalidPromiseResultIndex": "Accessed invalid promise result index: {{result_idx}}",
-    "Deserialization": "Error happened while deserializing the module",
-    "MethodNotFound": "Contract method is not found",
-    "InvalidRegisterId": "Accessed invalid register id: {{register_id}}",
-    "InvalidReceiptIndex": "VM Logic returned an invalid receipt index: {{receipt_index}}",
-    "EmptyMethodName": "Method name is empty in contract call",
-    "CannotReturnJointPromise": "Returning joint promise is currently prohibited",
-    "StackHeightInstrumentation": "Stack instrumentation failed",
-    "CodeDoesNotExist": "Cannot find contract code for account {{account_id}}",
-    "MethodInvalidSignature": "Invalid method signature",
-    "IntegerOverflow": "Integer overflow happened during contract execution",
-    "MemoryAccessViolation": "MemoryAccessViolation",
-    "InvalidIteratorIndex": "Iterator index {{iterator_index}} does not exist",
-    "IteratorWasInvalidated": "Iterator {{iterator_index}} was invalidated after its creation by performing a mutable operation on trie",
-    "InvalidAccountId": "VM Logic returned an invalid account id",
-    "Serialization": "Error happened while serializing the module",
-    "CannotAppendActionToJointPromise": "Actions can only be appended to non-joint promise.",
-    "InternalMemoryDeclared": "Internal memory declaration has been found in the module",
-    "Instantiate": "Error happened during instantiation",
-    "ProhibitedInView": "{{method_name}} is not allowed in view calls",
-    "InvalidMethodName": "VM Logic returned an invalid method name",
-    "BadUTF8": "String encoding is bad UTF-8 sequence",
-    "BalanceExceeded": "Exceeded the account balance",
-    "LinkError": "Wasm contract link error: {{msg}}",
-    "InvalidPublicKey": "VM Logic provided an invalid public key",
-    "ActorNoPermission": "Actor {{actor_id}} doesn't have permission to account {{account_id}} to complete the action",
-    "LackBalanceForState": "The account {{account_id}} wouldn't have enough balance to cover storage, required to have {{amount}} yoctoNEAR more",
-    "ReceiverMismatch": "Wrong AccessKey used for transaction: transaction is sent to receiver_id={{tx_receiver}}, but is signed with function call access key that restricted to only use with receiver_id={{ak_receiver}}. Either change receiver_id in your transaction or switch to use a FullAccessKey.",
-    "CostOverflow": "Transaction gas or balance cost is too high",
-    "InvalidSignature": "Transaction is not signed with the given public key",
-    "AccessKeyNotFound": `Signer "{{account_id}}" doesn't have access key with the given public_key {{public_key}}`,
-    "NotEnoughBalance": "Sender {{signer_id}} does not have enough balance {{#formatNear}}{{balance}}{{/formatNear}} for operation costing {{#formatNear}}{{cost}}{{/formatNear}}",
-    "NotEnoughAllowance": "Access Key {account_id}:{public_key} does not have enough balance {{#formatNear}}{{allowance}}{{/formatNear}} for transaction costing {{#formatNear}}{{cost}}{{/formatNear}}",
-    "Expired": "Transaction has expired",
-    "DeleteAccountStaking": "Account {{account_id}} is staking and can not be deleted",
-    "SignerDoesNotExist": "Signer {{signer_id}} does not exist",
-    "TriesToStake": "Account {{account_id}} tried to stake {{#formatNear}}{{stake}}{{/formatNear}}, but has staked {{#formatNear}}{{locked}}{{/formatNear}} and only has {{#formatNear}}{{balance}}{{/formatNear}}",
-    "AddKeyAlreadyExists": "The public key {{public_key}} is already used for an existing access key",
-    "InvalidSigner": "Invalid signer account ID {{signer_id}} according to requirements",
-    "CreateAccountNotAllowed": "The new account_id {{account_id}} can't be created by {{predecessor_id}}",
-    "RequiresFullAccess": "The transaction contains more then one action, but it was signed with an access key which allows transaction to apply only one specific action. To apply more then one actions TX must be signed with a full access key",
-    "TriesToUnstake": "Account {{account_id}} is not yet staked, but tried to unstake",
-    "InvalidNonce": "Transaction nonce {{tx_nonce}} must be larger than nonce of the used access key {{ak_nonce}}",
-    "AccountAlreadyExists": "Can't create a new account {{account_id}}, because it already exists",
-    "InvalidChain": "Transaction parent block hash doesn't belong to the current chain",
-    "AccountDoesNotExist": "Can't complete the action because account {{account_id}} doesn't exist",
-    "AccessKeyDoesNotExist": "Can't complete the action because access key {{public_key}} doesn't exist",
-    "MethodNameMismatch": "Transaction method name {{method_name}} isn't allowed by the access key",
-    "DeleteAccountHasRent": "Account {{account_id}} can't be deleted. It has {{#formatNear}}{{balance}}{{/formatNear}}, which is enough to cover the rent",
-    "DeleteAccountHasEnoughBalance": "Account {{account_id}} can't be deleted. It has {{#formatNear}}{{balance}}{{/formatNear}}, which is enough to cover it's storage",
-    "InvalidReceiver": "Invalid receiver account ID {{receiver_id}} according to requirements",
-    "DeleteKeyDoesNotExist": "Account {{account_id}} tries to remove an access key that doesn't exist",
-    "Timeout": "Timeout exceeded",
-    "Closed": "Connection closed",
-    "ShardCongested": "Shard {{shard_id}} rejected the transaction due to congestion level {{congestion_level}}, try again later",
-    "ShardStuck": "Shard {{shard_id}} rejected the transaction because it missed {{missed_chunks}} chunks and needs to recover before accepting new transactions, try again later"
-  };
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/errors/errors.js
-  var ErrorMessages = errorMessages;
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/errors/rpc_error_schema.js
-  var rpcErrorSchema = {
-    "schema": {
-      "AccessKeyNotFound": {
-        "name": "AccessKeyNotFound",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "public_key": ""
-        }
-      },
-      "AccountAlreadyExists": {
-        "name": "AccountAlreadyExists",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "AccountDoesNotExist": {
-        "name": "AccountDoesNotExist",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "ActionError": {
-        "name": "ActionError",
-        "subtypes": [
-          "AccountAlreadyExists",
-          "AccountDoesNotExist",
-          "CreateAccountOnlyByRegistrar",
-          "CreateAccountNotAllowed",
-          "ActorNoPermission",
-          "DeleteKeyDoesNotExist",
-          "AddKeyAlreadyExists",
-          "DeleteAccountStaking",
-          "LackBalanceForState",
-          "TriesToUnstake",
-          "TriesToStake",
-          "InsufficientStake",
-          "FunctionCallError",
-          "NewReceiptValidationError",
-          "OnlyImplicitAccountCreationAllowed",
-          "DeleteAccountWithLargeState",
-          "DelegateActionInvalidSignature",
-          "DelegateActionSenderDoesNotMatchTxReceiver",
-          "DelegateActionExpired",
-          "DelegateActionAccessKeyError",
-          "DelegateActionInvalidNonce",
-          "DelegateActionNonceTooLarge"
-        ],
-        "props": {
-          "index": ""
-        }
-      },
-      "ActionsValidationError": {
-        "name": "ActionsValidationError",
-        "subtypes": [
-          "DeleteActionMustBeFinal",
-          "TotalPrepaidGasExceeded",
-          "TotalNumberOfActionsExceeded",
-          "AddKeyMethodNamesNumberOfBytesExceeded",
-          "AddKeyMethodNameLengthExceeded",
-          "IntegerOverflow",
-          "InvalidAccountId",
-          "ContractSizeExceeded",
-          "FunctionCallMethodNameLengthExceeded",
-          "FunctionCallArgumentsLengthExceeded",
-          "UnsuitableStakingKey",
-          "FunctionCallZeroAttachedGas",
-          "DelegateActionMustBeOnlyOne",
-          "UnsupportedProtocolFeature"
-        ],
-        "props": {}
-      },
-      "ActorNoPermission": {
-        "name": "ActorNoPermission",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "actor_id": ""
-        }
-      },
-      "AddKeyAlreadyExists": {
-        "name": "AddKeyAlreadyExists",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "public_key": ""
-        }
-      },
-      "AddKeyMethodNameLengthExceeded": {
-        "name": "AddKeyMethodNameLengthExceeded",
-        "subtypes": [],
-        "props": {
-          "length": "",
-          "limit": ""
-        }
-      },
-      "AddKeyMethodNamesNumberOfBytesExceeded": {
-        "name": "AddKeyMethodNamesNumberOfBytesExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "total_number_of_bytes": ""
-        }
-      },
-      "AltBn128InvalidInput": {
-        "name": "AltBn128InvalidInput",
-        "subtypes": [],
-        "props": {
-          "msg": ""
-        }
-      },
-      "BadUTF16": {
-        "name": "BadUTF16",
-        "subtypes": [],
-        "props": {}
-      },
-      "BadUTF8": {
-        "name": "BadUTF8",
-        "subtypes": [],
-        "props": {}
-      },
-      "BalanceExceeded": {
-        "name": "BalanceExceeded",
-        "subtypes": [],
-        "props": {}
-      },
-      "BalanceMismatchError": {
-        "name": "BalanceMismatchError",
-        "subtypes": [],
-        "props": {
-          "final_accounts_balance": "",
-          "final_postponed_receipts_balance": "",
-          "forwarded_buffered_receipts_balance": "",
-          "incoming_receipts_balance": "",
-          "incoming_validator_rewards": "",
-          "initial_accounts_balance": "",
-          "initial_postponed_receipts_balance": "",
-          "new_buffered_receipts_balance": "",
-          "new_delayed_receipts_balance": "",
-          "other_burnt_amount": "",
-          "outgoing_receipts_balance": "",
-          "processed_delayed_receipts_balance": "",
-          "slashed_burnt_amount": "",
-          "tx_burnt_amount": ""
-        }
-      },
-      "CallIndirectOOB": {
-        "name": "CallIndirectOOB",
-        "subtypes": [],
-        "props": {}
-      },
-      "CannotAppendActionToJointPromise": {
-        "name": "CannotAppendActionToJointPromise",
-        "subtypes": [],
-        "props": {}
-      },
-      "CannotReturnJointPromise": {
-        "name": "CannotReturnJointPromise",
-        "subtypes": [],
-        "props": {}
-      },
-      "CodeDoesNotExist": {
-        "name": "CodeDoesNotExist",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "CompilationError": {
-        "name": "CompilationError",
-        "subtypes": [
-          "CodeDoesNotExist",
-          "PrepareError",
-          "WasmerCompileError"
-        ],
-        "props": {}
-      },
-      "ContractSizeExceeded": {
-        "name": "ContractSizeExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "size": ""
-        }
-      },
-      "CostOverflow": {
-        "name": "CostOverflow",
-        "subtypes": [],
-        "props": {}
-      },
-      "CreateAccountNotAllowed": {
-        "name": "CreateAccountNotAllowed",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "predecessor_id": ""
-        }
-      },
-      "CreateAccountOnlyByRegistrar": {
-        "name": "CreateAccountOnlyByRegistrar",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "predecessor_id": "",
-          "registrar_account_id": ""
-        }
-      },
-      "DelegateActionExpired": {
-        "name": "DelegateActionExpired",
-        "subtypes": [],
-        "props": {}
-      },
-      "DelegateActionInvalidNonce": {
-        "name": "DelegateActionInvalidNonce",
-        "subtypes": [],
-        "props": {
-          "ak_nonce": "",
-          "delegate_nonce": ""
-        }
-      },
-      "DelegateActionInvalidSignature": {
-        "name": "DelegateActionInvalidSignature",
-        "subtypes": [],
-        "props": {}
-      },
-      "DelegateActionMustBeOnlyOne": {
-        "name": "DelegateActionMustBeOnlyOne",
-        "subtypes": [],
-        "props": {}
-      },
-      "DelegateActionNonceTooLarge": {
-        "name": "DelegateActionNonceTooLarge",
-        "subtypes": [],
-        "props": {
-          "delegate_nonce": "",
-          "upper_bound": ""
-        }
-      },
-      "DelegateActionSenderDoesNotMatchTxReceiver": {
-        "name": "DelegateActionSenderDoesNotMatchTxReceiver",
-        "subtypes": [],
-        "props": {
-          "receiver_id": "",
-          "sender_id": ""
-        }
-      },
-      "DeleteAccountStaking": {
-        "name": "DeleteAccountStaking",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "DeleteAccountWithLargeState": {
-        "name": "DeleteAccountWithLargeState",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "DeleteActionMustBeFinal": {
-        "name": "DeleteActionMustBeFinal",
-        "subtypes": [],
-        "props": {}
-      },
-      "DeleteKeyDoesNotExist": {
-        "name": "DeleteKeyDoesNotExist",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "public_key": ""
-        }
-      },
-      "DepositWithFunctionCall": {
-        "name": "DepositWithFunctionCall",
-        "subtypes": [],
-        "props": {}
-      },
-      "Deprecated": {
-        "name": "Deprecated",
-        "subtypes": [],
-        "props": {
-          "method_name": ""
-        }
-      },
-      "Deserialization": {
-        "name": "Deserialization",
-        "subtypes": [],
-        "props": {}
-      },
-      "ECRecoverError": {
-        "name": "ECRecoverError",
-        "subtypes": [],
-        "props": {
-          "msg": ""
-        }
-      },
-      "Ed25519VerifyInvalidInput": {
-        "name": "Ed25519VerifyInvalidInput",
-        "subtypes": [],
-        "props": {
-          "msg": ""
-        }
-      },
-      "EmptyMethodName": {
-        "name": "EmptyMethodName",
-        "subtypes": [],
-        "props": {}
-      },
-      "Expired": {
-        "name": "Expired",
-        "subtypes": [],
-        "props": {}
-      },
-      "FunctionCallArgumentsLengthExceeded": {
-        "name": "FunctionCallArgumentsLengthExceeded",
-        "subtypes": [],
-        "props": {
-          "length": "",
-          "limit": ""
-        }
-      },
-      "FunctionCallMethodNameLengthExceeded": {
-        "name": "FunctionCallMethodNameLengthExceeded",
-        "subtypes": [],
-        "props": {
-          "length": "",
-          "limit": ""
-        }
-      },
-      "FunctionCallZeroAttachedGas": {
-        "name": "FunctionCallZeroAttachedGas",
-        "subtypes": [],
-        "props": {}
-      },
-      "GasExceeded": {
-        "name": "GasExceeded",
-        "subtypes": [],
-        "props": {}
-      },
-      "GasInstrumentation": {
-        "name": "GasInstrumentation",
-        "subtypes": [],
-        "props": {}
-      },
-      "GasLimitExceeded": {
-        "name": "GasLimitExceeded",
-        "subtypes": [],
-        "props": {}
-      },
-      "GenericTrap": {
-        "name": "GenericTrap",
-        "subtypes": [],
-        "props": {}
-      },
-      "GuestPanic": {
-        "name": "GuestPanic",
-        "subtypes": [],
-        "props": {
-          "panic_msg": ""
-        }
-      },
-      "HostError": {
-        "name": "HostError",
-        "subtypes": [
-          "BadUTF16",
-          "BadUTF8",
-          "GasExceeded",
-          "GasLimitExceeded",
-          "BalanceExceeded",
-          "EmptyMethodName",
-          "GuestPanic",
-          "IntegerOverflow",
-          "InvalidPromiseIndex",
-          "CannotAppendActionToJointPromise",
-          "CannotReturnJointPromise",
-          "InvalidPromiseResultIndex",
-          "InvalidRegisterId",
-          "IteratorWasInvalidated",
-          "MemoryAccessViolation",
-          "InvalidReceiptIndex",
-          "InvalidIteratorIndex",
-          "InvalidAccountId",
-          "InvalidMethodName",
-          "InvalidPublicKey",
-          "ProhibitedInView",
-          "NumberOfLogsExceeded",
-          "KeyLengthExceeded",
-          "ValueLengthExceeded",
-          "TotalLogLengthExceeded",
-          "NumberPromisesExceeded",
-          "NumberInputDataDependenciesExceeded",
-          "ReturnedValueLengthExceeded",
-          "ContractSizeExceeded",
-          "Deprecated",
-          "ECRecoverError",
-          "AltBn128InvalidInput",
-          "Ed25519VerifyInvalidInput"
-        ],
-        "props": {}
-      },
-      "IllegalArithmetic": {
-        "name": "IllegalArithmetic",
-        "subtypes": [],
-        "props": {}
-      },
-      "IncorrectCallIndirectSignature": {
-        "name": "IncorrectCallIndirectSignature",
-        "subtypes": [],
-        "props": {}
-      },
-      "IndirectCallToNull": {
-        "name": "IndirectCallToNull",
-        "subtypes": [],
-        "props": {}
-      },
-      "Instantiate": {
-        "name": "Instantiate",
-        "subtypes": [],
-        "props": {}
-      },
-      "InsufficientStake": {
-        "name": "InsufficientStake",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "minimum_stake": "",
-          "stake": ""
-        }
-      },
-      "IntegerOverflow": {
-        "name": "IntegerOverflow",
-        "subtypes": [],
-        "props": {}
-      },
-      "InternalMemoryDeclared": {
-        "name": "InternalMemoryDeclared",
-        "subtypes": [],
-        "props": {}
-      },
-      "InvalidAccessKeyError": {
-        "name": "InvalidAccessKeyError",
-        "subtypes": [
-          "AccessKeyNotFound",
-          "ReceiverMismatch",
-          "MethodNameMismatch",
-          "RequiresFullAccess",
-          "NotEnoughAllowance",
-          "DepositWithFunctionCall"
-        ],
-        "props": {}
-      },
-      "InvalidAccountId": {
-        "name": "InvalidAccountId",
-        "subtypes": [],
-        "props": {}
-      },
-      "InvalidChain": {
-        "name": "InvalidChain",
-        "subtypes": [],
-        "props": {}
-      },
-      "InvalidDataReceiverId": {
-        "name": "InvalidDataReceiverId",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "InvalidIteratorIndex": {
-        "name": "InvalidIteratorIndex",
-        "subtypes": [],
-        "props": {
-          "iterator_index": ""
-        }
-      },
-      "InvalidMethodName": {
-        "name": "InvalidMethodName",
-        "subtypes": [],
-        "props": {}
-      },
-      "InvalidNonce": {
-        "name": "InvalidNonce",
-        "subtypes": [],
-        "props": {
-          "ak_nonce": "",
-          "tx_nonce": ""
-        }
-      },
-      "InvalidPredecessorId": {
-        "name": "InvalidPredecessorId",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "InvalidPromiseIndex": {
-        "name": "InvalidPromiseIndex",
-        "subtypes": [],
-        "props": {
-          "promise_idx": ""
-        }
-      },
-      "InvalidPromiseResultIndex": {
-        "name": "InvalidPromiseResultIndex",
-        "subtypes": [],
-        "props": {
-          "result_idx": ""
-        }
-      },
-      "InvalidPublicKey": {
-        "name": "InvalidPublicKey",
-        "subtypes": [],
-        "props": {}
-      },
-      "InvalidReceiptIndex": {
-        "name": "InvalidReceiptIndex",
-        "subtypes": [],
-        "props": {
-          "receipt_index": ""
-        }
-      },
-      "InvalidReceiverId": {
-        "name": "InvalidReceiverId",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "InvalidRegisterId": {
-        "name": "InvalidRegisterId",
-        "subtypes": [],
-        "props": {
-          "register_id": ""
-        }
-      },
-      "InvalidSignature": {
-        "name": "InvalidSignature",
-        "subtypes": [],
-        "props": {}
-      },
-      "InvalidSignerId": {
-        "name": "InvalidSignerId",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "InvalidTxError": {
-        "name": "InvalidTxError",
-        "subtypes": [
-          "InvalidAccessKeyError",
-          "InvalidSignerId",
-          "SignerDoesNotExist",
-          "InvalidNonce",
-          "NonceTooLarge",
-          "InvalidReceiverId",
-          "InvalidSignature",
-          "NotEnoughBalance",
-          "LackBalanceForState",
-          "CostOverflow",
-          "InvalidChain",
-          "Expired",
-          "ActionsValidation",
-          "TransactionSizeExceeded",
-          "StorageError",
-          "ShardCongested",
-          "ShardStuck"
-        ],
-        "props": {}
-      },
-      "IteratorWasInvalidated": {
-        "name": "IteratorWasInvalidated",
-        "subtypes": [],
-        "props": {
-          "iterator_index": ""
-        }
-      },
-      "KeyLengthExceeded": {
-        "name": "KeyLengthExceeded",
-        "subtypes": [],
-        "props": {
-          "length": "",
-          "limit": ""
-        }
-      },
-      "LackBalanceForState": {
-        "name": "LackBalanceForState",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "amount": ""
-        }
-      },
-      "Memory": {
-        "name": "Memory",
-        "subtypes": [],
-        "props": {}
-      },
-      "MemoryAccessViolation": {
-        "name": "MemoryAccessViolation",
-        "subtypes": [],
-        "props": {}
-      },
-      "MemoryOutOfBounds": {
-        "name": "MemoryOutOfBounds",
-        "subtypes": [],
-        "props": {}
-      },
-      "MethodEmptyName": {
-        "name": "MethodEmptyName",
-        "subtypes": [],
-        "props": {}
-      },
-      "MethodInvalidSignature": {
-        "name": "MethodInvalidSignature",
-        "subtypes": [],
-        "props": {}
-      },
-      "MethodNameMismatch": {
-        "name": "MethodNameMismatch",
-        "subtypes": [],
-        "props": {
-          "method_name": ""
-        }
-      },
-      "MethodNotFound": {
-        "name": "MethodNotFound",
-        "subtypes": [],
-        "props": {}
-      },
-      "MethodResolveError": {
-        "name": "MethodResolveError",
-        "subtypes": [
-          "MethodEmptyName",
-          "MethodNotFound",
-          "MethodInvalidSignature"
-        ],
-        "props": {}
-      },
-      "MisalignedAtomicAccess": {
-        "name": "MisalignedAtomicAccess",
-        "subtypes": [],
-        "props": {}
-      },
-      "NonceTooLarge": {
-        "name": "NonceTooLarge",
-        "subtypes": [],
-        "props": {
-          "tx_nonce": "",
-          "upper_bound": ""
-        }
-      },
-      "NotEnoughAllowance": {
-        "name": "NotEnoughAllowance",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "allowance": "",
-          "cost": "",
-          "public_key": ""
-        }
-      },
-      "NotEnoughBalance": {
-        "name": "NotEnoughBalance",
-        "subtypes": [],
-        "props": {
-          "balance": "",
-          "cost": "",
-          "signer_id": ""
-        }
-      },
-      "NumberInputDataDependenciesExceeded": {
-        "name": "NumberInputDataDependenciesExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "number_of_input_data_dependencies": ""
-        }
-      },
-      "NumberOfLogsExceeded": {
-        "name": "NumberOfLogsExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": ""
-        }
-      },
-      "NumberPromisesExceeded": {
-        "name": "NumberPromisesExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "number_of_promises": ""
-        }
-      },
-      "OnlyImplicitAccountCreationAllowed": {
-        "name": "OnlyImplicitAccountCreationAllowed",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "PrepareError": {
-        "name": "PrepareError",
-        "subtypes": [
-          "Serialization",
-          "Deserialization",
-          "InternalMemoryDeclared",
-          "GasInstrumentation",
-          "StackHeightInstrumentation",
-          "Instantiate",
-          "Memory",
-          "TooManyFunctions",
-          "TooManyLocals"
-        ],
-        "props": {}
-      },
-      "ProhibitedInView": {
-        "name": "ProhibitedInView",
-        "subtypes": [],
-        "props": {
-          "method_name": ""
-        }
-      },
-      "ReceiptSizeExceeded": {
-        "name": "ReceiptSizeExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "size": ""
-        }
-      },
-      "ReceiptValidationError": {
-        "name": "ReceiptValidationError",
-        "subtypes": [
-          "InvalidPredecessorId",
-          "InvalidReceiverId",
-          "InvalidSignerId",
-          "InvalidDataReceiverId",
-          "ReturnedValueLengthExceeded",
-          "NumberInputDataDependenciesExceeded",
-          "ActionsValidation",
-          "ReceiptSizeExceeded"
-        ],
-        "props": {}
-      },
-      "ReceiverMismatch": {
-        "name": "ReceiverMismatch",
-        "subtypes": [],
-        "props": {
-          "ak_receiver": "",
-          "tx_receiver": ""
-        }
-      },
-      "RequiresFullAccess": {
-        "name": "RequiresFullAccess",
-        "subtypes": [],
-        "props": {}
-      },
-      "ReturnedValueLengthExceeded": {
-        "name": "ReturnedValueLengthExceeded",
-        "subtypes": [],
-        "props": {
-          "length": "",
-          "limit": ""
-        }
-      },
-      "Serialization": {
-        "name": "Serialization",
-        "subtypes": [],
-        "props": {}
-      },
-      "ShardCongested": {
-        "name": "ShardCongested",
-        "subtypes": [],
-        "props": {
-          "congestion_level": "",
-          "shard_id": ""
-        }
-      },
-      "ShardStuck": {
-        "name": "ShardStuck",
-        "subtypes": [],
-        "props": {
-          "missed_chunks": "",
-          "shard_id": ""
-        }
-      },
-      "SignerDoesNotExist": {
-        "name": "SignerDoesNotExist",
-        "subtypes": [],
-        "props": {
-          "signer_id": ""
-        }
-      },
-      "StackHeightInstrumentation": {
-        "name": "StackHeightInstrumentation",
-        "subtypes": [],
-        "props": {}
-      },
-      "StackOverflow": {
-        "name": "StackOverflow",
-        "subtypes": [],
-        "props": {}
-      },
-      "TooManyFunctions": {
-        "name": "TooManyFunctions",
-        "subtypes": [],
-        "props": {}
-      },
-      "TooManyLocals": {
-        "name": "TooManyLocals",
-        "subtypes": [],
-        "props": {}
-      },
-      "TotalLogLengthExceeded": {
-        "name": "TotalLogLengthExceeded",
-        "subtypes": [],
-        "props": {
-          "length": "",
-          "limit": ""
-        }
-      },
-      "TotalNumberOfActionsExceeded": {
-        "name": "TotalNumberOfActionsExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "total_number_of_actions": ""
-        }
-      },
-      "TotalPrepaidGasExceeded": {
-        "name": "TotalPrepaidGasExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "total_prepaid_gas": ""
-        }
-      },
-      "TransactionSizeExceeded": {
-        "name": "TransactionSizeExceeded",
-        "subtypes": [],
-        "props": {
-          "limit": "",
-          "size": ""
-        }
-      },
-      "TriesToStake": {
-        "name": "TriesToStake",
-        "subtypes": [],
-        "props": {
-          "account_id": "",
-          "balance": "",
-          "locked": "",
-          "stake": ""
-        }
-      },
-      "TriesToUnstake": {
-        "name": "TriesToUnstake",
-        "subtypes": [],
-        "props": {
-          "account_id": ""
-        }
-      },
-      "TxExecutionError": {
-        "name": "TxExecutionError",
-        "subtypes": [
-          "ActionError",
-          "InvalidTxError"
-        ],
-        "props": {}
-      },
-      "Unreachable": {
-        "name": "Unreachable",
-        "subtypes": [],
-        "props": {}
-      },
-      "UnsuitableStakingKey": {
-        "name": "UnsuitableStakingKey",
-        "subtypes": [],
-        "props": {
-          "public_key": ""
-        }
-      },
-      "UnsupportedProtocolFeature": {
-        "name": "UnsupportedProtocolFeature",
-        "subtypes": [],
-        "props": {
-          "protocol_feature": "",
-          "version": ""
-        }
-      },
-      "ValueLengthExceeded": {
-        "name": "ValueLengthExceeded",
-        "subtypes": [],
-        "props": {
-          "length": "",
-          "limit": ""
-        }
-      },
-      "WasmTrap": {
-        "name": "WasmTrap",
-        "subtypes": [
-          "Unreachable",
-          "IncorrectCallIndirectSignature",
-          "MemoryOutOfBounds",
-          "CallIndirectOOB",
-          "IllegalArithmetic",
-          "MisalignedAtomicAccess",
-          "IndirectCallToNull",
-          "StackOverflow",
-          "GenericTrap"
-        ],
-        "props": {}
-      },
-      "WasmerCompileError": {
-        "name": "WasmerCompileError",
-        "subtypes": [],
-        "props": {
-          "msg": ""
-        }
-      },
-      "Closed": {
-        "name": "Closed",
-        "subtypes": [],
-        "props": {}
-      },
-      "ServerError": {
-        "name": "ServerError",
-        "subtypes": [
-          "TxExecutionError",
-          "Timeout",
-          "Closed"
-        ],
-        "props": {}
-      },
-      "Timeout": {
-        "name": "Timeout",
-        "subtypes": [],
-        "props": {}
-      }
-    }
-  };
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/errors/rpc_errors.js
-  var mustacheHelpers = {
-    formatNear: /* @__PURE__ */ __name(() => (n, render3) => formatNearAmount(render3(n)), "formatNear")
-  };
-  var ServerError = class extends TypedError {
-    static {
-      __name(this, "ServerError");
-    }
-  };
-  var ServerTransactionError = class extends ServerError {
-    static {
-      __name(this, "ServerTransactionError");
-    }
-    transaction_outcome;
-  };
-  function parseRpcError(errorObj) {
-    const result = {};
-    const errorClassName = walkSubtype(errorObj, rpcErrorSchema.schema, result, "");
-    const error = new ServerError(formatError(errorClassName, result), errorClassName);
-    Object.assign(error, result);
-    return error;
-  }
-  __name(parseRpcError, "parseRpcError");
-  function parseResultError(result) {
-    const server_error = parseRpcError(result.status.Failure);
-    const server_tx_error = new ServerTransactionError();
-    Object.assign(server_tx_error, server_error);
-    server_tx_error.type = server_error.type;
-    server_tx_error.message = server_error.message;
-    server_tx_error.transaction_outcome = result.transaction_outcome;
-    return server_tx_error;
-  }
-  __name(parseResultError, "parseResultError");
-  function formatError(errorClassName, errorData) {
-    if (typeof ErrorMessages[errorClassName] === "string") {
-      return mustache_default.render(ErrorMessages[errorClassName], {
-        ...errorData,
-        ...mustacheHelpers
-      });
-    }
-    return JSON.stringify(errorData);
-  }
-  __name(formatError, "formatError");
-  function walkSubtype(errorObj, schema, result, typeName) {
-    let error;
-    let type;
-    let errorTypeName;
-    for (const errorName in schema) {
-      if (isString(errorObj[errorName])) {
-        return errorObj[errorName];
-      }
-      if (isObject(errorObj[errorName])) {
-        error = errorObj[errorName];
-        type = schema[errorName];
-        errorTypeName = errorName;
-      } else if (isObject(errorObj.kind) && isObject(errorObj.kind[errorName])) {
-        error = errorObj.kind[errorName];
-        type = schema[errorName];
-        errorTypeName = errorName;
-      } else {
-        continue;
-      }
-    }
-    if (error && type) {
-      for (const prop of Object.keys(type.props)) {
-        result[prop] = error[prop];
-      }
-      return walkSubtype(error, schema, result, errorTypeName);
-    } else {
-      result.kind = errorObj;
-      return typeName;
-    }
-  }
-  __name(walkSubtype, "walkSubtype");
-  function getErrorTypeFromErrorMessage(errorMessage, errorType) {
-    switch (true) {
-      case /^account .*? does not exist while viewing$/.test(errorMessage):
-        return "AccountDoesNotExist";
-      case /^Account .*? doesn't exist$/.test(errorMessage):
-        return "AccountDoesNotExist";
-      case /^access key .*? does not exist while viewing$/.test(errorMessage):
-        return "AccessKeyDoesNotExist";
-      case /wasm execution failed with error: FunctionCallError\(CompilationError\(CodeDoesNotExist/.test(errorMessage):
-        return "CodeDoesNotExist";
-      case /wasm execution failed with error: CompilationError\(CodeDoesNotExist/.test(errorMessage):
-        return "CodeDoesNotExist";
-      case /wasm execution failed with error: FunctionCallError\(MethodResolveError\(MethodNotFound/.test(errorMessage):
-        return "MethodNotFound";
-      case /wasm execution failed with error: MethodResolveError\(MethodNotFound/.test(errorMessage):
-        return "MethodNotFound";
-      case /Transaction nonce \d+ must be larger than nonce of the used access key \d+/.test(errorMessage):
-        return "InvalidNonce";
-      default:
-        return errorType;
-    }
-  }
-  __name(getErrorTypeFromErrorMessage, "getErrorTypeFromErrorMessage");
-  function isObject(n) {
-    return Object.prototype.toString.call(n) === "[object Object]";
-  }
-  __name(isObject, "isObject");
-  function isString(n) {
-    return Object.prototype.toString.call(n) === "[object String]";
-  }
-  __name(isString, "isString");
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/logger/console.logger.js
-  var ConsoleLogger = class {
-    static {
-      __name(this, "ConsoleLogger");
-    }
-    logLevels;
-    constructor(logLevels) {
-      this.logLevels = logLevels;
-    }
-    isLevelEnabled = /* @__PURE__ */ __name((level) => {
-      return this.logLevels.includes(level);
-    }, "isLevelEnabled");
-    print(level, message2, ...optionalParams) {
-      switch (level) {
-        case "error":
-        case "fatal":
-          return console.error(message2, ...optionalParams);
-        case "warn":
-          return console.warn(message2, ...optionalParams);
-        case "log":
-          return console.log(message2, ...optionalParams);
-        case "debug":
-        case "verbose":
-          return console.debug(message2, ...optionalParams);
-      }
-    }
-    verbose(message2, ...optionalParams) {
-      if (!this.isLevelEnabled("verbose"))
-        return;
-      this.print("verbose", message2, ...optionalParams);
-    }
-    debug(message2, ...optionalParams) {
-      if (!this.isLevelEnabled("debug"))
-        return;
-      this.print("debug", message2, ...optionalParams);
-    }
-    log(message2, ...optionalParams) {
-      if (!this.isLevelEnabled("log"))
-        return;
-      this.print("log", message2, ...optionalParams);
-    }
-    warn(message2, ...optionalParams) {
-      if (!this.isLevelEnabled("warn"))
-        return;
-      this.print("warn", message2, ...optionalParams);
-    }
-    error(message2, ...optionalParams) {
-      if (!this.isLevelEnabled("error"))
-        return;
-      this.print("error", message2, ...optionalParams);
-    }
-    fatal(message2, ...optionalParams) {
-      if (!this.isLevelEnabled("fatal"))
-        return;
-      this.print("fatal", message2, ...optionalParams);
-    }
-  };
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/logger/logger.js
-  var DEFAULT_LOG_LEVELS = [
-    "verbose",
-    "debug",
-    "log",
-    "warn",
-    "error",
-    "fatal"
-  ];
-  var DEFAULT_LOGGER = new ConsoleLogger(DEFAULT_LOG_LEVELS);
-  var Logger = class {
-    static {
-      __name(this, "Logger");
-    }
-    static instanceRef = DEFAULT_LOGGER;
-    static overrideLogger = /* @__PURE__ */ __name((logger) => {
-      this.instanceRef = logger;
-    }, "overrideLogger");
-    static error(message2, ...optionalParams) {
-      this.instanceRef?.error(message2, ...optionalParams);
-    }
-    /**
-     * Write a 'log' level log.
-     */
-    static log(message2, ...optionalParams) {
-      this.instanceRef?.log(message2, ...optionalParams);
-    }
-    /**
-     * Write a 'warn' level log.
-     */
-    static warn(message2, ...optionalParams) {
-      this.instanceRef?.warn(message2, ...optionalParams);
-    }
-    /**
-     * Write a 'debug' level log.
-     */
-    static debug(message2, ...optionalParams) {
-      this.instanceRef?.debug?.(message2, ...optionalParams);
-    }
-    /**
-     * Write a 'verbose' level log.
-     */
-    static verbose(message2, ...optionalParams) {
-      this.instanceRef?.verbose?.(message2, ...optionalParams);
-    }
-    static fatal(message2, ...optionalParams) {
-      this.instanceRef?.fatal?.(message2, ...optionalParams);
-    }
-  };
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/logging.js
-  function printTxOutcomeLogsAndFailures({ contractId, outcome }) {
-    const flatLogs = [outcome.transaction_outcome, ...outcome.receipts_outcome].reduce((acc, it) => {
-      const status = it.outcome.status;
-      const isFailure = typeof status === "object" && "Failure" in status;
-      if (it.outcome.logs.length || isFailure) {
-        const newEntry = {
-          receiptIds: it.outcome.receipt_ids ?? [],
-          logs: it.outcome.logs ?? [],
-          // TODO what's this toString i had to add. what will it do
-          failure: isFailure && status.Failure ? parseRpcError(status.Failure).toString() : null
-        };
-        return [...acc, newEntry];
-      } else {
-        return acc;
-      }
-    }, []);
-    for (const result of flatLogs) {
-      Logger.log(`Receipt${result.receiptIds.length > 1 ? "s" : ""}: ${result.receiptIds.join(", ")}`);
-      printTxOutcomeLogs({
-        contractId,
-        logs: result.logs,
-        prefix: "	"
-      });
-      if (result.failure) {
-        Logger.warn(`	Failure [${contractId}]: ${result.failure}`);
-      }
-    }
-  }
-  __name(printTxOutcomeLogsAndFailures, "printTxOutcomeLogsAndFailures");
-  function printTxOutcomeLogs({ contractId, logs, prefix = "" }) {
-    for (const log2 of logs) {
-      Logger.log(`${prefix}Log [${contractId}]: ${log2}`);
-    }
-  }
-  __name(printTxOutcomeLogs, "printTxOutcomeLogs");
-
-  // ../../node_modules/@meer-js/utils/dist/esm/utils/src/validators.js
-  var import_depd = __toESM(require_depd(), 1);
-
-  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/_assert.js
-  function isBytes(a) {
-    return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array";
-  }
-  __name(isBytes, "isBytes");
-  function abytes(b, ...lengths) {
-    if (!isBytes(b))
-      throw new Error("Uint8Array expected");
-    if (lengths.length > 0 && !lengths.includes(b.length))
-      throw new Error("Uint8Array expected of length " + lengths + ", got length=" + b.length);
-  }
-  __name(abytes, "abytes");
-  function aexists(instance, checkFinished = true) {
-    if (instance.destroyed)
-      throw new Error("Hash instance has been destroyed");
-    if (checkFinished && instance.finished)
-      throw new Error("Hash#digest() has already been called");
-  }
-  __name(aexists, "aexists");
-  function aoutput(out, instance) {
-    abytes(out);
-    const min = instance.outputLen;
-    if (out.length < min) {
-      throw new Error("digestInto() expects output buffer of length at least " + min);
-    }
-  }
-  __name(aoutput, "aoutput");
-
-  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/cryptoNode.js
-  var nc = __toESM(__require("node:crypto"), 1);
-  var crypto3 = nc && typeof nc === "object" && "webcrypto" in nc ? nc.webcrypto : nc && typeof nc === "object" && "randomBytes" in nc ? nc : void 0;
-
-  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/utils.js
-  var createView = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
-  function utf8ToBytes(str) {
-    if (typeof str !== "string")
-      throw new Error("utf8ToBytes expected string, got " + typeof str);
-    return new Uint8Array(new TextEncoder().encode(str));
-  }
-  __name(utf8ToBytes, "utf8ToBytes");
-  function toBytes(data) {
-    if (typeof data === "string")
-      data = utf8ToBytes(data);
-    abytes(data);
-    return data;
-  }
-  __name(toBytes, "toBytes");
-  var Hash = class {
-    static {
-      __name(this, "Hash");
-    }
-    // Safe version that clones internal state
-    clone() {
-      return this._cloneInto();
-    }
-  };
-  function wrapConstructor(hashCons) {
-    const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes(msg)).digest(), "hashC");
-    const tmp = hashCons();
-    hashC.outputLen = tmp.outputLen;
-    hashC.blockLen = tmp.blockLen;
-    hashC.create = () => hashCons();
-    return hashC;
-  }
-  __name(wrapConstructor, "wrapConstructor");
-  function randomBytes(bytesLength = 32) {
-    if (crypto3 && typeof crypto3.getRandomValues === "function") {
-      return crypto3.getRandomValues(new Uint8Array(bytesLength));
-    }
-    if (crypto3 && typeof crypto3.randomBytes === "function") {
-      return crypto3.randomBytes(bytesLength);
-    }
-    throw new Error("crypto.getRandomValues must be defined");
-  }
-  __name(randomBytes, "randomBytes");
-
-  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/_md.js
-  function setBigUint64(view, byteOffset, value, isLE) {
-    if (typeof view.setBigUint64 === "function")
-      return view.setBigUint64(byteOffset, value, isLE);
-    const _32n2 = BigInt(32);
-    const _u32_max = BigInt(4294967295);
-    const wh = Number(value >> _32n2 & _u32_max);
-    const wl = Number(value & _u32_max);
-    const h = isLE ? 4 : 0;
-    const l = isLE ? 0 : 4;
-    view.setUint32(byteOffset + h, wh, isLE);
-    view.setUint32(byteOffset + l, wl, isLE);
-  }
-  __name(setBigUint64, "setBigUint64");
-  var HashMD = class extends Hash {
-    static {
-      __name(this, "HashMD");
-    }
-    constructor(blockLen, outputLen, padOffset, isLE) {
-      super();
-      this.blockLen = blockLen;
-      this.outputLen = outputLen;
-      this.padOffset = padOffset;
-      this.isLE = isLE;
-      this.finished = false;
-      this.length = 0;
-      this.pos = 0;
-      this.destroyed = false;
-      this.buffer = new Uint8Array(blockLen);
-      this.view = createView(this.buffer);
-    }
-    update(data) {
-      aexists(this);
-      const { view, buffer, blockLen } = this;
-      data = toBytes(data);
-      const len = data.length;
-      for (let pos = 0; pos < len; ) {
-        const take = Math.min(blockLen - this.pos, len - pos);
-        if (take === blockLen) {
-          const dataView = createView(data);
-          for (; blockLen <= len - pos; pos += blockLen)
-            this.process(dataView, pos);
-          continue;
-        }
-        buffer.set(data.subarray(pos, pos + take), this.pos);
-        this.pos += take;
-        pos += take;
-        if (this.pos === blockLen) {
-          this.process(view, 0);
-          this.pos = 0;
-        }
-      }
-      this.length += data.length;
-      this.roundClean();
-      return this;
-    }
-    digestInto(out) {
-      aexists(this);
-      aoutput(out, this);
-      this.finished = true;
-      const { buffer, view, blockLen, isLE } = this;
-      let { pos } = this;
-      buffer[pos++] = 128;
-      this.buffer.subarray(pos).fill(0);
-      if (this.padOffset > blockLen - pos) {
-        this.process(view, 0);
-        pos = 0;
-      }
-      for (let i = pos; i < blockLen; i++)
-        buffer[i] = 0;
-      setBigUint64(view, blockLen - 8, BigInt(this.length * 8), isLE);
-      this.process(view, 0);
-      const oview = createView(out);
-      const len = this.outputLen;
-      if (len % 4)
-        throw new Error("_sha2: outputLen should be aligned to 32bit");
-      const outLen = len / 4;
-      const state = this.get();
-      if (outLen > state.length)
-        throw new Error("_sha2: outputLen bigger than state");
-      for (let i = 0; i < outLen; i++)
-        oview.setUint32(4 * i, state[i], isLE);
-    }
-    digest() {
-      const { buffer, outputLen } = this;
-      this.digestInto(buffer);
-      const res = buffer.slice(0, outputLen);
-      this.destroy();
-      return res;
-    }
-    _cloneInto(to) {
-      to || (to = new this.constructor());
-      to.set(...this.get());
-      const { blockLen, buffer, length, finished, destroyed, pos } = this;
-      to.length = length;
-      to.pos = pos;
-      to.finished = finished;
-      to.destroyed = destroyed;
-      if (length % blockLen)
-        to.buffer.set(buffer);
-      return to;
-    }
-  };
-
-  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/_u64.js
-  var U32_MASK64 = /* @__PURE__ */ BigInt(2 ** 32 - 1);
-  var _32n = /* @__PURE__ */ BigInt(32);
-  function fromBig(n, le = false) {
-    if (le)
-      return { h: Number(n & U32_MASK64), l: Number(n >> _32n & U32_MASK64) };
-    return { h: Number(n >> _32n & U32_MASK64) | 0, l: Number(n & U32_MASK64) | 0 };
-  }
-  __name(fromBig, "fromBig");
-  function split(lst, le = false) {
-    let Ah = new Uint32Array(lst.length);
-    let Al = new Uint32Array(lst.length);
-    for (let i = 0; i < lst.length; i++) {
-      const { h, l } = fromBig(lst[i], le);
-      [Ah[i], Al[i]] = [h, l];
-    }
-    return [Ah, Al];
-  }
-  __name(split, "split");
-  var toBig = /* @__PURE__ */ __name((h, l) => BigInt(h >>> 0) << _32n | BigInt(l >>> 0), "toBig");
-  var shrSH = /* @__PURE__ */ __name((h, _l, s) => h >>> s, "shrSH");
-  var shrSL = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "shrSL");
-  var rotrSH = /* @__PURE__ */ __name((h, l, s) => h >>> s | l << 32 - s, "rotrSH");
-  var rotrSL = /* @__PURE__ */ __name((h, l, s) => h << 32 - s | l >>> s, "rotrSL");
-  var rotrBH = /* @__PURE__ */ __name((h, l, s) => h << 64 - s | l >>> s - 32, "rotrBH");
-  var rotrBL = /* @__PURE__ */ __name((h, l, s) => h >>> s - 32 | l << 64 - s, "rotrBL");
-  var rotr32H = /* @__PURE__ */ __name((_h, l) => l, "rotr32H");
-  var rotr32L = /* @__PURE__ */ __name((h, _l) => h, "rotr32L");
-  var rotlSH = /* @__PURE__ */ __name((h, l, s) => h << s | l >>> 32 - s, "rotlSH");
-  var rotlSL = /* @__PURE__ */ __name((h, l, s) => l << s | h >>> 32 - s, "rotlSL");
-  var rotlBH = /* @__PURE__ */ __name((h, l, s) => l << s - 32 | h >>> 64 - s, "rotlBH");
-  var rotlBL = /* @__PURE__ */ __name((h, l, s) => h << s - 32 | l >>> 64 - s, "rotlBL");
-  function add(Ah, Al, Bh, Bl) {
-    const l = (Al >>> 0) + (Bl >>> 0);
-    return { h: Ah + Bh + (l / 2 ** 32 | 0) | 0, l: l | 0 };
-  }
-  __name(add, "add");
-  var add3L = /* @__PURE__ */ __name((Al, Bl, Cl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0), "add3L");
-  var add3H = /* @__PURE__ */ __name((low, Ah, Bh, Ch) => Ah + Bh + Ch + (low / 2 ** 32 | 0) | 0, "add3H");
-  var add4L = /* @__PURE__ */ __name((Al, Bl, Cl, Dl) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0), "add4L");
-  var add4H = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh) => Ah + Bh + Ch + Dh + (low / 2 ** 32 | 0) | 0, "add4H");
-  var add5L = /* @__PURE__ */ __name((Al, Bl, Cl, Dl, El) => (Al >>> 0) + (Bl >>> 0) + (Cl >>> 0) + (Dl >>> 0) + (El >>> 0), "add5L");
-  var add5H = /* @__PURE__ */ __name((low, Ah, Bh, Ch, Dh, Eh) => Ah + Bh + Ch + Dh + Eh + (low / 2 ** 32 | 0) | 0, "add5H");
-  var u64 = {
-    fromBig,
-    split,
-    toBig,
-    shrSH,
-    shrSL,
-    rotrSH,
-    rotrSL,
-    rotrBH,
-    rotrBL,
-    rotr32H,
-    rotr32L,
-    rotlSH,
-    rotlSL,
-    rotlBH,
-    rotlBL,
-    add,
-    add3L,
-    add3H,
-    add4L,
-    add4H,
-    add5H,
-    add5L
-  };
-  var u64_default = u64;
-
-  // ../../node_modules/@noble/curves/node_modules/@noble/hashes/esm/sha512.js
-  var [SHA512_Kh, SHA512_Kl] = /* @__PURE__ */ (() => u64_default.split([
-    "0x428a2f98d728ae22",
-    "0x7137449123ef65cd",
-    "0xb5c0fbcfec4d3b2f",
-    "0xe9b5dba58189dbbc",
-    "0x3956c25bf348b538",
-    "0x59f111f1b605d019",
-    "0x923f82a4af194f9b",
-    "0xab1c5ed5da6d8118",
-    "0xd807aa98a3030242",
-    "0x12835b0145706fbe",
-    "0x243185be4ee4b28c",
-    "0x550c7dc3d5ffb4e2",
-    "0x72be5d74f27b896f",
-    "0x80deb1fe3b1696b1",
-    "0x9bdc06a725c71235",
-    "0xc19bf174cf692694",
-    "0xe49b69c19ef14ad2",
-    "0xefbe4786384f25e3",
-    "0x0fc19dc68b8cd5b5",
-    "0x240ca1cc77ac9c65",
-    "0x2de92c6f592b0275",
-    "0x4a7484aa6ea6e483",
-    "0x5cb0a9dcbd41fbd4",
-    "0x76f988da831153b5",
-    "0x983e5152ee66dfab",
-    "0xa831c66d2db43210",
-    "0xb00327c898fb213f",
-    "0xbf597fc7beef0ee4",
-    "0xc6e00bf33da88fc2",
-    "0xd5a79147930aa725",
-    "0x06ca6351e003826f",
-    "0x142929670a0e6e70",
-    "0x27b70a8546d22ffc",
-    "0x2e1b21385c26c926",
-    "0x4d2c6dfc5ac42aed",
-    "0x53380d139d95b3df",
-    "0x650a73548baf63de",
-    "0x766a0abb3c77b2a8",
-    "0x81c2c92e47edaee6",
-    "0x92722c851482353b",
-    "0xa2bfe8a14cf10364",
-    "0xa81a664bbc423001",
-    "0xc24b8b70d0f89791",
-    "0xc76c51a30654be30",
-    "0xd192e819d6ef5218",
-    "0xd69906245565a910",
-    "0xf40e35855771202a",
-    "0x106aa07032bbd1b8",
-    "0x19a4c116b8d2d0c8",
-    "0x1e376c085141ab53",
-    "0x2748774cdf8eeb99",
-    "0x34b0bcb5e19b48a8",
-    "0x391c0cb3c5c95a63",
-    "0x4ed8aa4ae3418acb",
-    "0x5b9cca4f7763e373",
-    "0x682e6ff3d6b2b8a3",
-    "0x748f82ee5defb2fc",
-    "0x78a5636f43172f60",
-    "0x84c87814a1f0ab72",
-    "0x8cc702081a6439ec",
-    "0x90befffa23631e28",
-    "0xa4506cebde82bde9",
-    "0xbef9a3f7b2c67915",
-    "0xc67178f2e372532b",
-    "0xca273eceea26619c",
-    "0xd186b8c721c0c207",
-    "0xeada7dd6cde0eb1e",
-    "0xf57d4f7fee6ed178",
-    "0x06f067aa72176fba",
-    "0x0a637dc5a2c898a6",
-    "0x113f9804bef90dae",
-    "0x1b710b35131c471b",
-    "0x28db77f523047d84",
-    "0x32caab7b40c72493",
-    "0x3c9ebe0a15c9bebc",
-    "0x431d67c49c100d4c",
-    "0x4cc5d4becb3e42b6",
-    "0x597f299cfc657e2a",
-    "0x5fcb6fab3ad6faec",
-    "0x6c44198c4a475817"
-  ].map((n) => BigInt(n))))();
-  var SHA512_W_H = /* @__PURE__ */ new Uint32Array(80);
-  var SHA512_W_L = /* @__PURE__ */ new Uint32Array(80);
-  var SHA512 = class extends HashMD {
-    static {
-      __name(this, "SHA512");
-    }
-    constructor() {
-      super(128, 64, 16, false);
-      this.Ah = 1779033703 | 0;
-      this.Al = 4089235720 | 0;
-      this.Bh = 3144134277 | 0;
-      this.Bl = 2227873595 | 0;
-      this.Ch = 1013904242 | 0;
-      this.Cl = 4271175723 | 0;
-      this.Dh = 2773480762 | 0;
-      this.Dl = 1595750129 | 0;
-      this.Eh = 1359893119 | 0;
-      this.El = 2917565137 | 0;
-      this.Fh = 2600822924 | 0;
-      this.Fl = 725511199 | 0;
-      this.Gh = 528734635 | 0;
-      this.Gl = 4215389547 | 0;
-      this.Hh = 1541459225 | 0;
-      this.Hl = 327033209 | 0;
-    }
-    // prettier-ignore
-    get() {
-      const { Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl } = this;
-      return [Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl];
-    }
-    // prettier-ignore
-    set(Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl) {
-      this.Ah = Ah | 0;
-      this.Al = Al | 0;
-      this.Bh = Bh | 0;
-      this.Bl = Bl | 0;
-      this.Ch = Ch | 0;
-      this.Cl = Cl | 0;
-      this.Dh = Dh | 0;
-      this.Dl = Dl | 0;
-      this.Eh = Eh | 0;
-      this.El = El | 0;
-      this.Fh = Fh | 0;
-      this.Fl = Fl | 0;
-      this.Gh = Gh | 0;
-      this.Gl = Gl | 0;
-      this.Hh = Hh | 0;
-      this.Hl = Hl | 0;
-    }
-    process(view, offset) {
-      for (let i = 0; i < 16; i++, offset += 4) {
-        SHA512_W_H[i] = view.getUint32(offset);
-        SHA512_W_L[i] = view.getUint32(offset += 4);
-      }
-      for (let i = 16; i < 80; i++) {
-        const W15h = SHA512_W_H[i - 15] | 0;
-        const W15l = SHA512_W_L[i - 15] | 0;
-        const s0h = u64_default.rotrSH(W15h, W15l, 1) ^ u64_default.rotrSH(W15h, W15l, 8) ^ u64_default.shrSH(W15h, W15l, 7);
-        const s0l = u64_default.rotrSL(W15h, W15l, 1) ^ u64_default.rotrSL(W15h, W15l, 8) ^ u64_default.shrSL(W15h, W15l, 7);
-        const W2h = SHA512_W_H[i - 2] | 0;
-        const W2l = SHA512_W_L[i - 2] | 0;
-        const s1h = u64_default.rotrSH(W2h, W2l, 19) ^ u64_default.rotrBH(W2h, W2l, 61) ^ u64_default.shrSH(W2h, W2l, 6);
-        const s1l = u64_default.rotrSL(W2h, W2l, 19) ^ u64_default.rotrBL(W2h, W2l, 61) ^ u64_default.shrSL(W2h, W2l, 6);
-        const SUMl = u64_default.add4L(s0l, s1l, SHA512_W_L[i - 7], SHA512_W_L[i - 16]);
-        const SUMh = u64_default.add4H(SUMl, s0h, s1h, SHA512_W_H[i - 7], SHA512_W_H[i - 16]);
-        SHA512_W_H[i] = SUMh | 0;
-        SHA512_W_L[i] = SUMl | 0;
-      }
-      let { Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl } = this;
-      for (let i = 0; i < 80; i++) {
-        const sigma1h = u64_default.rotrSH(Eh, El, 14) ^ u64_default.rotrSH(Eh, El, 18) ^ u64_default.rotrBH(Eh, El, 41);
-        const sigma1l = u64_default.rotrSL(Eh, El, 14) ^ u64_default.rotrSL(Eh, El, 18) ^ u64_default.rotrBL(Eh, El, 41);
-        const CHIh = Eh & Fh ^ ~Eh & Gh;
-        const CHIl = El & Fl ^ ~El & Gl;
-        const T1ll = u64_default.add5L(Hl, sigma1l, CHIl, SHA512_Kl[i], SHA512_W_L[i]);
-        const T1h = u64_default.add5H(T1ll, Hh, sigma1h, CHIh, SHA512_Kh[i], SHA512_W_H[i]);
-        const T1l = T1ll | 0;
-        const sigma0h = u64_default.rotrSH(Ah, Al, 28) ^ u64_default.rotrBH(Ah, Al, 34) ^ u64_default.rotrBH(Ah, Al, 39);
-        const sigma0l = u64_default.rotrSL(Ah, Al, 28) ^ u64_default.rotrBL(Ah, Al, 34) ^ u64_default.rotrBL(Ah, Al, 39);
-        const MAJh = Ah & Bh ^ Ah & Ch ^ Bh & Ch;
-        const MAJl = Al & Bl ^ Al & Cl ^ Bl & Cl;
-        Hh = Gh | 0;
-        Hl = Gl | 0;
-        Gh = Fh | 0;
-        Gl = Fl | 0;
-        Fh = Eh | 0;
-        Fl = El | 0;
-        ({ h: Eh, l: El } = u64_default.add(Dh | 0, Dl | 0, T1h | 0, T1l | 0));
-        Dh = Ch | 0;
-        Dl = Cl | 0;
-        Ch = Bh | 0;
-        Cl = Bl | 0;
-        Bh = Ah | 0;
-        Bl = Al | 0;
-        const All = u64_default.add3L(T1l, sigma0l, MAJl);
-        Ah = u64_default.add3H(All, T1h, sigma0h, MAJh);
-        Al = All | 0;
-      }
-      ({ h: Ah, l: Al } = u64_default.add(this.Ah | 0, this.Al | 0, Ah | 0, Al | 0));
-      ({ h: Bh, l: Bl } = u64_default.add(this.Bh | 0, this.Bl | 0, Bh | 0, Bl | 0));
-      ({ h: Ch, l: Cl } = u64_default.add(this.Ch | 0, this.Cl | 0, Ch | 0, Cl | 0));
-      ({ h: Dh, l: Dl } = u64_default.add(this.Dh | 0, this.Dl | 0, Dh | 0, Dl | 0));
-      ({ h: Eh, l: El } = u64_default.add(this.Eh | 0, this.El | 0, Eh | 0, El | 0));
-      ({ h: Fh, l: Fl } = u64_default.add(this.Fh | 0, this.Fl | 0, Fh | 0, Fl | 0));
-      ({ h: Gh, l: Gl } = u64_default.add(this.Gh | 0, this.Gl | 0, Gh | 0, Gl | 0));
-      ({ h: Hh, l: Hl } = u64_default.add(this.Hh | 0, this.Hl | 0, Hh | 0, Hl | 0));
-      this.set(Ah, Al, Bh, Bl, Ch, Cl, Dh, Dl, Eh, El, Fh, Fl, Gh, Gl, Hh, Hl);
-    }
-    roundClean() {
-      SHA512_W_H.fill(0);
-      SHA512_W_L.fill(0);
-    }
-    destroy() {
-      this.buffer.fill(0);
-      this.set(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-  };
-  var sha512 = /* @__PURE__ */ wrapConstructor(() => new SHA512());
-
-  // ../../node_modules/@noble/curves/esm/abstract/utils.js
-  var _0n = /* @__PURE__ */ BigInt(0);
-  var _1n = /* @__PURE__ */ BigInt(1);
-  var _2n = /* @__PURE__ */ BigInt(2);
-  function isBytes2(a) {
-    return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array";
-  }
-  __name(isBytes2, "isBytes");
-  function abytes2(item) {
-    if (!isBytes2(item))
-      throw new Error("Uint8Array expected");
-  }
-  __name(abytes2, "abytes");
-  function abool(title, value) {
-    if (typeof value !== "boolean")
-      throw new Error(title + " boolean expected, got " + value);
-  }
-  __name(abool, "abool");
-  var hexes = /* @__PURE__ */ Array.from({ length: 256 }, (_, i) => i.toString(16).padStart(2, "0"));
-  function bytesToHex(bytes) {
-    abytes2(bytes);
-    let hex = "";
-    for (let i = 0; i < bytes.length; i++) {
-      hex += hexes[bytes[i]];
-    }
-    return hex;
-  }
-  __name(bytesToHex, "bytesToHex");
-  function hexToNumber(hex) {
-    if (typeof hex !== "string")
-      throw new Error("hex string expected, got " + typeof hex);
-    return hex === "" ? _0n : BigInt("0x" + hex);
-  }
-  __name(hexToNumber, "hexToNumber");
-  var asciis = { _0: 48, _9: 57, A: 65, F: 70, a: 97, f: 102 };
-  function asciiToBase16(ch) {
-    if (ch >= asciis._0 && ch <= asciis._9)
-      return ch - asciis._0;
-    if (ch >= asciis.A && ch <= asciis.F)
-      return ch - (asciis.A - 10);
-    if (ch >= asciis.a && ch <= asciis.f)
-      return ch - (asciis.a - 10);
-    return;
-  }
-  __name(asciiToBase16, "asciiToBase16");
-  function hexToBytes(hex) {
-    if (typeof hex !== "string")
-      throw new Error("hex string expected, got " + typeof hex);
-    const hl = hex.length;
-    const al = hl / 2;
-    if (hl % 2)
-      throw new Error("hex string expected, got unpadded hex of length " + hl);
-    const array = new Uint8Array(al);
-    for (let ai = 0, hi = 0; ai < al; ai++, hi += 2) {
-      const n1 = asciiToBase16(hex.charCodeAt(hi));
-      const n2 = asciiToBase16(hex.charCodeAt(hi + 1));
-      if (n1 === void 0 || n2 === void 0) {
-        const char = hex[hi] + hex[hi + 1];
-        throw new Error('hex string expected, got non-hex character "' + char + '" at index ' + hi);
-      }
-      array[ai] = n1 * 16 + n2;
-    }
-    return array;
-  }
-  __name(hexToBytes, "hexToBytes");
-  function bytesToNumberBE(bytes) {
-    return hexToNumber(bytesToHex(bytes));
-  }
-  __name(bytesToNumberBE, "bytesToNumberBE");
-  function bytesToNumberLE(bytes) {
-    abytes2(bytes);
-    return hexToNumber(bytesToHex(Uint8Array.from(bytes).reverse()));
-  }
-  __name(bytesToNumberLE, "bytesToNumberLE");
-  function numberToBytesBE(n, len) {
-    return hexToBytes(n.toString(16).padStart(len * 2, "0"));
-  }
-  __name(numberToBytesBE, "numberToBytesBE");
-  function numberToBytesLE(n, len) {
-    return numberToBytesBE(n, len).reverse();
-  }
-  __name(numberToBytesLE, "numberToBytesLE");
-  function ensureBytes(title, hex, expectedLength) {
-    let res;
-    if (typeof hex === "string") {
-      try {
-        res = hexToBytes(hex);
-      } catch (e) {
-        throw new Error(title + " must be hex string or Uint8Array, cause: " + e);
-      }
-    } else if (isBytes2(hex)) {
-      res = Uint8Array.from(hex);
-    } else {
-      throw new Error(title + " must be hex string or Uint8Array");
-    }
-    const len = res.length;
-    if (typeof expectedLength === "number" && len !== expectedLength)
-      throw new Error(title + " of length " + expectedLength + " expected, got " + len);
-    return res;
-  }
-  __name(ensureBytes, "ensureBytes");
-  function concatBytes(...arrays) {
-    let sum = 0;
-    for (let i = 0; i < arrays.length; i++) {
-      const a = arrays[i];
-      abytes2(a);
-      sum += a.length;
-    }
-    const res = new Uint8Array(sum);
-    for (let i = 0, pad = 0; i < arrays.length; i++) {
-      const a = arrays[i];
-      res.set(a, pad);
-      pad += a.length;
-    }
-    return res;
-  }
-  __name(concatBytes, "concatBytes");
-  var isPosBig = /* @__PURE__ */ __name((n) => typeof n === "bigint" && _0n <= n, "isPosBig");
-  function inRange(n, min, max) {
-    return isPosBig(n) && isPosBig(min) && isPosBig(max) && min <= n && n < max;
-  }
-  __name(inRange, "inRange");
-  function aInRange(title, n, min, max) {
-    if (!inRange(n, min, max))
-      throw new Error("expected valid " + title + ": " + min + " <= n < " + max + ", got " + n);
-  }
-  __name(aInRange, "aInRange");
-  function bitLen(n) {
-    let len;
-    for (len = 0; n > _0n; n >>= _1n, len += 1)
-      ;
-    return len;
-  }
-  __name(bitLen, "bitLen");
-  var bitMask = /* @__PURE__ */ __name((n) => (_2n << BigInt(n - 1)) - _1n, "bitMask");
-  var validatorFns = {
-    bigint: /* @__PURE__ */ __name((val) => typeof val === "bigint", "bigint"),
-    function: /* @__PURE__ */ __name((val) => typeof val === "function", "function"),
-    boolean: /* @__PURE__ */ __name((val) => typeof val === "boolean", "boolean"),
-    string: /* @__PURE__ */ __name((val) => typeof val === "string", "string"),
-    stringOrUint8Array: /* @__PURE__ */ __name((val) => typeof val === "string" || isBytes2(val), "stringOrUint8Array"),
-    isSafeInteger: /* @__PURE__ */ __name((val) => Number.isSafeInteger(val), "isSafeInteger"),
-    array: /* @__PURE__ */ __name((val) => Array.isArray(val), "array"),
-    field: /* @__PURE__ */ __name((val, object) => object.Fp.isValid(val), "field"),
-    hash: /* @__PURE__ */ __name((val) => typeof val === "function" && Number.isSafeInteger(val.outputLen), "hash")
-  };
-  function validateObject(object, validators, optValidators = {}) {
-    const checkField = /* @__PURE__ */ __name((fieldName, type, isOptional) => {
-      const checkVal = validatorFns[type];
-      if (typeof checkVal !== "function")
-        throw new Error("invalid validator function");
-      const val = object[fieldName];
-      if (isOptional && val === void 0)
-        return;
-      if (!checkVal(val, object)) {
-        throw new Error("param " + String(fieldName) + " is invalid. Expected " + type + ", got " + val);
-      }
-    }, "checkField");
-    for (const [fieldName, type] of Object.entries(validators))
-      checkField(fieldName, type, false);
-    for (const [fieldName, type] of Object.entries(optValidators))
-      checkField(fieldName, type, true);
-    return object;
-  }
-  __name(validateObject, "validateObject");
-  function memoized(fn2) {
-    const map = /* @__PURE__ */ new WeakMap();
-    return (arg, ...args2) => {
-      const val = map.get(arg);
-      if (val !== void 0)
-        return val;
-      const computed = fn2(arg, ...args2);
-      map.set(arg, computed);
-      return computed;
-    };
-  }
-  __name(memoized, "memoized");
-
-  // ../../node_modules/@noble/curves/esm/abstract/modular.js
-  var _0n2 = BigInt(0);
-  var _1n2 = BigInt(1);
-  var _2n2 = /* @__PURE__ */ BigInt(2);
-  var _3n = /* @__PURE__ */ BigInt(3);
-  var _4n = /* @__PURE__ */ BigInt(4);
-  var _5n = /* @__PURE__ */ BigInt(5);
-  var _8n = /* @__PURE__ */ BigInt(8);
-  var _9n = /* @__PURE__ */ BigInt(9);
-  var _16n = /* @__PURE__ */ BigInt(16);
-  function mod(a, b) {
-    const result = a % b;
-    return result >= _0n2 ? result : b + result;
-  }
-  __name(mod, "mod");
-  function pow(num, power, modulo) {
-    if (power < _0n2)
-      throw new Error("invalid exponent, negatives unsupported");
-    if (modulo <= _0n2)
-      throw new Error("invalid modulus");
-    if (modulo === _1n2)
-      return _0n2;
-    let res = _1n2;
-    while (power > _0n2) {
-      if (power & _1n2)
-        res = res * num % modulo;
-      num = num * num % modulo;
-      power >>= _1n2;
-    }
-    return res;
-  }
-  __name(pow, "pow");
-  function pow2(x, power, modulo) {
-    let res = x;
-    while (power-- > _0n2) {
-      res *= res;
-      res %= modulo;
-    }
-    return res;
-  }
-  __name(pow2, "pow2");
-  function invert(number, modulo) {
-    if (number === _0n2)
-      throw new Error("invert: expected non-zero number");
-    if (modulo <= _0n2)
-      throw new Error("invert: expected positive modulus, got " + modulo);
-    let a = mod(number, modulo);
-    let b = modulo;
-    let x = _0n2, y = _1n2, u = _1n2, v = _0n2;
-    while (a !== _0n2) {
-      const q = b / a;
-      const r = b % a;
-      const m = x - u * q;
-      const n = y - v * q;
-      b = a, a = r, x = u, y = v, u = m, v = n;
-    }
-    const gcd = b;
-    if (gcd !== _1n2)
-      throw new Error("invert: does not exist");
-    return mod(x, modulo);
-  }
-  __name(invert, "invert");
-  function tonelliShanks(P) {
-    const legendreC = (P - _1n2) / _2n2;
-    let Q, S, Z;
-    for (Q = P - _1n2, S = 0; Q % _2n2 === _0n2; Q /= _2n2, S++)
-      ;
-    for (Z = _2n2; Z < P && pow(Z, legendreC, P) !== P - _1n2; Z++) {
-      if (Z > 1e3)
-        throw new Error("Cannot find square root: likely non-prime P");
-    }
-    if (S === 1) {
-      const p1div4 = (P + _1n2) / _4n;
-      return /* @__PURE__ */ __name(function tonelliFast(Fp2, n) {
-        const root2 = Fp2.pow(n, p1div4);
-        if (!Fp2.eql(Fp2.sqr(root2), n))
-          throw new Error("Cannot find square root");
-        return root2;
-      }, "tonelliFast");
-    }
-    const Q1div2 = (Q + _1n2) / _2n2;
-    return /* @__PURE__ */ __name(function tonelliSlow(Fp2, n) {
-      if (Fp2.pow(n, legendreC) === Fp2.neg(Fp2.ONE))
-        throw new Error("Cannot find square root");
-      let r = S;
-      let g = Fp2.pow(Fp2.mul(Fp2.ONE, Z), Q);
-      let x = Fp2.pow(n, Q1div2);
-      let b = Fp2.pow(n, Q);
-      while (!Fp2.eql(b, Fp2.ONE)) {
-        if (Fp2.eql(b, Fp2.ZERO))
-          return Fp2.ZERO;
-        let m = 1;
-        for (let t2 = Fp2.sqr(b); m < r; m++) {
-          if (Fp2.eql(t2, Fp2.ONE))
-            break;
-          t2 = Fp2.sqr(t2);
-        }
-        const ge = Fp2.pow(g, _1n2 << BigInt(r - m - 1));
-        g = Fp2.sqr(ge);
-        x = Fp2.mul(x, ge);
-        b = Fp2.mul(b, g);
-        r = m;
-      }
-      return x;
-    }, "tonelliSlow");
-  }
-  __name(tonelliShanks, "tonelliShanks");
-  function FpSqrt(P) {
-    if (P % _4n === _3n) {
-      const p1div4 = (P + _1n2) / _4n;
-      return /* @__PURE__ */ __name(function sqrt3mod4(Fp2, n) {
-        const root2 = Fp2.pow(n, p1div4);
-        if (!Fp2.eql(Fp2.sqr(root2), n))
-          throw new Error("Cannot find square root");
-        return root2;
-      }, "sqrt3mod4");
-    }
-    if (P % _8n === _5n) {
-      const c1 = (P - _5n) / _8n;
-      return /* @__PURE__ */ __name(function sqrt5mod8(Fp2, n) {
-        const n2 = Fp2.mul(n, _2n2);
-        const v = Fp2.pow(n2, c1);
-        const nv = Fp2.mul(n, v);
-        const i = Fp2.mul(Fp2.mul(nv, _2n2), v);
-        const root2 = Fp2.mul(nv, Fp2.sub(i, Fp2.ONE));
-        if (!Fp2.eql(Fp2.sqr(root2), n))
-          throw new Error("Cannot find square root");
-        return root2;
-      }, "sqrt5mod8");
-    }
-    if (P % _16n === _9n) {
-    }
-    return tonelliShanks(P);
-  }
-  __name(FpSqrt, "FpSqrt");
-  var isNegativeLE = /* @__PURE__ */ __name((num, modulo) => (mod(num, modulo) & _1n2) === _1n2, "isNegativeLE");
-  var FIELD_FIELDS = [
-    "create",
-    "isValid",
-    "is0",
-    "neg",
-    "inv",
-    "sqrt",
-    "sqr",
-    "eql",
-    "add",
-    "sub",
-    "mul",
-    "pow",
-    "div",
-    "addN",
-    "subN",
-    "mulN",
-    "sqrN"
-  ];
-  function validateField(field) {
-    const initial = {
-      ORDER: "bigint",
-      MASK: "bigint",
-      BYTES: "isSafeInteger",
-      BITS: "isSafeInteger"
-    };
-    const opts = FIELD_FIELDS.reduce((map, val) => {
-      map[val] = "function";
-      return map;
-    }, initial);
-    return validateObject(field, opts);
-  }
-  __name(validateField, "validateField");
-  function FpPow(f, num, power) {
-    if (power < _0n2)
-      throw new Error("invalid exponent, negatives unsupported");
-    if (power === _0n2)
-      return f.ONE;
-    if (power === _1n2)
-      return num;
-    let p = f.ONE;
-    let d = num;
-    while (power > _0n2) {
-      if (power & _1n2)
-        p = f.mul(p, d);
-      d = f.sqr(d);
-      power >>= _1n2;
-    }
-    return p;
-  }
-  __name(FpPow, "FpPow");
-  function FpInvertBatch(f, nums) {
-    const tmp = new Array(nums.length);
-    const lastMultiplied = nums.reduce((acc, num, i) => {
-      if (f.is0(num))
-        return acc;
-      tmp[i] = acc;
-      return f.mul(acc, num);
-    }, f.ONE);
-    const inverted = f.inv(lastMultiplied);
-    nums.reduceRight((acc, num, i) => {
-      if (f.is0(num))
-        return acc;
-      tmp[i] = f.mul(acc, tmp[i]);
-      return f.mul(acc, num);
-    }, inverted);
-    return tmp;
-  }
-  __name(FpInvertBatch, "FpInvertBatch");
-  function nLength(n, nBitLength) {
-    const _nBitLength = nBitLength !== void 0 ? nBitLength : n.toString(2).length;
-    const nByteLength = Math.ceil(_nBitLength / 8);
-    return { nBitLength: _nBitLength, nByteLength };
-  }
-  __name(nLength, "nLength");
-  function Field(ORDER, bitLen2, isLE = false, redef = {}) {
-    if (ORDER <= _0n2)
-      throw new Error("invalid field: expected ORDER > 0, got " + ORDER);
-    const { nBitLength: BITS, nByteLength: BYTES } = nLength(ORDER, bitLen2);
-    if (BYTES > 2048)
-      throw new Error("invalid field: expected ORDER of <= 2048 bytes");
-    let sqrtP;
-    const f = Object.freeze({
-      ORDER,
-      BITS,
-      BYTES,
-      MASK: bitMask(BITS),
-      ZERO: _0n2,
-      ONE: _1n2,
-      create: /* @__PURE__ */ __name((num) => mod(num, ORDER), "create"),
-      isValid: /* @__PURE__ */ __name((num) => {
-        if (typeof num !== "bigint")
-          throw new Error("invalid field element: expected bigint, got " + typeof num);
-        return _0n2 <= num && num < ORDER;
-      }, "isValid"),
-      is0: /* @__PURE__ */ __name((num) => num === _0n2, "is0"),
-      isOdd: /* @__PURE__ */ __name((num) => (num & _1n2) === _1n2, "isOdd"),
-      neg: /* @__PURE__ */ __name((num) => mod(-num, ORDER), "neg"),
-      eql: /* @__PURE__ */ __name((lhs, rhs) => lhs === rhs, "eql"),
-      sqr: /* @__PURE__ */ __name((num) => mod(num * num, ORDER), "sqr"),
-      add: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs + rhs, ORDER), "add"),
-      sub: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs - rhs, ORDER), "sub"),
-      mul: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs * rhs, ORDER), "mul"),
-      pow: /* @__PURE__ */ __name((num, power) => FpPow(f, num, power), "pow"),
-      div: /* @__PURE__ */ __name((lhs, rhs) => mod(lhs * invert(rhs, ORDER), ORDER), "div"),
-      // Same as above, but doesn't normalize
-      sqrN: /* @__PURE__ */ __name((num) => num * num, "sqrN"),
-      addN: /* @__PURE__ */ __name((lhs, rhs) => lhs + rhs, "addN"),
-      subN: /* @__PURE__ */ __name((lhs, rhs) => lhs - rhs, "subN"),
-      mulN: /* @__PURE__ */ __name((lhs, rhs) => lhs * rhs, "mulN"),
-      inv: /* @__PURE__ */ __name((num) => invert(num, ORDER), "inv"),
-      sqrt: redef.sqrt || ((n) => {
-        if (!sqrtP)
-          sqrtP = FpSqrt(ORDER);
-        return sqrtP(f, n);
-      }),
-      invertBatch: /* @__PURE__ */ __name((lst) => FpInvertBatch(f, lst), "invertBatch"),
-      // TODO: do we really need constant cmov?
-      // We don't have const-time bigints anyway, so probably will be not very useful
-      cmov: /* @__PURE__ */ __name((a, b, c) => c ? b : a, "cmov"),
-      toBytes: /* @__PURE__ */ __name((num) => isLE ? numberToBytesLE(num, BYTES) : numberToBytesBE(num, BYTES), "toBytes"),
-      fromBytes: /* @__PURE__ */ __name((bytes) => {
-        if (bytes.length !== BYTES)
-          throw new Error("Field.fromBytes: expected " + BYTES + " bytes, got " + bytes.length);
-        return isLE ? bytesToNumberLE(bytes) : bytesToNumberBE(bytes);
-      }, "fromBytes")
-    });
-    return Object.freeze(f);
-  }
-  __name(Field, "Field");
-
-  // ../../node_modules/@noble/curves/esm/abstract/curve.js
-  var _0n3 = BigInt(0);
-  var _1n3 = BigInt(1);
-  function constTimeNegate(condition, item) {
-    const neg = item.negate();
-    return condition ? neg : item;
-  }
-  __name(constTimeNegate, "constTimeNegate");
-  function validateW(W, bits) {
-    if (!Number.isSafeInteger(W) || W <= 0 || W > bits)
-      throw new Error("invalid window size, expected [1.." + bits + "], got W=" + W);
-  }
-  __name(validateW, "validateW");
-  function calcWOpts(W, bits) {
-    validateW(W, bits);
-    const windows = Math.ceil(bits / W) + 1;
-    const windowSize = 2 ** (W - 1);
-    return { windows, windowSize };
-  }
-  __name(calcWOpts, "calcWOpts");
-  function validateMSMPoints(points, c) {
-    if (!Array.isArray(points))
-      throw new Error("array expected");
-    points.forEach((p, i) => {
-      if (!(p instanceof c))
-        throw new Error("invalid point at index " + i);
-    });
-  }
-  __name(validateMSMPoints, "validateMSMPoints");
-  function validateMSMScalars(scalars, field) {
-    if (!Array.isArray(scalars))
-      throw new Error("array of scalars expected");
-    scalars.forEach((s, i) => {
-      if (!field.isValid(s))
-        throw new Error("invalid scalar at index " + i);
-    });
-  }
-  __name(validateMSMScalars, "validateMSMScalars");
-  var pointPrecomputes = /* @__PURE__ */ new WeakMap();
-  var pointWindowSizes = /* @__PURE__ */ new WeakMap();
-  function getW(P) {
-    return pointWindowSizes.get(P) || 1;
-  }
-  __name(getW, "getW");
-  function wNAF(c, bits) {
-    return {
-      constTimeNegate,
-      hasPrecomputes(elm) {
-        return getW(elm) !== 1;
-      },
-      // non-const time multiplication ladder
-      unsafeLadder(elm, n, p = c.ZERO) {
-        let d = elm;
-        while (n > _0n3) {
-          if (n & _1n3)
-            p = p.add(d);
-          d = d.double();
-          n >>= _1n3;
-        }
-        return p;
-      },
-      /**
-       * Creates a wNAF precomputation window. Used for caching.
-       * Default window size is set by `utils.precompute()` and is equal to 8.
-       * Number of precomputed points depends on the curve size:
-       * 2^(𝑊−1) * (Math.ceil(𝑛 / 𝑊) + 1), where:
-       * - 𝑊 is the window size
-       * - 𝑛 is the bitlength of the curve order.
-       * For a 256-bit curve and window size 8, the number of precomputed points is 128 * 33 = 4224.
-       * @param elm Point instance
-       * @param W window size
-       * @returns precomputed point tables flattened to a single array
-       */
-      precomputeWindow(elm, W) {
-        const { windows, windowSize } = calcWOpts(W, bits);
-        const points = [];
-        let p = elm;
-        let base2 = p;
-        for (let window2 = 0; window2 < windows; window2++) {
-          base2 = p;
-          points.push(base2);
-          for (let i = 1; i < windowSize; i++) {
-            base2 = base2.add(p);
-            points.push(base2);
-          }
-          p = base2.double();
-        }
-        return points;
-      },
-      /**
-       * Implements ec multiplication using precomputed tables and w-ary non-adjacent form.
-       * @param W window size
-       * @param precomputes precomputed tables
-       * @param n scalar (we don't check here, but should be less than curve order)
-       * @returns real and fake (for const-time) points
-       */
-      wNAF(W, precomputes, n) {
-        const { windows, windowSize } = calcWOpts(W, bits);
-        let p = c.ZERO;
-        let f = c.BASE;
-        const mask = BigInt(2 ** W - 1);
-        const maxNumber = 2 ** W;
-        const shiftBy = BigInt(W);
-        for (let window2 = 0; window2 < windows; window2++) {
-          const offset = window2 * windowSize;
-          let wbits = Number(n & mask);
-          n >>= shiftBy;
-          if (wbits > windowSize) {
-            wbits -= maxNumber;
-            n += _1n3;
-          }
-          const offset1 = offset;
-          const offset2 = offset + Math.abs(wbits) - 1;
-          const cond1 = window2 % 2 !== 0;
-          const cond2 = wbits < 0;
-          if (wbits === 0) {
-            f = f.add(constTimeNegate(cond1, precomputes[offset1]));
-          } else {
-            p = p.add(constTimeNegate(cond2, precomputes[offset2]));
-          }
-        }
-        return { p, f };
-      },
-      /**
-       * Implements ec unsafe (non const-time) multiplication using precomputed tables and w-ary non-adjacent form.
-       * @param W window size
-       * @param precomputes precomputed tables
-       * @param n scalar (we don't check here, but should be less than curve order)
-       * @param acc accumulator point to add result of multiplication
-       * @returns point
-       */
-      wNAFUnsafe(W, precomputes, n, acc = c.ZERO) {
-        const { windows, windowSize } = calcWOpts(W, bits);
-        const mask = BigInt(2 ** W - 1);
-        const maxNumber = 2 ** W;
-        const shiftBy = BigInt(W);
-        for (let window2 = 0; window2 < windows; window2++) {
-          const offset = window2 * windowSize;
-          if (n === _0n3)
-            break;
-          let wbits = Number(n & mask);
-          n >>= shiftBy;
-          if (wbits > windowSize) {
-            wbits -= maxNumber;
-            n += _1n3;
-          }
-          if (wbits === 0)
-            continue;
-          let curr = precomputes[offset + Math.abs(wbits) - 1];
-          if (wbits < 0)
-            curr = curr.negate();
-          acc = acc.add(curr);
-        }
-        return acc;
-      },
-      getPrecomputes(W, P, transform) {
-        let comp = pointPrecomputes.get(P);
-        if (!comp) {
-          comp = this.precomputeWindow(P, W);
-          if (W !== 1)
-            pointPrecomputes.set(P, transform(comp));
-        }
-        return comp;
-      },
-      wNAFCached(P, n, transform) {
-        const W = getW(P);
-        return this.wNAF(W, this.getPrecomputes(W, P, transform), n);
-      },
-      wNAFCachedUnsafe(P, n, transform, prev) {
-        const W = getW(P);
-        if (W === 1)
-          return this.unsafeLadder(P, n, prev);
-        return this.wNAFUnsafe(W, this.getPrecomputes(W, P, transform), n, prev);
-      },
-      // We calculate precomputes for elliptic curve point multiplication
-      // using windowed method. This specifies window size and
-      // stores precomputed values. Usually only base point would be precomputed.
-      setWindowSize(P, W) {
-        validateW(W, bits);
-        pointWindowSizes.set(P, W);
-        pointPrecomputes.delete(P);
-      }
-    };
-  }
-  __name(wNAF, "wNAF");
-  function pippenger(c, fieldN, points, scalars) {
-    validateMSMPoints(points, c);
-    validateMSMScalars(scalars, fieldN);
-    if (points.length !== scalars.length)
-      throw new Error("arrays of points and scalars must have equal length");
-    const zero = c.ZERO;
-    const wbits = bitLen(BigInt(points.length));
-    const windowSize = wbits > 12 ? wbits - 3 : wbits > 4 ? wbits - 2 : wbits ? 2 : 1;
-    const MASK = (1 << windowSize) - 1;
-    const buckets = new Array(MASK + 1).fill(zero);
-    const lastBits = Math.floor((fieldN.BITS - 1) / windowSize) * windowSize;
-    let sum = zero;
-    for (let i = lastBits; i >= 0; i -= windowSize) {
-      buckets.fill(zero);
-      for (let j = 0; j < scalars.length; j++) {
-        const scalar = scalars[j];
-        const wbits2 = Number(scalar >> BigInt(i) & BigInt(MASK));
-        buckets[wbits2] = buckets[wbits2].add(points[j]);
-      }
-      let resI = zero;
-      for (let j = buckets.length - 1, sumI = zero; j > 0; j--) {
-        sumI = sumI.add(buckets[j]);
-        resI = resI.add(sumI);
-      }
-      sum = sum.add(resI);
-      if (i !== 0)
-        for (let j = 0; j < windowSize; j++)
-          sum = sum.double();
-    }
-    return sum;
-  }
-  __name(pippenger, "pippenger");
-  function validateBasic(curve) {
-    validateField(curve.Fp);
-    validateObject(curve, {
-      n: "bigint",
-      h: "bigint",
-      Gx: "field",
-      Gy: "field"
-    }, {
-      nBitLength: "isSafeInteger",
-      nByteLength: "isSafeInteger"
-    });
-    return Object.freeze({
-      ...nLength(curve.n, curve.nBitLength),
-      ...curve,
-      ...{ p: curve.Fp.ORDER }
-    });
-  }
-  __name(validateBasic, "validateBasic");
-
-  // ../../node_modules/@noble/curves/esm/abstract/edwards.js
-  var _0n4 = BigInt(0);
-  var _1n4 = BigInt(1);
-  var _2n3 = BigInt(2);
-  var _8n2 = BigInt(8);
-  var VERIFY_DEFAULT = { zip215: true };
-  function validateOpts(curve) {
-    const opts = validateBasic(curve);
-    validateObject(curve, {
-      hash: "function",
-      a: "bigint",
-      d: "bigint",
-      randomBytes: "function"
-    }, {
-      adjustScalarBytes: "function",
-      domain: "function",
-      uvRatio: "function",
-      mapToCurve: "function"
-    });
-    return Object.freeze({ ...opts });
-  }
-  __name(validateOpts, "validateOpts");
-  function twistedEdwards(curveDef) {
-    const CURVE = validateOpts(curveDef);
-    const { Fp: Fp2, n: CURVE_ORDER, prehash, hash: cHash, randomBytes: randomBytes2, nByteLength, h: cofactor } = CURVE;
-    const MASK = _2n3 << BigInt(nByteLength * 8) - _1n4;
-    const modP = Fp2.create;
-    const Fn = Field(CURVE.n, CURVE.nBitLength);
-    const uvRatio2 = CURVE.uvRatio || ((u, v) => {
-      try {
-        return { isValid: true, value: Fp2.sqrt(u * Fp2.inv(v)) };
-      } catch (e) {
-        return { isValid: false, value: _0n4 };
-      }
-    });
-    const adjustScalarBytes2 = CURVE.adjustScalarBytes || ((bytes) => bytes);
-    const domain = CURVE.domain || ((data, ctx, phflag) => {
-      abool("phflag", phflag);
-      if (ctx.length || phflag)
-        throw new Error("Contexts/pre-hash are not supported");
-      return data;
-    });
-    function aCoordinate(title, n) {
-      aInRange("coordinate " + title, n, _0n4, MASK);
-    }
-    __name(aCoordinate, "aCoordinate");
-    function assertPoint(other) {
-      if (!(other instanceof Point))
-        throw new Error("ExtendedPoint expected");
-    }
-    __name(assertPoint, "assertPoint");
-    const toAffineMemo = memoized((p, iz) => {
-      const { ex: x, ey: y, ez: z } = p;
-      const is0 = p.is0();
-      if (iz == null)
-        iz = is0 ? _8n2 : Fp2.inv(z);
-      const ax = modP(x * iz);
-      const ay = modP(y * iz);
-      const zz = modP(z * iz);
-      if (is0)
-        return { x: _0n4, y: _1n4 };
-      if (zz !== _1n4)
-        throw new Error("invZ was invalid");
-      return { x: ax, y: ay };
-    });
-    const assertValidMemo = memoized((p) => {
-      const { a, d } = CURVE;
-      if (p.is0())
-        throw new Error("bad point: ZERO");
-      const { ex: X, ey: Y, ez: Z, et: T } = p;
-      const X2 = modP(X * X);
-      const Y2 = modP(Y * Y);
-      const Z2 = modP(Z * Z);
-      const Z4 = modP(Z2 * Z2);
-      const aX2 = modP(X2 * a);
-      const left = modP(Z2 * modP(aX2 + Y2));
-      const right = modP(Z4 + modP(d * modP(X2 * Y2)));
-      if (left !== right)
-        throw new Error("bad point: equation left != right (1)");
-      const XY = modP(X * Y);
-      const ZT = modP(Z * T);
-      if (XY !== ZT)
-        throw new Error("bad point: equation left != right (2)");
-      return true;
-    });
-    class Point {
-      static {
-        __name(this, "Point");
-      }
-      constructor(ex, ey, ez, et) {
-        this.ex = ex;
-        this.ey = ey;
-        this.ez = ez;
-        this.et = et;
-        aCoordinate("x", ex);
-        aCoordinate("y", ey);
-        aCoordinate("z", ez);
-        aCoordinate("t", et);
-        Object.freeze(this);
-      }
-      get x() {
-        return this.toAffine().x;
-      }
-      get y() {
-        return this.toAffine().y;
-      }
-      static fromAffine(p) {
-        if (p instanceof Point)
-          throw new Error("extended point not allowed");
-        const { x, y } = p || {};
-        aCoordinate("x", x);
-        aCoordinate("y", y);
-        return new Point(x, y, _1n4, modP(x * y));
-      }
-      static normalizeZ(points) {
-        const toInv = Fp2.invertBatch(points.map((p) => p.ez));
-        return points.map((p, i) => p.toAffine(toInv[i])).map(Point.fromAffine);
-      }
-      // Multiscalar Multiplication
-      static msm(points, scalars) {
-        return pippenger(Point, Fn, points, scalars);
-      }
-      // "Private method", don't use it directly
-      _setWindowSize(windowSize) {
-        wnaf.setWindowSize(this, windowSize);
-      }
-      // Not required for fromHex(), which always creates valid points.
-      // Could be useful for fromAffine().
-      assertValidity() {
-        assertValidMemo(this);
-      }
-      // Compare one point to another.
-      equals(other) {
-        assertPoint(other);
-        const { ex: X1, ey: Y1, ez: Z1 } = this;
-        const { ex: X2, ey: Y2, ez: Z2 } = other;
-        const X1Z2 = modP(X1 * Z2);
-        const X2Z1 = modP(X2 * Z1);
-        const Y1Z2 = modP(Y1 * Z2);
-        const Y2Z1 = modP(Y2 * Z1);
-        return X1Z2 === X2Z1 && Y1Z2 === Y2Z1;
-      }
-      is0() {
-        return this.equals(Point.ZERO);
-      }
-      negate() {
-        return new Point(modP(-this.ex), this.ey, this.ez, modP(-this.et));
-      }
-      // Fast algo for doubling Extended Point.
-      // https://hyperelliptic.org/EFD/g1p/auto-twisted-extended.html#doubling-dbl-2008-hwcd
-      // Cost: 4M + 4S + 1*a + 6add + 1*2.
-      double() {
-        const { a } = CURVE;
-        const { ex: X1, ey: Y1, ez: Z1 } = this;
-        const A = modP(X1 * X1);
-        const B = modP(Y1 * Y1);
-        const C = modP(_2n3 * modP(Z1 * Z1));
-        const D = modP(a * A);
-        const x1y1 = X1 + Y1;
-        const E = modP(modP(x1y1 * x1y1) - A - B);
-        const G2 = D + B;
-        const F = G2 - C;
-        const H = D - B;
-        const X3 = modP(E * F);
-        const Y3 = modP(G2 * H);
-        const T3 = modP(E * H);
-        const Z3 = modP(F * G2);
-        return new Point(X3, Y3, Z3, T3);
-      }
-      // Fast algo for adding 2 Extended Points.
-      // https://hyperelliptic.org/EFD/g1p/auto-twisted-extended.html#addition-add-2008-hwcd
-      // Cost: 9M + 1*a + 1*d + 7add.
-      add(other) {
-        assertPoint(other);
-        const { a, d } = CURVE;
-        const { ex: X1, ey: Y1, ez: Z1, et: T1 } = this;
-        const { ex: X2, ey: Y2, ez: Z2, et: T2 } = other;
-        if (a === BigInt(-1)) {
-          const A2 = modP((Y1 - X1) * (Y2 + X2));
-          const B2 = modP((Y1 + X1) * (Y2 - X2));
-          const F2 = modP(B2 - A2);
-          if (F2 === _0n4)
-            return this.double();
-          const C2 = modP(Z1 * _2n3 * T2);
-          const D2 = modP(T1 * _2n3 * Z2);
-          const E2 = D2 + C2;
-          const G3 = B2 + A2;
-          const H2 = D2 - C2;
-          const X32 = modP(E2 * F2);
-          const Y32 = modP(G3 * H2);
-          const T32 = modP(E2 * H2);
-          const Z32 = modP(F2 * G3);
-          return new Point(X32, Y32, Z32, T32);
-        }
-        const A = modP(X1 * X2);
-        const B = modP(Y1 * Y2);
-        const C = modP(T1 * d * T2);
-        const D = modP(Z1 * Z2);
-        const E = modP((X1 + Y1) * (X2 + Y2) - A - B);
-        const F = D - C;
-        const G2 = D + C;
-        const H = modP(B - a * A);
-        const X3 = modP(E * F);
-        const Y3 = modP(G2 * H);
-        const T3 = modP(E * H);
-        const Z3 = modP(F * G2);
-        return new Point(X3, Y3, Z3, T3);
-      }
-      subtract(other) {
-        return this.add(other.negate());
-      }
-      wNAF(n) {
-        return wnaf.wNAFCached(this, n, Point.normalizeZ);
-      }
-      // Constant-time multiplication.
-      multiply(scalar) {
-        const n = scalar;
-        aInRange("scalar", n, _1n4, CURVE_ORDER);
-        const { p, f } = this.wNAF(n);
-        return Point.normalizeZ([p, f])[0];
-      }
-      // Non-constant-time multiplication. Uses double-and-add algorithm.
-      // It's faster, but should only be used when you don't care about
-      // an exposed private key e.g. sig verification.
-      // Does NOT allow scalars higher than CURVE.n.
-      // Accepts optional accumulator to merge with multiply (important for sparse scalars)
-      multiplyUnsafe(scalar, acc = Point.ZERO) {
-        const n = scalar;
-        aInRange("scalar", n, _0n4, CURVE_ORDER);
-        if (n === _0n4)
-          return I;
-        if (this.is0() || n === _1n4)
-          return this;
-        return wnaf.wNAFCachedUnsafe(this, n, Point.normalizeZ, acc);
-      }
-      // Checks if point is of small order.
-      // If you add something to small order point, you will have "dirty"
-      // point with torsion component.
-      // Multiplies point by cofactor and checks if the result is 0.
-      isSmallOrder() {
-        return this.multiplyUnsafe(cofactor).is0();
-      }
-      // Multiplies point by curve order and checks if the result is 0.
-      // Returns `false` is the point is dirty.
-      isTorsionFree() {
-        return wnaf.unsafeLadder(this, CURVE_ORDER).is0();
-      }
-      // Converts Extended point to default (x, y) coordinates.
-      // Can accept precomputed Z^-1 - for example, from invertBatch.
-      toAffine(iz) {
-        return toAffineMemo(this, iz);
-      }
-      clearCofactor() {
-        const { h: cofactor2 } = CURVE;
-        if (cofactor2 === _1n4)
-          return this;
-        return this.multiplyUnsafe(cofactor2);
-      }
-      // Converts hash string or Uint8Array to Point.
-      // Uses algo from RFC8032 5.1.3.
-      static fromHex(hex, zip215 = false) {
-        const { d, a } = CURVE;
-        const len = Fp2.BYTES;
-        hex = ensureBytes("pointHex", hex, len);
-        abool("zip215", zip215);
-        const normed = hex.slice();
-        const lastByte = hex[len - 1];
-        normed[len - 1] = lastByte & ~128;
-        const y = bytesToNumberLE(normed);
-        const max = zip215 ? MASK : Fp2.ORDER;
-        aInRange("pointHex.y", y, _0n4, max);
-        const y2 = modP(y * y);
-        const u = modP(y2 - _1n4);
-        const v = modP(d * y2 - a);
-        let { isValid, value: x } = uvRatio2(u, v);
-        if (!isValid)
-          throw new Error("Point.fromHex: invalid y coordinate");
-        const isXOdd = (x & _1n4) === _1n4;
-        const isLastByteOdd = (lastByte & 128) !== 0;
-        if (!zip215 && x === _0n4 && isLastByteOdd)
-          throw new Error("Point.fromHex: x=0 and x_0=1");
-        if (isLastByteOdd !== isXOdd)
-          x = modP(-x);
-        return Point.fromAffine({ x, y });
-      }
-      static fromPrivateKey(privKey) {
-        return getExtendedPublicKey(privKey).point;
-      }
-      toRawBytes() {
-        const { x, y } = this.toAffine();
-        const bytes = numberToBytesLE(y, Fp2.BYTES);
-        bytes[bytes.length - 1] |= x & _1n4 ? 128 : 0;
-        return bytes;
-      }
-      toHex() {
-        return bytesToHex(this.toRawBytes());
-      }
-    }
-    Point.BASE = new Point(CURVE.Gx, CURVE.Gy, _1n4, modP(CURVE.Gx * CURVE.Gy));
-    Point.ZERO = new Point(_0n4, _1n4, _1n4, _0n4);
-    const { BASE: G, ZERO: I } = Point;
-    const wnaf = wNAF(Point, nByteLength * 8);
-    function modN(a) {
-      return mod(a, CURVE_ORDER);
-    }
-    __name(modN, "modN");
-    function modN_LE(hash) {
-      return modN(bytesToNumberLE(hash));
-    }
-    __name(modN_LE, "modN_LE");
-    function getExtendedPublicKey(key) {
-      const len = Fp2.BYTES;
-      key = ensureBytes("private key", key, len);
-      const hashed = ensureBytes("hashed private key", cHash(key), 2 * len);
-      const head = adjustScalarBytes2(hashed.slice(0, len));
-      const prefix = hashed.slice(len, 2 * len);
-      const scalar = modN_LE(head);
-      const point = G.multiply(scalar);
-      const pointBytes = point.toRawBytes();
-      return { head, prefix, scalar, point, pointBytes };
-    }
-    __name(getExtendedPublicKey, "getExtendedPublicKey");
-    function getPublicKey(privKey) {
-      return getExtendedPublicKey(privKey).pointBytes;
-    }
-    __name(getPublicKey, "getPublicKey");
-    function hashDomainToScalar(context = new Uint8Array(), ...msgs) {
-      const msg = concatBytes(...msgs);
-      return modN_LE(cHash(domain(msg, ensureBytes("context", context), !!prehash)));
-    }
-    __name(hashDomainToScalar, "hashDomainToScalar");
-    function sign(msg, privKey, options = {}) {
-      msg = ensureBytes("message", msg);
-      if (prehash)
-        msg = prehash(msg);
-      const { prefix, scalar, pointBytes } = getExtendedPublicKey(privKey);
-      const r = hashDomainToScalar(options.context, prefix, msg);
-      const R = G.multiply(r).toRawBytes();
-      const k = hashDomainToScalar(options.context, R, pointBytes, msg);
-      const s = modN(r + k * scalar);
-      aInRange("signature.s", s, _0n4, CURVE_ORDER);
-      const res = concatBytes(R, numberToBytesLE(s, Fp2.BYTES));
-      return ensureBytes("result", res, Fp2.BYTES * 2);
-    }
-    __name(sign, "sign");
-    const verifyOpts = VERIFY_DEFAULT;
-    function verify(sig, msg, publicKey, options = verifyOpts) {
-      const { context, zip215 } = options;
-      const len = Fp2.BYTES;
-      sig = ensureBytes("signature", sig, 2 * len);
-      msg = ensureBytes("message", msg);
-      publicKey = ensureBytes("publicKey", publicKey, len);
-      if (zip215 !== void 0)
-        abool("zip215", zip215);
-      if (prehash)
-        msg = prehash(msg);
-      const s = bytesToNumberLE(sig.slice(len, 2 * len));
-      let A, R, SB;
-      try {
-        A = Point.fromHex(publicKey, zip215);
-        R = Point.fromHex(sig.slice(0, len), zip215);
-        SB = G.multiplyUnsafe(s);
-      } catch (error) {
-        return false;
-      }
-      if (!zip215 && A.isSmallOrder())
-        return false;
-      const k = hashDomainToScalar(context, R.toRawBytes(), A.toRawBytes(), msg);
-      const RkA = R.add(A.multiplyUnsafe(k));
-      return RkA.subtract(SB).clearCofactor().equals(Point.ZERO);
-    }
-    __name(verify, "verify");
-    G._setWindowSize(8);
-    const utils = {
-      getExtendedPublicKey,
-      // ed25519 private keys are uniform 32b. No need to check for modulo bias, like in secp256k1.
-      randomPrivateKey: /* @__PURE__ */ __name(() => randomBytes2(Fp2.BYTES), "randomPrivateKey"),
-      /**
-       * We're doing scalar multiplication (used in getPublicKey etc) with precomputed BASE_POINT
-       * values. This slows down first getPublicKey() by milliseconds (see Speed section),
-       * but allows to speed-up subsequent getPublicKey() calls up to 20x.
-       * @param windowSize 2, 4, 8, 16
-       */
-      precompute(windowSize = 8, point = Point.BASE) {
-        point._setWindowSize(windowSize);
-        point.multiply(BigInt(3));
-        return point;
-      }
-    };
-    return {
-      CURVE,
-      getPublicKey,
-      sign,
-      verify,
-      ExtendedPoint: Point,
-      utils
-    };
-  }
-  __name(twistedEdwards, "twistedEdwards");
-
-  // ../../node_modules/@noble/curves/esm/ed25519.js
-  var ED25519_P = BigInt("57896044618658097711785492504343953926634992332820282019728792003956564819949");
-  var ED25519_SQRT_M1 = /* @__PURE__ */ BigInt("19681161376707505956807079304988542015446066515923890162744021073123829784752");
-  var _0n5 = BigInt(0);
-  var _1n5 = BigInt(1);
-  var _2n4 = BigInt(2);
-  var _3n2 = BigInt(3);
-  var _5n2 = BigInt(5);
-  var _8n3 = BigInt(8);
-  function ed25519_pow_2_252_3(x) {
-    const _10n = BigInt(10), _20n = BigInt(20), _40n = BigInt(40), _80n = BigInt(80);
-    const P = ED25519_P;
-    const x2 = x * x % P;
-    const b2 = x2 * x % P;
-    const b4 = pow2(b2, _2n4, P) * b2 % P;
-    const b5 = pow2(b4, _1n5, P) * x % P;
-    const b10 = pow2(b5, _5n2, P) * b5 % P;
-    const b20 = pow2(b10, _10n, P) * b10 % P;
-    const b40 = pow2(b20, _20n, P) * b20 % P;
-    const b80 = pow2(b40, _40n, P) * b40 % P;
-    const b160 = pow2(b80, _80n, P) * b80 % P;
-    const b240 = pow2(b160, _80n, P) * b80 % P;
-    const b250 = pow2(b240, _10n, P) * b10 % P;
-    const pow_p_5_8 = pow2(b250, _2n4, P) * x % P;
-    return { pow_p_5_8, b2 };
-  }
-  __name(ed25519_pow_2_252_3, "ed25519_pow_2_252_3");
-  function adjustScalarBytes(bytes) {
-    bytes[0] &= 248;
-    bytes[31] &= 127;
-    bytes[31] |= 64;
-    return bytes;
-  }
-  __name(adjustScalarBytes, "adjustScalarBytes");
-  function uvRatio(u, v) {
-    const P = ED25519_P;
-    const v3 = mod(v * v * v, P);
-    const v7 = mod(v3 * v3 * v, P);
-    const pow3 = ed25519_pow_2_252_3(u * v7).pow_p_5_8;
-    let x = mod(u * v3 * pow3, P);
-    const vx2 = mod(v * x * x, P);
-    const root1 = x;
-    const root2 = mod(x * ED25519_SQRT_M1, P);
-    const useRoot1 = vx2 === u;
-    const useRoot2 = vx2 === mod(-u, P);
-    const noRoot = vx2 === mod(-u * ED25519_SQRT_M1, P);
-    if (useRoot1)
-      x = root1;
-    if (useRoot2 || noRoot)
-      x = root2;
-    if (isNegativeLE(x, P))
-      x = mod(-x, P);
-    return { isValid: useRoot1 || useRoot2, value: x };
-  }
-  __name(uvRatio, "uvRatio");
-  var Fp = /* @__PURE__ */ (() => Field(ED25519_P, void 0, true))();
-  var ed25519Defaults = /* @__PURE__ */ (() => ({
-    // Param: a
-    a: BigInt(-1),
-    // Fp.create(-1) is proper; our way still works and is faster
-    // d is equal to -121665/121666 over finite field.
-    // Negative number is P - number, and division is invert(number, P)
-    d: BigInt("37095705934669439343138083508754565189542113879843219016388785533085940283555"),
-    // Finite field 𝔽p over which we'll do calculations; 2n**255n - 19n
-    Fp,
-    // Subgroup order: how many points curve has
-    // 2n**252n + 27742317777372353535851937790883648493n;
-    n: BigInt("7237005577332262213973186563042994240857116359379907606001950938285454250989"),
-    // Cofactor
-    h: _8n3,
-    // Base point (x, y) aka generator point
-    Gx: BigInt("15112221349535400772501151409588531511454012693041857206046113283949847762202"),
-    Gy: BigInt("46316835694926478169428394003475163141307993866256225615783033603165251855960"),
-    hash: sha512,
-    randomBytes,
-    adjustScalarBytes,
-    // dom2
-    // Ratio of u to v. Allows us to combine inversion and square root. Uses algo from RFC8032 5.1.3.
-    // Constant-time, u/√v
-    uvRatio
-  }))();
-  var ed25519 = /* @__PURE__ */ (() => twistedEdwards(ed25519Defaults))();
-
-  // ../../node_modules/@meer-js/crypto/dist/esm/crypto/src/key_pair_ed25519.js
-  var import_randombytes = __toESM(require_randombytes(), 1);
-  var KeyPairEd25519 = class _KeyPairEd25519 extends KeyPairBase {
-    static {
-      __name(this, "KeyPairEd25519");
-    }
-    secretKey;
-    extendedSecretKey;
-    publicKey;
-    constructor(extendedSecretKey) {
-      super();
-      const decoded = baseDecode(extendedSecretKey);
-      const secretKey = new Uint8Array(decoded.slice(0, KeySize.SECRET_KEY));
-      const publicKey = ed25519.getPublicKey(new Uint8Array(secretKey));
-      this.publicKey = { keyType: KeyType.ED25519, data: publicKey };
-      this.secretKey = baseEncode(secretKey);
-      this.extendedSecretKey = extendedSecretKey;
-    }
-    // Static factory method should remain public
-    static fromRandom() {
-      const secretKey = (0, import_randombytes.default)(KeySize.SECRET_KEY);
-      const publicKey = ed25519.getPublicKey(new Uint8Array(secretKey));
-      const extendedSecretKey = new Uint8Array([...secretKey, ...publicKey]);
-      return new _KeyPairEd25519(baseEncode(extendedSecretKey));
-    }
-    // These methods should be public as they're core functionality
-    sign(message2) {
-      const signature = ed25519.sign(message2, baseDecode(this.secretKey));
-      return { signature, publicKey: this.publicKey };
-    }
-    verify(message2, signature) {
-      if (this.publicKey?.verify) {
-        return this.publicKey.verify(message2, signature);
-      }
-      throw new Error("Public key or verify method is not defined.");
-    }
-    // These should be public as they're part of the interface
-    toString() {
-      return `ed25519:${this.extendedSecretKey}`;
-    }
-    getPublicKey() {
-      return this.publicKey;
-    }
-  };
-
-  // ../../node_modules/@meer-js/crypto/dist/esm/crypto/src/key_pair_secp256k1.js
-  var import_secp256k1 = __toESM(require_secp256k12(), 1);
-  var import_randombytes2 = __toESM(require_randombytes(), 1);
-  var KeyPairSecp256k1 = class _KeyPairSecp256k1 extends KeyPairBase {
-    static {
-      __name(this, "KeyPairSecp256k1");
-    }
-    publicKey;
-    secretKey;
-    extendedSecretKey;
-    /**
-     * Construct an instance of key pair given a secret key.
-     * It's generally assumed that these are encoded in base58.
-     * @param {string} extendedSecretKey
-     */
-    constructor(extendedSecretKey) {
-      super();
-      const decoded = baseDecode(extendedSecretKey);
-      const secretKey = new Uint8Array(decoded.slice(0, KeySize.SECRET_KEY));
-      const withHeader = import_secp256k1.default.publicKeyCreate(new Uint8Array(secretKey), false);
-      const data = withHeader.subarray(1, withHeader.length);
-      this.publicKey = {
-        keyType: KeyType.SECP256K1,
-        data
-      };
-      this.secretKey = baseEncode(secretKey);
-      this.extendedSecretKey = extendedSecretKey;
-    }
-    /**
-     * Generate a new random keypair.
-     * @example
-     * const keyRandom = KeyPair.fromRandom();
-     * keyRandom.publicKey
-     * // returns [PUBLIC_KEY]
-     *
-     * keyRandom.secretKey
-     * // returns [SECRET_KEY]
-     */
-    static fromRandom() {
-      const secretKey = (0, import_randombytes2.default)(KeySize.SECRET_KEY);
-      const withHeader = import_secp256k1.default.publicKeyCreate(new Uint8Array(secretKey), false);
-      const publicKey = withHeader.subarray(1, withHeader.length);
-      const extendedSecretKey = new Uint8Array([...secretKey, ...publicKey]);
-      return new _KeyPairSecp256k1(baseEncode(extendedSecretKey));
-    }
-    sign(message2) {
-      const { signature, recid } = import_secp256k1.default.ecdsaSign(message2, baseDecode(this.secretKey));
-      return { signature: new Uint8Array([...signature, recid]), publicKey: this.publicKey };
-    }
-    verify(message2, signature) {
-      if (this.publicKey?.verify) {
-        return this.publicKey.verify(message2, signature);
-      } else {
-        throw new Error("Public key or verify method is not defined.");
-      }
-    }
-    toString() {
-      return `secp256k1:${this.extendedSecretKey}`;
-    }
-    getPublicKey() {
-      return this.publicKey;
-    }
-  };
-
-  // ../../node_modules/@meer-js/crypto/dist/esm/crypto/src/key_pair.js
-  var KeyPair = class extends KeyPairBase {
-    static {
-      __name(this, "KeyPair");
-    }
-    /**
-     * @param curve Name of elliptical curve, case-insensitive
-     * @returns Random KeyPair based on the curve
-     */
-    static fromRandom(curve) {
-      switch (curve.toUpperCase()) {
-        case "ED25519":
-          return KeyPairEd25519.fromRandom();
-        case "SECP256K1":
-          return KeyPairSecp256k1.fromRandom();
-        default:
-          throw new Error(`Unknown curve ${curve}`);
-      }
-    }
-    /**
-     * Creates a key pair from an encoded key string.
-     * @param encodedKey The encoded key string.
-     * @returns {KeyPair} The key pair created from the encoded key string.
-     */
-    static fromString(encodedKey) {
-      const parts = encodedKey.split(":");
-      if (parts.length === 2) {
-        switch (parts[0].toUpperCase()) {
-          case "ED25519":
-            return new KeyPairEd25519(parts[1]);
-          case "SECP256K1":
-            return new KeyPairSecp256k1(parts[1]);
-          default:
-            throw new Error(`Unknown curve: ${parts[0]}`);
-        }
-      } else {
-        throw new Error("Invalid encoded key format, must be <curve>:<encoded key>");
-      }
-    }
-  };
-
-  // ../../node_modules/@meer-js/crypto/dist/esm/crypto/src/public_key.js
-  var import_secp256k12 = __toESM(require_secp256k12(), 1);
-  function strToKeyType(keyType) {
-    switch (keyType.toLowerCase()) {
-      case "ed25519":
-        return KeyType.ED25519;
-      case "secp256k1":
-        return KeyType.SECP256K1;
-      default:
-        throw new Error(`Unknown key type ${keyType}`);
-    }
-  }
-  __name(strToKeyType, "strToKeyType");
-  function publicKeyFrom(value) {
-    if (typeof value === "string") {
-      return publicKeyFromString(value);
-    }
-    return value;
-  }
-  __name(publicKeyFrom, "publicKeyFrom");
-  function publicKeyFromString(encodedKey) {
-    const parts = encodedKey.split(":");
-    let publicKeyPart;
-    let keyType;
-    if (parts.length === 1) {
-      publicKeyPart = parts[0];
-    } else if (parts.length === 2) {
-      keyType = strToKeyType(parts[0]);
-      publicKeyPart = parts[1];
-    } else {
-      throw new Error("Invalid encoded key format, must be <curve>:<encoded key>");
-    }
-    const decodedPublicKey = baseDecode(publicKeyPart);
-    if (!keyType) {
-      keyType = decodedPublicKey.length === KeySize.SECP256k1_PUBLIC_KEY ? KeyType.SECP256K1 : KeyType.ED25519;
-    }
-    const expectedKeySize = keyType === KeyType.ED25519 ? KeySize.ED25519_PUBLIC_KEY : KeySize.SECP256k1_PUBLIC_KEY;
-    if (decodedPublicKey.length !== expectedKeySize) {
-      throw new Error(`Invalid public key size (${decodedPublicKey.length}), must be ${expectedKeySize}`);
-    }
-    return { keyType, data: decodedPublicKey };
-  }
-  __name(publicKeyFromString, "publicKeyFromString");
-
-  // ../../node_modules/@meer-js/keystores/dist/esm/keystores/src/keystore.js
-  var KeyStore = class {
-    static {
-      __name(this, "KeyStore");
-    }
-  };
-
-  // ../../node_modules/@meer-js/keystores/dist/esm/keystores/src/in_memory_key_store.js
-  var InMemoryKeyStore = class extends KeyStore {
-    static {
-      __name(this, "InMemoryKeyStore");
-    }
-    /** @hidden */
-    keys;
-    constructor() {
-      super();
-      this.keys = {};
-    }
-    /**
-     * Stores a {@link KeyPair} in in-memory storage item
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     * @param keyPair The key pair to store in local storage
-     */
-    async setKey(networkId, accountId, keyPair) {
-      this.keys[`${accountId}:${networkId}`] = keyPair.toString();
-    }
-    /**
-     * Gets a {@link KeyPair} from in-memory storage
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     * @returns {Promise<KeyPair>}
-     */
-    async getKey(networkId, accountId) {
-      const value = this.keys[`${accountId}:${networkId}`];
-      if (!value) {
-        return null;
-      }
-      return KeyPair.fromString(value);
-    }
-    /**
-     * Removes a {@link KeyPair} from in-memory storage
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     */
-    async removeKey(networkId, accountId) {
-      delete this.keys[`${accountId}:${networkId}`];
-    }
-    /**
-     * Removes all {@link KeyPair} from in-memory storage
-     */
-    async clear() {
-      this.keys = {};
-    }
-    /**
-     * Get the network(s) from in-memory storage
-     * @returns {Promise<string[]>}
-     */
-    async getNetworks() {
-      const result = /* @__PURE__ */ new Set();
-      Object.keys(this.keys).forEach((key) => {
-        const parts = key.split(":");
-        result.add(parts[1]);
-      });
-      return Array.from(result.values());
-    }
-    /**
-     * Gets the account(s) from in-memory storage
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     */
-    async getAccounts(networkId) {
-      const result = new Array();
-      Object.keys(this.keys).forEach((key) => {
-        const parts = key.split(":");
-        if (parts[parts.length - 1] === networkId) {
-          result.push(parts.slice(0, parts.length - 1).join(":"));
-        }
-      });
-      return result;
-    }
-    /** @hidden */
-    toString() {
-      return "InMemoryKeyStore";
-    }
-  };
-
-  // ../../node_modules/@meer-js/keystores/dist/esm/keystores/src/merge_key_store.js
-  var MergeKeyStore = class extends KeyStore {
-    static {
-      __name(this, "MergeKeyStore");
-    }
-    options;
-    keyStores;
-    /**
-     * @param keyStores read calls are attempted from start to end of array
-     * @param options KeyStore options
-     * @param options.writeKeyStoreIndex the keystore index that will receive all write calls
-     */
-    constructor(keyStores, options = { writeKeyStoreIndex: 0 }) {
-      super();
-      this.options = options;
-      this.keyStores = keyStores;
-    }
-    /**
-     * Store a {@link KeyPair} to the first index of a key store array
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     * @param keyPair The key pair to store in local storage
-     */
-    async setKey(networkId, accountId, keyPair) {
-      await this.keyStores[this.options.writeKeyStoreIndex].setKey(networkId, accountId, keyPair);
-    }
-    /**
-     * Gets a {@link KeyPair} from the array of key stores
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     * @returns {Promise<KeyPair>}
-     */
-    async getKey(networkId, accountId) {
-      for (const keyStore of this.keyStores) {
-        const keyPair = await keyStore.getKey(networkId, accountId);
-        if (keyPair) {
-          return keyPair;
-        }
-      }
-      return null;
-    }
-    /**
-     * Removes a {@link KeyPair} from the array of key stores
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     */
-    async removeKey(networkId, accountId) {
-      for (const keyStore of this.keyStores) {
-        await keyStore.removeKey(networkId, accountId);
-      }
-    }
-    /**
-     * Removes all items from each key store
-     */
-    async clear() {
-      for (const keyStore of this.keyStores) {
-        await keyStore.clear();
-      }
-    }
-    /**
-     * Get the network(s) from the array of key stores
-     * @returns {Promise<string[]>}
-     */
-    async getNetworks() {
-      const result = /* @__PURE__ */ new Set();
-      for (const keyStore of this.keyStores) {
-        for (const network of await keyStore.getNetworks()) {
-          result.add(network);
-        }
-      }
-      return Array.from(result);
-    }
-    /**
-     * Gets the account(s) from the array of key stores
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     */
-    async getAccounts(networkId) {
-      const result = /* @__PURE__ */ new Set();
-      for (const keyStore of this.keyStores) {
-        for (const account of await keyStore.getAccounts(networkId)) {
-          result.add(account);
-        }
-      }
-      return Array.from(result);
-    }
-    /** @hidden */
-    toString() {
-      return `MergeKeyStore(${this.keyStores.join(", ")})`;
-    }
-  };
-
-  // ../../node_modules/@meer-js/keystores-browser/dist/esm/keystores-browser/src/browser_local_storage_key_store.js
-  var LOCAL_STORAGE_KEY_PREFIX = "meer-api-js:keystore:";
-  var BrowserLocalStorageKeyStore = class extends KeyStore {
-    static {
-      __name(this, "BrowserLocalStorageKeyStore");
-    }
-    /** @hidden */
-    localStorage;
-    /** @hidden */
-    prefix;
-    /**
-     * @param localStorage defaults to window.localStorage
-     * @param prefix defaults to `meer-api-js:keystore:`
-     */
-    constructor(localStorage2 = window.localStorage, prefix = LOCAL_STORAGE_KEY_PREFIX) {
-      super();
-      this.localStorage = localStorage2;
-      this.prefix = prefix;
-    }
-    /**
-     * Stores a {@link KeyPair} in local storage.
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     * @param keyPair The key pair to store in local storage
-     */
-    async setKey(networkId, accountId, keyPair) {
-      this.localStorage.setItem(this.storageKeyForSecretKey(networkId, accountId), keyPair.toString());
-    }
-    /**
-     * Gets a {@link KeyPair} from local storage
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     * @returns {Promise<KeyPair>}
-     */
-    async getKey(networkId, accountId) {
-      const value = this.localStorage.getItem(this.storageKeyForSecretKey(networkId, accountId));
-      if (!value) {
-        return null;
-      }
-      return KeyPair.fromString(value);
-    }
-    /**
-     * Removes a {@link KeyPair} from local storage
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the key pair
-     */
-    async removeKey(networkId, accountId) {
-      this.localStorage.removeItem(this.storageKeyForSecretKey(networkId, accountId));
-    }
-    /**
-     * Removes all items that start with `prefix` from local storage
-     */
-    async clear() {
-      for (const key of this.storageKeys()) {
-        if (key.startsWith(this.prefix)) {
-          this.localStorage.removeItem(key);
-        }
-      }
-    }
-    /**
-     * Get the network(s) from local storage
-     * @returns {Promise<string[]>}
-     */
-    async getNetworks() {
-      const result = /* @__PURE__ */ new Set();
-      for (const key of this.storageKeys()) {
-        if (key.startsWith(this.prefix)) {
-          const parts = key.substring(this.prefix.length).split(":");
-          result.add(parts[1]);
-        }
-      }
-      return Array.from(result.values());
-    }
-    /**
-     * Gets the account(s) from local storage
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     */
-    async getAccounts(networkId) {
-      const result = new Array();
-      for (const key of this.storageKeys()) {
-        if (key.startsWith(this.prefix)) {
-          const parts = key.substring(this.prefix.length).split(":");
-          if (parts[1] === networkId) {
-            result.push(parts[0]);
-          }
-        }
-      }
-      return result;
-    }
-    /**
-     * @hidden
-     * Helper function to retrieve a local storage key
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account tied to the storage key that's sought
-     * @returns {string} An example might be: `meer-api-js:keystore:near-friend:default`
-     */
-    storageKeyForSecretKey(networkId, accountId) {
-      return `${this.prefix}${accountId}:${networkId}`;
-    }
-    /** @hidden */
-    *storageKeys() {
-      for (let i = 0; i < this.localStorage.length; i++) {
-        yield this.localStorage.key(i);
-      }
-    }
-  };
-
-  // ../../node_modules/@meer-js/providers/dist/esm/providers/src/exponential-backoff.js
-  async function exponentialBackoff(startWaitTime, retryNumber, waitBackoff, getResult) {
-    let waitTime = startWaitTime;
-    for (let i = 0; i < retryNumber; i++) {
-      const result = await getResult();
-      if (result) {
-        return result;
-      }
-      await sleep(waitTime);
-      waitTime *= waitBackoff;
-    }
-    return null;
-  }
-  __name(exponentialBackoff, "exponentialBackoff");
-  function sleep(millis) {
-    return new Promise((resolve) => setTimeout(resolve, millis));
-  }
-  __name(sleep, "sleep");
-
-  // ../../node_modules/@meer-js/transactions/dist/esm/transactions/src/actions.js
-  var FunctionCallPermission = class {
-    static {
-      __name(this, "FunctionCallPermission");
-    }
-    allowance;
-    receiverId;
-    methodNames;
-    constructor({ allowance, receiverId, methodNames }) {
-      this.allowance = allowance;
-      this.receiverId = receiverId;
-      this.methodNames = methodNames;
-    }
-  };
-  var FullAccessPermission = class {
-    static {
-      __name(this, "FullAccessPermission");
-    }
-  };
-  var AccessKeyPermission = class extends Enum {
-    static {
-      __name(this, "AccessKeyPermission");
-    }
-    enum;
-    functionCall;
-    fullAccess;
-    constructor(props) {
-      super(props);
-      for (const [k, v] of Object.entries(props || {})) {
-        this[k] = v;
-        this.enum = k;
-      }
-    }
-  };
-  var AccessKey = class {
-    static {
-      __name(this, "AccessKey");
-    }
-    nonce;
-    permission;
-    constructor({ nonce, permission }) {
-      this.nonce = nonce;
-      this.permission = permission;
-    }
-  };
-  var CreateAccount = class {
-    static {
-      __name(this, "CreateAccount");
-    }
-  };
-  var DeployContract = class {
-    static {
-      __name(this, "DeployContract");
-    }
-    code;
-    constructor({ code }) {
-      this.code = code;
-    }
-  };
-  var FunctionCall = class {
-    static {
-      __name(this, "FunctionCall");
-    }
-    methodName;
-    args;
-    gas;
-    deposit;
-    constructor({ methodName, args: args2, gas, deposit }) {
-      this.methodName = methodName;
-      this.args = args2;
-      this.gas = gas;
-      this.deposit = deposit;
-    }
-  };
-  var Transfer = class {
-    static {
-      __name(this, "Transfer");
-    }
-    deposit;
-    constructor({ deposit }) {
-      this.deposit = deposit;
-    }
-  };
-  var Stake = class {
-    static {
-      __name(this, "Stake");
-    }
-    stake;
-    publicKey;
-    constructor({ stake: stake4, publicKey }) {
-      this.stake = stake4;
-      this.publicKey = publicKey;
-    }
-  };
-  var AddKey = class {
-    static {
-      __name(this, "AddKey");
-    }
-    publicKey;
-    accessKey;
-    constructor({ publicKey, accessKey }) {
-      this.publicKey = publicKey;
-      this.accessKey = accessKey;
-    }
-  };
-  var DeleteKey = class {
-    static {
-      __name(this, "DeleteKey");
-    }
-    publicKey;
-    constructor({ publicKey }) {
-      this.publicKey = publicKey;
-    }
-  };
-  var DeleteAccount = class {
-    static {
-      __name(this, "DeleteAccount");
-    }
-    beneficiaryId;
-    constructor({ beneficiaryId }) {
-      this.beneficiaryId = beneficiaryId;
-    }
-  };
-  var SignedDelegate = class {
-    static {
-      __name(this, "SignedDelegate");
-    }
-    delegateAction;
-    signature;
-    constructor({ delegateAction, signature }) {
-      this.delegateAction = delegateAction;
-      this.signature = signature;
-    }
-  };
-  var Action = class extends Enum {
-    static {
-      __name(this, "Action");
-    }
-    enum;
-    createAccount;
-    deployContract;
-    functionCall;
-    transfer;
-    stake;
-    addKey;
-    deleteKey;
-    deleteAccount;
-    signedDelegate;
-    constructor(props) {
-      super(props);
-      for (const [k, v] of Object.entries(props || {})) {
-        this[k] = v;
-        this.enum = k;
-      }
-    }
-  };
-
-  // ../../node_modules/@meer-js/transactions/dist/esm/transactions/src/action_creators.js
-  function fullAccessKey() {
-    return new AccessKey({
-      nonce: 0n,
-      permission: new AccessKeyPermission({
-        fullAccess: new FullAccessPermission()
-      })
-    });
-  }
-  __name(fullAccessKey, "fullAccessKey");
-  function functionCallAccessKey(receiverId, methodNames, allowance) {
-    return new AccessKey({
-      nonce: 0n,
-      permission: new AccessKeyPermission({
-        functionCall: new FunctionCallPermission({
-          receiverId,
-          allowance,
-          methodNames
-        })
-      })
-    });
-  }
-  __name(functionCallAccessKey, "functionCallAccessKey");
-  function createAccount() {
-    return new Action({ createAccount: new CreateAccount() });
-  }
-  __name(createAccount, "createAccount");
-  function deployContract(code) {
-    return new Action({ deployContract: new DeployContract({ code }) });
-  }
-  __name(deployContract, "deployContract");
-  function stringifyJsonOrBytes(args2) {
-    const isUint8Array = args2.byteLength !== void 0 && args2.byteLength === args2.length;
-    return isUint8Array ? args2 : Buffer.from(JSON.stringify(args2));
-  }
-  __name(stringifyJsonOrBytes, "stringifyJsonOrBytes");
-  function functionCall(methodName, args2, gas = 0n, deposit = 0n, stringify = stringifyJsonOrBytes, jsContract = false) {
-    console.log("alohanaj action creator functionCall", methodName, args2, gas, deposit);
-    if (jsContract) {
-      return new Action({
-        functionCall: new FunctionCall({ methodName, args: args2, gas, deposit })
-      });
-    }
-    console.log("alohanaj jic after jsContract thing");
-    return new Action({
-      functionCall: new FunctionCall({
-        methodName,
-        args: stringify(args2),
-        gas,
-        deposit
-      })
-    });
-  }
-  __name(functionCall, "functionCall");
-  function transfer(deposit = 0n) {
-    return new Action({ transfer: new Transfer({ deposit }) });
-  }
-  __name(transfer, "transfer");
-  function stake(stake4 = 0n, publicKey) {
-    return new Action({ stake: new Stake({ stake: stake4, publicKey }) });
-  }
-  __name(stake, "stake");
-  function addKey(publicKey, accessKey) {
-    return new Action({ addKey: new AddKey({ publicKey, accessKey }) });
-  }
-  __name(addKey, "addKey");
-  function deleteKey(publicKey) {
-    return new Action({ deleteKey: new DeleteKey({ publicKey }) });
-  }
-  __name(deleteKey, "deleteKey");
-  function deleteAccount(beneficiaryId) {
-    return new Action({ deleteAccount: new DeleteAccount({ beneficiaryId }) });
-  }
-  __name(deleteAccount, "deleteAccount");
-  function signedDelegate({ delegateAction, signature }) {
-    return new Action({
-      signedDelegate: new SignedDelegate({ delegateAction, signature })
-    });
-  }
-  __name(signedDelegate, "signedDelegate");
-  var actionCreators = {
-    addKey,
-    createAccount,
-    deleteAccount,
-    deleteKey,
-    deployContract,
-    fullAccessKey,
-    functionCall,
-    functionCallAccessKey,
-    signedDelegate,
-    stake,
-    transfer
-  };
-
-  // ../../node_modules/@meer-js/transactions/dist/esm/transactions/src/schema.js
-  function encodeDelegateAction(delegateAction) {
-    return new Uint8Array([
-      ...serialize(SCHEMA2.DelegateActionPrefix, {}),
-      ...serialize(SCHEMA2.DelegateAction, delegateAction)
-    ]);
-  }
-  __name(encodeDelegateAction, "encodeDelegateAction");
-  function encodeTransaction(transaction) {
-    const schema = "signature" in transaction ? SCHEMA2.SignedTransaction : SCHEMA2.Transaction;
-    return serialize(schema, transaction);
-  }
-  __name(encodeTransaction, "encodeTransaction");
-  function decodeTransaction(bytes) {
-    return deserialize(SCHEMA2.Transaction, bytes);
-  }
-  __name(decodeTransaction, "decodeTransaction");
-  function decodeSignedTransaction(bytes) {
-    return deserialize(SCHEMA2.SignedTransaction, bytes);
-  }
-  __name(decodeSignedTransaction, "decodeSignedTransaction");
-  var Transaction = class {
-    static {
-      __name(this, "Transaction");
-    }
-    signerId;
-    publicKey;
-    nonce;
-    receiverId;
-    actions;
-    blockHash;
-    constructor({ signerId, publicKey, nonce, receiverId, actions, blockHash }) {
-      this.signerId = signerId;
-      this.publicKey = publicKey;
-      this.nonce = nonce;
-      this.receiverId = receiverId;
-      this.actions = actions;
-      this.blockHash = blockHash;
-    }
-    encode() {
-      return encodeTransaction(this);
-    }
-    static decode(bytes) {
-      return decodeTransaction(bytes);
-    }
-  };
-  var SignedTransaction = class {
-    static {
-      __name(this, "SignedTransaction");
-    }
-    transaction;
-    signature;
-    constructor({ transaction, signature }) {
-      this.transaction = transaction;
-      this.signature = signature;
-    }
-    encode() {
-      return encodeTransaction(this.transaction);
-    }
-    static decode(bytes) {
-      return decodeSignedTransaction(bytes);
-    }
-  };
-  var SCHEMA2 = {
-    Ed25519Signature: {
-      struct: {
-        data: { array: { type: "u8", len: 64 } }
-      }
-    },
-    Secp256k1Signature: {
-      struct: {
-        data: { array: { type: "u8", len: 65 } }
-      }
-    },
-    Signature: {
-      enum: [
-        { struct: { ed25519Signature: "Ed25519Signature" } },
-        { struct: { secp256k1Signature: "Secp256k1Signature" } }
-      ]
-    },
-    Ed25519Data: {
-      struct: {
-        data: { array: { type: "u8", len: 32 } }
-      }
-    },
-    Secp256k1Data: {
-      struct: {
-        data: { array: { type: "u8", len: 64 } }
-      }
-    },
-    PublicKey: {
-      enum: [
-        { struct: { ed25519Key: "Ed25519Data" } },
-        { struct: { secp256k1Key: "Secp256k1Data" } }
-      ]
-    },
-    FunctionCallPermission: {
-      struct: {
-        allowance: { option: "u128" },
-        receiverId: "string",
-        methodNames: { array: { type: "string" } }
-      }
-    },
-    FullAccessPermission: {
-      struct: {}
-    },
-    AccessKeyPermission: {
-      enum: [
-        { struct: { functionCall: "FunctionCallPermission" } },
-        { struct: { fullAccess: "FullAccessPermission" } }
-      ]
-    },
-    AccessKey: {
-      struct: {
-        nonce: "u64",
-        permission: "AccessKeyPermission"
-      }
-    },
-    CreateAccount: {
-      struct: {}
-    },
-    DeployContract: {
-      struct: {
-        code: { array: { type: "u8" } }
-      }
-    },
-    FunctionCall: {
-      struct: {
-        methodName: "string",
-        args: { array: { type: "u8" } },
-        gas: "u64",
-        deposit: "u128"
-      }
-    },
-    Transfer: {
-      struct: {
-        deposit: "u128"
-      }
-    },
-    Stake: {
-      struct: {
-        stake: "u128",
-        publicKey: "PublicKey"
-      }
-    },
-    AddKey: {
-      struct: {
-        publicKey: "PublicKey",
-        accessKey: "AccessKey"
-      }
-    },
-    DeleteKey: {
-      struct: {
-        publicKey: "PublicKey"
-      }
-    },
-    DeleteAccount: {
-      struct: {
-        beneficiaryId: "string"
-      }
-    },
-    DelegateActionPrefix: {
-      struct: {
-        prefix: "u32"
-      }
-    },
-    ClassicActions: {
-      enum: [
-        { struct: { createAccount: "CreateAccount" } },
-        { struct: { deployContract: "DeployContract" } },
-        { struct: { functionCall: "FunctionCall" } },
-        { struct: { transfer: "Transfer" } },
-        { struct: { stake: "Stake" } },
-        { struct: { addKey: "AddKey" } },
-        { struct: { deleteKey: "DeleteKey" } },
-        { struct: { deleteAccount: "DeleteAccount" } }
-      ]
-    },
-    DelegateAction: {
-      struct: {
-        senderId: "string",
-        receiverId: "string",
-        actions: { array: { type: "ClassicActions" } },
-        nonce: "u64",
-        maxBlockHeight: "u64",
-        publicKey: "PublicKey"
-      }
-    },
-    SignedDelegate: {
-      struct: {
-        delegateAction: "DelegateAction",
-        signature: "Signature"
-      }
-    },
-    Action: {
-      enum: [
-        { struct: { createAccount: "CreateAccount" } },
-        { struct: { deployContract: "DeployContract" } },
-        { struct: { functionCall: "FunctionCall" } },
-        { struct: { transfer: "Transfer" } },
-        { struct: { stake: "Stake" } },
-        { struct: { addKey: "AddKey" } },
-        { struct: { deleteKey: "DeleteKey" } },
-        { struct: { deleteAccount: "DeleteAccount" } },
-        { struct: { signedDelegate: "SignedDelegate" } }
-      ]
-    },
-    Transaction: {
-      struct: {
-        signerId: "string",
-        publicKey: "PublicKey",
-        nonce: "u64",
-        receiverId: "string",
-        blockHash: { array: { type: "u8", len: 32 } },
-        actions: { array: { type: "Action" } }
-      }
-    },
-    SignedTransaction: {
-      struct: {
-        transaction: "Transaction",
-        signature: "Signature"
-      }
-    }
-  };
-
-  // ../../node_modules/@meer-js/transactions/dist/esm/transactions/src/create_transaction.js
-  function createTransaction(signerId, publicKey, receiverId, nonce, actions, blockHash) {
-    const txNonce = typeof nonce === "bigint" ? nonce : BigInt(nonce);
-    return new Transaction({
-      signerId,
-      publicKey,
-      nonce: txNonce,
-      receiverId,
-      actions,
-      blockHash
-    });
-  }
-  __name(createTransaction, "createTransaction");
-
-  // ../../node_modules/@meer-js/transactions/dist/esm/transactions/src/delegate.js
-  var DelegateAction = class {
-    static {
-      __name(this, "DelegateAction");
-    }
-    senderId;
-    receiverId;
-    actions;
-    nonce;
-    maxBlockHeight;
-    publicKey;
-    constructor({ senderId, receiverId, actions, nonce, maxBlockHeight, publicKey }) {
-      this.senderId = senderId;
-      this.receiverId = receiverId;
-      this.actions = actions;
-      this.nonce = nonce;
-      this.maxBlockHeight = maxBlockHeight;
-      this.publicKey = publicKey;
-    }
-  };
-  var { addKey: addKey2, createAccount: createAccount2, deleteAccount: deleteAccount2, deleteKey: deleteKey2, deployContract: deployContract2, functionCall: functionCall2, stake: stake2, transfer: transfer2 } = actionCreators;
-  function buildDelegateAction({ actions, maxBlockHeight, nonce, publicKey, receiverId, senderId }) {
-    return new DelegateAction({
-      senderId,
-      receiverId,
-      actions: actions.map((a) => {
-        if (!a.type && !a.params) {
-          return a;
-        }
-        switch (a.type) {
-          case "AddKey": {
-            const { publicKey: publicKey2, accessKey } = a.params;
-            return addKey2(publicKey2, accessKey);
-          }
-          case "CreateAccount": {
-            return createAccount2(a.params.createAccount);
-          }
-          case "DeleteAccount": {
-            return deleteAccount2(a.params.deleteAccount);
-          }
-          case "DeleteKey": {
-            return deleteKey2(a.params.publicKey);
-          }
-          case "DeployContract": {
-            return deployContract2(a.params.code);
-          }
-          case "FunctionCall": {
-            const { methodName, args: args2, gas, deposit } = a.params;
-            return functionCall2(methodName, args2, gas, deposit);
-          }
-          case "Stake": {
-            return stake2(a.params.stake, a.params.publicKey);
-          }
-          case "Transfer": {
-            const { deposit } = a.params;
-            return transfer2(deposit);
-          }
-        }
-        throw new Error("Unrecognized action");
-      }),
-      nonce,
-      maxBlockHeight,
-      publicKey
-    });
-  }
-  __name(buildDelegateAction, "buildDelegateAction");
-
-  // ../../node_modules/@noble/hashes/esm/_assert.js
-  function isBytes3(a) {
-    return a instanceof Uint8Array || ArrayBuffer.isView(a) && a.constructor.name === "Uint8Array";
-  }
-  __name(isBytes3, "isBytes");
-  function abytes3(b, ...lengths) {
-    if (!isBytes3(b))
-      throw new Error("Uint8Array expected");
-    if (lengths.length > 0 && !lengths.includes(b.length))
-      throw new Error("Uint8Array expected of length " + lengths + ", got length=" + b.length);
-  }
-  __name(abytes3, "abytes");
-  function aexists2(instance, checkFinished = true) {
-    if (instance.destroyed)
-      throw new Error("Hash instance has been destroyed");
-    if (checkFinished && instance.finished)
-      throw new Error("Hash#digest() has already been called");
-  }
-  __name(aexists2, "aexists");
-  function aoutput2(out, instance) {
-    abytes3(out);
-    const min = instance.outputLen;
-    if (out.length < min) {
-      throw new Error("digestInto() expects output buffer of length at least " + min);
-    }
-  }
-  __name(aoutput2, "aoutput");
-
-  // ../../node_modules/@noble/hashes/esm/utils.js
-  var createView2 = /* @__PURE__ */ __name((arr) => new DataView(arr.buffer, arr.byteOffset, arr.byteLength), "createView");
-  var rotr = /* @__PURE__ */ __name((word, shift) => word << 32 - shift | word >>> shift, "rotr");
-  function utf8ToBytes2(str) {
-    if (typeof str !== "string")
-      throw new Error("utf8ToBytes expected string, got " + typeof str);
-    return new Uint8Array(new TextEncoder().encode(str));
-  }
-  __name(utf8ToBytes2, "utf8ToBytes");
-  function toBytes2(data) {
-    if (typeof data === "string")
-      data = utf8ToBytes2(data);
-    abytes3(data);
-    return data;
-  }
-  __name(toBytes2, "toBytes");
-  var Hash2 = class {
-    static {
-      __name(this, "Hash");
-    }
-    // Safe version that clones internal state
-    clone() {
-      return this._cloneInto();
-    }
-  };
-  function wrapConstructor2(hashCons) {
-    const hashC = /* @__PURE__ */ __name((msg) => hashCons().update(toBytes2(msg)).digest(), "hashC");
-    const tmp = hashCons();
-    hashC.outputLen = tmp.outputLen;
-    hashC.blockLen = tmp.blockLen;
-    hashC.create = () => hashCons();
-    return hashC;
-  }
-  __name(wrapConstructor2, "wrapConstructor");
-
-  // ../../node_modules/@noble/hashes/esm/_md.js
-  function setBigUint642(view, byteOffset, value, isLE) {
-    if (typeof view.setBigUint64 === "function")
-      return view.setBigUint64(byteOffset, value, isLE);
-    const _32n2 = BigInt(32);
-    const _u32_max = BigInt(4294967295);
-    const wh = Number(value >> _32n2 & _u32_max);
-    const wl = Number(value & _u32_max);
-    const h = isLE ? 4 : 0;
-    const l = isLE ? 0 : 4;
-    view.setUint32(byteOffset + h, wh, isLE);
-    view.setUint32(byteOffset + l, wl, isLE);
-  }
-  __name(setBigUint642, "setBigUint64");
-  var Chi = /* @__PURE__ */ __name((a, b, c) => a & b ^ ~a & c, "Chi");
-  var Maj = /* @__PURE__ */ __name((a, b, c) => a & b ^ a & c ^ b & c, "Maj");
-  var HashMD2 = class extends Hash2 {
-    static {
-      __name(this, "HashMD");
-    }
-    constructor(blockLen, outputLen, padOffset, isLE) {
-      super();
-      this.blockLen = blockLen;
-      this.outputLen = outputLen;
-      this.padOffset = padOffset;
-      this.isLE = isLE;
-      this.finished = false;
-      this.length = 0;
-      this.pos = 0;
-      this.destroyed = false;
-      this.buffer = new Uint8Array(blockLen);
-      this.view = createView2(this.buffer);
-    }
-    update(data) {
-      aexists2(this);
-      const { view, buffer, blockLen } = this;
-      data = toBytes2(data);
-      const len = data.length;
-      for (let pos = 0; pos < len; ) {
-        const take = Math.min(blockLen - this.pos, len - pos);
-        if (take === blockLen) {
-          const dataView = createView2(data);
-          for (; blockLen <= len - pos; pos += blockLen)
-            this.process(dataView, pos);
-          continue;
-        }
-        buffer.set(data.subarray(pos, pos + take), this.pos);
-        this.pos += take;
-        pos += take;
-        if (this.pos === blockLen) {
-          this.process(view, 0);
-          this.pos = 0;
-        }
-      }
-      this.length += data.length;
-      this.roundClean();
-      return this;
-    }
-    digestInto(out) {
-      aexists2(this);
-      aoutput2(out, this);
-      this.finished = true;
-      const { buffer, view, blockLen, isLE } = this;
-      let { pos } = this;
-      buffer[pos++] = 128;
-      this.buffer.subarray(pos).fill(0);
-      if (this.padOffset > blockLen - pos) {
-        this.process(view, 0);
-        pos = 0;
-      }
-      for (let i = pos; i < blockLen; i++)
-        buffer[i] = 0;
-      setBigUint642(view, blockLen - 8, BigInt(this.length * 8), isLE);
-      this.process(view, 0);
-      const oview = createView2(out);
-      const len = this.outputLen;
-      if (len % 4)
-        throw new Error("_sha2: outputLen should be aligned to 32bit");
-      const outLen = len / 4;
-      const state = this.get();
-      if (outLen > state.length)
-        throw new Error("_sha2: outputLen bigger than state");
-      for (let i = 0; i < outLen; i++)
-        oview.setUint32(4 * i, state[i], isLE);
-    }
-    digest() {
-      const { buffer, outputLen } = this;
-      this.digestInto(buffer);
-      const res = buffer.slice(0, outputLen);
-      this.destroy();
-      return res;
-    }
-    _cloneInto(to) {
-      to || (to = new this.constructor());
-      to.set(...this.get());
-      const { blockLen, buffer, length, finished, destroyed, pos } = this;
-      to.length = length;
-      to.pos = pos;
-      to.finished = finished;
-      to.destroyed = destroyed;
-      if (length % blockLen)
-        to.buffer.set(buffer);
-      return to;
-    }
-  };
-
-  // ../../node_modules/@noble/hashes/esm/sha256.js
-  var SHA256_K = /* @__PURE__ */ new Uint32Array([
-    1116352408,
-    1899447441,
-    3049323471,
-    3921009573,
-    961987163,
-    1508970993,
-    2453635748,
-    2870763221,
-    3624381080,
-    310598401,
-    607225278,
-    1426881987,
-    1925078388,
-    2162078206,
-    2614888103,
-    3248222580,
-    3835390401,
-    4022224774,
-    264347078,
-    604807628,
-    770255983,
-    1249150122,
-    1555081692,
-    1996064986,
-    2554220882,
-    2821834349,
-    2952996808,
-    3210313671,
-    3336571891,
-    3584528711,
-    113926993,
-    338241895,
-    666307205,
-    773529912,
-    1294757372,
-    1396182291,
-    1695183700,
-    1986661051,
-    2177026350,
-    2456956037,
-    2730485921,
-    2820302411,
-    3259730800,
-    3345764771,
-    3516065817,
-    3600352804,
-    4094571909,
-    275423344,
-    430227734,
-    506948616,
-    659060556,
-    883997877,
-    958139571,
-    1322822218,
-    1537002063,
-    1747873779,
-    1955562222,
-    2024104815,
-    2227730452,
-    2361852424,
-    2428436474,
-    2756734187,
-    3204031479,
-    3329325298
-  ]);
-  var SHA256_IV = /* @__PURE__ */ new Uint32Array([
-    1779033703,
-    3144134277,
-    1013904242,
-    2773480762,
-    1359893119,
-    2600822924,
-    528734635,
-    1541459225
-  ]);
-  var SHA256_W = /* @__PURE__ */ new Uint32Array(64);
-  var SHA256 = class extends HashMD2 {
-    static {
-      __name(this, "SHA256");
-    }
-    constructor() {
-      super(64, 32, 8, false);
-      this.A = SHA256_IV[0] | 0;
-      this.B = SHA256_IV[1] | 0;
-      this.C = SHA256_IV[2] | 0;
-      this.D = SHA256_IV[3] | 0;
-      this.E = SHA256_IV[4] | 0;
-      this.F = SHA256_IV[5] | 0;
-      this.G = SHA256_IV[6] | 0;
-      this.H = SHA256_IV[7] | 0;
-    }
-    get() {
-      const { A, B, C, D, E, F, G, H } = this;
-      return [A, B, C, D, E, F, G, H];
-    }
-    // prettier-ignore
-    set(A, B, C, D, E, F, G, H) {
-      this.A = A | 0;
-      this.B = B | 0;
-      this.C = C | 0;
-      this.D = D | 0;
-      this.E = E | 0;
-      this.F = F | 0;
-      this.G = G | 0;
-      this.H = H | 0;
-    }
-    process(view, offset) {
-      for (let i = 0; i < 16; i++, offset += 4)
-        SHA256_W[i] = view.getUint32(offset, false);
-      for (let i = 16; i < 64; i++) {
-        const W15 = SHA256_W[i - 15];
-        const W2 = SHA256_W[i - 2];
-        const s0 = rotr(W15, 7) ^ rotr(W15, 18) ^ W15 >>> 3;
-        const s1 = rotr(W2, 17) ^ rotr(W2, 19) ^ W2 >>> 10;
-        SHA256_W[i] = s1 + SHA256_W[i - 7] + s0 + SHA256_W[i - 16] | 0;
-      }
-      let { A, B, C, D, E, F, G, H } = this;
-      for (let i = 0; i < 64; i++) {
-        const sigma1 = rotr(E, 6) ^ rotr(E, 11) ^ rotr(E, 25);
-        const T1 = H + sigma1 + Chi(E, F, G) + SHA256_K[i] + SHA256_W[i] | 0;
-        const sigma0 = rotr(A, 2) ^ rotr(A, 13) ^ rotr(A, 22);
-        const T2 = sigma0 + Maj(A, B, C) | 0;
-        H = G;
-        G = F;
-        F = E;
-        E = D + T1 | 0;
-        D = C;
-        C = B;
-        B = A;
-        A = T1 + T2 | 0;
-      }
-      A = A + this.A | 0;
-      B = B + this.B | 0;
-      C = C + this.C | 0;
-      D = D + this.D | 0;
-      E = E + this.E | 0;
-      F = F + this.F | 0;
-      G = G + this.G | 0;
-      H = H + this.H | 0;
-      this.set(A, B, C, D, E, F, G, H);
-    }
-    roundClean() {
-      SHA256_W.fill(0);
-    }
-    destroy() {
-      this.set(0, 0, 0, 0, 0, 0, 0, 0);
-      this.buffer.fill(0);
-    }
-  };
-  var sha256 = /* @__PURE__ */ wrapConstructor2(() => new SHA256());
-
-  // ../../node_modules/@meer-js/transactions/dist/esm/transactions/src/ISignatureTx.js
-  function resolveEnumKeyName(keyType) {
-    switch (keyType) {
-      case KeyType.ED25519:
-        return "ed25519Signature";
-      case KeyType.SECP256K1:
-        return "secp256k1Signature";
-      default:
-        throw Error(`unknown type ${keyType}`);
-    }
-  }
-  __name(resolveEnumKeyName, "resolveEnumKeyName");
-  function createSignature(signature) {
-    const keyName = resolveEnumKeyName(signature.keyType);
-    return { [keyName]: signature };
-  }
-  __name(createSignature, "createSignature");
-
-  // ../../node_modules/@meer-js/transactions/dist/esm/transactions/src/sign.js
-  async function signTransactionObject(transaction, signer, accountId, networkId) {
-    const message2 = encodeTransaction(transaction);
-    const hash = new Uint8Array(sha256(message2));
-    const signature = await signer.signMessage(message2, accountId, networkId);
-    const keyType = transaction.publicKey.keyType;
-    const signedTx = new SignedTransaction({
-      transaction,
-      signature: createSignature({ keyType, data: signature.signature })
-    });
-    return [hash, signedTx];
-  }
-  __name(signTransactionObject, "signTransactionObject");
-  async function signTransaction(...args2) {
-    if (args2[0].constructor === Transaction) {
-      const [transaction, signer, accountId, networkId] = args2;
-      return signTransactionObject(transaction, signer, accountId, networkId);
-    } else {
-      const [receiverId, nonce, actions, blockHash, signer, accountId, networkId] = args2;
-      const publicKey = await signer.getPublicKey(accountId, networkId);
-      const transaction = createTransaction(accountId, publicKey, receiverId, nonce, actions, blockHash);
-      return signTransactionObject(transaction, signer, accountId, networkId);
-    }
-  }
-  __name(signTransaction, "signTransaction");
-  async function signDelegateAction({ delegateAction, signer }) {
-    const message2 = encodeDelegateAction(delegateAction);
-    const signature = await signer.sign(message2);
-    const keyType = delegateAction.publicKey.keyType;
-    const delegateSignature = createSignature({
-      keyType,
-      data: signature
-    });
-    const signedDelegateAction = {
-      delegateAction,
-      signature: delegateSignature
-    };
-    return {
-      hash: new Uint8Array(sha256(message2)),
-      signedDelegateAction
-    };
-  }
-  __name(signDelegateAction, "signDelegateAction");
-
-  // ../../node_modules/@meer-js/providers/dist/esm/providers/src/provider.js
-  var Provider = class {
-    static {
-      __name(this, "Provider");
-    }
-  };
-
-  // ../../node_modules/@meer-js/providers/dist/esm/providers/src/json-rpc-provider.js
-  var REQUEST_RETRY_NUMBER = 12;
-  var REQUEST_RETRY_WAIT = 500;
-  var REQUEST_RETRY_WAIT_BACKOFF = 1.5;
-  var _nextId = 123;
-  var JsonRpcProvider = class extends Provider {
-    static {
-      __name(this, "JsonRpcProvider");
-    }
-    /** @hidden */
-    connection;
-    /** @hidden */
-    options;
-    /**
-     * @param connectionInfo Connection info
-     */
-    constructor(connectionInfo, options) {
-      super();
-      this.connection = connectionInfo || { url: "" };
-      const defaultOptions = {
-        retries: REQUEST_RETRY_NUMBER,
-        wait: REQUEST_RETRY_WAIT,
-        backoff: REQUEST_RETRY_WAIT_BACKOFF
-      };
-      this.options = Object.assign({}, defaultOptions, options);
-    }
-    /**
-     * Gets the RPC's status
-     * @see [https://docs.near.org/docs/develop/front-end/rpc#general-validator-status](https://docs.near.org/docs/develop/front-end/rpc#general-validator-status)
-     */
-    async status() {
-      return this.sendJsonRpc("status", []);
-    }
-    /**
-     * Sends a signed transaction to the RPC
-     *
-     * @param signedTransaction The signed transaction being sent
-     * @param waitUntil
-     */
-    async sendTransactionUntil(signedTransaction, waitUntil) {
-      const bytes = encodeTransaction(signedTransaction.transaction);
-      return this.sendJsonRpc("send_tx", { signed_tx_base64: Buffer.from(bytes).toString("base64"), wait_until: waitUntil });
-    }
-    /**
-     * Sends a signed transaction to the RPC and waits until transaction is fully complete
-     * @see [https://docs.near.org/docs/develop/front-end/rpc#send-transaction-await](https://docs.near.org/docs/develop/front-end/rpc#general-validator-status)
-     *
-     * @param signedTransaction The signed transaction being sent
-     */
-    async sendTransaction(signedTransaction) {
-      return this.sendTransactionUntil(signedTransaction, "EXECUTED_OPTIMISTIC");
-    }
-    /**
-     * Sends a signed transaction to the RPC and immediately returns transaction hash
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#send-transaction-async)
-     * @param signedTransaction The signed transaction being sent
-     * @returns {Promise<FinalExecutionOutcome>}
-     */
-    async sendTransactionAsync(signedTransaction) {
-      return this.sendTransactionUntil(signedTransaction, "NONE");
-    }
-    /**
-     * Gets a transaction's status from the RPC
-     * @see [https://docs.near.org/docs/develop/front-end/rpc#transaction-status](https://docs.near.org/docs/develop/front-end/rpc#general-validator-status)
-     *
-     * @param txHash A transaction hash as either a Uint8Array or a base58 encoded string
-     * @param accountId The NEAR account that signed the transaction
-     * @param waitUntil
-     */
-    async txStatus(txHash, accountId, waitUntil = "EXECUTED_OPTIMISTIC") {
-      if (typeof txHash === "string") {
-        return this.txStatusString(txHash, accountId, waitUntil);
-      } else {
-        return this.txStatusUint8Array(txHash, accountId, waitUntil);
-      }
-    }
-    async txStatusUint8Array(txHash, accountId, waitUntil) {
-      return this.sendJsonRpc("tx", { tx_hash: baseEncode(txHash), sender_account_id: accountId, wait_until: waitUntil });
-    }
-    async txStatusString(txHash, accountId, waitUntil) {
-      return this.sendJsonRpc("tx", { tx_hash: txHash, sender_account_id: accountId, wait_until: waitUntil });
-    }
-    /**
-     * Gets a transaction's status from the RPC with receipts
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#transaction-status-with-receipts)
-     * @param txHash The hash of the transaction
-     * @param accountId The NEAR account that signed the transaction
-     * @param waitUntil
-     * @returns {Promise<FinalExecutionOutcome>}
-     */
-    async txStatusReceipts(txHash, accountId, waitUntil = "EXECUTED_OPTIMISTIC") {
-      if (typeof txHash === "string") {
-        return this.sendJsonRpc("EXPERIMENTAL_tx_status", { tx_hash: txHash, sender_account_id: accountId, wait_until: waitUntil });
-      } else {
-        return this.sendJsonRpc("EXPERIMENTAL_tx_status", { tx_hash: baseEncode(txHash), sender_account_id: accountId, wait_until: waitUntil });
-      }
-    }
-    /**
-     * Query the RPC by passing an {@link "@near-js/types".provider/request.RpcQueryRequest | RpcQueryRequest }
-     * @see [https://docs.near.org/api/rpc/contracts](https://docs.near.org/api/rpc/contracts)
-     *
-     * @typeParam T the shape of the returned query response
-     */
-    async query(...args2) {
-      let result;
-      if (args2.length === 1) {
-        const { block_id, blockId, ...otherParams } = args2[0];
-        result = await this.sendJsonRpc("query", { ...otherParams, block_id: block_id || blockId });
-      } else {
-        const [path, data] = args2;
-        result = await this.sendJsonRpc("query", [path, data]);
-      }
-      if (result && result.error) {
-        throw new TypedError(`Querying failed: ${result.error}.
-${JSON.stringify(result, null, 2)}`, getErrorTypeFromErrorMessage(result.error, result.error.name));
-      }
-      return result;
-    }
-    /**
-     * Query for block info from the RPC
-     * pass block_id OR finality as blockQuery, not both
-     * @see [https://docs.near.org/api/rpc/block-chunk](https://docs.near.org/api/rpc/block-chunk)
-     *
-     * @param blockQuery {@link BlockReference} (passing a {@link BlockId} is deprecated)
-     */
-    async block(blockQuery) {
-      const { finality } = blockQuery;
-      const { blockId } = blockQuery;
-      return this.sendJsonRpc("block", { block_id: blockId, finality });
-    }
-    /**
-     * Query changes in block from the RPC
-     * pass block_id OR finality as blockQuery, not both
-     * @see [https://docs.near.org/api/rpc/block-chunk](https://docs.near.org/api/rpc/block-chunk)
-     */
-    async blockChanges(blockQuery) {
-      const { finality } = blockQuery;
-      const { blockId } = blockQuery;
-      return this.sendJsonRpc("EXPERIMENTAL_changes_in_block", { block_id: blockId, finality });
-    }
-    /**
-     * Queries for details about a specific chunk appending details of receipts and transactions to the same chunk data provided by a block
-     * @see [https://docs.near.org/api/rpc/block-chunk](https://docs.near.org/api/rpc/block-chunk)
-     *
-     * @param chunkId Hash of a chunk ID or shard ID
-     */
-    async chunk(chunkId) {
-      return this.sendJsonRpc("chunk", [chunkId]);
-    }
-    /**
-     * Query validators of the epoch defined by the given block id.
-     * @see [https://docs.near.org/api/rpc/network#validation-status](https://docs.near.org/api/rpc/network#validation-status)
-     *
-     * @param blockId Block hash or height, or null for latest.
-     */
-    async validators(blockId) {
-      return this.sendJsonRpc("validators", [blockId]);
-    }
-    /**
-     * Gets the protocol config at a block from RPC
-     *
-     * @param blockReference specifies the block to get the protocol config for
-     */
-    async experimental_protocolConfig(blockReference) {
-      const { blockId, ...otherParams } = blockReference;
-      return await this.sendJsonRpc("EXPERIMENTAL_protocol_config", { ...otherParams, block_id: blockId });
-    }
-    /**
-     * Gets a light client execution proof for verifying execution outcomes
-     * @see [https://github.com/nearprotocol/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-proof](https://github.com/nearprotocol/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-proof)
-     */
-    async lightClientProof(request) {
-      return await this.sendJsonRpc("EXPERIMENTAL_light_client_proof", request);
-    }
-    /**
-     * Returns the next light client block as far in the future as possible from the last known hash
-     * to still be able to validate from that hash. This will either return the last block of the
-     * next epoch, or the last final known block.
-     *
-     * @see [https://github.com/near/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-block](https://github.com/near/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-block)
-     */
-    async nextLightClientBlock(request) {
-      return await this.sendJsonRpc("next_light_client_block", request);
-    }
-    /**
-     * Gets access key changes for a given array of accountIds
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-access-key-changes-all)
-     * @returns {Promise<ChangeResult>}
-     */
-    async accessKeyChanges(accountIdArray, blockQuery) {
-      const { finality } = blockQuery;
-      const { blockId } = blockQuery;
-      return this.sendJsonRpc("EXPERIMENTAL_changes", {
-        changes_type: "all_access_key_changes",
-        account_ids: accountIdArray,
-        block_id: blockId,
-        finality
-      });
-    }
-    /**
-     * Gets single access key changes for a given array of access keys
-     * pass block_id OR finality as blockQuery, not both
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-access-key-changes-single)
-     * @returns {Promise<ChangeResult>}
-     */
-    async singleAccessKeyChanges(accessKeyArray, blockQuery) {
-      const { finality } = blockQuery;
-      const { blockId } = blockQuery;
-      return this.sendJsonRpc("EXPERIMENTAL_changes", {
-        changes_type: "single_access_key_changes",
-        keys: accessKeyArray,
-        block_id: blockId,
-        finality
-      });
-    }
-    /**
-     * Gets account changes for a given array of accountIds
-     * pass block_id OR finality as blockQuery, not both
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-account-changes)
-     * @returns {Promise<ChangeResult>}
-     */
-    async accountChanges(accountIdArray, blockQuery) {
-      const { finality } = blockQuery;
-      const { blockId } = blockQuery;
-      return this.sendJsonRpc("EXPERIMENTAL_changes", {
-        changes_type: "account_changes",
-        account_ids: accountIdArray,
-        block_id: blockId,
-        finality
-      });
-    }
-    /**
-     * Gets contract state changes for a given array of accountIds
-     * pass block_id OR finality as blockQuery, not both
-     * Note: If you pass a keyPrefix it must be base64 encoded
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-contract-state-changes)
-     * @returns {Promise<ChangeResult>}
-     */
-    async contractStateChanges(accountIdArray, blockQuery, keyPrefix = "") {
-      const { finality } = blockQuery;
-      const { blockId } = blockQuery;
-      return this.sendJsonRpc("EXPERIMENTAL_changes", {
-        changes_type: "data_changes",
-        account_ids: accountIdArray,
-        key_prefix_base64: keyPrefix,
-        block_id: blockId,
-        finality
-      });
-    }
-    /**
-     * Gets contract code changes for a given array of accountIds
-     * pass block_id OR finality as blockQuery, not both
-     * Note: Change is returned in a base64 encoded WASM file
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-contract-code-changes)
-     * @returns {Promise<ChangeResult>}
-     */
-    async contractCodeChanges(accountIdArray, blockQuery) {
-      const { finality } = blockQuery;
-      const { blockId } = blockQuery;
-      return this.sendJsonRpc("EXPERIMENTAL_changes", {
-        changes_type: "contract_code_changes",
-        account_ids: accountIdArray,
-        block_id: blockId,
-        finality
-      });
-    }
-    /**
-     * Returns gas price for a specific block_height or block_hash.
-     * @see [https://docs.near.org/api/rpc/gas](https://docs.near.org/api/rpc/gas)
-     *
-     * @param blockId Block hash or height, or null for latest.
-     */
-    async gasPrice(blockId) {
-      return await this.sendJsonRpc("gas_price", [blockId]);
-    }
-    async sendJsonRpc(method2, params2) {
-      const response = await exponentialBackoff(this.options.wait, this.options.retries, this.options.backoff, async () => {
-        try {
-          const request = {
-            method: method2,
-            params: params2,
-            id: _nextId++,
-            jsonrpc: "2.0"
-          };
-          const fetchResponse = await fetch(this.connection.url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-              ...this.connection.headers || {}
-            },
-            body: JSON.stringify(request)
-          });
-          if (!fetchResponse.ok) {
-            const errorText = await fetchResponse.text();
-            throw new TypedError(`HTTP error! status: ${fetchResponse.status} - ${errorText}`, "HTTPError");
-          }
-          const response2 = await fetchResponse.json();
-          if (response2.error) {
-            if (typeof response2.error.data === "object") {
-              if (typeof response2.error.data.error_message === "string" && typeof response2.error.data.error_type === "string") {
-                throw new TypedError(response2.error.data.error_message, response2.error.data.error_type);
-              }
-              throw parseRpcError(response2.error.data);
-            } else {
-              const errorMessage = `[${response2.error.code}] ${response2.error.message}: ${response2.error.data}`;
-              if (response2.error.data === "Timeout" || errorMessage.includes("Timeout error") || errorMessage.includes("query has timed out")) {
-                throw new TypedError(errorMessage, "TimeoutError");
-              }
-              const errorType = getErrorTypeFromErrorMessage(response2.error.data, "");
-              if (errorType) {
-                throw new TypedError(formatError(errorType, params2), errorType);
-              }
-              throw new TypedError(errorMessage, response2.error.name);
-            }
-          } else if (typeof response2.result?.error === "string") {
-            const errorType = getErrorTypeFromErrorMessage(response2.result.error, "");
-            if (errorType) {
-              throw new ServerError(formatError(errorType, params2), errorType);
-            }
-          }
-          return response2;
-        } catch (error) {
-          if (error instanceof TypedError) {
-            throw error;
-          }
-          if (error.message?.includes("Timeout") || error.message?.includes("NetworkError") || error.message?.includes("Failed to fetch")) {
-            Logger.warn(`Retrying request to ${method2} as it has timed out or failed`, params2);
-            return null;
-          }
-          throw new TypedError(error.message || "Unknown error occurred", error.name || "UnknownError");
-        }
-      });
-      const { result } = response;
-      if (typeof result === "undefined") {
-        throw new TypedError(`Exceeded ${this.options.retries} attempts for request to ${method2}.`, "RetriesExceeded");
-      }
-      return result;
-    }
-  };
-
-  // ../../node_modules/@meer-js/providers/dist/esm/providers/src/failover-rpc-provider.js
-  var FailoverRpcProvider = class extends Provider {
-    static {
-      __name(this, "FailoverRpcProvider");
-    }
-    /** @hidden */
-    providers;
-    currentProviderIndex;
-    /**
-     * @param providers list of providers
-     */
-    constructor(providers) {
-      super();
-      if (providers.length === 0) {
-        throw new Error("At least one provider must be specified");
-      }
-      this.providers = providers;
-      this.currentProviderIndex = 0;
-    }
-    switchToNextProvider() {
-      if (this.providers.length === 1)
-        return;
-      if (this.providers.length - 1 <= this.currentProviderIndex) {
-        this.currentProviderIndex = 0;
-      } else {
-        this.currentProviderIndex += 1;
-      }
-      Logger.debug(`Switched to provider at the index ${this.currentProviderIndex}`);
-    }
-    get currentProvider() {
-      const provider = this.providers[this.currentProviderIndex];
-      if (!provider)
-        throw new Error(`Provider wasn't found at index ${this.currentProviderIndex}`);
-      return provider;
-    }
-    async withBackoff(getResult) {
-      for (let i = 0; i < this.providers.length; i++) {
-        try {
-          const result = await getResult(this.currentProvider);
-          if (result)
-            return result;
-        } catch {
-          this.switchToNextProvider();
-        }
-      }
-      throw new TypedError(`Exceeded ${this.providers.length} providers to execute request`, "RetriesExceeded");
-    }
-    /**
-     * Gets the RPC's status
-     * @see [https://docs.near.org/docs/develop/front-end/rpc#general-validator-status](https://docs.near.org/docs/develop/front-end/rpc#general-validator-status)
-     */
-    async status() {
-      return this.withBackoff((currentProvider) => currentProvider.status());
-    }
-    async sendTransactionUntil(signedTransaction, waitUntil) {
-      return this.withBackoff((currentProvider) => currentProvider.sendTransactionUntil(signedTransaction, waitUntil));
-    }
-    /**
-     * Sends a signed transaction to the RPC and waits until transaction is fully complete
-     * @see [https://docs.near.org/docs/develop/front-end/rpc#send-transaction-await](https://docs.near.org/docs/develop/front-end/rpc#general-validator-status)
-     *
-     * @param signedTransaction The signed transaction being sent
-     */
-    async sendTransaction(signedTransaction) {
-      return this.withBackoff((currentProvider) => currentProvider.sendTransaction(signedTransaction));
-    }
-    /**
-     * Sends a signed transaction to the RPC and immediately returns transaction hash
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#send-transaction-async)
-     * @param signedTransaction The signed transaction being sent
-     * @returns {Promise<FinalExecutionOutcome>}
-     */
-    async sendTransactionAsync(signedTransaction) {
-      return this.withBackoff((currentProvider) => currentProvider.sendTransactionAsync(signedTransaction));
-    }
-    /**
-     * Gets a transaction's status from the RPC
-     * @see [https://docs.near.org/docs/develop/front-end/rpc#transaction-status](https://docs.near.org/docs/develop/front-end/rpc#general-validator-status)
-     *
-     * @param txHash A transaction hash as either a Uint8Array or a base58 encoded string
-     * @param accountId The NEAR account that signed the transaction
-     */
-    async txStatus(txHash, accountId, waitUntil) {
-      return this.withBackoff((currentProvider) => currentProvider.txStatus(txHash, accountId, waitUntil));
-    }
-    /**
-     * Gets a transaction's status from the RPC with receipts
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#transaction-status-with-receipts)
-     * @param txHash The hash of the transaction
-     * @param accountId The NEAR account that signed the transaction
-     * @returns {Promise<FinalExecutionOutcome>}
-     */
-    async txStatusReceipts(txHash, accountId, waitUntil) {
-      return this.withBackoff((currentProvider) => currentProvider.txStatusReceipts(txHash, accountId, waitUntil));
-    }
-    async query(paramsOrPath, data) {
-      if (data) {
-        return this.withBackoff((currentProvider) => currentProvider.query(paramsOrPath, data));
-      }
-      return this.withBackoff((currentProvider) => currentProvider.query(paramsOrPath));
-    }
-    /**
-     * Query for block info from the RPC
-     * pass block_id OR finality as blockQuery, not both
-     * @see [https://docs.near.org/api/rpc/block-chunk](https://docs.near.org/api/rpc/block-chunk)
-     *
-     * @param blockQuery {@link BlockReference} (passing a {@link BlockId} is deprecated)
-     */
-    async block(blockQuery) {
-      return this.withBackoff((currentProvider) => currentProvider.block(blockQuery));
-    }
-    /**
-     * Query changes in block from the RPC
-     * pass block_id OR finality as blockQuery, not both
-     * @see [https://docs.near.org/api/rpc/block-chunk](https://docs.near.org/api/rpc/block-chunk)
-     */
-    async blockChanges(blockQuery) {
-      return this.withBackoff((currentProvider) => currentProvider.blockChanges(blockQuery));
-    }
-    /**
-     * Queries for details about a specific chunk appending details of receipts and transactions to the same chunk data provided by a block
-     * @see [https://docs.near.org/api/rpc/block-chunk](https://docs.near.org/api/rpc/block-chunk)
-     *
-     * @param chunkId Hash of a chunk ID or shard ID
-     */
-    async chunk(chunkId) {
-      return this.withBackoff((currentProvider) => currentProvider.chunk(chunkId));
-    }
-    /**
-     * Query validators of the epoch defined by the given block id.
-     * @see [https://docs.near.org/api/rpc/network#validation-status](https://docs.near.org/api/rpc/network#validation-status)
-     *
-     * @param blockId Block hash or height, or null for latest.
-     */
-    async validators(blockId) {
-      return this.withBackoff((currentProvider) => currentProvider.validators(blockId));
-    }
-    /**
-     * Gets the protocol config at a block from RPC
-     *
-     * @param blockReference specifies the block to get the protocol config for
-     */
-    async experimental_protocolConfig(blockReference) {
-      return this.withBackoff((currentProvider) => currentProvider.experimental_protocolConfig(blockReference));
-    }
-    /**
-     * Gets a light client execution proof for verifying execution outcomes
-     * @see [https://github.com/nearprotocol/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-proof](https://github.com/nearprotocol/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-proof)
-     */
-    async lightClientProof(request) {
-      return this.withBackoff((currentProvider) => currentProvider.lightClientProof(request));
-    }
-    /**
-     * Returns the next light client block as far in the future as possible from the last known hash
-     * to still be able to validate from that hash. This will either return the last block of the
-     * next epoch, or the last final known block.
-     *
-     * @see [https://github.com/near/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-block](https://github.com/near/NEPs/blob/master/specs/ChainSpec/LightClient.md#light-client-block)
-     */
-    async nextLightClientBlock(request) {
-      return this.withBackoff((currentProvider) => currentProvider.nextLightClientBlock(request));
-    }
-    /**
-     * Gets access key changes for a given array of accountIds
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-access-key-changes-all)
-     * @returns {Promise<ChangeResult>}
-     */
-    async accessKeyChanges(accountIdArray, blockQuery) {
-      return this.withBackoff((currentProvider) => currentProvider.accessKeyChanges(accountIdArray, blockQuery));
-    }
-    /**
-     * Gets single access key changes for a given array of access keys
-     * pass block_id OR finality as blockQuery, not both
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-access-key-changes-single)
-     * @returns {Promise<ChangeResult>}
-     */
-    async singleAccessKeyChanges(accessKeyArray, blockQuery) {
-      return this.withBackoff((currentProvider) => currentProvider.singleAccessKeyChanges(accessKeyArray, blockQuery));
-    }
-    /**
-     * Gets account changes for a given array of accountIds
-     * pass block_id OR finality as blockQuery, not both
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-account-changes)
-     * @returns {Promise<ChangeResult>}
-     */
-    async accountChanges(accountIdArray, blockQuery) {
-      return this.withBackoff((currentProvider) => currentProvider.accountChanges(accountIdArray, blockQuery));
-    }
-    /**
-     * Gets contract state changes for a given array of accountIds
-     * pass block_id OR finality as blockQuery, not both
-     * Note: If you pass a keyPrefix it must be base64 encoded
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-contract-state-changes)
-     * @returns {Promise<ChangeResult>}
-     */
-    async contractStateChanges(accountIdArray, blockQuery, keyPrefix = "") {
-      return this.withBackoff((currentProvider) => currentProvider.contractStateChanges(accountIdArray, blockQuery, keyPrefix));
-    }
-    /**
-     * Gets contract code changes for a given array of accountIds
-     * pass block_id OR finality as blockQuery, not both
-     * Note: Change is returned in a base64 encoded WASM file
-     * See [docs for more info](https://docs.near.org/docs/develop/front-end/rpc#view-contract-code-changes)
-     * @returns {Promise<ChangeResult>}
-     */
-    async contractCodeChanges(accountIdArray, blockQuery) {
-      return this.withBackoff((currentProvider) => currentProvider.contractCodeChanges(accountIdArray, blockQuery));
-    }
-    /**
-     * Returns gas price for a specific block_height or block_hash.
-     * @see [https://docs.near.org/api/rpc/gas](https://docs.near.org/api/rpc/gas)
-     *
-     * @param blockId Block hash or height, or null for latest.
-     */
-    async gasPrice(blockId) {
-      return this.withBackoff((currentProvider) => currentProvider.gasPrice(blockId));
-    }
-  };
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/utils.js
-  function parseJsonFromRawResponse(response) {
-    return JSON.parse(Buffer.from(response).toString());
-  }
-  __name(parseJsonFromRawResponse, "parseJsonFromRawResponse");
-  function bytesJsonStringify(input) {
-    return Buffer.from(JSON.stringify(input));
-  }
-  __name(bytesJsonStringify, "bytesJsonStringify");
-  function validateArgs(args2) {
-    const isUint8Array = args2.byteLength !== void 0 && args2.byteLength === args2.length;
-    if (isUint8Array) {
-      return;
-    }
-    if (Array.isArray(args2) || typeof args2 !== "object") {
-      throw new PositionalArgsError();
-    }
-  }
-  __name(validateArgs, "validateArgs");
-  function encodeJSContractArgs(contractId, method2, args2) {
-    return Buffer.concat([Buffer.from(contractId), Buffer.from([0]), Buffer.from(method2), Buffer.from([0]), Buffer.from(args2)]);
-  }
-  __name(encodeJSContractArgs, "encodeJSContractArgs");
-  async function viewState(connection, accountId, prefix, blockQuery = { finality: "optimistic" }) {
-    const { values } = await connection.provider.query({
-      request_type: "view_state",
-      ...blockQuery,
-      account_id: accountId,
-      prefix_base64: Buffer.from(prefix).toString("base64")
-    });
-    return values.map(({ key, value }) => ({
-      key: Buffer.from(key, "base64"),
-      value: Buffer.from(value, "base64")
-    }));
-  }
-  __name(viewState, "viewState");
-  async function viewFunction(connection, { contractId, methodName, args: args2 = {}, parse: parse3 = parseJsonFromRawResponse, stringify = bytesJsonStringify, jsContract = false, blockQuery = { finality: "optimistic" } }) {
-    let encodedArgs;
-    validateArgs(args2);
-    if (jsContract) {
-      encodedArgs = encodeJSContractArgs(contractId, methodName, Object.keys(args2).length > 0 ? JSON.stringify(args2) : "");
-    } else {
-      encodedArgs = stringify(args2);
-    }
-    const result = await connection.provider.query({
-      request_type: "call_function",
-      ...blockQuery,
-      account_id: jsContract ? connection.jsvmAccountId : contractId,
-      method_name: jsContract ? "view_js_contract" : methodName,
-      args_base64: encodedArgs.toString("base64")
-    });
-    if (result.logs) {
-      printTxOutcomeLogs({ contractId, logs: result.logs });
-    }
-    return result.result && result.result.length > 0 && parse3(Buffer.from(result.result));
-  }
-  __name(viewFunction, "viewFunction");
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/account.js
-  var { addKey: addKey3, createAccount: createAccount3, deleteAccount: deleteAccount3, deleteKey: deleteKey3, deployContract: deployContract3, fullAccessKey: fullAccessKey2, functionCall: functionCall3, functionCallAccessKey: functionCallAccessKey2, stake: stake3, transfer: transfer3 } = actionCreators;
-  var TX_NONCE_RETRY_NUMBER = 12;
-  var TX_NONCE_RETRY_WAIT = 500;
-  var TX_NONCE_RETRY_WAIT_BACKOFF = 1.5;
-  var Account = class _Account {
-    static {
-      __name(this, "Account");
-    }
-    connection;
-    accountId;
-    constructor(connection, accountId) {
-      this.connection = connection;
-      this.accountId = accountId;
-    }
-    getConnection() {
-      return this.connection;
-    }
-    /**
-     * Returns basic NEAR account information via the `view_account` RPC query method
-     * @see [https://docs.near.org/api/rpc/contracts#view-account](https://docs.near.org/api/rpc/contracts#view-account)
-     */
-    async state() {
-      return this.connection.provider.query({
-        request_type: "view_account",
-        account_id: this.accountId,
-        finality: "optimistic"
-      });
-    }
-    /**
-     * Create a signed transaction which can be broadcast to the network
-     * @param receiverId NEAR account receiving the transaction
-     * @param actions list of actions to perform as part of the transaction
-     * @see {@link "@near-js/providers".json-rpc-provider.JsonRpcProvider.sendTransaction | JsonRpcProvider.sendTransaction}
-     */
-    async signTransaction(receiverId, actions) {
-      const accessKeyInfo = await this.findAccessKey(receiverId, actions);
-      if (!accessKeyInfo) {
-        throw new TypedError(`Can not sign transactions for account ${this.accountId} on network ${this.connection.networkId}, no matching key pair exists for this account`, "KeyNotFound");
-      }
-      const { accessKey } = accessKeyInfo;
-      const block = await this.connection.provider.block({ finality: "final" });
-      const blockHash = block.header.hash;
-      const nonce = accessKey.nonce + 1n;
-      return await signTransaction(receiverId, nonce, actions, baseDecode(blockHash), this.connection.signer, this.accountId, this.connection.networkId);
-    }
-    /**
-     * Sign a transaction to perform a list of actions and broadcast it using the RPC API.
-     * @see {@link "@near-js/providers".json-rpc-provider.JsonRpcProvider | JsonRpcProvider }
-     *
-     * @param options The options for signing and sending the transaction.
-     * @param options.receiverId The NEAR account ID of the transaction receiver.
-     * @param options.actions The list of actions to be performed in the transaction.
-     * @param options.returnError Whether to return an error if the transaction fails.
-     * @returns {Promise<FinalExecutionOutcome>} A promise that resolves to the final execution outcome of the transaction.
-     */
-    async signAndSendTransaction({ receiverId, actions, returnError }) {
-      let txHash, signedTx;
-      const result = await exponentialBackoff(TX_NONCE_RETRY_WAIT, TX_NONCE_RETRY_NUMBER, TX_NONCE_RETRY_WAIT_BACKOFF, async () => {
-        [txHash, signedTx] = await this.signTransaction(receiverId, actions);
-        const publicKey = signedTx.transaction.publicKey;
-        try {
-          return await this.connection.provider.sendTransaction(signedTx);
-        } catch (error) {
-          if (error.type === "InvalidNonce") {
-            Logger.warn(`Retrying transaction ${receiverId}:${baseEncode(txHash)} with new nonce.`);
-            delete this.accessKeyByPublicKeyCache[publicKey.toString()];
-            return null;
-          }
-          if (error.type === "Expired") {
-            Logger.warn(`Retrying transaction ${receiverId}:${baseEncode(txHash)} due to expired block hash`);
-            return null;
-          }
-          error.context = new ErrorContext(baseEncode(txHash));
-          throw error;
-        }
-      });
-      if (!result) {
-        throw new TypedError("nonce retries exceeded for transaction. This usually means there are too many parallel requests with the same access key.", "RetriesExceeded");
-      }
-      printTxOutcomeLogsAndFailures({ contractId: signedTx.transaction.receiverId, outcome: result });
-      if (!returnError && typeof result.status === "object" && typeof result.status.Failure === "object" && result.status.Failure !== null) {
-        if (result.status.Failure.error_message && result.status.Failure.error_type) {
-          throw new TypedError(`Transaction ${result.transaction_outcome.id} failed. ${result.status.Failure.error_message}`, result.status.Failure.error_type);
-        } else {
-          throw parseResultError(result);
-        }
-      }
-      return result;
-    }
-    /** @hidden */
-    accessKeyByPublicKeyCache = {};
-    /**
-     * Finds the {@link AccessKeyView} associated with the accounts {@link PublicKey} stored in the {@link "@near-js/keystores".keystore.KeyStore | Keystore}.
-     *
-     * @todo Find matching access key based on transaction (i.e. receiverId and actions)
-     *
-     * @param receiverId currently unused (see todo)
-     * @param actions currently unused (see todo)
-     * @returns `{ publicKey PublicKey; accessKey: AccessKeyView }`
-     */
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    async findAccessKey(receiverId, actions) {
-      const publicKey = await this.connection.signer.getPublicKey(this.accountId, this.connection.networkId);
-      if (!publicKey) {
-        throw new TypedError(`no matching key pair found in ${this.connection.signer}`, "PublicKeyNotFound");
-      }
-      const cachedAccessKey = this.accessKeyByPublicKeyCache[publicKey.toString()];
-      if (cachedAccessKey !== void 0) {
-        return { publicKey, accessKey: cachedAccessKey };
-      }
-      try {
-        const rawAccessKey = await this.connection.provider.query({
-          request_type: "view_access_key",
-          account_id: this.accountId,
-          public_key: publicKey.toString(),
-          finality: "optimistic"
-        });
-        const accessKey = {
-          ...rawAccessKey,
-          nonce: BigInt(rawAccessKey.nonce || 0)
-        };
-        if (this.accessKeyByPublicKeyCache[publicKey.toString()]) {
-          return { publicKey, accessKey: this.accessKeyByPublicKeyCache[publicKey.toString()] };
-        }
-        this.accessKeyByPublicKeyCache[publicKey.toString()] = accessKey;
-        return { publicKey, accessKey };
-      } catch (e) {
-        if (e.type == "AccessKeyDoesNotExist") {
-          return null;
-        }
-        throw e;
-      }
-    }
-    /**
-     * Create a new account and deploy a contract to it
-     *
-     * @param contractId NEAR account where the contract is deployed
-     * @param publicKey The public key to add to the created contract account
-     * @param data The compiled contract code
-     * @param amount of NEAR to transfer to the created contract account. Transfer enough to pay for storage https://docs.near.org/docs/concepts/storage-staking
-     */
-    async createAndDeployContract(contractId, publicKey, data, amount) {
-      const accessKey = fullAccessKey2();
-      await this.signAndSendTransaction({
-        receiverId: contractId,
-        actions: [createAccount3(), transfer3(amount), addKey3(publicKeyFrom(publicKey), accessKey), deployContract3(data)]
-      });
-      const contractAccount = new _Account(this.connection, contractId);
-      return contractAccount;
-    }
-    /**
-     * @param receiverId NEAR account receiving Ⓝ
-     * @param amount Amount to send in yoctoⓃ
-     */
-    async sendMoney(receiverId, amount) {
-      return this.signAndSendTransaction({
-        receiverId,
-        actions: [transfer3(amount)]
-      });
-    }
-    /**
-     * @param newAccountId NEAR account name to be created
-     * @param publicKey A public key created from the masterAccount
-     */
-    async createAccount(newAccountId, publicKey, amount) {
-      const accessKey = fullAccessKey2();
-      return this.signAndSendTransaction({
-        receiverId: newAccountId,
-        actions: [createAccount3(), transfer3(amount), addKey3(publicKeyFrom(publicKey), accessKey)]
-      });
-    }
-    /**
-     * @param beneficiaryId The NEAR account that will receive the remaining Ⓝ balance from the account being deleted
-     */
-    async deleteAccount(beneficiaryId) {
-      Logger.log("Deleting an account does not automatically transfer NFTs and FTs to the beneficiary address. Ensure to transfer assets before deleting.");
-      return this.signAndSendTransaction({
-        receiverId: this.accountId,
-        actions: [deleteAccount3(beneficiaryId)]
-      });
-    }
-    /**
-     * @param data The compiled contract code
-     */
-    async deployContract(data) {
-      return this.signAndSendTransaction({
-        receiverId: this.accountId,
-        actions: [deployContract3(data)]
-      });
-    }
-    /** @hidden */
-    encodeJSContractArgs(contractId, method2, args2) {
-      return Buffer.concat([Buffer.from(contractId), Buffer.from([0]), Buffer.from(method2), Buffer.from([0]), Buffer.from(args2)]);
-    }
-    /**
-      * Execute a function call.
-      * @param options The options for the function call.
-      * @param options.contractId The NEAR account ID of the smart contract.
-      * @param options.methodName The name of the method to be called on the smart contract.
-      * @param options.args The arguments to be passed to the method.
-      * @param options.gas The maximum amount of gas to be used for the function call.
-      * @param options.attachedDeposit The amount of NEAR tokens to be attached to the function call.
-      * @param options.walletMeta Metadata for wallet integration.
-      * @param options.walletCallbackUrl The callback URL for wallet integration.
-      * @param options.stringify A function to convert input arguments into bytes array
-      * @param options.jsContract Whether the contract is from JS SDK, automatically encodes args from JS SDK to binary.
-      * @returns {Promise<FinalExecutionOutcome>} A promise that resolves to the final execution outcome of the function call.
-      */
-    async functionCall({ contractId, methodName, args: args2 = {}, gas = DEFAULT_FUNCTION_CALL_GAS, attachedDeposit, walletMeta, walletCallbackUrl, stringify, jsContract }) {
-      this.validateArgs(args2);
-      let functionCallArgs;
-      if (jsContract) {
-        const encodedArgs = this.encodeJSContractArgs(contractId, methodName, JSON.stringify(args2));
-        functionCallArgs = ["call_js_contract", encodedArgs, gas, attachedDeposit, null, true];
-      } else {
-        const stringifyArg = stringify === void 0 ? stringifyJsonOrBytes : stringify;
-        functionCallArgs = [methodName, args2, gas, attachedDeposit, stringifyArg, false];
-      }
-      return this.signAndSendTransaction({
-        receiverId: jsContract ? this.connection.jsvmAccountId : contractId,
-        // eslint-disable-next-line prefer-spread
-        actions: [functionCall3.apply(void 0, functionCallArgs)],
-        walletMeta,
-        walletCallbackUrl
-      });
-    }
-    /**
-     * @see [https://docs.near.org/concepts/basics/accounts/access-keys](https://docs.near.org/concepts/basics/accounts/access-keys)
-     * @todo expand this API to support more options.
-     * @param publicKey A public key to be associated with the contract
-     * @param contractId NEAR account where the contract is deployed
-     * @param methodNames The method names on the contract that should be allowed to be called. Pass null for no method names and '' or [] for any method names.
-     * @param amount Payment in yoctoⓃ that is sent to the contract during this function call
-     */
-    async addKey(publicKey, contractId, methodNames, amount) {
-      if (!methodNames) {
-        methodNames = [];
-      }
-      if (!Array.isArray(methodNames)) {
-        methodNames = [methodNames];
-      }
-      let accessKey;
-      if (!contractId) {
-        accessKey = fullAccessKey2();
-      } else {
-        accessKey = functionCallAccessKey2(contractId, methodNames, amount);
-      }
-      return this.signAndSendTransaction({
-        receiverId: this.accountId,
-        actions: [addKey3(publicKeyFrom(publicKey), accessKey)]
-      });
-    }
-    /**
-     * @param publicKey The public key to be deleted
-     * @returns {Promise<FinalExecutionOutcome>}
-     */
-    async deleteKey(publicKey) {
-      return this.signAndSendTransaction({
-        receiverId: this.accountId,
-        actions: [deleteKey3(publicKeyFrom(publicKey))]
-      });
-    }
-    /**
-     * @see [https://near-nodes.io/validator/staking-and-delegation](https://near-nodes.io/validator/staking-and-delegation)
-     *
-     * @param publicKey The public key for the account that's staking
-     * @param amount The account to stake in yoctoⓃ
-     */
-    async stake(publicKey, amount) {
-      return this.signAndSendTransaction({
-        receiverId: this.accountId,
-        actions: [stake3(amount, publicKeyFrom(publicKey))]
-      });
-    }
-    /**
-     * Compose and sign a SignedDelegate action to be executed in a transaction on behalf of this Account instance
-     *
-     * @param options Options for the transaction.
-     * @param options.actions Actions to be included in the meta transaction
-     * @param options.blockHeightTtl Number of blocks past the current block height for which the SignedDelegate action may be included in a meta transaction
-     * @param options.receiverId Receiver account of the meta transaction
-     */
-    async signedDelegate({ actions, blockHeightTtl, receiverId }) {
-      const { provider, signer } = this.connection;
-      const { header } = await provider.block({ finality: "final" });
-      const { accessKey, publicKey } = await this.findAccessKey(null, null);
-      const delegateAction = buildDelegateAction({
-        actions,
-        maxBlockHeight: BigInt(header.height) + BigInt(blockHeightTtl),
-        nonce: BigInt(accessKey.nonce) + 1n,
-        publicKey,
-        receiverId,
-        senderId: this.accountId
-      });
-      const { signedDelegateAction } = await signDelegateAction({
-        delegateAction,
-        signer: {
-          sign: /* @__PURE__ */ __name(async (message2) => {
-            const { signature } = await signer.signMessage(message2, delegateAction.senderId, this.connection.networkId);
-            return signature;
-          }, "sign")
-        }
-      });
-      return signedDelegateAction;
-    }
-    /** @hidden */
-    validateArgs(args2) {
-      const isUint8Array = args2.byteLength !== void 0 && args2.byteLength === args2.length;
-      if (isUint8Array) {
-        return;
-      }
-      if (Array.isArray(args2) || typeof args2 !== "object") {
-        throw new PositionalArgsError();
-      }
-    }
-    /**
-     * Invoke a contract view function using the RPC API.
-     * @see [https://docs.near.org/api/rpc/contracts#call-a-contract-function](https://docs.near.org/api/rpc/contracts#call-a-contract-function)
-     *
-     * @param options Function call options.
-     * @param options.contractId NEAR account where the contract is deployed
-     * @param options.methodName The view-only method (no state mutations) name on the contract as it is written in the contract code
-     * @param options.args Any arguments to the view contract method, wrapped in JSON
-     * @param options.parse Parse the result of the call. Receives a Buffer (bytes array) and converts it to any object. By default result will be treated as json.
-     * @param options.stringify Convert input arguments into a bytes array. By default the input is treated as a JSON.
-     * @param options.jsContract Is contract from JS SDK, automatically encodes args from JS SDK to binary.
-     * @param options.blockQuery specifies which block to query state at. By default returns last "optimistic" block (i.e. not necessarily finalized).
-     * @returns {Promise<any>}
-     */
-    async viewFunction(options) {
-      return await viewFunction(this.connection, options);
-    }
-    /**
-     * Returns the state (key value pairs) of this account's contract based on the key prefix.
-     * Pass an empty string for prefix if you would like to return the entire state.
-     * @see [https://docs.near.org/api/rpc/contracts#view-contract-state](https://docs.near.org/api/rpc/contracts#view-contract-state)
-     *
-     * @param prefix allows to filter which keys should be returned. Empty prefix means all keys. String prefix is utf-8 encoded.
-     * @param blockQuery specifies which block to query state at. By default returns last "optimistic" block (i.e. not necessarily finalized).
-     */
-    async viewState(prefix, blockQuery = { finality: "optimistic" }) {
-      return await viewState(this.connection, this.accountId, prefix, blockQuery);
-    }
-    /**
-     * Get all access keys for the account
-     * @see [https://docs.near.org/api/rpc/access-keys#view-access-key-list](https://docs.near.org/api/rpc/access-keys#view-access-key-list)
-     */
-    async getAccessKeys() {
-      const response = await this.connection.provider.query({
-        request_type: "view_access_key_list",
-        account_id: this.accountId,
-        finality: "optimistic"
-      });
-      return response?.keys?.map((key) => ({ ...key, access_key: { ...key.access_key, nonce: BigInt(key.access_key.nonce) } }));
-    }
-    /**
-     * Returns a list of authorized apps
-     * @todo update the response value to return all the different keys, not just app keys.
-     */
-    async getAccountDetails() {
-      const accessKeys = await this.getAccessKeys();
-      const authorizedApps = accessKeys.filter((item) => item.access_key.permission !== "FullAccess").map((item) => {
-        const perm = item.access_key.permission;
-        return {
-          contractId: perm.FunctionCall.receiver_id,
-          amount: perm.FunctionCall.allowance,
-          publicKey: item.public_key
-        };
-      });
-      return { authorizedApps };
-    }
-    /**
-     * Returns calculated account balance
-     */
-    async getAccountBalance() {
-      const protocolConfig = await this.connection.provider.experimental_protocolConfig({ finality: "final" });
-      const state = await this.state();
-      const costPerByte = BigInt(protocolConfig.runtime_config.storage_amount_per_byte);
-      const stateStaked = BigInt(state.storage_usage) * costPerByte;
-      const staked = BigInt(state.locked);
-      const totalBalance = BigInt(state.amount) + staked;
-      const availableBalance = totalBalance - (staked > stateStaked ? staked : stateStaked);
-      return {
-        total: totalBalance.toString(),
-        stateStaked: stateStaked.toString(),
-        staked: staked.toString(),
-        available: availableBalance.toString()
-      };
-    }
-    /**
-     * Returns the NEAR tokens balance and validators of a given account that is delegated to the staking pools that are part of the validators set in the current epoch.
-     *
-     * NOTE: If the tokens are delegated to a staking pool that is currently on pause or does not have enough tokens to participate in validation, they won't be accounted for.
-     * @returns {Promise<ActiveDelegatedStakeBalance>}
-     */
-    async getActiveDelegatedStakeBalance() {
-      const block = await this.connection.provider.block({ finality: "final" });
-      const blockHash = block.header.hash;
-      const epochId = block.header.epoch_id;
-      const { current_validators, next_validators, current_proposals } = await this.connection.provider.validators(epochId);
-      const pools = /* @__PURE__ */ new Set();
-      [...current_validators, ...next_validators, ...current_proposals].forEach((validator) => pools.add(validator.account_id));
-      const uniquePools = [...pools];
-      const promises = uniquePools.map((validator) => this.viewFunction({
-        contractId: validator,
-        methodName: "get_account_total_balance",
-        args: { account_id: this.accountId },
-        blockQuery: { blockId: blockHash }
-      }));
-      const results = await Promise.allSettled(promises);
-      const hasTimeoutError = results.some((result) => {
-        if (result.status === "rejected" && result.reason.type === "TimeoutError") {
-          return true;
-        }
-        return false;
-      });
-      if (hasTimeoutError) {
-        throw new Error("Failed to get delegated stake balance");
-      }
-      const summary = results.reduce((result, state, index) => {
-        const validatorId = uniquePools[index];
-        if (state.status === "fulfilled") {
-          const currentBN = BigInt(state.value);
-          if (currentBN !== 0n) {
-            return {
-              ...result,
-              stakedValidators: [...result.stakedValidators, { validatorId, amount: currentBN.toString() }],
-              total: result.total + currentBN
-            };
-          }
-        }
-        if (state.status === "rejected") {
-          return {
-            ...result,
-            failedValidators: [...result.failedValidators, { validatorId, error: state.reason }]
-          };
-        }
-        return result;
-      }, { stakedValidators: [], failedValidators: [], total: 0n });
-      return {
-        ...summary,
-        total: summary.total.toString()
-      };
-    }
-  };
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/account_2fa.js
-  var import_isomorphic_unfetch = __toESM(require_isomorphic_unfetch(), 1);
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/constants.js
-  var MULTISIG_STORAGE_KEY = "__multisigRequest";
-  var MULTISIG_ALLOWANCE = BigInt(parseNearAmount("1"));
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/types.js
-  var MultisigDeleteRequestRejectionError;
-  (function(MultisigDeleteRequestRejectionError2) {
-    MultisigDeleteRequestRejectionError2["CANNOT_DESERIALIZE_STATE"] = "Cannot deserialize the contract state";
-    MultisigDeleteRequestRejectionError2["MULTISIG_NOT_INITIALIZED"] = "Smart contract panicked: Multisig contract should be initialized before usage";
-    MultisigDeleteRequestRejectionError2["NO_SUCH_REQUEST"] = "Smart contract panicked: panicked at 'No such request: either wrong number or already confirmed'";
-    MultisigDeleteRequestRejectionError2["REQUEST_COOLDOWN_ERROR"] = "Request cannot be deleted immediately after creation.";
-    MultisigDeleteRequestRejectionError2["METHOD_NOT_FOUND"] = "Contract method is not found";
-  })(MultisigDeleteRequestRejectionError || (MultisigDeleteRequestRejectionError = {}));
-  var MultisigStateStatus;
-  (function(MultisigStateStatus2) {
-    MultisigStateStatus2[MultisigStateStatus2["INVALID_STATE"] = 0] = "INVALID_STATE";
-    MultisigStateStatus2[MultisigStateStatus2["STATE_NOT_INITIALIZED"] = 1] = "STATE_NOT_INITIALIZED";
-    MultisigStateStatus2[MultisigStateStatus2["VALID_STATE"] = 2] = "VALID_STATE";
-    MultisigStateStatus2[MultisigStateStatus2["UNKNOWN_STATE"] = 3] = "UNKNOWN_STATE";
-  })(MultisigStateStatus || (MultisigStateStatus = {}));
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/account_multisig.js
-  var { deployContract: deployContract4, functionCall: functionCall4 } = actionCreators;
-  var MultisigCodeStatus;
-  (function(MultisigCodeStatus2) {
-    MultisigCodeStatus2[MultisigCodeStatus2["INVALID_CODE"] = 0] = "INVALID_CODE";
-    MultisigCodeStatus2[MultisigCodeStatus2["VALID_CODE"] = 1] = "VALID_CODE";
-    MultisigCodeStatus2[MultisigCodeStatus2["UNKNOWN_CODE"] = 2] = "UNKNOWN_CODE";
-  })(MultisigCodeStatus || (MultisigCodeStatus = {}));
-  var storageFallback = {
-    [MULTISIG_STORAGE_KEY]: null
-  };
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/account_2fa.js
-  var { addKey: addKey4, deleteKey: deleteKey4, deployContract: deployContract5, fullAccessKey: fullAccessKey3, functionCall: functionCall5, functionCallAccessKey: functionCallAccessKey3 } = actionCreators;
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/account_creator.js
-  var import_isomorphic_unfetch2 = __toESM(require_isomorphic_unfetch(), 1);
-  var AccountCreator = class {
-    static {
-      __name(this, "AccountCreator");
-    }
-  };
-  var LocalAccountCreator = class extends AccountCreator {
-    static {
-      __name(this, "LocalAccountCreator");
-    }
-    masterAccount;
-    initialBalance;
-    constructor(masterAccount, initialBalance) {
-      super();
-      this.masterAccount = masterAccount;
-      this.initialBalance = initialBalance;
-    }
-    /**
-     * Creates an account using a masterAccount, meaning the new account is created from an existing account
-     * @param newAccountId The name of the NEAR account to be created
-     * @param publicKey The public key from the masterAccount used to create this account
-     * @returns {Promise<void>}
-     */
-    async createAccount(newAccountId, publicKey) {
-      await this.masterAccount.createAccount(newAccountId, publicKey, this.initialBalance);
-    }
-  };
-  var UrlAccountCreator = class extends AccountCreator {
-    static {
-      __name(this, "UrlAccountCreator");
-    }
-    connection;
-    helperUrl;
-    constructor(connection, helperUrl) {
-      super();
-      this.connection = connection;
-      this.helperUrl = helperUrl;
-    }
-    /**
-     * Creates an account using a helperUrl
-     * This is [hosted here](https://helper.nearprotocol.com) or set up locally with the [near-contract-helper](https://github.com/nearprotocol/near-contract-helper) repository
-     * @param newAccountId The name of the NEAR account to be created
-     * @param publicKey The public key from the masterAccount used to create this account
-     * @returns {Promise<void>}
-     */
-    async createAccount(newAccountId, publicKey) {
-      await (0, import_isomorphic_unfetch2.default)(`${this.helperUrl}/account`, {
-        body: JSON.stringify({ newAccountId, newAccountPublicKey: publicKey.toString() }),
-        method: "POST"
-      });
-    }
-  };
-
-  // ../../node_modules/@meer-js/signers/dist/esm/signers/src/signer.js
-  var Signer = class {
-    static {
-      __name(this, "Signer");
-    }
-  };
-
-  // ../../node_modules/@meer-js/signers/dist/esm/signers/src/in_memory_signer.js
-  var InMemorySigner = class _InMemorySigner extends Signer {
-    static {
-      __name(this, "InMemorySigner");
-    }
-    keyStore;
-    constructor(keyStore) {
-      super();
-      this.keyStore = keyStore;
-    }
-    /**
-     * Creates a single account Signer instance with account, network and keyPair provided.
-     *
-     * Intended to be useful for temporary keys (e.g. claiming a Linkdrop).
-     *
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @param accountId The NEAR account to assign the key pair to
-     * @param keyPair The keyPair to use for signing
-     */
-    static async fromKeyPair(networkId, accountId, keyPair) {
-      const keyStore = new InMemoryKeyStore();
-      await keyStore.setKey(networkId, accountId, keyPair);
-      return new _InMemorySigner(keyStore);
-    }
-    /**
-     * Creates a public key for the account given
-     * @param accountId The NEAR account to assign a public key to
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @returns {Promise<PublicKey>}
-     */
-    async createKey(accountId, networkId, keyType) {
-      const keyPair = keyType === KeyType.SECP256K1 ? KeyPair.fromRandom("secp256k1") : KeyPair.fromRandom("ed25519");
-      await this.keyStore.setKey(networkId, accountId, keyPair);
-      return keyPair.getPublicKey();
-    }
-    /**
-     * Gets the existing public key for a given account
-     * @param accountId The NEAR account to assign a public key to
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @returns {Promise<PublicKey>} Returns the public key or null if not found
-     */
-    async getPublicKey(accountId, networkId) {
-      const keyPair = await this.keyStore.getKey(networkId, accountId);
-      if (keyPair === null) {
-        return null;
-      }
-      return keyPair.getPublicKey();
-    }
-    /**
-     * @param message A message to be signed, typically a serialized transaction
-     * @param accountId the NEAR account signing the message
-     * @param networkId The targeted network. (ex. default, betanet, etc…)
-     * @returns {Promise<Signature>}
-     */
-    async signMessage(message2, accountId, networkId) {
-      const hash = new Uint8Array(sha256(message2));
-      if (!accountId) {
-        throw new Error("InMemorySigner requires provided account id");
-      }
-      const keyPair = await this.keyStore.getKey(networkId, accountId);
-      if (keyPair === null) {
-        throw new Error(`Key for ${accountId} not found in ${networkId}`);
-      }
-      return keyPair.sign(hash);
-    }
-    toString() {
-      return `InMemorySigner(${this.keyStore})`;
-    }
-  };
-
-  // ../../node_modules/@meer-js/accounts/dist/esm/accounts/src/connection.js
-  function getProvider(config) {
-    switch (config.type) {
-      case void 0:
-        return config;
-      case "JsonRpcProvider":
-        return new JsonRpcProvider({ ...config.args });
-      case "FailoverRpcProvider": {
-        const providers = (config?.args || []).map((arg) => new JsonRpcProvider(arg));
-        return new FailoverRpcProvider(providers);
-      }
-      default:
-        throw new Error(`Unknown provider type ${config.type}`);
-    }
-  }
-  __name(getProvider, "getProvider");
-  function getSigner(config) {
-    switch (config.type) {
-      case void 0:
-        return config;
-      case "InMemorySigner": {
-        return new InMemorySigner(config.keyStore);
-      }
-      default:
-        throw new Error(`Unknown signer type ${config.type}`);
-    }
-  }
-  __name(getSigner, "getSigner");
-  var Connection = class _Connection {
-    static {
-      __name(this, "Connection");
-    }
-    networkId;
-    provider;
-    signer;
-    jsvmAccountId;
-    constructor(networkId, provider, signer, jsvmAccountId) {
-      this.networkId = networkId;
-      this.provider = provider;
-      this.signer = signer;
-      this.jsvmAccountId = jsvmAccountId;
-    }
-    getConnection() {
-      return this;
-    }
-    /**
-     * @param config Contains connection info details
-     */
-    static fromConfig(config) {
-      const provider = getProvider(config.provider);
-      const signer = getSigner(config.signer);
-      return new _Connection(config.networkId, provider, signer, config.jsvmAccountId);
-    }
-  };
-
-  // ../../node_modules/@meer-js/wallet-account/dist/esm/wallet-account/src/near.js
-  var Near = class {
-    static {
-      __name(this, "Near");
-    }
-    config;
-    connection;
-    accountCreator;
-    constructor(config) {
-      this.config = config;
-      this.connection = Connection.fromConfig({
-        networkId: config.networkId,
-        provider: config.provider || { type: "JsonRpcProvider", args: { url: config.nodeUrl, headers: config.headers } },
-        signer: config.signer || { type: "InMemorySigner", keyStore: config.keyStore || config.deps?.keyStore },
-        jsvmAccountId: config.jsvmAccountId || `jsvm.${config.networkId}`
-      });
-      if (config.masterAccount) {
-        const initialBalance = config.initialBalance ? BigInt(config.initialBalance) : 500000000000000000000000000n;
-        this.accountCreator = new LocalAccountCreator(new Account(this.connection, config.masterAccount), initialBalance);
-      } else if (config.helperUrl) {
-        this.accountCreator = new UrlAccountCreator(this.connection, config.helperUrl);
-      } else {
-        this.accountCreator = null;
-      }
-    }
-    /**
-     * @param accountId near accountId used to interact with the network.
-     */
-    async account(accountId) {
-      const account = new Account(this.connection, accountId);
-      return account;
-    }
-    /**
-     * Create an account using the {@link AccountCreator}. Either:
-     * * using a masterAccount with {@link LocalAccountCreator}
-     * * using the helperUrl with {@link UrlAccountCreator}
-     * @see {@link NearConfig#masterAccount} and {@link NearConfig#helperUrl}
-     *
-     * @param accountId
-     * @param publicKey
-     */
-    async createAccount(accountId, publicKey) {
-      if (!this.accountCreator) {
-        throw new Error("Must specify account creator, either via masterAccount or helperUrl configuration settings.");
-      }
-      await this.accountCreator.createAccount(accountId, publicKey);
-      return new Account(this.connection, accountId);
-    }
-  };
-
-  // ../../node_modules/meer-api-js/dist/esm/meer-api-js/src/connect.js
-  async function connect(config) {
-    if (config.logger === false) {
-      Logger.overrideLogger(void 0);
-    } else if (config.logger !== void 0 && config.logger !== null) {
-      Logger.overrideLogger(config.logger);
-    }
-    if (config.keyStore || config.deps?.keyStore) {
-      const keyStore = config.keyStore || config.deps.keyStore;
-      config.keyStore = new MergeKeyStore([keyStore], { writeKeyStoreIndex: 0 });
-      Logger.log(`Key store initialized for the connection configuration.`);
-    }
-    return new Near(config);
-  }
-  __name(connect, "connect");
-
   // src/adapters/meteor.ts
+  var import_near_api_js = __toESM(require_lib18(), 1);
   var import_meteorwallet_sdk = __toESM(require_src(), 1);
-  var import_crypto13 = __toESM(require_lib8(), 1);
+  var import_crypto3 = __toESM(require_lib8(), 1);
+  var import_near_api_js2 = __toESM(require_lib18(), 1);
   async function createMeteorWalletInstance({ networkId = "mainnet" }) {
-    const keyStore = new key_stores_exports.BrowserLocalStorageKeyStore(
+    const keyStore = new import_near_api_js2.keyStores.BrowserLocalStorageKeyStore(
       window.localStorage,
       "_meteor_wallet"
     );
-    const near = await connect({
+    const near = await (0, import_near_api_js.connect)({
       keyStore,
       networkId,
       nodeUrl: networkId === "mainnet" ? "https://rpc.mainnet.near.org" : "https://rpc.testnet.near.org"
@@ -66994,9 +61112,9 @@ ${JSON.stringify(result, null, 2)}`, getErrorTypeFromErrorMessage(result.error, 
   function createMeteorAdapter() {
     return {
       async signIn({ networkId, contractId, publicKey }) {
-        publicKey = import_crypto13.PublicKey.from(publicKey);
+        publicKey = import_crypto3.PublicKey.from(publicKey);
         console.log("aloha publicKey", publicKey);
-        const keyPair = KeyPair.fromString(publicKey.toString());
+        const keyPair = import_near_api_js.KeyPair.fromString(publicKey.toString());
         console.log("aloha keyPair", keyPair);
         const wallet = await createMeteorWalletInstance({ networkId });
         const {
@@ -67212,7 +61330,7 @@ ${JSON.stringify(result, null, 2)}`, getErrorTypeFromErrorMessage(result.error, 
     }
   }
   __name(handleSend, "handleSend");
-  return __toCommonJS(src_exports);
+  return __toCommonJS(src_exports2);
 })();
 /*! Bundled license information:
 
@@ -67332,32 +61450,17 @@ http-errors/index.js:
    * Copyright(c) 2016 Douglas Christopher Wilson
    * MIT Licensed
    *)
-
-mustache/mustache.mjs:
-  (*!
-   * mustache.js - Logic-less {{mustache}} templates with JavaScript
-   * http://github.com/janl/mustache.js
-   *)
-
-@noble/hashes/esm/utils.js:
-  (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-
-@noble/curves/esm/abstract/utils.js:
-  (*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-
-@noble/curves/esm/abstract/modular.js:
-  (*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-
-@noble/curves/esm/abstract/curve.js:
-  (*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-
-@noble/curves/esm/abstract/edwards.js:
-  (*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-
-@noble/curves/esm/ed25519.js:
-  (*! noble-curves - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
-
-@noble/hashes/esm/utils.js:
-  (*! noble-hashes - MIT License (c) 2022 Paul Miller (paulmillr.com) *)
 */
+
+if (typeof globalThis.NearWalletAdapterWidget === 'undefined') {
+  console.warn('No globalThis.NearWalletAdapterWidget');
+} else {
+  Object.defineProperty(globalThis, 'NearWalletAdapterWidget', {
+    value: globalThis.NearWalletAdapterWidget,
+    writable: false,
+    enumerable: true,
+    configurable: false,
+  });
+}
+
 //# sourceMappingURL=browser.global.js.map

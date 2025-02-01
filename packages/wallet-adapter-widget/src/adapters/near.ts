@@ -1,6 +1,5 @@
-import { KeyPair } from "meer-api-js";
 import { serializeTransaction } from "../utils/transaction";
-import { toBase58, toBase64 } from "../utils/utils";
+import {toBase58} from "@fastnear/utils";
 
 const walletUrl = (networkId) =>
   networkId === "testnet"

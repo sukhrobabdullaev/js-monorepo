@@ -1,4 +1,4 @@
-import { fromBase64 } from "./utils.js";
+import { fromBase64 } from "@fastnear/utils";
 
 export const mapActionForWalletSelector = action => {
   const type = action.type;

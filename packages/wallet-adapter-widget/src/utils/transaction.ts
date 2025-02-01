@@ -1,7 +1,7 @@
 import { serialize as borshSerialize } from "borsh";
-import { fromBase58, fromBase64, keyFromString } from "./utils.js";
+import { fromBase58, fromBase64, keyFromString } from "@fastnear/utils";
 
-function mapTransaction(jsonTransaction) {
+export function mapTransaction(jsonTransaction) {
   return {
     signerId: jsonTransaction.signerId,
     publicKey: {

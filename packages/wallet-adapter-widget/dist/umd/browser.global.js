@@ -1,5 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - IIFE/UMD (@fastnear/wallet-adapter-widget version 0.6.0) */
-/* https://www.npmjs.com/package/@fastnear/wallet-adapter-widget/v/0.6.0 */
+/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - IIFE/UMD (@fastnear/wallet-adapter-widget version 0.6.1) */
+/* https://www.npmjs.com/package/@fastnear/wallet-adapter-widget/v/0.6.1 */
 var NearWalletAdapterWidget = (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;

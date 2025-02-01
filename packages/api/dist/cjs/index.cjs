@@ -1,5 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR API - CJS (@fastnear/api version 0.6.0) */
-/* https://www.npmjs.com/package/@fastnear/api/v/0.6.0 */
+/* ⋈ 🏃🏻💨 FastNEAR API - CJS (@fastnear/api version 0.6.1) */
+/* https://www.npmjs.com/package/@fastnear/api/v/0.6.1 */
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;

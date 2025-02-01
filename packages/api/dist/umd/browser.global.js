@@ -1,5 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD (@fastnear/api version 0.6.0) */
-/* https://www.npmjs.com/package/@fastnear/api/v/0.6.0 */
+/* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD (@fastnear/api version 0.6.1) */
+/* https://www.npmjs.com/package/@fastnear/api/v/0.6.1 */
 var near = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
@@ -23,10 +23,7 @@ var near = (() => {
   // src/index.ts
   var src_exports3 = {};
   __export(src_exports3, {
-    DEFAULT_NETWORK_ID: () => DEFAULT_NETWORK_ID,
     MaxBlockDelayMs: () => MaxBlockDelayMs,
-    NETWORKS: () => NETWORKS,
-    WIDGET_URL: () => WIDGET_URL,
     accessKey: () => accessKey,
     account: () => account,
     accountId: () => accountId,
@@ -3770,6 +3767,18 @@ var near = (() => {
   };
 
   // src/state.ts
+  var WIDGET_URL = "https://wallet-adapter.fastnear.com";
+  var DEFAULT_NETWORK_ID = "mainnet";
+  var NETWORKS = {
+    testnet: {
+      networkId: "testnet",
+      nodeUrl: "https://rpc.testnet.fastnear.com/"
+    },
+    mainnet: {
+      networkId: "mainnet",
+      nodeUrl: "https://rpc.mainnet.fastnear.com/"
+    }
+  };
   var _config = lsGet("config") || {
     ...NETWORKS[DEFAULT_NETWORK_ID]
   };
@@ -3884,7 +3893,7 @@ var near = (() => {
   __name(getTxHistory, "getTxHistory");
   function setConfig(newConf) {
     _config = newConf;
-    lsSet("config", _config);
+    lsSet("config", { ...NETWORKS[_config.networkId] });
   }
   __name(setConfig, "setConfig");
   function resetTxHistory() {
@@ -3896,18 +3905,6 @@ var near = (() => {
   // src/near.ts
   big_default.DP = 27;
   var MaxBlockDelayMs = 1e3 * 60 * 60 * 6;
-  var WIDGET_URL = "https://wallet-adapter.fastnear.com";
-  var DEFAULT_NETWORK_ID = "mainnet";
-  var NETWORKS = {
-    testnet: {
-      networkId: "testnet",
-      nodeUrl: "https://rpc.testnet.fastnear.com/"
-    },
-    mainnet: {
-      networkId: "mainnet",
-      nodeUrl: "https://rpc.mainnet.fastnear.com/"
-    }
-  };
   function withBlockId(params, blockId) {
     return blockId === "final" || blockId === "optimistic" ? { ...params, finality: blockId } : blockId ? { ...params, block_id: blockId } : { ...params, finality: "optimistic" };
   }
@@ -3987,7 +3984,7 @@ var near = (() => {
     const current = getConfig();
     if (newConfig) {
       if (newConfig.networkId && current.networkId !== newConfig.networkId) {
-        setConfig({ ...NETWORKS[newConfig.networkId] });
+        setConfig(newConfig.networkId);
         updateState({
           accountId: null,
           privateKey: null,

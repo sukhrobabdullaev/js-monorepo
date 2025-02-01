@@ -1,5 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR Borsh Schema - ESM (@fastnear/borsh-schema version 0.6.0) */
-/* https://www.npmjs.com/package/@fastnear/borsh-schema/v/0.6.0 */
+/* ⋈ 🏃🏻💨 FastNEAR Borsh Schema - ESM (@fastnear/borsh-schema version 0.6.1) */
+/* https://www.npmjs.com/package/@fastnear/borsh-schema/v/0.6.1 */
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 const getBorshSchema = (() => {

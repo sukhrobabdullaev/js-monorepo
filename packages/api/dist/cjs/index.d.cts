@@ -17,18 +17,6 @@ interface TxStatus {
 type TxHistory = Record<string, TxStatus>;
 
 declare const MaxBlockDelayMs: number;
-declare const WIDGET_URL = "https://wallet-adapter.fastnear.com";
-declare const DEFAULT_NETWORK_ID = "mainnet";
-declare const NETWORKS: {
-    testnet: {
-        networkId: string;
-        nodeUrl: string;
-    };
-    mainnet: {
-        networkId: string;
-        nodeUrl: string;
-    };
-};
 declare function withBlockId(params: Record<string, any>, blockId?: string): {
     finality: string;
 } | {
@@ -157,4 +145,4 @@ declare const reExports: {
 };
 declare const utils: typeof reExportUtils;
 
-export { type AccessKeyView, DEFAULT_NETWORK_ID, MaxBlockDelayMs, NETWORKS, WIDGET_URL, accessKey, account, accountId, actions, afterTxSent, authStatus, block, config, localTxHistory, publicKey, queryRpc, reExports, requestSignIn, sendTx, sendTxToRpc, signOut, tx, utils, view, withBlockId };
+export { type AccessKeyView, MaxBlockDelayMs, accessKey, account, accountId, actions, afterTxSent, authStatus, block, config, localTxHistory, publicKey, queryRpc, reExports, requestSignIn, sendTx, sendTxToRpc, signOut, tx, utils, view, withBlockId };

@@ -3,7 +3,7 @@ import {
   lsGet,
   publicKeyFromPrivate,
 } from "@fastnear/utils";
-import {DEFAULT_NETWORK_ID, NETWORKS, WIDGET_URL} from "./near";
+import {DEFAULT_NETWORK_ID, NETWORKS, WIDGET_URL} from "./near.js";
 import {WalletAdapter} from "@fastnear/wallet-adapter";
 
 export interface NetworkConfig {

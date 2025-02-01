@@ -1,4 +1,7 @@
 import { defineConfig } from 'tsup'
+/* @ts-ignore */
+// we'll get this package's name and version for the banner
+import pkg from './package.json'
 
 const globalName = 'NearWalletAdapterWidget'
 const friendlyPackageName = 'Wallet Adapter Widget'
@@ -39,7 +42,8 @@ export default defineConfig([
     clean: true,
     keepNames: true,
     banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - CJS */`,
+      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - CJS (${pkg.name} version ${pkg.version}) */\n` +
+        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
     },
   },
   // 2) ESM
@@ -59,7 +63,8 @@ export default defineConfig([
     clean: true,
     keepNames: true,
     banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - ESM */`,
+      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - ESM (${pkg.name} version ${pkg.version}) */\n` +
+        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
     },
   },
   // 3) IIFE/UMD
@@ -79,7 +84,8 @@ export default defineConfig([
     clean: true,
     keepNames: true,
     banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - IIFE/UMD */`,
+      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - IIFE/UMD (${pkg.name} version ${pkg.version}) */\n` +
+        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
     },
     footer: {
       js: footerRedefiningGlobal,

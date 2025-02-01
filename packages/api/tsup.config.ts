@@ -1,4 +1,7 @@
 import { defineConfig } from 'tsup'
+/* @ts-ignore */
+// we'll get this package's name and version for the banner
+import pkg from './package.json'
 
 const globalName = 'near'
 
@@ -33,7 +36,8 @@ export default defineConfig([
     sourcemap: true,
     minify: false,
     banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR API - CJS */`,
+      js: `/* ⋈ 🏃🏻💨 FastNEAR API - CJS (${pkg.name} version ${pkg.version}) */\n` +
+        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
     },
   },
 
@@ -53,7 +57,8 @@ export default defineConfig([
     sourcemap: true,
     minify: false,
     banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR API - ESM */`,
+      js: `/* ⋈ 🏃🏻💨 FastNEAR API - ESM (${pkg.name} version ${pkg.version}) */\n` +
+        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
     },
   },
 
@@ -64,8 +69,8 @@ export default defineConfig([
     },
     outDir: 'dist/umd',
     format: ['iife'],
-    globalName,    // This assigns your library to globalThis.near
-    bundle: true,  // We typically bundle the IIFE for the browser
+    globalName,
+    bundle: true,
     splitting: false,
     clean: true,
     keepNames: true,
@@ -74,7 +79,8 @@ export default defineConfig([
     minify: false,
     platform: 'browser',
     banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD */`,
+      js: `/* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD (${pkg.name} version ${pkg.version}) */\n` +
+        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
     },
     footer: {
       js: footerRedefiningGlobal,

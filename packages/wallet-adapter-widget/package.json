@@ -38,8 +38,7 @@
   },
   "peerDependencies": {
     "bn.js": "=5.2.1",
-    "borsh": "=0.7.0",
-    "near-api-js": "^2.0.0"
+    "borsh": "=0.7.0"
   },
   "devDependencies": {
     "near-api-js": "^2.0.0",

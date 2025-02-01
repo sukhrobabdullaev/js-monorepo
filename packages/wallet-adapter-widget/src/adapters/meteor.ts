@@ -1,9 +1,9 @@
-import { connect, KeyPair } from "meer-api-js";
+import { connect, KeyPair } from "near-api-js";
 
 import {EMeteorWalletSignInType, MeteorWallet} from "@fastnear/meteorwallet-sdk";
 import { mapActionForWalletSelector } from "../utils/actionToWalletSelector";
 import { PublicKey } from "@near-js/crypto";
-import { keyStores } from "meer-api-js";
+import { keyStores } from "near-api-js";
 
 async function createMeteorWalletInstance({ networkId = "mainnet" }) {
   const keyStore = new keyStores.BrowserLocalStorageKeyStore(

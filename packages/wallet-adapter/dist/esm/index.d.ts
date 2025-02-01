@@ -19,6 +19,11 @@
  * @property {string} [accountId] - Account ID if immediately available
  * @property {string} [error] - Error message if sign in failed
  */
+interface SignInResult {
+    url?: string;
+    accountId?: string;
+    error?: string;
+}
 /**
  * @typedef {Object} Transaction
  * @property {string} [signerId] - Transaction signer account ID
@@ -77,7 +82,7 @@ declare class WalletAdapter {
      * @param {SignInConfig} config
      * @returns {Promise<SignInResult>}
      */
-    signIn(config: any): Promise<unknown>;
+    signIn(config: any): Promise<SignInResult>;
     /**
      * Send a transaction using connected wallet
      * @param {TransactionConfig} config
@@ -90,4 +95,4 @@ declare class WalletAdapter {
     destroy(): void;
 }
 
-export { WalletAdapter, type WalletAdapterConstructor };
+export { type SignInResult, WalletAdapter, type WalletAdapterConstructor };

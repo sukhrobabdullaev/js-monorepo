@@ -184,4 +184,16 @@ var NearWalletAdapter = (() => {
   };
   return __toCommonJS(src_exports);
 })();
+
+if (typeof globalThis.NearWalletAdapter === 'undefined') {
+  console.warn('No globalThis.NearWalletAdapter');
+} else {
+  Object.defineProperty(globalThis, 'NearWalletAdapter', {
+    value: globalThis.NearWalletAdapter,
+    writable: false,
+    enumerable: true,
+    configurable: false,
+  });
+}
+
 //# sourceMappingURL=browser.global.js.map

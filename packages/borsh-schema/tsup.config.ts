@@ -3,6 +3,20 @@ import { defineConfig } from 'tsup'
 const globalName = 'NearBorshSchema'
 const friendlyPackageName = 'Borsh Schema'
 
+// Aids in certain guards on the global's mutability
+const footerRedefiningGlobal = `
+if (typeof globalThis.${globalName} === 'undefined') {
+  console.warn('No globalThis.${globalName}');
+} else {
+  Object.defineProperty(globalThis, '${globalName}', {
+    value: globalThis.${globalName},
+    writable: false,
+    enumerable: true,
+    configurable: false,
+  });
+}
+`
+
 export default defineConfig([
   {
     entry: ['src/index.ts'],
@@ -57,5 +71,8 @@ export default defineConfig([
     banner: {
       js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - IIFE/UMD */`,
     },
+    footer: {
+      js: footerRedefiningGlobal
+    }
   },
 ])

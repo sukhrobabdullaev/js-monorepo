@@ -1,0 +1,45 @@
+{
+  "name": "@fastnear/utils",
+  "version": "0.5.1",
+  "description": "Utility functions for interactions with the NEAR blockchain",
+  "type": "module",
+  "types": "./dist/esm/index.d.ts",
+  "main": "./dist/cjs/index.cjs",
+  "module": "./dist/esm/index.js",
+  "browser": "./dist/umd/browser.global.js",
+  "scripts": {
+    "build": "tsup",
+    "publish": "yarn npm publish",
+    "clean": "yarn rimraf dist node_modules",
+    "type-check": "tsc --noEmit"
+  },
+  "author": "FastNEAR",
+  "keywords": [
+    "near-protocol",
+    "blockchain",
+    "fastnear"
+  ],
+  "files": [
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/cjs/index.cjs",
+      "import": "./dist/esm/index.js"
+    }
+  },
+  "dependencies": {
+    "@fastnear/borsh-schema": "workspace:*",
+    "@noble/curves": "*",
+    "@noble/hashes": "*",
+    "base58-js": "*",
+    "big.js": "*",
+    "borsh": "*",
+    "js-base64": "*"
+  },
+  "devDependencies": {
+    "rimraf": "*",
+    "tsup": "*",
+    "typescript": "*"
+  }
+}

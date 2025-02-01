@@ -188,4 +188,16 @@ var NearBorshSchema = (() => {
   })();
   return __toCommonJS(src_exports);
 })();
+
+if (typeof globalThis.NearBorshSchema === 'undefined') {
+  console.warn('No globalThis.NearBorshSchema');
+} else {
+  Object.defineProperty(globalThis, 'NearBorshSchema', {
+    value: globalThis.NearBorshSchema,
+    writable: false,
+    enumerable: true,
+    configurable: false,
+  });
+}
+
 //# sourceMappingURL=browser.global.js.map

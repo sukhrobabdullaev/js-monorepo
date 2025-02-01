@@ -92,6 +92,21 @@ export function tryParseJson(...args) {
   }
 }
 
+export function parseJsonFromBytes(bytes: Uint8Array) {
+  try {
+    const decoder = new TextDecoder();
+    return JSON.parse(
+      decoder.decode(bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes))
+    );
+  } catch (e) {
+    try {
+      return bytes instanceof Uint8Array ? bytes : new Uint8Array(bytes);
+    } catch (e) {
+      return bytes;
+    }
+  }
+}
+
 export function canSignWithLAK(actions) {
   return (
     actions.length === 1 &&

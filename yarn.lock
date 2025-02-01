@@ -177,6 +177,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@fastnear/api@workspace:packages/api"
   dependencies:
+    "@fastnear/utils": "workspace:*"
     "@fastnear/wallet-adapter": "workspace:*"
     "@noble/curves": "npm:*"
     "@noble/hashes": "npm:*"
@@ -189,7 +190,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@fastnear/borsh-schema@workspace:packages/borsh-schema":
+"@fastnear/borsh-schema@workspace:*, @fastnear/borsh-schema@workspace:packages/borsh-schema":
   version: 0.0.0-use.local
   resolution: "@fastnear/borsh-schema@workspace:packages/borsh-schema"
   dependencies:
@@ -212,11 +213,29 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@fastnear/utils@workspace:*, @fastnear/utils@workspace:packages/utils":
+  version: 0.0.0-use.local
+  resolution: "@fastnear/utils@workspace:packages/utils"
+  dependencies:
+    "@fastnear/borsh-schema": "workspace:*"
+    "@noble/curves": "npm:*"
+    "@noble/hashes": "npm:*"
+    base58-js: "npm:*"
+    big.js: "npm:*"
+    borsh: "npm:*"
+    js-base64: "npm:*"
+    rimraf: "npm:*"
+    tsup: "npm:*"
+    typescript: "npm:*"
+  languageName: unknown
+  linkType: soft
+
 "@fastnear/wallet-adapter-widget@workspace:packages/wallet-adapter-widget":
   version: 0.0.0-use.local
   resolution: "@fastnear/wallet-adapter-widget@workspace:packages/wallet-adapter-widget"
   dependencies:
     "@fastnear/meteorwallet-sdk": "npm:*"
+    "@fastnear/utils": "workspace:*"
     "@here-wallet/core": "npm:*"
     base58-js: "npm:*"
     base64-js: "npm:*"
@@ -228,7 +247,6 @@ __metadata:
   peerDependencies:
     bn.js: =5.2.1
     borsh: =0.7.0
-    near-api-js: ^2.0.0
   languageName: unknown
   linkType: soft
 
@@ -1213,7 +1231,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"big.js@npm:^6.2.2":
+"big.js@npm:*, big.js@npm:^6.2.2":
   version: 6.2.2
   resolution: "big.js@npm:6.2.2"
   checksum: 10c0/58d204f6a1a92508dc2eb98d964e2cc6dabb37a3d9fc8a1f0b77a34dead7c11e17b173d9a6df2d5a7a0f78d5c80853a9ce6df29852da59ab10b088e981195165
@@ -3099,7 +3117,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"js-base64@npm:^3.7.7":
+"js-base64@npm:*, js-base64@npm:^3.7.7":
   version: 3.7.7
   resolution: "js-base64@npm:3.7.7"
   checksum: 10c0/3c905a7e78b601e4751b5e710edd0d6d045ce2d23eb84c9df03515371e1b291edc72808dc91e081cb9855aef6758292a2407006f4608ec3705373dd8baf2f80f

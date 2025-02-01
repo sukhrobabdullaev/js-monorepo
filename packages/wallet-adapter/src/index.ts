@@ -22,6 +22,12 @@
  * @property {string} [error] - Error message if sign in failed
  */
 
+export interface SignInResult {
+  url?: string;
+  accountId?: string;
+  error?: string;
+}
+
 /**
  * @typedef {Object} Transaction
  * @property {string} [signerId] - Transaction signer account ID
@@ -87,9 +93,7 @@ export class WalletAdapter {
   /** @type {string} */
   static defaultWidgetUrl = "https://wallet-adapter.fastnear.com";
 
-
-
-/**
+  /**
    * @param {WalletAdapterConfig} [config]
    */
   constructor({
@@ -120,6 +124,7 @@ export class WalletAdapter {
 
     // Create URL
     const url = new URL(path, this.#widgetUrl);
+    console.log('aloha wa url', url)
 
     // Create and configure iframe
     const iframe = document.createElement("iframe");
@@ -228,7 +233,7 @@ export class WalletAdapter {
    * @param {SignInConfig} config
    * @returns {Promise<SignInResult>}
    */
-  async signIn(config) {
+  async signIn(config): Promise<SignInResult> {
     return this.#sendMessage("/public/login.html", "signIn", config);
   }
 

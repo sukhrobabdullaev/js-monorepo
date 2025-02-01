@@ -29,6 +29,7 @@
     }
   },
   "dependencies": {
+    "@fastnear/utils": "workspace:*",
     "@fastnear/wallet-adapter": "workspace:*",
     "@noble/curves": "*",
     "@noble/hashes": "*",

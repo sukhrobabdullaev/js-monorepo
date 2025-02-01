@@ -1,13 +1,8 @@
-import { api as near, convertUnit } from "./near.js";
+import { convertUnit } from "@fastnear/utils";
 
-// @ts-ignore
-window.near = near;
-// @ts-ignore
-window.$$ = convertUnit;
+if (typeof window !== "undefined") {
+  // @ts-ignore
+  window.$$ = convertUnit;
+}
 
-export { near };
-
-export * from './cryptoUtils.js';
-export * from './near.js';
-export * from './transaction.js';
-export * from './utils.js';
+export * from "./near.js";

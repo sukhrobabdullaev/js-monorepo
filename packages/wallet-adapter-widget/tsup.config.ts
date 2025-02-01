@@ -1,94 +1,105 @@
 import { defineConfig } from 'tsup'
-/* @ts-ignore */
-// we'll get this package's name and version for the banner
+import { NodeGlobalsPolyfillPlugin } from '@esbuild-plugins/node-globals-polyfill'
+import { NodeModulesPolyfillPlugin } from '@esbuild-plugins/node-modules-polyfill'
 import pkg from './package.json'
 
 const globalName = 'NearWalletAdapterWidget'
 const friendlyPackageName = 'Wallet Adapter Widget'
 
-const externalDeps = [
+// CJS build: keep these external
+const nodeExternals = [
   'near-api-js',
+  '@here-wallet/core',
+  '@fastnear/utils'
 ]
 
-// Aids in certain guards on the global's mutability
+// Reusable banners
+const bannerCJS = `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - CJS (${pkg.name} v${pkg.version}) */\n`
+  + `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`
+const bannerESM = `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - ESM (${pkg.name} v${pkg.version}) */\n`
+  + `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`
+const bannerIIFE = `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - IIFE (${pkg.name} v${pkg.version}) */\n`
+  + `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`
+
+// Lock down the globalName in IIFE
 const footerRedefiningGlobal = `
-if (typeof globalThis.${globalName} === 'undefined') {
-  console.warn('No globalThis.${globalName}');
-} else {
-  Object.defineProperty(globalThis, '${globalName}', {
-    value: globalThis.${globalName},
-    writable: false,
-    enumerable: true,
-    configurable: false,
-  });
-}
+Object.defineProperty(globalThis, '${globalName}', {
+  value: ${globalName},
+  writable: false,
+  enumerable: true,
+  configurable: false,
+});
 `
 
+// for esm and iife
+const noExternal = [
+  'near-api-js',
+  '@here-wallet/core',
+  '@fastnear/utils',
+  'base58-js',
+  'borsh',
+  '@fastnear/meteorwallet-sdk',
+  'bn.js'
+];
+
 export default defineConfig([
-  // 1) CJS
+  // 1) CJS build for Node usage
   {
     entry: ['src/index.ts'],
     outDir: 'dist/cjs',
     format: ['cjs'],
-    bundle: false, // no bundling => direct output
+    bundle: false,
     splitting: false,
-    external: externalDeps,
+    external: nodeExternals,
     dts: {
       resolve: true,
       entry: 'src/index.ts',
     },
     sourcemap: true,
-    minify: false,
     clean: true,
     keepNames: true,
-    banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - CJS (${pkg.name} version ${pkg.version}) */\n` +
-        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
-    },
+    banner: { js: bannerCJS },
   },
-  // 2) ESM
+
+  // 2) ESM build (fully bundled for browser)
   {
     entry: ['src/index.ts'],
     outDir: 'dist/esm',
     format: ['esm'],
-    bundle: false,
+    bundle: true,
     splitting: false,
-    external: externalDeps,
-    dts: {
-      resolve: true,
-      entry: 'src/index.ts',
-    },
+    platform: 'browser',
+    noExternal,
+    esbuildPlugins: [
+      NodeModulesPolyfillPlugin(),
+      NodeGlobalsPolyfillPlugin({ process: true, buffer: true }),
+    ],
+    dts: { entry: 'src/index.ts' },
     sourcemap: true,
-    minify: false,
     clean: true,
     keepNames: true,
-    banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - ESM (${pkg.name} version ${pkg.version}) */\n` +
-        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
-    },
+    banner: { js: bannerESM },
   },
-  // 3) IIFE/UMD
+
+  // 3) IIFE/UMD build (fully bundled for browser)
   {
-    entry: {
-      browser: 'src/index.ts',
-    },
+    entry: { browser: 'src/index.ts' },
     outDir: 'dist/umd',
     format: ['iife'],
     globalName,
     bundle: true,
     splitting: false,
-    external: externalDeps,
+    platform: 'browser',
+    noExternal,
+    esbuildPlugins: [
+      NodeModulesPolyfillPlugin(),
+      NodeGlobalsPolyfillPlugin({ process: true, buffer: true }),
+    ],
     dts: false,
     sourcemap: true,
-    minify: false,
     clean: true,
     keepNames: true,
-    banner: {
-      js: `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - IIFE/UMD (${pkg.name} version ${pkg.version}) */\n` +
-        `/* https://www.npmjs.com/package/${pkg.name}/v/${pkg.version} */`,
-    },
-    footer: {
-      js: footerRedefiningGlobal,
-    }
+    banner: { js: bannerIIFE },
+    footer: { js: footerRedefiningGlobal },
   },
 ])

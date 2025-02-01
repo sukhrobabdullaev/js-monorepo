@@ -8,16 +8,12 @@ const friendlyPackageName = 'Utils'
 
 // Aids in certain guards on the global's mutability
 const footerRedefiningGlobal = `
-if (typeof globalThis.${globalName} === 'undefined') {
-  console.warn('No globalThis.${globalName}');
-} else {
-  Object.defineProperty(globalThis, '${globalName}', {
-    value: globalThis.${globalName},
-    writable: false,
-    enumerable: true,
-    configurable: false,
-  });
-}
+Object.defineProperty(globalThis, '${globalName}', {
+  value: ${globalName},
+  writable: false,
+  enumerable: true,
+  configurable: false,
+});
 `
 
 export default defineConfig([

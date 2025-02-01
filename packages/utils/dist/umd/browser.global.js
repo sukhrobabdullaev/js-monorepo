@@ -1,4 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR Utils - IIFE/UMD */
+/* ⋈ 🏃🏻💨 FastNEAR Utils - IIFE/UMD (@fastnear/utils version 0.6.0) */
+/* https://www.npmjs.com/package/@fastnear/utils/v/0.6.0 */
 var NearUtils = (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;

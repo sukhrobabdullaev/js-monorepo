@@ -1,4 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR Borsh Schema - IIFE/UMD */
+/* ⋈ 🏃🏻💨 FastNEAR Borsh Schema - IIFE/UMD (@fastnear/borsh-schema version 0.6.0) */
+/* https://www.npmjs.com/package/@fastnear/borsh-schema/v/0.6.0 */
 var NearBorshSchema = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;

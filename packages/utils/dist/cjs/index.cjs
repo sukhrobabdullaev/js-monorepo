@@ -1,4 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR Utils - CJS */
+/* ⋈ 🏃🏻💨 FastNEAR Utils - CJS (@fastnear/utils version 0.6.0) */
+/* https://www.npmjs.com/package/@fastnear/utils/v/0.6.0 */
 var __create = Object.create;
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;

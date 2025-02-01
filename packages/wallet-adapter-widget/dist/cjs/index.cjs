@@ -1,4 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - CJS */
+/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - CJS (@fastnear/wallet-adapter-widget version 0.6.0) */
+/* https://www.npmjs.com/package/@fastnear/wallet-adapter-widget/v/0.6.0 */
 var __defProp = Object.defineProperty;
 var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
 var __getOwnPropNames = Object.getOwnPropertyNames;

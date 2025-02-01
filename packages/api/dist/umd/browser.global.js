@@ -1,4 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD */
+/* ⋈ 🏃🏻💨 FastNEAR API - IIFE/UMD (@fastnear/api version 0.6.0) */
+/* https://www.npmjs.com/package/@fastnear/api/v/0.6.0 */
 var near = (() => {
   var __defProp = Object.defineProperty;
   var __getOwnPropDesc = Object.getOwnPropertyDescriptor;

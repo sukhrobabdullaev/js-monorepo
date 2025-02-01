@@ -1,4 +1,5 @@
-/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - ESM */
+/* ⋈ 🏃🏻💨 FastNEAR Wallet Adapter Widget - ESM (@fastnear/wallet-adapter-widget version 0.6.0) */
+/* https://www.npmjs.com/package/@fastnear/wallet-adapter-widget/v/0.6.0 */
 var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 import { wallets } from "./wallets.js";

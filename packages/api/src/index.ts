@@ -1,8 +1,2 @@
-import { convertUnit } from "@fastnear/utils";
-
-if (typeof window !== "undefined") {
-  // @ts-ignore
-  window.$$ = convertUnit;
-}
-
+// See tsup.config.ts for additional banner/footer js
 export * from "./near.js";

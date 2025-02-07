@@ -13,43 +13,51 @@ import {
   signHash,
   serializeSignedTransaction,
   privateKeyFromRandom,
-  reExportBorshSchema, parseJsonFromBytes,
+  reExportBorshSchema,
+  parseJsonFromBytes,
 } from "@fastnear/utils";
 
 import {
   _adapter,
-  _state, getTxHistory,
+  _state, DEFAULT_NETWORK_ID,
+  getTxHistory, NETWORKS,
   updateState,
   updateTxHistory,
 } from "./state.js";
 
-// get/set config
-// reset transaction history
 import {
   getConfig,
   setConfig,
   resetTxHistory,
 } from "./state.js";
 
+import * as stateExports from "./state.js";
 import { sha256 } from "@noble/hashes/sha2";
 import * as reExportUtils from "@fastnear/utils";
+
+export * from "./state.js"
 
 Big.DP = 27;
 export const MaxBlockDelayMs = 1000 * 60 * 60 * 6; // 6 hours
 
 export function withBlockId(params: Record<string, any>, blockId?: string) {
   return blockId === "final" || blockId === "optimistic"
-    ? {...params, finality: blockId}
+    ? { ...params, finality: blockId }
     : blockId
-      ? {...params, block_id: blockId}
-      : {...params, finality: "optimistic"};
+      ? { ...params, block_id: blockId }
+      : { ...params, finality: "optimistic" };
 }
 
 export async function queryRpc(method: string, params: Record<string, any> | any[]) {
-  // (C) Instead of _config.nodeUrl, we do getConfig().nodeUrl
-  const response = await fetch(getConfig().nodeUrl, {
+  const config = getConfig();
+
+  if (!config?.nodeUrl) {
+    throw new Error("🚨 getConfig() returned an invalid config! nodeUrl is missing.");
+  }
+
+  const response = await fetch(config.nodeUrl, {
     method: "POST",
-    headers: {"Content-Type": "application/json"},
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({
       jsonrpc: "2.0",
       id: `fastnear-${Date.now()}`,
@@ -69,8 +77,8 @@ export async function queryRpc(method: string, params: Record<string, any> | any
 export function afterTxSent(txId: string) {
   const txHistory = getTxHistory();
   queryRpc("tx", {
-    tx_hash: txHistory[txId].txHash,
-    sender_account_id: txHistory[txId].tx.signerId,
+    tx_hash: txHistory[txId]?.txHash,
+    sender_account_id: txHistory[txId]?.tx?.signerId,
     wait_until: "EXECUTED_OPTIMISTIC",
   })
     .then((result) => {
@@ -79,9 +87,7 @@ export function afterTxSent(txId: string) {
         txId,
         status: "Executed",
         result,
-        successValue: successValue
-          ? tryParseJson(fromBase64(successValue))
-          : undefined,
+        successValue: successValue ? tryParseJson(fromBase64(successValue)) : undefined,
         finalState: true,
       });
     })
@@ -89,48 +95,72 @@ export function afterTxSent(txId: string) {
       updateTxHistory({
         txId,
         status: "ErrorAfterIncluded",
-        error: tryParseJson(error.message),
+        error: tryParseJson(error.message) ?? error.message, // ✅ Ensure error is always a string
         finalState: true,
       });
     });
 }
 
 // TX sending
-export function sendTxToRpc(
-  signedTxBase64: string,
-  waitUntil: string | undefined,
-  txId: string
-) {
+export function sendTxToRpc(signedTxBase64: string, waitUntil: string | undefined, txId: string) {
+  console.log("Sending TX to RPC:", { signedTxBase64, waitUntil, txId });
+
   queryRpc("send_tx", {
     signed_tx_base64: signedTxBase64,
-    wait_until: waitUntil ?? "INCLUDED",
+    wait_until: waitUntil || "INCLUDED",
   })
     .then((result) => {
       console.log("Transaction included:", result);
-      updateTxHistory({
-        txId,
-        status: "Included",
-        finalState: false,
-      });
+      updateTxHistory({ txId, status: "Included", finalState: false });
       afterTxSent(txId);
     })
-    .catch((error) => {
+    .catch(async (error) => {
+      console.error("RPC Transaction Error:", error);
+
       updateTxHistory({
         txId,
         status: "Error",
-        error: tryParseJson(error.message),
+        error: tryParseJson(error.message) ?? error.message,
         finalState: false,
       });
     });
 }
 
-// Types
+// export function sendTxToRpc(signedTxBase64: string, waitUntil: string | undefined, txId: string) {
+//   console.log("Sending TX to RPC:", { signedTxBase64, waitUntil, txId });
+//
+//   queryRpc("send_tx", {
+//     signed_tx_base64: signedTxBase64,
+//     wait_until: waitUntil ?? "INCLUDED",
+//   })
+//     .then((result) => {
+//       console.log("Transaction included:", result);
+//       updateTxHistory({ txId, status: "Included", finalState: false });
+//       afterTxSent(txId);
+//     })
+//     .catch((error) => {
+//       updateTxHistory({
+//         txId,
+//         status: "Error",
+//         error: tryParseJson(error.message) ?? error.message,
+//         finalState: false,
+//       });
+//     });
+// }
+
 export interface AccessKeyView {
   nonce: number;
   permission: any;
 }
 
-// Simple getters (unchanged)
+// Securely generate a unique transaction ID
+// todo check this
+export function generateTxId(): string {
+  const randomPart = crypto.getRandomValues(new Uint32Array(2)).join('');
+
+  return `tx-${Date.now()}-${parseInt(randomPart, 10).toString(36)}`;
+}
+
 export const accountId = () => {
   return _state.accountId;
 };
@@ -139,7 +169,6 @@ export const publicKey = () => {
   return _state.publicKey;
 };
 
-// (B) config(...) uses getConfig(), setConfig(), resetTxHistory()
 export const config = (newConfig?: Record<string, any>) => {
   const current = getConfig();
   if (newConfig) {
@@ -158,7 +187,6 @@ export const config = (newConfig?: Record<string, any>) => {
       // clear transaction history
       resetTxHistory();
     }
-
     // merge new config
     setConfig({
       ...getConfig(),
@@ -167,25 +195,54 @@ export const config = (newConfig?: Record<string, any>) => {
   }
 
   return getConfig();
-};
+}
 
 // Auth status
 export const authStatus = (): string | Record<string, any> => {
   if (!_state.accountId) {
     return "SignedOut";
+    // Check for limited access key
+    const accessKey = _state.publicKey;
+    const contractId = _state.accessKeyContractId;
+    if (accessKey && contractId && _state.privateKey) {
+      return {
+        type: "SignedInWithLimitedAccessKey",
+        accessKey,
+        contractId,
+      };
+    }
+  }
+  return 'SignedIn'
+}
+
+// Authentication
+export const requestSignIn = async ({ contractId }: { contractId: string }) => {
+  const privateKey = privateKeyFromRandom();
+  updateState({ accessKeyContractId: contractId, accountId: null, privateKey });
+  const publicKey = publicKeyFromPrivate(privateKey);
+
+  const result = await _adapter.signIn({
+    networkId: getConfig().networkId,
+    contractId,
+    publicKey,
+  });
+
+  console.log("Sign in result:", result);
+
+  if (result.error) {
+    throw new Error(`Wallet error: ${result.error}`);
   }
 
-  // Check for limited access key
-  const accessKey = _state.publicKey;
-  const contractId = _state.accessKeyContractId;
-  if (accessKey && contractId && _state.privateKey) {
-    return {
-      type: "SignedInWithLimitedAccessKey",
-      accessKey,
-      contractId,
-    };
+  if (result.url) {
+    console.log("Redirecting to wallet:", result.url);
+    if (typeof window !== "undefined") {
+      setTimeout(() => {
+        window.location.href = result.url;
+      }, 100);
+    }
+  } else if (result.accountId) {
+    updateState({ accountId: result.accountId });
   }
-  return "SignedIn";
 };
 
 // Query methods
@@ -263,6 +320,7 @@ export const accessKey = async ({
   );
 };
 
+// consider renaming so people know this is an rpc query
 export const tx = async ({
                            txHash,
                            accountId,
@@ -273,12 +331,20 @@ export const tx = async ({
   return queryRpc("tx", [txHash, accountId]);
 };
 
-// If you want local TX history:
 export const localTxHistory = () => {
   return getTxHistory();
+}
+
+export const signOut = () => {
+  updateState({
+    accountId: null,
+    privateKey: null,
+    contractId: null,
+  });
+
+  setConfig(NETWORKS[DEFAULT_NETWORK_ID]); // ✅ Reset config to mainnet
 };
 
-// Transaction methods
 export const sendTx = async ({
                                receiverId,
                                actions,
@@ -288,116 +354,111 @@ export const sendTx = async ({
   actions: any[];
   waitUntil?: string;
 }) => {
+  console.log("🚀 Starting sendTx");
+  console.log("📌 Inputs:", { receiverId, actions, waitUntil });
+
   const signerId = _state.accountId;
   if (!signerId) {
-    throw new Error("Not signed in");
+    throw new Error("❌ Not signed in");
   }
 
   const publicKey = _state.publicKey;
   const privateKey = _state.privateKey;
-  const txId = `tx-${Date.now()}-${Math.random()}`;
+  const txId = generateTxId();
 
-  if (
-    !privateKey ||
-    receiverId !== _state.accessKeyContractId ||
-    !canSignWithLAK(actions)
-  ) {
-    const jsonTransaction = {
-      signerId,
-      receiverId,
-      actions,
-    };
+  console.log("🔑 Signer Info:", { signerId, publicKey, privateKey });
 
-    updateTxHistory({
-      status: "Pending",
-      txId,
-      tx: jsonTransaction,
-      finalState: false,
-    });
+  if (!privateKey || receiverId !== _state.accessKeyContractId || !canSignWithLAK(actions)) {
+    const jsonTransaction = { signerId, receiverId, actions };
+    console.log("📝 jsonTransaction (unauthenticated flow):", jsonTransaction);
+
+    updateTxHistory({ status: "Pending", txId, tx: jsonTransaction, finalState: false });
 
     const url = new URL(typeof window !== "undefined" ? window.location.href : "");
     url.searchParams.set("txIds", txId);
 
-    _adapter
-      .sendTransactions({
+    try {
+      const result: {
+        url?: string;
+        outcomes?: Array<{ transaction: { hash: string } }>;
+        rejected?: boolean;
+        error?: string;
+      } = await _adapter.sendTransactions({
         transactions: [jsonTransaction],
         callbackUrl: url.toString(),
-      })
-      .then((result: any) => {
-        console.log("Transaction result:", result);
-        if (result.url) {
-          console.log("Redirecting to wallet:", result.url);
-          if (typeof window !== "undefined") {
-            setTimeout(() => {
-              window.location.href = result.url;
-            }, 100);
-          }
-        } else if (result.outcomes) {
-          result.outcomes.forEach((r: any) => {
-            updateTxHistory({
-              txId,
-              status: "Executed",
-              result: r,
-              txHash: r.transaction.hash,
-              finalState: true,
-            });
-          });
-        } else if (result.rejected) {
-          updateTxHistory({
-            txId,
-            status: "RejectedByUser",
-            finalState: true,
-          });
-        } else if (result.error) {
-          updateTxHistory({
-            txId,
-            status: "Error",
-            error: tryParseJson(result.error),
-            finalState: true,
-          });
+      });
+
+      console.log("✅ Transaction Result:", result);
+
+      if (result.url) {
+        console.log("🌐 Redirecting to wallet:", result.url);
+        if (typeof window !== "undefined") {
+          setTimeout(() => {
+            window.location.href = result.url;
+          }, 100);
         }
-      })
-      .catch((error: any) => {
+      } else if (result.outcomes && result.outcomes.length > 0) {
+        result.outcomes.forEach((r) => {
+          updateTxHistory({
+            txId,
+            status: "Executed",
+            result: r,
+            txHash: r.transaction.hash,
+            finalState: true,
+          });
+        });
+      } else if (result.rejected) {
+        updateTxHistory({
+          txId,
+          status: "RejectedByUser",
+          finalState: true,
+        });
+      } else if (result.error) {
         updateTxHistory({
           txId,
           status: "Error",
-          error: tryParseJson(error.message),
+          error: tryParseJson(result.error),
           finalState: true,
         });
+      }
+    } catch (error) {
+      console.error("❌ Error sending transaction:", error);
+      updateTxHistory({
+        txId,
+        status: "Error",
+        error: tryParseJson((error as Error).message),
+        finalState: true,
       });
+    }
+
     return txId;
   }
 
   let nonce: number | null = lsGet("nonce") as any;
-  let block: any = lsGet("block") as any;
+  let lastKnownBlock: any = lsGet("block") as any;
   const toDoPromises: Record<string, Promise<any>> = {};
 
+  console.log("🔄 Fetching Nonce and Block Info");
+
   if (nonce === null || nonce === undefined) {
-    toDoPromises.nonce = accessKey({
-      accountId: signerId,
-      publicKey,
-    }).then((accessKey) => {
+    console.log("⏳ Fetching nonce...");
+    toDoPromises.nonce = accessKey({ accountId: signerId, publicKey }).then((accessKey) => {
       if ((accessKey as any).error) {
-        throw new Error(`Access key error: ${(accessKey as any).error}`);
+        throw new Error(`❌ Access key error: ${(accessKey as any).error}`);
       }
+      console.log("✅ Retrieved nonce:", accessKey.nonce);
       lsSet("nonce", accessKey.nonce);
       return accessKey.nonce;
     });
   }
 
-  if (
-    !block ||
-    !block.header ||
-    parseFloat(block.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs <
-    Date.now()
-  ) {
-    toDoPromises.block = block({blockId: "final"}).then((b: any) => {
+  if (!lastKnownBlock || !lastKnownBlock.header || parseFloat(lastKnownBlock.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()) {
+    console.log("⏳ Fetching latest block...");
+    toDoPromises.block = block({ blockId: "final" }).then((b: any) => {
       const newBlock = {
-        header: {
-          prev_hash: b.header.prev_hash,
-          timestamp_nanosec: b.header.timestamp_nanosec,
-        },
+        header: { prev_hash: b.header.prev_hash, timestamp_nanosec: b.header.timestamp_nanosec },
       };
+      console.log("✅ Retrieved block:", newBlock);
       lsSet("block", newBlock);
       return newBlock;
     });
@@ -407,88 +468,59 @@ export const sendTx = async ({
     const results = await Promise.all(Object.values(toDoPromises));
     const keys = Object.keys(toDoPromises);
     results.forEach((res, i) => {
-      if (keys[i] === "nonce") {
-        nonce = res;
-      } else if (keys[i] === "block") {
-        block = res;
-      }
+      if (keys[i] === "nonce") nonce = res;
+      else if (keys[i] === "block") lastKnownBlock = res;
     });
   }
 
+  console.log("📝 Nonce:", nonce);
   const newNonce = (nonce ?? 0) + 1;
+  console.log("🆕 New Nonce:", newNonce);
   lsSet("nonce", newNonce);
-  const blockHash = block.header.prev_hash;
 
-  const jsonTransaction = {
-    signerId,
-    publicKey,
-    nonce: newNonce,
-    receiverId,
-    blockHash,
-    actions,
-  };
+  console.log("🔍 Block Header:", lastKnownBlock.header);
+  const blockHash = lastKnownBlock.header.prev_hash;
 
-  console.log("Transaction:", jsonTransaction);
+  console.log("🛠 Constructing jsonTransaction...");
+  const jsonTransaction = { signerId, publicKey, nonce: newNonce, receiverId, blockHash, actions };
+  console.log("✅ jsonTransaction:", jsonTransaction);
+
+  console.log("📌 Serializing Transaction...");
   const transaction = serializeTransaction(jsonTransaction);
-  const txHash = toBase58(sha256(transaction));
-  const signature = signHash(txHash, privateKey);
-  const signedTransaction = serializeSignedTransaction(jsonTransaction, signature);
+  console.log("✅ Serialized Transaction (Uint8Array):", transaction);
+  console.log("📝 Serialized Transaction Length:", transaction.length);
+
+  console.log("🔑 Computing Hash...");
+  const txHashBytes = toBase58(sha256(transaction));
+  console.log("✅ SHA256 Hash (Bytes):", txHashBytes);
+
+  const txHash58 = toBase58(txHashBytes)
+  console.log("🔡 SHA256 Hash (Base58):", txHash58);
+
+  console.log("✍️ Signing Hash...");
+  const signatureBytes = signHash(txHash58, privateKey);
+  console.log("✅ Signature (Bytes):", signatureBytes);
+  console.log("🔡 Signature (Base58):", toBase58(signatureBytes));
+
+  console.log("📌 Serializing Signed Transaction...");
+  const signedTransaction = serializeSignedTransaction(jsonTransaction, signatureBytes);
+  console.log("✅ Serialized Signed Transaction:", signedTransaction);
+
+  console.log("🔡 Converting Signed Transaction to Base64...");
   const signedTxBase64 = toBase64(signedTransaction);
+  console.log("✅ Signed Transaction (Base64):", signedTxBase64);
 
-  updateTxHistory({
-    status: "Pending",
-    txId,
-    tx: jsonTransaction,
-    signature,
-    signedTxBase64,
-    txHash,
-    finalState: false,
-  });
+  console.log("📡 Sending Transaction to RPC...");
+  updateTxHistory({ status: "Pending", txId, tx: jsonTransaction, signature: signatureBytes, signedTxBase64, txHash: toBase58(txHashBytes), finalState: false });
 
-  sendTxToRpc(signedTxBase64, waitUntil, txId);
+  try {
+    await sendTxToRpc(signedTxBase64, waitUntil, txId);
+    console.log("✅ Transaction Successfully Sent!");
+  } catch (error) {
+    console.log("❌ Error Sending Transaction:", error);
+  }
 
   return txId;
-};
-
-// Authentication
-export const requestSignIn = async ({contractId}: { contractId: string }) => {
-  const privateKey = privateKeyFromRandom();
-  updateState({
-    accessKeyContractId: contractId,
-    accountId: null,
-    privateKey,
-  });
-  const publicKey = publicKeyFromPrivate(privateKey);
-  const result = await _adapter.signIn({
-    networkId: getConfig().networkId, // (C) replaced _config.networkId
-    contractId,
-    publicKey,
-  });
-  console.log("Sign in result:", result);
-  if (result.error) {
-    throw new Error(`Wallet error: ${result.error}`);
-  }
-  if (result.url) {
-    console.log("Redirecting to wallet:", result.url);
-    if (typeof window !== "undefined") {
-      setTimeout(() => {
-        window.location.href = result.url;
-      }, 100);
-    }
-  } else if (result.accountId) {
-    updateState({
-      accountId: result.accountId,
-    });
-  }
-};
-
-export const signOut = () => {
-  updateState({
-    accountId: null,
-    privateKey: null,
-    contractId: null,
-  });
-  // TODO: Implement actual wallet sign-out
 };
 
 // action helpers
@@ -508,10 +540,10 @@ export const actions = {
   }) => ({
     type: "FunctionCall",
     methodName,
-    args,
-    argsBase64,
     gas,
     deposit,
+    args,
+    argsBase64,
   }),
 
   transfer: (yoctoAmount: string) => ({

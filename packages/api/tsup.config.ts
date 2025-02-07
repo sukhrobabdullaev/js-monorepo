@@ -7,18 +7,24 @@ const globalName = 'near'
 
 // Aids in certain guards on the global's mutability
 const footerRedefiningGlobal = `
-Object.defineProperty(globalThis, '${globalName}', {
-  value: ${globalName},
-  writable: false,
-  enumerable: true,
-  configurable: false,
-});
-`
+try {
+  Object.defineProperty(globalThis, '${globalName}', {
+    value: ${globalName},    
+    enumerable: true,
+    configurable: false,
+  });
+} catch (error) {
+  console.log('error', error);
+  throw error;
+}
+
+window.$$ = near.utils.convertUnit;
+`;
 
 export default defineConfig([
   // 1) CommonJS (CJS) build (unbundled)
   {
-    entry: ['src/index.ts'],
+    entry: ['src/**/*.ts'],
     outDir: 'dist/cjs',
     format: ['cjs'],
     bundle: false,
@@ -39,9 +45,10 @@ export default defineConfig([
 
   // 2) ESM build (unbundled)
   {
-    entry: ['src/index.ts'],
+    entry: ['src/**/*.ts'],
     outDir: 'dist/esm',
     format: ['esm'],
+    shims: true,
     bundle: false,
     splitting: false,
     clean: true,

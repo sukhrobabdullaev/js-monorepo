@@ -235,8 +235,8 @@ export function getTxHistory(): TxHistory {
 
 // Exposed "write" functions
 export function setConfig(newConf: NetworkConfig): void {
-  _config = newConf;
-  lsSet("config", {...NETWORKS[_config.networkId]});
+  _config = { ...NETWORKS[newConf.networkId], ...newConf };
+  lsSet("config", _config);
 }
 
 export function resetTxHistory(): void {

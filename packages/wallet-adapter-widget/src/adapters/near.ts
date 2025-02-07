@@ -1,4 +1,4 @@
-import { serializeTransaction } from "../utils/transaction";
+import { serializeTransaction } from "../utils/transaction.js";
 import {toBase58} from "@fastnear/utils";
 
 const walletUrl = (networkId) =>

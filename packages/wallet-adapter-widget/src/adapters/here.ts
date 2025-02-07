@@ -1,5 +1,5 @@
 import { HereWallet } from "@here-wallet/core";
-import { mapActionForWalletSelector } from "../utils/actionToWalletSelector";
+import { mapActionForWalletSelector } from "../utils/actionToWalletSelector.js";
 
 export function createHereAdapter(): any {
   return {

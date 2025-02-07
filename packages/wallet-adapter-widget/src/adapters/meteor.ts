@@ -1,7 +1,7 @@
 import { connect, KeyPair } from "near-api-js";
 
 import {EMeteorWalletSignInType, MeteorWallet} from "@fastnear/meteorwallet-sdk";
-import { mapActionForWalletSelector } from "../utils/actionToWalletSelector";
+import { mapActionForWalletSelector } from "../utils/actionToWalletSelector.js";
 import { PublicKey } from "@near-js/crypto";
 import { keyStores } from "near-api-js";
 

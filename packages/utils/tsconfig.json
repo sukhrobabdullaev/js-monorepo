@@ -11,5 +11,5 @@
       "@fastnear/*": ["../*/src"]
     },
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "../../types/*.d.ts"]
 }

@@ -25,7 +25,6 @@ const bannerIIFE = `/* ⋈ 🏃🏻💨 FastNEAR ${friendlyPackageName} - IIFE (
 const footerRedefiningGlobal = `
 Object.defineProperty(globalThis, '${globalName}', {
   value: ${globalName},
-  writable: false,
   enumerable: true,
   configurable: false,
 });
@@ -45,7 +44,7 @@ const noExternal = [
 export default defineConfig([
   // 1) CJS build for Node usage
   {
-    entry: ['src/index.ts'],
+    entry: ['src/**/*.ts'],
     outDir: 'dist/cjs',
     format: ['cjs'],
     bundle: false,
@@ -63,9 +62,10 @@ export default defineConfig([
 
   // 2) ESM build (fully bundled for browser)
   {
-    entry: ['src/index.ts'],
+    entry: ['src/**/*.ts'],
     outDir: 'dist/esm',
     format: ['esm'],
+    shims: true,
     bundle: true,
     splitting: false,
     platform: 'browser',

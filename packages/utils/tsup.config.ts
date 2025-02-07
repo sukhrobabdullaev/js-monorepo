@@ -10,7 +10,6 @@ const friendlyPackageName = 'Utils'
 const footerRedefiningGlobal = `
 Object.defineProperty(globalThis, '${globalName}', {
   value: ${globalName},
-  writable: false,
   enumerable: true,
   configurable: false,
 });
@@ -18,7 +17,7 @@ Object.defineProperty(globalThis, '${globalName}', {
 
 export default defineConfig([
   {
-    entry: ['src/index.ts'],
+    entry: ['src/**/*.ts'],
     outDir: 'dist/cjs',
     format: ['cjs'],
     splitting: false,
@@ -37,9 +36,10 @@ export default defineConfig([
     },
   },
   {
-    entry: ['src/index.ts'],
+    entry: ['src/**/*.ts'],
     outDir: 'dist/esm',
     format: ['esm'],
+    shims: true,
     splitting: false,
     bundle: false,
     dts: {

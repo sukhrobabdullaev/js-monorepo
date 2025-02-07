@@ -8,7 +8,8 @@
     "clean": "yarn workspaces foreach --all -t run clean",
     "install-all": "yarn workspaces foreach --all -t install",
     "install-all:lock": "yarn workspaces foreach --all -t install --refresh-lockfile",
-    "pack-all": "yarn workspaces foreach --all -t pack"
+    "pack-all": "yarn workspaces foreach --all -t pack",
+    "repl": "node repl.mjs"
   },
   "license": "MIT",
   "private": true,
@@ -34,7 +35,8 @@
   "devDependencies": {
     "@esbuild-plugins/node-globals-polyfill": "^0.2.3",
     "@esbuild-plugins/node-modules-polyfill": "^0.2.2",
-    "@types/node": "^22.10.2",
+    "@types/big.js": "^6.2.2",
+    "@types/node": "^22.13.1",
     "http-browserify": "^1.7.0",
     "https-browserify": "^1.0.0",
     "process": "^0.11.10",

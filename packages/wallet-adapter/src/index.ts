@@ -123,7 +123,6 @@ export class WalletAdapter {
 
     // Create URL
     const url = new URL(path, this.#widgetUrl);
-    console.log('aloha wa url', url)
 
     // Create and configure iframe
     const iframe = document.createElement("iframe");

@@ -27,9 +27,7 @@ export function createMeteorAdapter() {
   return {
     async signIn({ networkId, contractId, publicKey }) {
       publicKey = PublicKey.from(publicKey);
-      console.log('aloha publicKey', publicKey)
       const keyPair = KeyPair.fromString(publicKey.toString());
-      console.log('aloha keyPair', keyPair)
       const wallet = await createMeteorWalletInstance({ networkId });
 
       const {

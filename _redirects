@@ -1,2 +1,3 @@
 /login.html /packages/wallet-adapter-widget/public/login.html 301
 /send.html /packages/wallet-adapter-widget/public/send.html 301
+/fastnear.js /packages/api/dist/umd/browser.global.js 301

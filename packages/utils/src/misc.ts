@@ -61,7 +61,7 @@ export function convertUnit(s: string | TemplateStringsArray, ...args: any[]): s
       }
     }
   }
-  return Big(s).toFixed(0);
+  return Big(`${s}`).toFixed(0);
 }
 
 export function lsSet(key, value) {

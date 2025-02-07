@@ -95,7 +95,7 @@ export function afterTxSent(txId: string) {
       updateTxHistory({
         txId,
         status: "ErrorAfterIncluded",
-        error: tryParseJson(error.message) ?? error.message, // ✅ Ensure error is always a string
+        error: tryParseJson(error.message) ?? error.message,
         finalState: true,
       });
     });
@@ -125,28 +125,6 @@ export function sendTxToRpc(signedTxBase64: string, waitUntil: string | undefine
       });
     });
 }
-
-// export function sendTxToRpc(signedTxBase64: string, waitUntil: string | undefined, txId: string) {
-//   console.log("Sending TX to RPC:", { signedTxBase64, waitUntil, txId });
-//
-//   queryRpc("send_tx", {
-//     signed_tx_base64: signedTxBase64,
-//     wait_until: waitUntil ?? "INCLUDED",
-//   })
-//     .then((result) => {
-//       console.log("Transaction included:", result);
-//       updateTxHistory({ txId, status: "Included", finalState: false });
-//       afterTxSent(txId);
-//     })
-//     .catch((error) => {
-//       updateTxHistory({
-//         txId,
-//         status: "Error",
-//         error: tryParseJson(error.message) ?? error.message,
-//         finalState: false,
-//       });
-//     });
-// }
 
 export interface AccessKeyView {
   nonce: number;

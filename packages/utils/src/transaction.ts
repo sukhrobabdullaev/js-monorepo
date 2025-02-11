@@ -1,41 +1,81 @@
-import { serialize as borshSerialize } from "borsh";
+import { serialize as borshSerialize, deserialize as borshDeserialize, Schema } from "borsh";
 import { keyFromString } from "./crypto.js";
-import { fromBase58, fromBase64 } from "./misc.js";
-import { getBorshSchema } from "@fastnear/borsh-schema";
+import {fromBase58, fromBase64, toBase64} from "./misc.js";
+import {getBorshSchema} from "@fastnear/borsh-schema";
 
-export function mapTransaction(jsonTransaction) {
+export interface PlainTransaction {
+  signerId: string;
+  publicKey: string;
+  nonce: string | bigint | number;
+  receiverId: string;
+  blockHash: string;
+  actions: Array<any>;
+}
+
+export interface PlainSignedTransaction {
+  transaction: object;
+  signature: object;
+}
+
+// Function to return a JSON-ready version of the transaction
+export const txToJson = (tx: PlainTransaction): Record<string, any> => {
+  return JSON.parse(JSON.stringify(tx, (key, value) =>
+    typeof value === 'bigint' ? value.toString() : value
+  ));
+};
+
+export const txToJsonStringified = (tx: PlainTransaction): string => {
+  return JSON.stringify(txToJson(tx));
+}
+
+export function mapTransaction(jsonTransaction: PlainTransaction) {
   return {
     signerId: jsonTransaction.signerId,
     publicKey: {
       ed25519Key: {
-        data: keyFromString(jsonTransaction.publicKey),
-      },
+        data: keyFromString(jsonTransaction.publicKey)
+      }
     },
     nonce: BigInt(jsonTransaction.nonce),
     receiverId: jsonTransaction.receiverId,
     blockHash: fromBase58(jsonTransaction.blockHash),
-    actions: jsonTransaction.actions.map(mapAction),
+    actions: jsonTransaction.actions.map(mapAction)
   };
 }
 
 export function serializeTransaction(jsonTransaction) {
+  console.log("fastnear: serializing transaction");
+
   const transaction = mapTransaction(jsonTransaction);
+  console.log("fastnear: mapped transaction for borsh:", transaction);
+
   return borshSerialize(SCHEMA.Transaction, transaction);
 }
 
 export function serializeSignedTransaction(jsonTransaction, signature) {
-  const signedTransaction = {
-    transaction: mapTransaction(jsonTransaction),
+  console.log("fastnear: Serializing Signed Transaction", jsonTransaction);
+  console.log('fastnear: signature', signature)
+  console.log('fastnear: signature length', fromBase58(signature).length)
+
+  const mappedSignedTx = mapTransaction(jsonTransaction)
+  console.log('fastnear: mapped (for borsh schema) signed transaction', mappedSignedTx)
+
+  const plainSignedTransaction: PlainSignedTransaction = {
+    transaction: mappedSignedTx,
     signature: {
       ed25519Signature: {
         data: fromBase58(signature),
       },
     },
   };
-  return borshSerialize(SCHEMA.SignedTransaction, signedTransaction);
+
+  const borshSignedTx = borshSerialize(SCHEMA.SignedTransaction, plainSignedTransaction, true);
+  console.log('fastnear: borsh-serialized signed transaction:', borshSignedTx);
+
+  return borshSignedTx;
 }
 
-export function mapAction(action) {
+export function mapAction(action: any): object {
   switch (action.type) {
     case "CreateAccount": {
       return {
@@ -50,12 +90,15 @@ export function mapAction(action) {
       };
     }
     case "FunctionCall": {
+      // turn JS object into json string
+      const argsAsString = JSON.stringify(action.args)
+      // an alternative to using NodeJS Buffer, TextEncoder can help but is limited
+      const argsEncoded = new TextEncoder().encode(argsAsString)
+
       return {
         functionCall: {
           methodName: action.methodName,
-          args: action.argsBase64
-            ? fromBase64(action.argsBase64)
-            : new TextEncoder().encode(JSON.stringify(action.args)),
+          args: argsEncoded,
           gas: BigInt(action.gas),
           deposit: BigInt(action.deposit),
         },
@@ -94,14 +137,14 @@ export function mapAction(action) {
               action.accessKey.permission === "FullAccess"
                 ? { fullAccess: {} }
                 : {
-                    functionCall: {
-                      allowance: action.accessKey.allowance
-                        ? BigInt(action.accessKey.allowance)
-                        : null,
-                      receiverId: action.accessKey.receiverId,
-                      methodNames: action.accessKey.methodNames,
-                    },
+                  functionCall: {
+                    allowance: action.accessKey.allowance
+                      ? BigInt(action.accessKey.allowance)
+                      : null,
+                    receiverId: action.accessKey.receiverId,
+                    methodNames: action.accessKey.methodNames,
                   },
+                },
           },
         },
       };
@@ -140,4 +183,4 @@ export function mapAction(action) {
   }
 }
 
-export const SCHEMA = getBorshSchema;
+export const SCHEMA = getBorshSchema();

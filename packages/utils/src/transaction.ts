@@ -1,7 +1,7 @@
 import { serialize as borshSerialize, deserialize as borshDeserialize, Schema } from "borsh";
 import { keyFromString } from "./crypto.js";
-import {fromBase58, fromBase64, toBase64} from "./misc.js";
-import {getBorshSchema} from "@fastnear/borsh-schema";
+import { fromBase58, fromBase64, toBase64 } from "./misc.js";
+import { getBorshSchema } from "@fastnear/borsh-schema";
 
 export interface PlainTransaction {
   signerId: string;
@@ -24,6 +24,7 @@ export const txToJson = (tx: PlainTransaction): Record<string, any> => {
   ));
 };
 
+// dude let's make this better. head just couldn't find a good name
 export const txToJsonStringified = (tx: PlainTransaction): string => {
   return JSON.stringify(txToJson(tx));
 }
@@ -43,7 +44,7 @@ export function mapTransaction(jsonTransaction: PlainTransaction) {
   };
 }
 
-export function serializeTransaction(jsonTransaction) {
+export function serializeTransaction(jsonTransaction: PlainTransaction) {
   console.log("fastnear: serializing transaction");
 
   const transaction = mapTransaction(jsonTransaction);
@@ -52,7 +53,7 @@ export function serializeTransaction(jsonTransaction) {
   return borshSerialize(SCHEMA.Transaction, transaction);
 }
 
-export function serializeSignedTransaction(jsonTransaction, signature) {
+export function serializeSignedTransaction(jsonTransaction: PlainTransaction, signature) {
   console.log("fastnear: Serializing Signed Transaction", jsonTransaction);
   console.log('fastnear: signature', signature)
   console.log('fastnear: signature length', fromBase58(signature).length)

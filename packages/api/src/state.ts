@@ -128,6 +128,8 @@ export const _unbroadcastedEvents: UnbroadcastedEvents = {
 };
 
 // Mutators
+// @todo: in favor of limiting when out of alpha
+//    but haven't given it enough thought ~ mike
 export const updateState = (newState: Partial<AppState>) => {
   const oldState = _state;
   _state = {..._state, ...newState};

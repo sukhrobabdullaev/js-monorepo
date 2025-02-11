@@ -45,7 +45,18 @@ export interface SignInResult {
  * @property {string} [url] - URL to redirect to if needed
  * @property {string} [hash] - Transaction hash if immediately available
  * @property {string} [error] - Error message if transaction failed
+ * Represents the result of attempting to send or execute a transaction.
  */
+export interface TransactionResult {
+  /** URL to redirect to if needed. */
+  url?: string;
+
+  /** Transaction hash if immediately available. */
+  hash?: string;
+
+  /** Error message if the transaction failed. */
+  error?: string;
+}
 
 export interface WalletAdapterConstructor {
   widgetUrl?: string;
@@ -69,7 +80,7 @@ export interface WalletAdapterConstructor {
  */
 export class WalletAdapter {
   /** @type {HTMLIFrameElement} */
-  #iframe = null;
+  #iframe: HTMLIFrameElement | null = null;
 
   /** @type {string} */
   #targetOrigin;
@@ -169,12 +180,12 @@ export class WalletAdapter {
     }
 
     // Resolve pending promise if any
-    const resolve = this.#pending.get(id);
+    const resolve = this.#pending.get(id) as ((value: SignInResult) => void);
     if (resolve) {
       this.#pending.delete(id);
       this.#iframe?.remove();
       this.#iframe = null;
-      resolve(payload);
+      resolve(payload as SignInResult);
     }
   }
 
@@ -185,7 +196,7 @@ export class WalletAdapter {
    * @param {Object} params - Parameters to pass
    * @returns {Promise<any>}
    */
-  async #sendMessage(path, method, params) {
+  async #sendMessage(path, method, params): Promise<TransactionResult> {
     return new Promise((resolve) => {
       const id = Math.random().toString(36).slice(2);
       this.#pending.set(id, resolve);
@@ -229,9 +240,11 @@ export class WalletAdapter {
   /**
    * Sign in with a NEAR wallet
    * @param {SignInConfig} config
-   * @returns {Promise<SignInResult>}
+   * @returns {Promise<any>}
+   *
+   * Should be returning SignInResult
    */
-  async signIn(config): Promise<SignInResult> {
+  async signIn(config): Promise<any> {
     return this.#sendMessage("/login.html", "signIn", config);
   }
 
@@ -240,7 +253,7 @@ export class WalletAdapter {
    * @param {TransactionConfig} config
    * @returns {Promise<TransactionResult>}
    */
-  async sendTransactions(config) {
+  async sendTransactions(config): Promise<TransactionResult> {
     return this.#sendMessage("/send.html", "sendTransactions", config);
   }
 

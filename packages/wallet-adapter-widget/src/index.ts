@@ -22,16 +22,18 @@ window.addEventListener("message", (event) => {
 async function handleLogin() {
   function setupWalletList() {
     const walletList = document.getElementById("walletList");
+    if (!walletList) return; // Ensure walletList exists before using it
+
     walletList.innerHTML = wallets
       .map(
         (wallet) => `
-      <li class="wallet-item">
-        <button class="wallet-button" data-wallet-id="${wallet.id}">
-          <img class="wallet-icon" src="${wallet.icon}" alt="${wallet.name} icon">
-          ${wallet.name}
-        </button>
-      </li>
-    `
+    <li class="wallet-item">
+      <button class="wallet-button" data-wallet-id="${wallet.id}">
+        <img class="wallet-icon" src="${wallet.icon}" alt="${wallet.name} icon">
+        ${wallet.name}
+      </button>
+    </li>
+  `
       )
       .join("");
 
@@ -66,7 +68,7 @@ async function handleLogin() {
         {
           type: "wallet-adapter",
           id: params.id,
-          payload: { error: error.message },
+          payload: { error: error instanceof Error ? error.message : "Unknown error" },
         },
         "*"
       );
@@ -104,28 +106,30 @@ async function handleSend() {
 
   if (state.lastWalletId === "meteor") {
     const sendButton = document.getElementById("sign-transaction");
-    sendButton.addEventListener("click", async () => {
-      try {
-        const result = await wallet.adapter.sendTransactions(params);
-        window.parent.postMessage(
-          {
-            type: "wallet-adapter",
-            id: params.id,
-            payload: result,
-          },
-          "*"
-        );
-      } catch (error) {
-        window.parent.postMessage(
-          {
-            type: "wallet-adapter",
-            id: params.id,
-            payload: { error: error.message },
-          },
-          "*"
-        );
-      }
-    });
+    if (sendButton) {
+      sendButton.addEventListener("click", async () => {
+        try {
+          const result = await wallet.adapter.sendTransactions(params);
+          window.parent.postMessage(
+            {
+              type: "wallet-adapter",
+              id: params.id,
+              payload: result,
+            },
+            "*"
+          );
+        } catch (error) {
+          window.parent.postMessage(
+            {
+              type: "wallet-adapter",
+              id: params.id,
+              payload: { error: error instanceof Error ? error.message : "Unknown error" },
+            },
+            "*"
+          );
+        }
+      });
+    }
   } else {
     try {
       const result = await wallet.adapter.sendTransactions(params);
@@ -142,7 +146,7 @@ async function handleSend() {
         {
           type: "wallet-adapter",
           id: params.id,
-          payload: { error: error.message },
+          payload: { error: error instanceof Error ? error.message : "Unknown error" },
         },
         "*"
       );

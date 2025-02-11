@@ -3,30 +3,57 @@ import {
   base58_to_binary as fromBase58,
 } from "base58-js";
 import Big from "big.js";
-import { encode, decode } from 'js-base64';
+import {
+  encode as JsBase64Encode,
+  decode as JsBase64Decode,
+  fromUint8Array as JsBase64FromUint8Array,
+  toUint8Array as JsBase64ToUint8Array
+} from 'js-base64';
+import {Hex} from "@noble/curves/abstract/utils";
 
 export { toBase58, fromBase58 };
 
 const LsPrefix = "__fastnear_";
 
-export function toBase64(data) {
-  if (typeof data === 'string') {
-    return encode(data);
-  } else {
-    const bytes = data instanceof Uint8Array ? data : new Uint8Array(data);
-    const str = String.fromCharCode(...bytes);
-    return encode(str);
+export function toHex(data: Uint8Array): string {
+  return Array.from(data)
+    .map(b => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+export function fromHex(hex: string): Uint8Array {
+  if (hex.length % 2) throw new Error('Hex string must be even length');
+  const bytes = new Uint8Array(hex.length / 2);
+  for (let i = 0; i < hex.length; i += 2) {
+    bytes[i/2] = parseInt(hex.slice(i, i + 2), 16);
+  }
+  return bytes;
+}
+
+export function base64ToBytes(b64Val: string): Uint8Array {
+  return JsBase64ToUint8Array(b64Val);
+}
+
+export function bytesToBase64(bytesArr: Uint8Array): string {
+  return JsBase64FromUint8Array(bytesArr);
+}
+
+export function toBase64(strVal: string) {
+  try {
+    return JsBase64Encode(strVal);
+  } catch (e) {
+    console.error('Issue base64 encoding', e);
+    return null;
   }
 }
 
-export function fromBase64(str) {
-  const binaryString = decode(str);
-  const len = binaryString.length;
-  const bytes = new Uint8Array(len);
-  for (let i = 0; i < len; i++) {
-    bytes[i] = binaryString.charCodeAt(i);
+export function fromBase64(strVal: string) {
+  try {
+    return JsBase64Decode(strVal);
+  } catch (e) {
+    console.error('Issue base64 decoding', e);
+    return null;
   }
-  return bytes;
 }
 
 export function convertUnit(s: string | TemplateStringsArray, ...args: any[]): string {

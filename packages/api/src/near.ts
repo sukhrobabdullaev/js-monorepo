@@ -1,26 +1,26 @@
 import Big from "big.js";
 import {
   lsSet,
+  lsGet,
   tryParseJson,
   fromBase64,
   toBase64,
   canSignWithLAK,
   toBase58,
-  fromBase58,
-  lsGet,
-  publicKeyFromPrivate,
-  serializeTransaction,
-  signHash,
-  serializeSignedTransaction,
-  privateKeyFromRandom,
-  reExportBorshSchema,
   parseJsonFromBytes,
+  signHash,
+  publicKeyFromPrivate,
+  privateKeyFromRandom,
+  serializeTransaction,
+  serializeSignedTransaction, bytesToBase64, PlainTransaction,
 } from "@fastnear/utils";
 
 import {
   _adapter,
-  _state, DEFAULT_NETWORK_ID,
-  getTxHistory, NETWORKS,
+  _state,
+  DEFAULT_NETWORK_ID,
+  NETWORKS,
+  getTxHistory,
   updateState,
   updateTxHistory,
 } from "./state.js";
@@ -31,30 +31,45 @@ import {
   resetTxHistory,
 } from "./state.js";
 
-import * as stateExports from "./state.js";
 import { sha256 } from "@noble/hashes/sha2";
-import * as reExportUtils from "@fastnear/utils";
-
-export * from "./state.js"
+import * as reExportAllUtils from "@fastnear/utils";
+// leftoff loop through here and see if we can export with key later
 
 Big.DP = 27;
 export const MaxBlockDelayMs = 1000 * 60 * 60 * 6; // 6 hours
 
+interface AccessKeyWithError {
+  nonce: number;
+  permission?: any;
+  error?: string;
+}
+
+interface WalletTxResult {
+  url?: string;
+  outcomes?: Array<{ transaction: { hash: string } }>;
+  rejected?: boolean;
+  error?: string;
+}
+
+interface BlockView {
+  header: {
+    prev_hash: string;
+    timestamp_nanosec: string;
+  };
+}
+
 export function withBlockId(params: Record<string, any>, blockId?: string) {
-  return blockId === "final" || blockId === "optimistic"
-    ? { ...params, finality: blockId }
-    : blockId
-      ? { ...params, block_id: blockId }
-      : { ...params, finality: "optimistic" };
+  if (blockId === "final" || blockId === "optimistic") {
+    return { ...params, finality: blockId };
+  }
+  return blockId ? { ...params, block_id: blockId } : { ...params, finality: "optimistic" };
 }
 
 export async function queryRpc(method: string, params: Record<string, any> | any[]) {
   const config = getConfig();
-
   if (!config?.nodeUrl) {
-    throw new Error("🚨 getConfig() returned an invalid config! nodeUrl is missing.");
+    throw new Error("fastnear: getConfig() returned invalid config: missing nodeUrl.");
   }
-
   const response = await fetch(config.nodeUrl, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
@@ -65,7 +80,6 @@ export async function queryRpc(method: string, params: Record<string, any> | any
       params,
     }),
   });
-
   const result = await response.json();
   if (result.error) {
     throw new Error(JSON.stringify(result.error));
@@ -73,7 +87,6 @@ export async function queryRpc(method: string, params: Record<string, any> | any
   return result.result;
 }
 
-// After TX is included
 export function afterTxSent(txId: string) {
   const txHistory = getTxHistory();
   queryRpc("tx", {
@@ -101,29 +114,31 @@ export function afterTxSent(txId: string) {
     });
 }
 
-// TX sending
-export function sendTxToRpc(signedTxBase64: string, waitUntil: string | undefined, txId: string) {
-  console.log("Sending TX to RPC:", { signedTxBase64, waitUntil, txId });
+export async function sendTxToRpc(signedTxBase64: string, waitUntil: string | undefined, txId: string) {
+  // default to "INCLUDED"
+  // see options: https://docs.near.org/api/rpc/transactions#tx-status-result
+  waitUntil = waitUntil || "INCLUDED";
 
-  queryRpc("send_tx", {
-    signed_tx_base64: signedTxBase64,
-    wait_until: waitUntil || "INCLUDED",
-  })
-    .then((result) => {
-      console.log("Transaction included:", result);
-      updateTxHistory({ txId, status: "Included", finalState: false });
-      afterTxSent(txId);
-    })
-    .catch(async (error) => {
-      console.error("RPC Transaction Error:", error);
-
-      updateTxHistory({
-        txId,
-        status: "Error",
-        error: tryParseJson(error.message) ?? error.message,
-        finalState: false,
-      });
+  try {
+    const sendTxRes = await queryRpc("send_tx", {
+      signed_tx_base64: signedTxBase64,
+      wait_until: waitUntil,
     });
+
+    updateTxHistory({ txId, status: "Included", finalState: false });
+    afterTxSent(txId);
+
+    return sendTxRes;
+  } catch (error) {
+    const errorMessage = error instanceof Error ? error.message : "Unknown error";
+    updateTxHistory({
+      txId,
+      status: "Error",
+      error: tryParseJson(errorMessage) ?? errorMessage,
+      finalState: false,
+    });
+    throw new Error(errorMessage);
+  }
 }
 
 export interface AccessKeyView {
@@ -131,88 +146,62 @@ export interface AccessKeyView {
   permission: any;
 }
 
-// Securely generate a unique transaction ID
-// todo check this
+/**
+ * Generates a mock transaction ID.
+ *
+ * This function creates a pseudo-unique transaction ID for testing or
+ * non-production use. It combines the current timestamp with a
+ * random component for uniqueness.
+ *
+ * **Note:** This is not cryptographically secure and should not be used
+ * for actual transaction processing.
+ *
+ * @returns {string} A mock transaction ID in the format `tx-{timestamp}-{random}`
+ */
 export function generateTxId(): string {
-  const randomPart = crypto.getRandomValues(new Uint32Array(2)).join('');
-
+  const randomPart = crypto.getRandomValues(new Uint32Array(2)).join("");
   return `tx-${Date.now()}-${parseInt(randomPart, 10).toString(36)}`;
 }
 
-export const accountId = () => {
-  return _state.accountId;
-};
-
-export const publicKey = () => {
-  return _state.publicKey;
-};
+export const accountId = () => _state.accountId;
+export const publicKey = () => _state.publicKey;
 
 export const config = (newConfig?: Record<string, any>) => {
   const current = getConfig();
   if (newConfig) {
     if (newConfig.networkId && current.networkId !== newConfig.networkId) {
-      // switch to new network
       setConfig(newConfig.networkId);
-
-      // reset app state
-      updateState({
-        accountId: null,
-        privateKey: null,
-        lastWalletId: null,
-      });
+      updateState({ accountId: null, privateKey: null, lastWalletId: null });
       lsSet("block", null);
-
-      // clear transaction history
       resetTxHistory();
     }
-    // merge new config
-    setConfig({
-      ...getConfig(),
-      ...newConfig,
-    });
+    setConfig({ ...getConfig(), ...newConfig });
   }
-
   return getConfig();
-}
+};
 
-// Auth status
 export const authStatus = (): string | Record<string, any> => {
   if (!_state.accountId) {
     return "SignedOut";
-    // Check for limited access key
-    const accessKey = _state.publicKey;
-    const contractId = _state.accessKeyContractId;
-    if (accessKey && contractId && _state.privateKey) {
-      return {
-        type: "SignedInWithLimitedAccessKey",
-        accessKey,
-        contractId,
-      };
-    }
   }
-  return 'SignedIn'
-}
+  return "SignedIn";
+};
 
-// Authentication
 export const requestSignIn = async ({ contractId }: { contractId: string }) => {
   const privateKey = privateKeyFromRandom();
   updateState({ accessKeyContractId: contractId, accountId: null, privateKey });
-  const publicKey = publicKeyFromPrivate(privateKey);
+  const pubKey = publicKeyFromPrivate(privateKey);
 
   const result = await _adapter.signIn({
     networkId: getConfig().networkId,
     contractId,
-    publicKey,
+    publicKey: pubKey,
   });
-
-  console.log("Sign in result:", result);
 
   if (result.error) {
     throw new Error(`Wallet error: ${result.error}`);
   }
-
   if (result.url) {
-    console.log("Redirecting to wallet:", result.url);
     if (typeof window !== "undefined") {
       setTimeout(() => {
         window.location.href = result.url;
@@ -223,7 +212,6 @@ export const requestSignIn = async ({ contractId }: { contractId: string }) => {
   }
 };
 
-// Query methods
 export const view = async ({
                              contractId,
                              methodName,
@@ -253,7 +241,7 @@ export const view = async ({
   return parseJsonFromBytes(result.result);
 };
 
-export const account = async ({
+export const queryAccount = async ({
                                 accountId,
                                 blockId,
                               }: {
@@ -262,21 +250,15 @@ export const account = async ({
 }) => {
   return queryRpc(
     "query",
-    withBlockId(
-      {
-        request_type: "view_account",
-        account_id: accountId,
-      },
-      blockId
-    )
+    withBlockId({ request_type: "view_account", account_id: accountId }, blockId)
   );
 };
 
-export const block = async ({blockId}: { blockId?: string }) => {
+export const queryBlock = async ({ blockId }: { blockId?: string }): Promise<BlockView> => {
   return queryRpc("block", withBlockId({}, blockId));
 };
 
-export const accessKey = async ({
+export const queryAccessKey = async ({
                                   accountId,
                                   publicKey,
                                   blockId,
@@ -284,43 +266,29 @@ export const accessKey = async ({
   accountId: string;
   publicKey: string;
   blockId?: string;
-}): Promise<AccessKeyView> => {
+}): Promise<AccessKeyWithError> => {
+  console.log("aloha queryAccessKey", accountId, publicKey, blockId);
+
   return queryRpc(
     "query",
     withBlockId(
-      {
-        request_type: "view_access_key",
-        account_id: accountId,
-        public_key: publicKey,
-      },
+      { request_type: "view_access_key", account_id: accountId, public_key: publicKey },
       blockId
     )
   );
 };
 
-// consider renaming so people know this is an rpc query
-export const tx = async ({
-                           txHash,
-                           accountId,
-                         }: {
-  txHash: string;
-  accountId: string;
-}) => {
+export const queryTx = async ({ txHash, accountId }: { txHash: string; accountId: string }) => {
   return queryRpc("tx", [txHash, accountId]);
 };
 
 export const localTxHistory = () => {
   return getTxHistory();
-}
+};
 
 export const signOut = () => {
-  updateState({
-    accountId: null,
-    privateKey: null,
-    contractId: null,
-  });
-
-  setConfig(NETWORKS[DEFAULT_NETWORK_ID]); // ✅ Reset config to mainnet
+  updateState({ accountId: null, privateKey: null, contractId: null });
+  setConfig(NETWORKS[DEFAULT_NETWORK_ID]);
 };
 
 export const sendTx = async ({
@@ -332,65 +300,45 @@ export const sendTx = async ({
   actions: any[];
   waitUntil?: string;
 }) => {
-  console.log("🚀 Starting sendTx");
-  console.log("📌 Inputs:", { receiverId, actions, waitUntil });
-
   const signerId = _state.accountId;
-  if (!signerId) {
-    throw new Error("❌ Not signed in");
-  }
+  if (!signerId) throw new Error("Must sign in");
 
-  const publicKey = _state.publicKey;
-  const privateKey = _state.privateKey;
+  const publicKey = _state.publicKey ?? "";
+  const privKey = _state.privateKey;
+  // this generates a mock transaction ID so we can keep track of each tx
   const txId = generateTxId();
 
-  console.log("🔑 Signer Info:", { signerId, publicKey, privateKey });
-
-  if (!privateKey || receiverId !== _state.accessKeyContractId || !canSignWithLAK(actions)) {
-    const jsonTransaction = { signerId, receiverId, actions };
-    console.log("📝 jsonTransaction (unauthenticated flow):", jsonTransaction);
-
-    updateTxHistory({ status: "Pending", txId, tx: jsonTransaction, finalState: false });
+  if (!privKey || receiverId !== _state.accessKeyContractId || !canSignWithLAK(actions)) {
+    const jsonTx = { signerId, receiverId, actions };
+    updateTxHistory({ status: "Pending", txId, tx: jsonTx, finalState: false });
 
     const url = new URL(typeof window !== "undefined" ? window.location.href : "");
     url.searchParams.set("txIds", txId);
 
     try {
-      const result: {
-        url?: string;
-        outcomes?: Array<{ transaction: { hash: string } }>;
-        rejected?: boolean;
-        error?: string;
-      } = await _adapter.sendTransactions({
-        transactions: [jsonTransaction],
+      const result: WalletTxResult = await _adapter.sendTransactions({
+        transactions: [jsonTx],
         callbackUrl: url.toString(),
       });
 
-      console.log("✅ Transaction Result:", result);
-
       if (result.url) {
-        console.log("🌐 Redirecting to wallet:", result.url);
         if (typeof window !== "undefined") {
           setTimeout(() => {
-            window.location.href = result.url;
+            window.location.href = result.url!;
           }, 100);
         }
-      } else if (result.outcomes && result.outcomes.length > 0) {
-        result.outcomes.forEach((r) => {
+      } else if (result.outcomes?.length) {
+        result.outcomes.forEach((r) =>
           updateTxHistory({
             txId,
             status: "Executed",
             result: r,
             txHash: r.transaction.hash,
             finalState: true,
-          });
-        });
+          })
+        );
       } else if (result.rejected) {
-        updateTxHistory({
-          txId,
-          status: "RejectedByUser",
-          finalState: true,
-        });
+        updateTxHistory({ txId, status: "RejectedByUser", finalState: true });
       } else if (result.error) {
         updateTxHistory({
           txId,
@@ -399,107 +347,151 @@ export const sendTx = async ({
           finalState: true,
         });
       }
-    } catch (error) {
-      console.error("❌ Error sending transaction:", error);
+
+      return result;
+    } catch (err) {
+      console.error('fastnear: error sending tx using adapter:', err)
       updateTxHistory({
         txId,
         status: "Error",
-        error: tryParseJson((error as Error).message),
+        error: tryParseJson((err as Error).message),
         finalState: true,
       });
+
+      return Promise.reject(err);
     }
-
-    return txId;
   }
 
-  let nonce: number | null = lsGet("nonce") as any;
-  let lastKnownBlock: any = lsGet("block") as any;
-  const toDoPromises: Record<string, Promise<any>> = {};
-
-  console.log("🔄 Fetching Nonce and Block Info");
-
-  if (nonce === null || nonce === undefined) {
-    console.log("⏳ Fetching nonce...");
-    toDoPromises.nonce = accessKey({ accountId: signerId, publicKey }).then((accessKey) => {
-      if ((accessKey as any).error) {
-        throw new Error(`❌ Access key error: ${(accessKey as any).error}`);
-      }
-      console.log("✅ Retrieved nonce:", accessKey.nonce);
-      lsSet("nonce", accessKey.nonce);
-      return accessKey.nonce;
-    });
+  //
+  let nonce = lsGet("nonce") as number | null;
+  if (nonce == null) {
+    const accessKey = await queryAccessKey({ accountId: signerId, publicKey: publicKey });
+    if (accessKey.error) {
+      throw new Error(`Access key error: ${accessKey.error} when attempting to get nonce for ${signerId} for public key ${publicKey}`);
+    }
+    nonce = accessKey.nonce;
+    lsSet("nonce", nonce);
   }
 
-  if (!lastKnownBlock || !lastKnownBlock.header || parseFloat(lastKnownBlock.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()) {
-    console.log("⏳ Fetching latest block...");
-    toDoPromises.block = block({ blockId: "final" }).then((b: any) => {
-      const newBlock = {
-        header: { prev_hash: b.header.prev_hash, timestamp_nanosec: b.header.timestamp_nanosec },
-      };
-      console.log("✅ Retrieved block:", newBlock);
-      lsSet("block", newBlock);
-      return newBlock;
-    });
+  let lastKnownBlock = lsGet("block") as BlockView | null;
+  if (
+    !lastKnownBlock ||
+    parseFloat(lastKnownBlock.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()
+  ) {
+    const latestBlock = await queryBlock({ blockId: "final" });
+    lastKnownBlock = {
+      header: {
+        prev_hash: latestBlock.header.prev_hash,
+        timestamp_nanosec: latestBlock.header.timestamp_nanosec,
+      },
+    };
+    lsSet("block", lastKnownBlock);
   }
 
-  if (Object.keys(toDoPromises).length > 0) {
-    const results = await Promise.all(Object.values(toDoPromises));
-    const keys = Object.keys(toDoPromises);
-    results.forEach((res, i) => {
-      if (keys[i] === "nonce") nonce = res;
-      else if (keys[i] === "block") lastKnownBlock = res;
-    });
-  }
+  nonce += 1;
+  lsSet("nonce", nonce);
 
-  console.log("📝 Nonce:", nonce);
-  const newNonce = (nonce ?? 0) + 1;
-  console.log("🆕 New Nonce:", newNonce);
-  lsSet("nonce", newNonce);
-
-  console.log("🔍 Block Header:", lastKnownBlock.header);
   const blockHash = lastKnownBlock.header.prev_hash;
 
-  console.log("🛠 Constructing jsonTransaction...");
-  const jsonTransaction = { signerId, publicKey, nonce: newNonce, receiverId, blockHash, actions };
-  console.log("✅ jsonTransaction:", jsonTransaction);
+  const plainTransactionObj: PlainTransaction = {
+    signerId,
+    publicKey,
+    nonce,
+    receiverId,
+    blockHash,
+    actions,
+  };
 
-  console.log("📌 Serializing Transaction...");
-  const transaction = serializeTransaction(jsonTransaction);
-  console.log("✅ Serialized Transaction (Uint8Array):", transaction);
-  console.log("📝 Serialized Transaction Length:", transaction.length);
+  const txBytes = serializeTransaction(plainTransactionObj);
+  const txHashBytes = sha256(txBytes);
+  const txHash58 = toBase58(txHashBytes);
 
-  console.log("🔑 Computing Hash...");
-  const txHashBytes = toBase58(sha256(transaction));
-  console.log("✅ SHA256 Hash (Bytes):", txHashBytes);
+  const signatureBase58 = signHash(txHashBytes, privKey, { returnBase58: true });
+  const signedTransactionBytes = serializeSignedTransaction(plainTransactionObj, signatureBase58);
+  const signedTxBase64 = bytesToBase64(signedTransactionBytes);
 
-  const txHash58 = toBase58(txHashBytes)
-  console.log("🔡 SHA256 Hash (Base58):", txHash58);
-
-  console.log("✍️ Signing Hash...");
-  const signatureBytes = signHash(txHash58, privateKey);
-  console.log("✅ Signature (Bytes):", signatureBytes);
-  console.log("🔡 Signature (Base58):", toBase58(signatureBytes));
-
-  console.log("📌 Serializing Signed Transaction...");
-  const signedTransaction = serializeSignedTransaction(jsonTransaction, signatureBytes);
-  console.log("✅ Serialized Signed Transaction:", signedTransaction);
-
-  console.log("🔡 Converting Signed Transaction to Base64...");
-  const signedTxBase64 = toBase64(signedTransaction);
-  console.log("✅ Signed Transaction (Base64):", signedTxBase64);
-
-  console.log("📡 Sending Transaction to RPC...");
-  updateTxHistory({ status: "Pending", txId, tx: jsonTransaction, signature: signatureBytes, signedTxBase64, txHash: toBase58(txHashBytes), finalState: false });
+  updateTxHistory({
+    status: "Pending",
+    txId,
+    tx: plainTransactionObj,
+    signature: signatureBase58,
+    signedTxBase64,
+    txHash: txHash58,
+    finalState: false,
+  });
 
   try {
-    await sendTxToRpc(signedTxBase64, waitUntil, txId);
-    console.log("✅ Transaction Successfully Sent!");
+    return await sendTxToRpc(signedTxBase64, waitUntil, txId);
   } catch (error) {
-    console.log("❌ Error Sending Transaction:", error);
+    console.error("Error Sending Transaction:", error, plainTransactionObj, signedTxBase64);
   }
-
-  return txId;
 };
+
+export const reExports = {
+  utils: reExportAllUtils,
+  borsh: reExportAllUtils.reExports.borsh,
+  borshSchema: reExportAllUtils.reExports.borshSchema,
+};
+
+export const utils = reExports.utils;
+
+// Wallet redirect handling
+try {
+  if (typeof window !== "undefined") {
+    const url = new URL(window.location.href);
+    const accId = url.searchParams.get("account_id");
+    const pubKey = url.searchParams.get("public_key");
+    const errCode = url.searchParams.get("errorCode");
+    const errMsg = url.searchParams.get("errorMessage");
+    const txHashes = url.searchParams.get("transactionHashes");
+    const txIds = url.searchParams.get("txIds");
+
+    if (errCode || errMsg) {
+      console.warn(new Error(`Wallet error: ${errCode} ${errMsg}`));
+    }
+
+    if (accId && pubKey) {
+      if (pubKey === _state.publicKey) {
+        updateState({ accountId: accId });
+      } else {
+        console.error(new Error("Public key mismatch from wallet redirect"), pubKey, _state.publicKey);
+      }
+    }
+
+    if (txHashes || txIds) {
+      const hashArr = txHashes ? txHashes.split(",") : [];
+      const idArr = txIds ? txIds.split(",") : [];
+      if (idArr.length > hashArr.length) {
+        idArr.forEach((id) => {
+          updateTxHistory({ txId: id, status: "RejectedByUser", finalState: true });
+        });
+      } else if (idArr.length === hashArr.length) {
+        idArr.forEach((id, i) => {
+          updateTxHistory({
+            txId: id,
+            status: "PendingGotTxHash",
+            txHash: hashArr[i],
+            finalState: false,
+          });
+          afterTxSent(id);
+        });
+      } else {
+        console.error(new Error("Transaction hash mismatch from wallet redirect"), idArr, hashArr);
+      }
+    }
+
+    url.searchParams.delete("account_id");
+    url.searchParams.delete("public_key");
+    url.searchParams.delete("errorCode");
+    url.searchParams.delete("errorMessage");
+    url.searchParams.delete("all_keys");
+    url.searchParams.delete("transactionHashes");
+    url.searchParams.delete("txIds");
+    window.history.replaceState({}, "", url.toString());
+  }
+} catch (e) {
+  console.error("Error handling wallet redirect:", e);
+}
 
 // action helpers
 export const actions = {
@@ -518,10 +510,10 @@ export const actions = {
   }) => ({
     type: "FunctionCall",
     methodName,
-    gas,
-    deposit,
     args,
     argsBase64,
+    gas,
+    deposit,
   }),
 
   transfer: (yoctoAmount: string) => ({
@@ -581,85 +573,3 @@ export const actions = {
     codeBase64,
   }),
 };
-
-
-export const reExports = {
-  utils: reExportUtils,
-  borshSchema: reExportBorshSchema,
-};
-
-// It's worth it to "symlink" so near.utils works
-export const utils = reExports.utils;
-
-// Handle wallet redirect if applicable
-try {
-  if (typeof window !== "undefined") {
-    const url = new URL(window.location.href);
-    const accountId = url.searchParams.get("account_id");
-    const publicKey = url.searchParams.get("public_key");
-    const errorCode = url.searchParams.get("errorCode");
-    const errorMessage = url.searchParams.get("errorMessage");
-    const transactionHashes = url.searchParams.get("transactionHashes");
-    const txIds = url.searchParams.get("txIds");
-
-    if (errorCode || errorMessage) {
-      console.warn(new Error(`Wallet error: ${errorCode} ${errorMessage}`));
-    }
-
-    if (accountId && publicKey) {
-      if (publicKey === _state.publicKey) {
-        updateState({
-          accountId,
-        });
-      } else {
-        console.error(
-          new Error("Public key mismatch from wallet redirect"),
-          publicKey,
-          _state.publicKey
-        );
-      }
-    }
-
-    if (transactionHashes || txIds) {
-      const txHashes = transactionHashes ? transactionHashes.split(",") : [];
-      const txIdsArray = txIds ? txIds.split(",") : [];
-      if (txIdsArray.length > txHashes.length) {
-        txIdsArray.forEach((txId, i) => {
-          updateTxHistory({
-            txId,
-            status: "RejectedByUser",
-            finalState: true,
-          });
-        });
-      } else if (txIdsArray.length === txHashes.length) {
-        txIdsArray.forEach((txId, i) => {
-          updateTxHistory({
-            txId,
-            status: "PendingGotTxHash",
-            txHash: txHashes[i],
-            finalState: false,
-          });
-          afterTxSent(txId);
-        });
-      } else {
-        console.error(
-          new Error("Transaction hash mismatch from wallet redirect"),
-          txIdsArray,
-          txHashes
-        );
-      }
-    }
-
-    // Remove wallet parameters from the URL
-    url.searchParams.delete("account_id");
-    url.searchParams.delete("public_key");
-    url.searchParams.delete("errorCode");
-    url.searchParams.delete("errorMessage");
-    url.searchParams.delete("all_keys");
-    url.searchParams.delete("transactionHashes");
-    url.searchParams.delete("txIds");
-    window.history.replaceState({}, "", url.toString());
-  }
-} catch (e) {
-  console.error("Error handling wallet redirect:", e);
-}

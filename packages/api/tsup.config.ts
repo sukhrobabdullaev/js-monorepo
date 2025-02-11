@@ -14,7 +14,7 @@ try {
     configurable: false,
   });
 } catch (error) {
-  console.log('error', error);
+  console.error('Could not define global "near" object', error);
   throw error;
 }
 

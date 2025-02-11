@@ -75,6 +75,26 @@ export let _config: NetworkConfig = lsGet("config") || {
 // Load application state from localStorage
 export let _state: AppState = lsGet("state") || {};
 
+// Triggered by the wallet adapter
+export const onAdapterStateUpdate = (state: WalletAdapterState) => {
+  console.log("Adapter state update:", state);
+  const {accountId, lastWalletId, privateKey} = state;
+  updateState({
+    accountId: accountId || undefined,
+    lastWalletId: lastWalletId || undefined,
+    ...(privateKey ? {privateKey} : {}),
+  });
+}
+
+export const getWalletAdapterState = (): WalletAdapterState => {
+  return {
+    publicKey: _state.publicKey,
+    accountId: _state.accountId,
+    lastWalletId: _state.lastWalletId,
+    networkId: DEFAULT_NETWORK_ID,
+  };
+}
+
 // We can create an adapter instance here
 export let _adapter = new WalletAdapter({
   onStateUpdate: onAdapterStateUpdate,
@@ -107,18 +127,8 @@ export const _unbroadcastedEvents: UnbroadcastedEvents = {
   tx: [],
 };
 
-// Accessors
-export function getWalletAdapterState(): WalletAdapterState {
-  return {
-    publicKey: _state.publicKey,
-    accountId: _state.accountId,
-    lastWalletId: _state.lastWalletId,
-    networkId: DEFAULT_NETWORK_ID,
-  };
-}
-
 // Mutators
-export function updateState(newState: Partial<AppState>) {
+export const updateState = (newState: Partial<AppState>) => {
   const oldState = _state;
   _state = {..._state, ...newState};
 
@@ -155,7 +165,7 @@ export function updateState(newState: Partial<AppState>) {
   }
 }
 
-export function updateTxHistory(txStatus: TxStatus) {
+export const updateTxHistory = (txStatus: TxStatus) => {
   const txId = txStatus.txId;
   _txHistory[txId] = {
     ...(_txHistory[txId] || {}),
@@ -166,19 +176,10 @@ export function updateTxHistory(txStatus: TxStatus) {
   notifyTxListeners(_txHistory[txId]);
 }
 
-// Triggered by the wallet adapter
-export function onAdapterStateUpdate(state: WalletAdapterState) {
-  console.log("Adapter state update:", state);
-  const {accountId, lastWalletId, privateKey} = state;
-  updateState({
-    accountId: accountId || undefined,
-    lastWalletId: lastWalletId || undefined,
-    ...(privateKey ? {privateKey} : {}),
-  });
-}
+
 
 // Event Notifiers
-export function notifyAccountListeners(accountId: string) {
+export const notifyAccountListeners = (accountId: string) => {
   if (_eventListeners.account.size === 0) {
     _unbroadcastedEvents.account.push(accountId);
     return;
@@ -192,7 +193,7 @@ export function notifyAccountListeners(accountId: string) {
   });
 }
 
-export function notifyTxListeners(tx: TxStatus) {
+export const notifyTxListeners = (tx: TxStatus) => {
   if (_eventListeners.tx.size === 0) {
     _unbroadcastedEvents.tx.push(tx);
     return;
@@ -216,7 +217,7 @@ export const onAccount = (callback: (accountId: string) => void) => {
   }
 };
 
-export const onTx = (callback: (tx: TxStatus) => void) => {
+export const onTx = (callback: (tx: TxStatus) => void): void => {
   _eventListeners.tx.add(callback);
   if (_unbroadcastedEvents.tx.length > 0) {
     const events = _unbroadcastedEvents.tx;
@@ -225,21 +226,21 @@ export const onTx = (callback: (tx: TxStatus) => void) => {
   }
 };
 
-export function getConfig(): NetworkConfig {
+export const getConfig = (): NetworkConfig => {
   return _config;
 }
 
-export function getTxHistory(): TxHistory {
+export const getTxHistory = (): TxHistory => {
   return _txHistory;
 }
 
 // Exposed "write" functions
-export function setConfig(newConf: NetworkConfig): void {
+export const setConfig = (newConf: NetworkConfig): void => {
   _config = { ...NETWORKS[newConf.networkId], ...newConf };
   lsSet("config", _config);
 }
 
-export function resetTxHistory(): void {
+export const resetTxHistory = (): void => {
   _txHistory = {};
   lsSet("txHistory", _txHistory);
 }

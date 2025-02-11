@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "strict": false,
+    "strict": true,
+    "noImplicitAny": false,
     "declaration": true,
     "module": "NodeNext",
     "moduleResolution": "node",

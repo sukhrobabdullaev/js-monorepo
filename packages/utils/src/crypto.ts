@@ -1,6 +1,7 @@
 import { ed25519 } from "@noble/curves/ed25519";
 import { sha256 } from "@noble/hashes/sha2";
 import { fromBase58, toBase58 } from "./misc.js";
+import {Hex} from "@noble/curves/abstract/utils";
 
 export { sha256 };
 
@@ -17,11 +18,11 @@ export const keyFromString = (key) =>
       : key,
   );
 
-export const keyToString = (key) => `ed25519:${toBase58(key)}`;
+export const keyToString = (key: Uint8Array) => `ed25519:${toBase58(key)}`;
 
-export function publicKeyFromPrivate(privateKey) {
-  privateKey = keyFromString(privateKey).slice(0, 32);
-  const publicKey = ed25519.getPublicKey(privateKey);
+export function publicKeyFromPrivate(privateKey: string) {
+  const secret = keyFromString(privateKey).slice(0, 32);
+  const publicKey = ed25519.getPublicKey(secret);
   return keyToString(publicKey);
 }
 
@@ -30,13 +31,18 @@ export function privateKeyFromRandom() {
   return keyToString(privateKey);
 }
 
-export function signHash(hash, privateKey) {
-  privateKey = keyFromString(privateKey).slice(0, 32);
-  const signature = ed25519.sign(fromBase58(hash), privateKey);
-  return toBase58(signature);
+export function signHash(hashBytes: Uint8Array, privateKey: string, opts?: any): Hex {
+  const secret = keyFromString(privateKey).slice(0, 32);
+  const signature = ed25519.sign(hashBytes, secret);
+
+  if (opts?.returnBase58) {
+    return toBase58(signature);
+  }
+
+  return signature;
 }
 
-export function signBytes(bytes, privateKey) {
+export function signBytes(bytes: Uint8Array, privateKey: string) {
   const hash = sha256(bytes);
-  return signHash(toBase58(hash), privateKey);
+  return signHash(hash, privateKey);
 }

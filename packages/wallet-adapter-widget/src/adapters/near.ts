@@ -1,7 +1,6 @@
-import { serializeTransaction } from "../utils/transaction.js";
-import {toBase58} from "@fastnear/utils";
+import { serializeTransaction, toBase58 } from "@fastnear/utils";
 
-const walletUrl = (networkId) =>
+export const walletUrl = (networkId: string) =>
   networkId === "testnet"
     ? "https://testnet.mynearwallet.com"
     : "https://app.mynearwallet.com";
@@ -51,8 +50,9 @@ export function createNearAdapter() {
       url.searchParams.set(
         "transactions",
         transactions
-          .map((transaction) => serializeTransaction(transaction))
-          .map((serialized) => Buffer.from(serialized).toString("base64"))
+          .map(transaction => serializeTransaction(transaction))
+          // @todo: vampire slay this Buffer! use js-base64
+          .map(serialized => Buffer.from(serialized).toString("base64"))
           .join(",")
       );
       url.searchParams.set("callbackUrl", callbackUrl);

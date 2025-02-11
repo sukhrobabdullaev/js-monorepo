@@ -5,10 +5,11 @@ import { createHereAdapter } from './adapters/here.js';
 import { createNearAdapter } from './adapters/near.js';
 import { createMeteorAdapter } from './adapters/meteor.js';
 
+// note: id used as key for browser to remember previous selection
 export const wallets = [
   {
-    id: 'near',
-    name: 'NEAR Wallet',
+    id: 'myNearWallet',
+    name: 'MyNearWallet',
     icon: nearIcon,
     adapter: createNearAdapter()
   },

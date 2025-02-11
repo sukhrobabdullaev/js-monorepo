@@ -267,8 +267,6 @@ export const queryAccessKey = async ({
   publicKey: string;
   blockId?: string;
 }): Promise<AccessKeyWithError> => {
-  console.log("aloha queryAccessKey", accountId, publicKey, blockId);
-
   return queryRpc(
     "query",
     withBlockId(

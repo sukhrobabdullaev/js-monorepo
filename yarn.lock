@@ -242,7 +242,7 @@ __metadata:
     "@fastnear/api": "workspace:*"
     rimraf: "npm:*"
   bin:
-    repl: ./index.mjs
+    repl: bin/repl.cjs
   languageName: unknown
   linkType: soft
 

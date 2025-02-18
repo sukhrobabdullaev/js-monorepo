@@ -78,11 +78,11 @@ export let _state: AppState = lsGet("state") || {};
 // Triggered by the wallet adapter
 export const onAdapterStateUpdate = (state: WalletAdapterState) => {
   console.log("Adapter state update:", state);
-  const {accountId, lastWalletId, privateKey} = state;
+  const { accountId, lastWalletId, privateKey } = state;
   updateState({
     accountId: accountId || undefined,
     lastWalletId: lastWalletId || undefined,
-    ...(privateKey ? {privateKey} : {}),
+    ...(privateKey ? { privateKey } : {}),
   });
 }
 

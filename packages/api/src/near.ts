@@ -33,7 +33,6 @@ import {
 
 import { sha256 } from "@noble/hashes/sha2";
 import * as reExportAllUtils from "@fastnear/utils";
-// leftoff loop through here and see if we can export with key later
 
 Big.DP = 27;
 export const MaxBlockDelayMs = 1000 * 60 * 60 * 6; // 6 hours
@@ -425,13 +424,18 @@ export const sendTx = async ({
   }
 };
 
-export const reExports = {
-  utils: reExportAllUtils,
-  borsh: reExportAllUtils.reExports.borsh,
-  borshSchema: reExportAllUtils.reExports.borshSchema,
+// exports
+export const exp = {
+  utils: {}, // we will map this in a moment, giving keys, for IDE hints
+  borsh: reExportAllUtils.exp.borsh,
+  borshSchema: reExportAllUtils.exp.borshSchema.getBorshSchema(),
 };
 
-export const utils = reExports.utils;
+for (const key in reExportAllUtils) {
+  exp.utils[key] = reExportAllUtils[key];
+}
+
+export const utils = exp.utils;
 
 // Wallet redirect handling
 try {

@@ -194,7 +194,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fastnear/api@workspace:packages/api":
+"@fastnear/api@workspace:*, @fastnear/api@workspace:packages/api":
   version: 0.0.0-use.local
   resolution: "@fastnear/api@workspace:packages/api"
   dependencies:
@@ -234,6 +234,17 @@ __metadata:
   checksum: 10c0/d6b518f461787150b7ee957a1fc7eb32f0ad4f10e371ff252b33290d0c72e935ccf7d4c98dc3032805188fcbe7df8961bc0358a5067c9b4c77c513f2ec89e5b3
   languageName: node
   linkType: hard
+
+"@fastnear/repl@workspace:packages/repl":
+  version: 0.0.0-use.local
+  resolution: "@fastnear/repl@workspace:packages/repl"
+  dependencies:
+    "@fastnear/api": "workspace:*"
+    rimraf: "npm:*"
+  bin:
+    repl: ./index.mjs
+  languageName: unknown
+  linkType: soft
 
 "@fastnear/utils@workspace:*, @fastnear/utils@workspace:packages/utils":
   version: 0.0.0-use.local

@@ -1,6 +1,6 @@
 {
   "name": "fastnear-js-monorepo",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "description": "Easily interact with the NEAR Protocol blockchain",
   "scripts": {
     "type-check": "yarn workspaces foreach --all -t run type-check",
@@ -9,7 +9,7 @@
     "install-all": "yarn workspaces foreach --all -t install",
     "install-all:lock": "yarn workspaces foreach --all -t install --refresh-lockfile",
     "pack-all": "yarn workspaces foreach --all -t pack",
-    "repl": "node repl.mjs"
+    "repl": "yarn workspace @fastnear/repl start"
   },
   "license": "MIT",
   "private": true,

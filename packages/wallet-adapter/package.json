@@ -1,6 +1,6 @@
 {
   "name": "@fastnear/wallet-adapter",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "description": "Optimized interfaces for a NEAR Protocol wallet adapter",
   "type": "module",
   "types": "./dist/esm/index.d.ts",

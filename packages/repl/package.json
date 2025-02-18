@@ -1,12 +1,12 @@
 {
   "name": "@fastnear/repl",
-  "version": "0.7.0",
+  "version": "0.7.2",
   "license": "MIT",
   "description": "Simple REPL to explore NEAR blockchain objects",
-  "bin": "./index.mjs",
+  "bin": "bin/repl.cjs",
   "type": "module",
   "scripts": {
-    "start": "node index.mjs",
+    "start": "node bin/repl.cjs",
     "publish": "yarn npm publish",
     "clean": "yarn rimraf node_modules"
   },

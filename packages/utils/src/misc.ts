@@ -10,10 +10,9 @@ import {
   toUint8Array as JsBase64ToUint8Array
 } from 'js-base64';
 import {Hex} from "@noble/curves/abstract/utils";
+import { storage } from "./storage.js";
 
 export { toBase58, fromBase58 };
-
-const LsPrefix = "__fastnear_";
 
 export function toHex(data: Uint8Array): string {
   return Array.from(data)
@@ -91,17 +90,12 @@ export function convertUnit(s: string | TemplateStringsArray, ...args: any[]): s
   return Big(`${s}`).toFixed(0);
 }
 
-export function lsSet(key, value) {
-  if (value === null || value === undefined) {
-    localStorage.removeItem(LsPrefix + key);
-  } else {
-    localStorage.setItem(LsPrefix + key, JSON.stringify(value));
-  }
+export function lsSet(key: string, value: any) {
+  storage.set(key, value);
 }
 
-export function lsGet(key) {
-  const value = localStorage.getItem(LsPrefix + key);
-  return tryParseJson(value, null);
+export function lsGet(key: string): any {
+  return storage.get(key);
 }
 
 export function deepCopy(obj) {

@@ -83,7 +83,7 @@ export async function queryRpc(method: string, params: Record<string, any> | any
   if (result.error) {
     throw new Error(JSON.stringify(result.error));
   }
-  return result.result;
+  return result;
 }
 
 export function afterTxSent(txId: string) {
@@ -93,8 +93,8 @@ export function afterTxSent(txId: string) {
     sender_account_id: txHistory[txId]?.tx?.signerId,
     wait_until: "EXECUTED_OPTIMISTIC",
   })
-    .then((result) => {
-      const successValue = result?.status?.SuccessValue;
+    .then( result => {
+      const successValue = result?.result?.status?.SuccessValue;
       updateTxHistory({
         txId,
         status: "Executed",
@@ -225,7 +225,7 @@ export const view = async ({
   blockId?: string;
 }) => {
   const encodedArgs = argsBase64 || (args ? toBase64(JSON.stringify(args)) : "");
-  const result = await queryRpc(
+  const queryResult = await queryRpc(
     "query",
     withBlockId(
       {
@@ -237,7 +237,8 @@ export const view = async ({
       blockId
     )
   );
-  return parseJsonFromBytes(result.result);
+  
+  return parseJsonFromBytes(queryResult.result.result);
 };
 
 export const queryAccount = async ({

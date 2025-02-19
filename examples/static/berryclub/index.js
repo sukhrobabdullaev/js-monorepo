@@ -84,7 +84,7 @@ export const fastNearJs = (configOpts) => {
         <div class="mb1">${near.accountId()}</div>
         <button
           id="sign-out"
-          class="br2 ph3 pv1"
+          class="signout-button"
         >
           Sign Out
         </button>
@@ -96,15 +96,15 @@ export const fastNearJs = (configOpts) => {
           location.reload();
         });
 
-      // If not signed in, show the contract ID input + Connect Wallet
+      // If not signed in, show contract ID input + Connect Wallet
     } else if (authSection) {
       authSection.innerHTML = `
         <div
-          class="pa3 br2"
-          style="background: rgba(0, 0, 0, 0.7); min-width: 220px; border: 1px solid rgba(255, 255, 255, 0.3);"
+          class="pa3"
+          style="min-width: 220px"
         >
           <div class="flex flex-column">
-            <label class="f6 white-60 mb2">contract</label>
+            <label class="f5 white-80 mb3">near contract:</label>
             <input
               type="text"
               id="contractId"
@@ -114,13 +114,14 @@ export const fastNearJs = (configOpts) => {
             />
             <button
               id="sign-in"
-              class="bn br2 pv2 ph3 pointer"
+              class="bn br2 pv2 ph3 pointer mt2"
               style="background: var(--accent);"
-            >create session key</button>
+            >
+              create session key
+            </button>
           </div>
         </div>
       `;
-      // Hook up the Connect Wallet button
       document
         .getElementById("sign-in")
         .addEventListener("click", () => {
@@ -188,7 +189,7 @@ export const fastNearJs = (configOpts) => {
           return `
             <tr>
               <td class="pv2 ph3 bb b--black-20">
-                <a 
+                <a
                   class="underline hover-blue"
                   href="https://nearblocks.io/txns/${hash}"
                   target="_blank"

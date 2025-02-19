@@ -64,7 +64,7 @@ export function withBlockId(params: Record<string, any>, blockId?: string) {
   return blockId ? { ...params, block_id: blockId } : { ...params, finality: "optimistic" };
 }
 
-export async function queryRpc(method: string, params: Record<string, any> | any[]) {
+export async function sendRpc(method: string, params: Record<string, any> | any[]) {
   const config = getConfig();
   if (!config?.nodeUrl) {
     throw new Error("fastnear: getConfig() returned invalid config: missing nodeUrl.");
@@ -88,7 +88,7 @@ export async function queryRpc(method: string, params: Record<string, any> | any
 
 export function afterTxSent(txId: string) {
   const txHistory = getTxHistory();
-  queryRpc("tx", {
+  sendRpc("tx", {
     tx_hash: txHistory[txId]?.txHash,
     sender_account_id: txHistory[txId]?.tx?.signerId,
     wait_until: "EXECUTED_OPTIMISTIC",
@@ -119,7 +119,7 @@ export async function sendTxToRpc(signedTxBase64: string, waitUntil: string | un
   waitUntil = waitUntil || "INCLUDED";
 
   try {
-    const sendTxRes = await queryRpc("send_tx", {
+    const sendTxRes = await sendRpc("send_tx", {
       signed_tx_base64: signedTxBase64,
       wait_until: waitUntil,
     });
@@ -225,7 +225,7 @@ export const view = async ({
   blockId?: string;
 }) => {
   const encodedArgs = argsBase64 || (args ? toBase64(JSON.stringify(args)) : "");
-  const queryResult = await queryRpc(
+  const queryResult = await sendRpc(
     "query",
     withBlockId(
       {
@@ -237,7 +237,7 @@ export const view = async ({
       blockId
     )
   );
-  
+
   return parseJsonFromBytes(queryResult.result.result);
 };
 
@@ -248,14 +248,14 @@ export const queryAccount = async ({
   accountId: string;
   blockId?: string;
 }) => {
-  return queryRpc(
+  return sendRpc(
     "query",
     withBlockId({ request_type: "view_account", account_id: accountId }, blockId)
   );
 };
 
 export const queryBlock = async ({ blockId }: { blockId?: string }): Promise<BlockView> => {
-  return queryRpc("block", withBlockId({}, blockId));
+  return sendRpc("block", withBlockId({}, blockId));
 };
 
 export const queryAccessKey = async ({
@@ -267,7 +267,7 @@ export const queryAccessKey = async ({
   publicKey: string;
   blockId?: string;
 }): Promise<AccessKeyWithError> => {
-  return queryRpc(
+  return sendRpc(
     "query",
     withBlockId(
       { request_type: "view_access_key", account_id: accountId, public_key: publicKey },
@@ -277,7 +277,7 @@ export const queryAccessKey = async ({
 };
 
 export const queryTx = async ({ txHash, accountId }: { txHash: string; accountId: string }) => {
-  return queryRpc("tx", [txHash, accountId]);
+  return sendRpc("tx", [txHash, accountId]);
 };
 
 export const localTxHistory = () => {

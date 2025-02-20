@@ -153,12 +153,12 @@ export const fastNearJs = (configOpts) => {
         : null;
 
       totalSupplyElement.textContent = totalSupply
-        ? (parseFloat(totalSupply) / 1e18).toFixed(4)
+        ? `${(parseFloat(totalSupply) / 1e18).toFixed(4)} 🥑`
         : "-";
 
       yourBalanceElement.textContent =
         berryAccount && !isNaN(berryAccount.avocado_balance)
-          ? (parseFloat(berryAccount.avocado_balance) / 1e18).toFixed(4)
+          ? `${(parseFloat(berryAccount.avocado_balance) / 1e18).toFixed(4)} 🥑`
           : DefaultBalance;
 
       const encodedLines = await near.view({

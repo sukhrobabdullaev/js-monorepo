@@ -9,7 +9,6 @@
     --accent: #64ffda;
     --card-bg: rgba(13, 25, 48, 0.98);
     font-size: 19px;
-    line-height: 1.6;
 }
 
 body {
@@ -19,6 +18,10 @@ body {
     margin: 0;
     padding: 0;
     min-height: 100vh;
+}
+
+body p {
+    line-height: 1.9rem;
 }
 
 a:visited {
@@ -177,7 +180,6 @@ a:visited {
 }
 
 .token-table {
-    background: rgba(0, 0, 0, 0.2);
     border-radius: 0.25rem;
     overflow: hidden;
 }
@@ -187,7 +189,7 @@ a:visited {
     border: 2px solid #366;
     border-radius: 3px;
     position: relative;
-    padding-top: 1.6rem;
+    padding-top: 10px;
     transition: opacity 0.3s ease;
     color: #eee;
     max-width: 850px;
@@ -387,7 +389,6 @@ a:visited {
 }
 
 .blockquote-card-subtle p {
-    color: #fff;
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
@@ -453,8 +454,3 @@ code {
     }
 }
 
-.trapezoid {
-    margin: 0;
-    padding: 0.2rem 1.1rem 0.2rem 0.5rem;
-    clip-path: polygon(2% 0%, 96% 0%, 98% 100%, 2% 100%);
-}

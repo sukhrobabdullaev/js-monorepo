@@ -177,6 +177,8 @@ export const fastNearJs = (configOpts) => {
       console.error("Error updating UI:", err);
     }
 
+    // Commenting out transaction history table, too much for alpha for me
+    /*
     // Transactions table
     if (!transactions.length) {
       txSection.innerHTML = `<p class="gray">No recent transactions</p>`;
@@ -216,6 +218,7 @@ export const fastNearJs = (configOpts) => {
         </table>
       `;
     }
+     */
   }
 
   // snippet toggling

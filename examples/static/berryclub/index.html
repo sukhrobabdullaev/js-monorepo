@@ -93,7 +93,7 @@
         @fastnear/api
       </a>
     </div>
-    <div class="user-info collapsed" id="auth" onclick="toggleUserInfo()">
+    <div class="user-info pointer grow collapsed" id="auth" onclick="toggleUserInfo()">
       <!-- JS will inject account name + sign out button -->
     </div>
   </div>
@@ -114,7 +114,7 @@
     </div>
   </div>
 
-  <h1 class="f-9 mt2 lh-solid near-cursor">NEAR</h1>
+  <h1 class="f-headline-l f1-m mt1 lh-solid near-cursor mb4">NEAR</h1>
 
   <p class="f3 mb2 lh-copy o-80">
     api to interact with the NEAR blockchain
@@ -183,18 +183,6 @@
   </div>
 </div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>Berry Club Demo</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="icon" href="data:," />
-  <link rel="stylesheet" href="tachyons.min.css" />
-  <link rel="stylesheet" href="./styles.css" />
-</head>
-<body class="bg-near-white">
-
 <section id="demo" class="relative min-vh-50 pv4">
   <h1 class="f1-ns fw8 mb4 mt2 navy pl4-l pl4-m pl1-ns">Berry Club demo</h1>
   <div class="mw8 center ph4-ns demo-inner">
@@ -247,10 +235,13 @@
   <div class="tc mb2">
     <div class="dib" id="board"></div>
   </div>
-  <p class="ma4 f4 ph4 mb1">
-    This view call fetches lines populating the pixel board. No keys are required
-    for view calls.
-  </p>
+  <div class="tc mb1">
+    <p class="ma4 f4 ph4 mb1">
+      This view call fetches lines populating the pixel board. No keys are required
+      for view calls.
+    </p>
+
+  </div>
   <div class="tc mb1">
     <svg
       class="snippet-arrow"

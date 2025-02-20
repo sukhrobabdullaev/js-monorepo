@@ -292,12 +292,15 @@ a:visited {
 .near-cursor::after {
     content: '';
     display: inline-block;
-    width: 0.6em;
-    height: 0.6em;
-    scale: 0.6;
-    background-color: currentColor;
-    margin-left: 2px;
-    vertical-align: text-bottom;
+    width: 1.3rem;
+    height: 1.3rem;
+    background-image: url('./wikimedia_javascript_logo.svg');
+    background-size: contain;
+    background-position: bottom left;
+    background-repeat: no-repeat;
+    margin-left: 10px;
+    vertical-align: baseline;
+    transform: translateY(0.666rem);
     animation: blink-cursor 2s steps(1) 1;
     animation-fill-mode: forwards;
 }

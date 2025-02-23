@@ -21,7 +21,7 @@ import {
   DEFAULT_NETWORK_ID,
   NETWORKS,
   getTxHistory,
-  updateState,
+  update,
   updateTxHistory,
 } from "./state.js";
 
@@ -33,28 +33,41 @@ import {
 
 import { sha256 } from "@noble/hashes/sha2";
 import * as reExportAllUtils from "@fastnear/utils";
+import * as stateExports from "./state.js";
 
 Big.DP = 27;
 export const MaxBlockDelayMs = 1000 * 60 * 60 * 6; // 6 hours
 
-interface AccessKeyWithError {
-  nonce: number;
-  permission?: any;
-  error?: string;
+export interface AccessKeyWithError {
+  result: {
+    nonce: number;
+    permission?: any;
+    error?: string;
+  }
 }
 
-interface WalletTxResult {
+export interface WalletTxResult {
   url?: string;
   outcomes?: Array<{ transaction: { hash: string } }>;
   rejected?: boolean;
   error?: string;
 }
 
-interface BlockView {
+export interface BlockView {
+  result: {
+    header: {
+      hash: string;
+      timestamp_nanosec: string;
+    }
+  }
+}
+
+// The structure it's saved to in storage
+export interface LastKnownBlock {
   header: {
-    prev_hash: string;
+    hash: string;
     timestamp_nanosec: string;
-  };
+  }
 }
 
 export function withBlockId(params: Record<string, any>, blockId?: string) {
@@ -170,7 +183,7 @@ export const config = (newConfig?: Record<string, any>) => {
   if (newConfig) {
     if (newConfig.networkId && current.networkId !== newConfig.networkId) {
       setConfig(newConfig.networkId);
-      updateState({ accountId: null, privateKey: null, lastWalletId: null });
+      update({ accountId: null, privateKey: null, lastWalletId: null });
       lsSet("block", null);
       resetTxHistory();
     }
@@ -186,9 +199,47 @@ export const authStatus = (): string | Record<string, any> => {
   return "SignedIn";
 };
 
+// this is an intentional stub
+// and it's probably partially done, to help ease future features
+// for now we'll assume each web end user has one keypair in storage
+// for every contract they wish to interact with
+// later, it may be prudent to hold multiple, but until then this function
+// just returns the access key as if it were among others in the array.
+// we're pretending like we really thought about which access key we're returning
+// based on the opts argument. this allows us to fill this logic in later.
+export const getPublicKeyForContract = (opts?: any) => {
+  return publicKey();
+}
+
+// returns details on the selected:
+// network, wallet, and explorer details as well as
+// sending account, contract, and selected public key
+export const selected = () => {
+  const network = getConfig().networkId;
+  const nodeUrl = getConfig().nodeUrl;
+  const walletUrl = getConfig().walletUrl;
+  const helperUrl = getConfig().helperUrl;
+  const explorerUrl = getConfig().explorerUrl;
+
+  const account = accountId();
+  const contract = _state.accessKeyContractId;
+  const publicKey = getPublicKeyForContract();
+
+  return {
+    network,
+    nodeUrl,
+    walletUrl,
+    helperUrl,
+    explorerUrl,
+    account,
+    contract,
+    publicKey
+  }
+}
+
 export const requestSignIn = async ({ contractId }: { contractId: string }) => {
   const privateKey = privateKeyFromRandom();
-  updateState({ accessKeyContractId: contractId, accountId: null, privateKey });
+  update({ accessKeyContractId: contractId, accountId: null, privateKey });
   const pubKey = publicKeyFromPrivate(privateKey);
 
   const result = await _adapter.signIn({
@@ -207,7 +258,7 @@ export const requestSignIn = async ({ contractId }: { contractId: string }) => {
       }, 100);
     }
   } else if (result.accountId) {
-    updateState({ accountId: result.accountId });
+    update({ accountId: result.accountId });
   }
 };
 
@@ -285,7 +336,7 @@ export const localTxHistory = () => {
 };
 
 export const signOut = () => {
-  updateState({ accountId: null, privateKey: null, contractId: null });
+  update({ accountId: null, privateKey: null, contractId: null });
   setConfig(NETWORKS[DEFAULT_NETWORK_ID]);
 };
 
@@ -312,6 +363,21 @@ export const sendTx = async ({
 
     const url = new URL(typeof window !== "undefined" ? window.location.href : "");
     url.searchParams.set("txIds", txId);
+
+    // preserve existing url params
+    const existingParams = new URLSearchParams(window.location.search);
+    existingParams.forEach((value, key) => {
+      if (!url.searchParams.has(key)) {
+        url.searchParams.set(key, value);
+      }
+    });
+
+    // we're wanting to preserve URL params that we send in
+    // but make sure we're not feeding back error params
+    // from a previous failure
+
+    url.searchParams.delete("errorCode");
+    url.searchParams.delete("errorMessage");
 
     try {
       const result: WalletTxResult = await _adapter.sendTransactions({
@@ -360,18 +426,17 @@ export const sendTx = async ({
     }
   }
 
-  //
   let nonce = lsGet("nonce") as number | null;
   if (nonce == null) {
     const accessKey = await queryAccessKey({ accountId: signerId, publicKey: publicKey });
-    if (accessKey.error) {
-      throw new Error(`Access key error: ${accessKey.error} when attempting to get nonce for ${signerId} for public key ${publicKey}`);
+    if (accessKey.result.error) {
+      throw new Error(`Access key error: ${accessKey.result.error} when attempting to get nonce for ${signerId} for public key ${publicKey}`);
     }
-    nonce = accessKey.nonce;
+    nonce = accessKey.result.nonce;
     lsSet("nonce", nonce);
   }
 
-  let lastKnownBlock = lsGet("block") as BlockView | null;
+  let lastKnownBlock = lsGet("block") as LastKnownBlock | null;
   if (
     !lastKnownBlock ||
     parseFloat(lastKnownBlock.header.timestamp_nanosec) / 1e6 + MaxBlockDelayMs < Date.now()
@@ -379,8 +444,8 @@ export const sendTx = async ({
     const latestBlock = await queryBlock({ blockId: "final" });
     lastKnownBlock = {
       header: {
-        prev_hash: latestBlock.header.prev_hash,
-        timestamp_nanosec: latestBlock.header.timestamp_nanosec,
+        hash: latestBlock.result.header.hash,
+        timestamp_nanosec: latestBlock.result.header.timestamp_nanosec,
       },
     };
     lsSet("block", lastKnownBlock);
@@ -389,7 +454,7 @@ export const sendTx = async ({
   nonce += 1;
   lsSet("nonce", nonce);
 
-  const blockHash = lastKnownBlock.header.prev_hash;
+  const blockHash = lastKnownBlock.header.hash;
 
   const plainTransactionObj: PlainTransaction = {
     signerId,
@@ -436,7 +501,19 @@ for (const key in reExportAllUtils) {
   exp.utils[key] = reExportAllUtils[key];
 }
 
+// devx
 export const utils = exp.utils;
+
+export const state = {}
+
+for (const key in stateExports) {
+  state[key] = stateExports[key];
+}
+
+// devx
+
+export const event = state['events'];
+delete state['events'];
 
 // Wallet redirect handling
 try {
@@ -446,18 +523,25 @@ try {
     const pubKey = url.searchParams.get("public_key");
     const errCode = url.searchParams.get("errorCode");
     const errMsg = url.searchParams.get("errorMessage");
+    const decodedErrMsg = errMsg ? decodeURIComponent(errMsg) : null;
+
     const txHashes = url.searchParams.get("transactionHashes");
     const txIds = url.searchParams.get("txIds");
 
     if (errCode || errMsg) {
-      console.warn(new Error(`Wallet error: ${errCode} ${errMsg}`));
+      console.warn(new Error(`Wallet raises:\ncode: ${errCode}\nmessage: ${decodedErrMsg}`));
     }
 
     if (accId && pubKey) {
       if (pubKey === _state.publicKey) {
-        updateState({ accountId: accId });
+        update({ accountId: accId });
       } else {
-        console.error(new Error("Public key mismatch from wallet redirect"), pubKey, _state.publicKey);
+        // it's possible the end user has a URL param that's old. we'll remove the public_key param
+        // if logged out, no need to throw warning
+        if (authStatus() === "SignedIn") {
+          console.warn("Public key mismatch from wallet redirect", pubKey, _state.publicKey);
+        }
+        url.searchParams.delete("public_key");
       }
     }
 
@@ -483,14 +567,25 @@ try {
       }
     }
 
-    url.searchParams.delete("account_id");
-    url.searchParams.delete("public_key");
-    url.searchParams.delete("errorCode");
-    url.searchParams.delete("errorMessage");
-    url.searchParams.delete("all_keys");
-    url.searchParams.delete("transactionHashes");
-    url.searchParams.delete("txIds");
-    window.history.replaceState({}, "", url.toString());
+    // we can consider removing these, but want to be careful because
+    // it can be helpful for a dev to have a URL they can debug with
+    // we won't want to remove information
+
+    // pretty sure txIds can go, especially if you can tell it's been more than 5 minutes or something
+    // public_key sometimes confuses it, so this might only be needed when adding a new access key
+    // and perhaps once we've confirmed that the transaction hashes are getting saved to storage
+    // (not sure about that section of code) then we can get rid of the transactionHashes, too
+
+    // I'd like to keep this for posterity. for a bit.
+
+    // url.searchParams.delete("account_id");
+    // url.searchParams.delete("public_key");
+    // url.searchParams.delete("txIds");
+    // url.searchParams.delete("errorCode");
+    // url.searchParams.delete("errorMessage");
+    // url.searchParams.delete("all_keys");
+    // url.searchParams.delete("transactionHashes");
+    // window.history.replaceState({}, "", url.toString());
   }
 } catch (e) {
   console.error("Error handling wallet redirect:", e);

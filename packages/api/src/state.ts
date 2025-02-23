@@ -5,7 +5,7 @@ import {
 } from "@fastnear/utils";
 import {WalletAdapter} from "@fastnear/wallet-adapter";
 
-export const WIDGET_URL = "https://wallet-adapter.fastnear.com";
+export const WIDGET_URL = "https://js.cdn.fastnear.com";
 
 export const DEFAULT_NETWORK_ID = "mainnet";
 export const NETWORKS = {
@@ -79,7 +79,7 @@ export let _state: AppState = lsGet("state") || {};
 export const onAdapterStateUpdate = (state: WalletAdapterState) => {
   console.log("Adapter state update:", state);
   const { accountId, lastWalletId, privateKey } = state;
-  updateState({
+  update({
     accountId: accountId || undefined,
     lastWalletId: lastWalletId || undefined,
     ...(privateKey ? { privateKey } : {}),
@@ -116,21 +116,70 @@ try {
 // Transaction history
 export let _txHistory: TxHistory = lsGet("txHistory") || {};
 
-// Event listeners
-export const _eventListeners: EventListeners = {
-  account: new Set(),
-  tx: new Set(),
-};
 
 export const _unbroadcastedEvents: UnbroadcastedEvents = {
   account: [],
   tx: [],
 };
 
+// events / listeners
+export const events = {
+  _eventListeners: {
+    account: new Set(),
+    tx: new Set(),
+  },
+
+  notifyAccountListeners: (accountId: string) => {
+    if (events._eventListeners.account.size === 0) {
+      _unbroadcastedEvents.account.push(accountId);
+      return;
+    }
+    events._eventListeners.account.forEach((callback: any) => {
+      try {
+        callback(accountId);
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  },
+
+  notifyTxListeners: (tx: TxStatus) => {
+    if (events._eventListeners.tx.size === 0) {
+      _unbroadcastedEvents.tx.push(tx);
+      return;
+    }
+    events._eventListeners.tx.forEach((callback: any) => {
+      try {
+        callback(tx);
+      } catch (e) {
+        console.error(e);
+      }
+    });
+  },
+
+  onAccount: (callback: (accountId: string) => void) => {
+    events._eventListeners.account.add(callback);
+    if (_unbroadcastedEvents.account.length > 0) {
+      const accountEvent = _unbroadcastedEvents.account;
+      _unbroadcastedEvents.account = [];
+      accountEvent.forEach(events.notifyAccountListeners);
+    }
+  },
+
+  onTx: (callback: (tx: TxStatus) => void): void => {
+    events._eventListeners.tx.add(callback);
+    if (_unbroadcastedEvents.tx.length > 0) {
+      const txEvent = _unbroadcastedEvents.tx;
+      _unbroadcastedEvents.tx = [];
+      txEvent.forEach(events.notifyTxListeners);
+    }
+  }
+}
+
 // Mutators
 // @todo: in favor of limiting when out of alpha
 //    but haven't given it enough thought ~ mike
-export const updateState = (newState: Partial<AppState>) => {
+export const update = (newState: Partial<AppState>) => {
   const oldState = _state;
   _state = {..._state, ...newState};
 
@@ -152,7 +201,7 @@ export const updateState = (newState: Partial<AppState>) => {
   }
 
   if (newState.accountId !== oldState.accountId) {
-    notifyAccountListeners(newState.accountId as string);
+    events.notifyAccountListeners(newState.accountId as string);
   }
 
   if (
@@ -175,58 +224,8 @@ export const updateTxHistory = (txStatus: TxStatus) => {
     updateTimestamp: Date.now(),
   };
   lsSet("txHistory", _txHistory);
-  notifyTxListeners(_txHistory[txId]);
+  events.notifyTxListeners(_txHistory[txId]);
 }
-
-
-
-// Event Notifiers
-export const notifyAccountListeners = (accountId: string) => {
-  if (_eventListeners.account.size === 0) {
-    _unbroadcastedEvents.account.push(accountId);
-    return;
-  }
-  _eventListeners.account.forEach((callback) => {
-    try {
-      callback(accountId);
-    } catch (e) {
-      console.error(e);
-    }
-  });
-}
-
-export const notifyTxListeners = (tx: TxStatus) => {
-  if (_eventListeners.tx.size === 0) {
-    _unbroadcastedEvents.tx.push(tx);
-    return;
-  }
-  _eventListeners.tx.forEach((callback) => {
-    try {
-      callback(tx);
-    } catch (e) {
-      console.error(e);
-    }
-  });
-}
-
-// Event Handlers
-export const onAccount = (callback: (accountId: string) => void) => {
-  _eventListeners.account.add(callback);
-  if (_unbroadcastedEvents.account.length > 0) {
-    const events = _unbroadcastedEvents.account;
-    _unbroadcastedEvents.account = [];
-    events.forEach(notifyAccountListeners);
-  }
-};
-
-export const onTx = (callback: (tx: TxStatus) => void): void => {
-  _eventListeners.tx.add(callback);
-  if (_unbroadcastedEvents.tx.length > 0) {
-    const events = _unbroadcastedEvents.tx;
-    _unbroadcastedEvents.tx = [];
-    events.forEach(notifyTxListeners);
-  }
-};
 
 export const getConfig = (): NetworkConfig => {
   return _config;

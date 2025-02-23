@@ -9,7 +9,6 @@ import {
   fromUint8Array as JsBase64FromUint8Array,
   toUint8Array as JsBase64ToUint8Array
 } from 'js-base64';
-import {Hex} from "@noble/curves/abstract/utils";
 import { storage } from "./storage.js";
 
 export { toBase58, fromBase58 };

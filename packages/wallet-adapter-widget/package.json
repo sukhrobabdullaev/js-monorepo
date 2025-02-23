@@ -1,6 +1,6 @@
 {
   "name": "@fastnear/wallet-adapter-widget",
-  "version": "0.7.2",
+  "version": "0.9.0",
   "description": "User interfaces for select NEAR Protocol web3 wallets",
   "type": "module",
   "types": "./dist/esm/index.d.ts",

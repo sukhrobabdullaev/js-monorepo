@@ -1,7 +1,7 @@
 import { ed25519 } from "@noble/curves/ed25519";
 import { sha256 } from "@noble/hashes/sha2";
 import { fromBase58, toBase58 } from "./misc.js";
-import {Hex} from "@noble/curves/abstract/utils";
+import { Hex } from "@noble/curves/abstract/utils";
 
 export { sha256 };
 

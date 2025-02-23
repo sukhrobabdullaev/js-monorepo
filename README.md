@@ -1,12 +1,24 @@
-# JavaScript API
+# global `near` js
 
-This project is a monorepo for various NPM packages scoped under `@fastnear/`.
+This project is a monorepo for various NPM packages scoped under `@fastnear/`. It's a TypeScript project that is a full rewrite, creating a new JavaScript library for building on NEAR Protocol.
+
+The API itself (ergonomics, how you use it) will be changing more liberally until the release is out of alpha.
+
+This repo also contains wallet-related packages, which provides an alternate path to the established wallet selector. While functional, the wallet side of this monorepo has seen less attention.
+
+## Instructions
+
+At this early stage, the best place to begin understanding this library is:
+
+https://js.fastnear.com
+
+It will load a demo. This section will be expanded with wonderfully simple commands you can run. All the final effort in delivering this was in code so far, and the demo.
+
+## Using this repo
 
 [Yarn](https://yarnpkg.com/getting-started/install) is used in this repo, and it's likely not the yarn commonly installed. You must run:
 
     yarn set version berry
-
-## Using this repo
 
     yarn build
 
@@ -51,14 +63,46 @@ OTP is required and can be input into the command:
 
 ## IN PROGRESS
 
-### Rollup
+### Wallets
 
-The `rollup` solution is partway done. This allows us to expose helpful information to developers, including for static <script> imports. It's possible we don't need it if esbuild seems to be doing it? just realizing. gotta survey and decide, task-force style
+I've only been testing with MyNEARWallet for a wallet. There may be obvious issues in the other ones, I don't know :)
 
-### `wallet-adapter-widget`
-
-This package seems close to building, but left out to get this repo up for others to see and work on.
+Generally, the most progress has been on the API. Expect to find more unaddressed wallet issues than API ones. And feel free to lean in, knowing it's alpha and greenfield. 
 
 ### Survey examples directory
 
 Put attention there, could have unaddressed issues
+
+### REPL
+
+REPL is useful during development and is quite alpha.
+
+## Attribution
+
+Exports are coming from the `utils` package in this monorepo. Want to acknowledge the hard work that went into this, and show gratitude for their willingness to have open source licenses.
+
+### `base58-js`
+
+npm: [https://www.npmjs.com/package/base58-js](https://www.npmjs.com/package/base58-js)
+
+MIT License:
+https://github.com/pur3miish/base58-js/blob/9ae694c74f4556834ee7e88cd08ac686600eb7cf/LICENSE
+
+### `borsh`
+
+npm: [https://www.npmjs.com/package/borsh](https://www.npmjs.com/package/borsh)
+
+MIT License:
+https://github.com/near/borsh-js/blob/63ad2a30f5d682e9bc8ae923446ff584f4b93f69/LICENSE-MIT.txt
+
+Apache License:
+https://github.com/near/borsh-js/blob/63ad2a30f5d682e9bc8ae923446ff584f4b93f69/LICENSE-APACHE
+
+### `@noble/curves`
+
+npm: [https://www.npmjs.com/package/@noble/curves](https://www.npmjs.com/package/@noble/curves)
+
+MIT License:
+https://github.com/paulmillr/noble-curves/blob/e9eef8b76434ba9bc24f71189b05433d7c685a02/LICENSE
+
+Note: we are currently exporting sha256 from this library, but I believe the Web API Crypto and Crypto.Subtle have this ability and that library export won't be needed.

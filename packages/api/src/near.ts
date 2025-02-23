@@ -576,11 +576,12 @@ try {
     // and perhaps once we've confirmed that the transaction hashes are getting saved to storage
     // (not sure about that section of code) then we can get rid of the transactionHashes, too
 
-    // I'd like to keep this for posterity. for a bit.
+    url.searchParams.delete("txIds");
+    // ^ we have decided this one makes sense to keep
 
+    // I'd like to keep this for posterity. for a bit.
     // url.searchParams.delete("account_id");
     // url.searchParams.delete("public_key");
-    // url.searchParams.delete("txIds");
     // url.searchParams.delete("errorCode");
     // url.searchParams.delete("errorMessage");
     // url.searchParams.delete("all_keys");

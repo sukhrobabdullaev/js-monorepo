@@ -577,13 +577,16 @@ try {
     // (not sure about that section of code) then we can get rid of the transactionHashes, too
 
     url.searchParams.delete("txIds");
-    // ^ we have decided this one makes sense to keep
+    if (authStatus() === "SignedOut") {
+      url.searchParams.delete("errorCode");
+      url.searchParams.delete("errorMessage");
+    }
+    // ^ we've decided these ones make sense to keep
 
     // I'd like to keep this for posterity. for a bit.
     // url.searchParams.delete("account_id");
     // url.searchParams.delete("public_key");
-    // url.searchParams.delete("errorCode");
-    // url.searchParams.delete("errorMessage");
+
     // url.searchParams.delete("all_keys");
     // url.searchParams.delete("transactionHashes");
     // window.history.replaceState({}, "", url.toString());

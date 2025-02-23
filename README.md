@@ -24,6 +24,24 @@ It will load a demo. This section will be expanded with wonderfully simple comma
 
 Will go through all the workspaces packages (see `workspaces` key in `package.json`) and build them for ECMAScript, CommonJS, and a Universal Module Definition. This is achieved using [`esbuild`](https://esbuild.github.io).
 
+## Hacking this repo
+
+Remember that esbuild and similar systems separate the TypeScript evaluation, strict or not, and so we cannot assume that a successful `yarn build` means valid TypeScript.
+
+    yarn type-check
+
+During development, this was helpful:
+
+    yarn type-check && yarn build
+
+If the `tsc` call (that does not emit artifacts) finds an error, it'll stop before building.
+
+Will run a command and catch TypeScript problems that should be fixed.
+
+This repo has a `tsconfig.base.json` that is used in some packages during build. It currently has `strict: true` but it can be helpful to turn it off during particularly rapid development. It won't (shouldn't) harm your project to turn off strict mode. This library will seek to adhere to strict mode, but that does not cascade into demanding this from end developers.
+
+## Compilations
+
 Each workspace package (NPM module) has an `esbuild.config.mjs` file that's used to take the TypeScript files in the `src` directory and compile them to:
 
 ### 1. ESM (EcmaScript)
@@ -54,6 +72,8 @@ In the project root, open `package.json` and change the version that should be r
     yarn constraints
 
 The file `yarn.config.cjs` defines a Yarn constraint that takes the root manifest and updates all the workspace package versions based on that.
+
+After you bump the version run `yarn build` again because the artifacts will be updated in the comments about the version.
 
 ## Publish to NPM
 

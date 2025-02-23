@@ -96,12 +96,15 @@ export function mapAction(action: any): object {
       // an alternative to using NodeJS Buffer, TextEncoder can help but is limited
       const argsEncoded = new TextEncoder().encode(argsAsString)
 
+      const defaultGas = BigInt("225000000000000")
+      const defaultDeposit = BigInt("0")
+
       return {
         functionCall: {
           methodName: action.methodName,
           args: argsEncoded,
-          gas: BigInt(action.gas),
-          deposit: BigInt(action.deposit),
+          gas: BigInt(action.gas ?? defaultGas),
+          deposit: BigInt(action.deposit ?? defaultDeposit),
         },
       };
     }

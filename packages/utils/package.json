@@ -1,6 +1,6 @@
 {
   "name": "@fastnear/utils",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "description": "Utility functions for interactions with the NEAR blockchain",
   "type": "module",
   "types": "./dist/esm/index.d.ts",
@@ -14,10 +14,17 @@
     "type-check": "tsc --noEmit"
   },
   "author": "FastNEAR",
+  "homepage": "https://js.fastnear.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastnear/js-monorepo.git"
+  },
   "keywords": [
     "near-protocol",
+    "web3-utils",
     "blockchain",
-    "fastnear"
+    "fastnear",
+    "web3"
   ],
   "files": [
     "dist"

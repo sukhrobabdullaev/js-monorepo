@@ -1,6 +1,6 @@
 {
   "name": "@fastnear/borsh-schema",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "description": "NEAR Protocol's borsh schema for common applications",
   "type": "module",
   "types": "./dist/esm/index.d.ts",
@@ -14,10 +14,18 @@
     "type-check": "tsc --noEmit"
   },
   "author": "FastNEAR",
+  "homepage": "https://js.fastnear.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastnear/js-monorepo.git"
+  },
   "keywords": [
+    "binary-serialization",
+    "borsh",
     "near-protocol",
     "blockchain",
-    "fastnear"
+    "fastnear",
+    "web3"
   ],
   "files": [
     "dist"

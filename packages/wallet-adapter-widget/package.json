@@ -1,6 +1,6 @@
 {
   "name": "@fastnear/wallet-adapter-widget",
-  "version": "0.9.2",
+  "version": "0.9.4",
   "description": "User interfaces for select NEAR Protocol web3 wallets",
   "type": "module",
   "types": "./dist/esm/index.d.ts",
@@ -15,10 +15,18 @@
   },
   "keywords": [
     "near-protocol",
+    "near-wallet",
+    "web3",
+    "web3-wallet",
     "blockchain",
     "fastnear"
   ],
   "author": "FastNEAR",
+  "homepage": "https://js.fastnear.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fastnear/js-monorepo.git"
+  },
   "files": [
     "dist",
     "public"

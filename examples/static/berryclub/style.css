@@ -29,7 +29,6 @@ a:visited {
 
 .nav-container {
     border-bottom: 1px solid rgba(100, 255, 218, 0.1);
-    padding: 1rem 0;
 }
 
 .nav-content {
@@ -61,8 +60,9 @@ a:visited {
     background: var(--card-bg);
     border: 1px solid rgba(100, 255, 218, 0.1);
     border-radius: 0.5rem;
-    max-width: 1200px;
-    margin: 1rem auto 0;
+    min-width: 420px;
+    max-width: 1400px;
+    margin: 1rem auto;
 }
 
 .hero-section p {
@@ -84,7 +84,6 @@ a:visited {
 
 .hero-content {
     text-align: left;
-    padding-right: 2rem;
 }
 
 .hero-image .img-container {
@@ -110,28 +109,6 @@ a:visited {
     background-color: rgba(255, 255, 255, 0.12);
 }
 
-.user-info {
-    position: fixed;
-    top: 1rem;
-    right: 1rem;
-    background: black;
-    border-radius: 0;
-    border: 1px solid rgba(100, 255, 218, 0.1);
-    padding: 1rem;
-    width: 300px;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    transition: all 0.2s ease;
-    z-index: 1000;
-}
-
-.user-info .user-name {
-    color: var(--text);
-    font-weight: 600;
-    padding: 0.25rem 0;
-}
-
 .signout-button {
     background: black;
     color: var(--accent);
@@ -148,13 +125,43 @@ a:visited {
     color: var(--card-bg);
 }
 
+.user-info {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    background: black;
+    border-radius: 0;
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    z-index: 1000;
+}
+
+.user-info .user-name {
+    color: var(--text);
+    font-weight: 600;
+    padding: 0.25rem 0;
+}
+
+.user-info.expanded {
+    padding: 1rem 0.9rem
+}
+
 .user-info.collapsed {
+    padding: 1rem;
     width: auto;
     overflow: hidden;
 }
 
 .user-info.collapsed .signout-button {
     display: none;
+}
+
+.user-info {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    z-index: 9999 !important;
 }
 
 .app-card {
@@ -222,18 +229,34 @@ a:visited {
     top: 0.5rem;
     right: 0.5rem;
     background: #444 !important;
-    /*border: none;*/
     color: #ccc !important;
-    font-size: 1.1rem;
-    padding: 0.35rem 0.75rem;
     border-radius: 0.25rem;
     cursor: pointer;
     z-index: 10;
+    transition: opacity 0.2s ease;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+}
+
+.copy-button:active {
+    outline: 3px solid darkcyan;
 }
 
 .copy-button:hover {
+    opacity: 0.8;
     background: #555 !important;
     color: #fff !important;
+}
+
+.copy-flash {
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: background-color 0.42s ease-in-out;
+}
+
+.copy-outline {
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 1px;
+    transition: outline 0.42s ease-in-out;
 }
 
 .snippet-arrow {
@@ -281,11 +304,26 @@ a:visited {
 }
 
 @keyframes blink-cursor {
-    0%, 24% { opacity: 1; }
-    25%, 49% { opacity: 0; }
-    50%, 74% { opacity: 1; }
-    75%, 99% { opacity: 0; }
-    100% { opacity: 1; }
+    0%, 24% {
+        opacity: 1;
+        background-image: url('assets/blinking-cursor.svg');
+    }
+    25%, 49% {
+        opacity: 0;
+        background-image: none;
+    }
+    50%, 74% {
+        opacity: 1;
+        background-image: url('assets/blinking-cursor.svg');
+    }
+    75%, 99% {
+        opacity: 0;
+        background-image: none;
+    }
+    100% {
+        opacity: 1;
+        background-image: url('assets/wikimedia_javascript_logo.svg');
+    }
 }
 
 .near-cursor::after {
@@ -293,7 +331,6 @@ a:visited {
     display: inline-block;
     width: 2rem;
     height: 2rem;
-    background-image: url('./wikimedia_javascript_logo.svg');
     background-size: contain;
     background-position: bottom left;
     background-repeat: no-repeat;
@@ -316,13 +353,6 @@ a:visited {
     z-index: 0;
 }
 
-/* Ensure the account overlay is always on top */
-.user-info {
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    z-index: 9999 !important;
-}
-
-/* Clear or reduce any competing z-indexes */
 .nav-container,
 .hero-section,
 .mw8.center.relative {
@@ -330,7 +360,6 @@ a:visited {
     position: relative;
 }
 
-/* 3D Transform effect for the screenshot wrapper */
 .transform-wrapper {
     perspective: 1666px;
     z-index: 1;
@@ -356,7 +385,7 @@ a:visited {
 }
 
 #demo {
-    background: url('./near-blog-berry-club.png') #000 no-repeat top center/cover;
+    background: url('assets/near-blog-berry-club.png') #000 no-repeat top center/cover;
     backdrop-filter: blur(3px);
 }
 
@@ -386,8 +415,59 @@ a:visited {
     z-index: -1;
 }
 
-.demo-inner {
-    background: none;
+#public-key {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.demo-inner a {
+    color: deeppink;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.demo-inner a::before {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    transform: scaleX(0);
+    transition: transform 0.2s ease;
+    opacity: 0.5;
+}
+
+.demo-inner a:hover::before {
+    transform: scaleX(1);
+}
+
+.demo-inner a:visited {
+    color: darkviolet;
+}
+
+.demo-inner a[href*="github.com"] {
+    padding-right: 1.3rem;
+    margin-right: 0.4rem;
+}
+
+.demo-inner a[href*="github.com"]::after {
+    content: '';
+    position: absolute;
+    right: -4px;
+    width: 23px;
+    height: 23px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='currentColor'%3E%3Cpath d='M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.8;
 }
 
 .blockquote-card-subtle p {
@@ -427,14 +507,86 @@ code {
     font-family: monospace;
 }
 
+.neon-text {
+    text-shadow: 0 0 1px #00ffa2, 0 0 0 #00ffa2, 0 0 1px #00a2ff;
+    animation: subtleNeon 3s ease-in-out 1 alternate-reverse;
+    letter-spacing: 0.2rem;
+}
+
+#auth.expanded .account-name {
+    padding-bottom: 1.3rem;
+    position: relative;
+}
+
+#auth.expanded .account-name::after {
+    content: "⬇";
+    font-size: 0.666rem;
+    color: #eee;
+    position: absolute;
+    left: 50%;
+    top: 66%;
+}
+
+#auth.expanded .account-name:hover::after {
+    opacity: 0.9;
+}
+
+#auth .near-contract:hover, #auth .near-public-key:hover {
+    scale: 1.05;
+    transition: scale 0.3s ease-in-out;
+}
+
+@keyframes subtleNeon {
+    0% {
+        text-shadow: 0 0 1px #00ffa2, 0 0 0 #00ffa2, 0 0 1px #00a2ff;
+        letter-spacing: 0.2rem;
+    }
+    50% {
+        text-shadow: 0 0 0 #00ffa2, 0 0 1px #00ffa2, 0 0 0 #00a2ff;
+        letter-spacing: 0.21rem;
+    }
+    100% {
+        text-shadow: 0 0 1px #00ffa2, 0 0 0 #00ffa2, 0 0 1px #00a2ff;
+        letter-spacing: 0.2rem;
+    }
+}
+
+.grow {
+    transform: scale(1.06);
+}
+
+.square-initial {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contract-info {
+    display: flex;
+    align-items: center;
+}
+
+#compilations li {
+    min-width: 370px;
+}
+
+/* media queries to try to stay above */
+
 @media (max-width: 960px) {
     #demo::before {
         inset: 10px;
     }
+    .neon-text {
+        font-size: 0.98rem;
+        padding: 2px;
+    }
 }
 
-
 @media (max-width: 768px) {
+    .neon-text {
+        font-size: 0.9rem;
+        padding: 1px;
+    }
     .mw8 {
         max-width: 96% !important;
     }
@@ -454,5 +606,7 @@ code {
     .hero-section {
         padding: 0.666rem;
     }
+    .code-label-left {
+        max-width: 60%;
+    }
 }
-

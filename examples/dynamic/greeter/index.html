@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>NEAR Greeter Example (testnet)</title>
-  <script src="../js/fastnear.js"></script>
+  <script src="../../../packages/api/dist/umd/browser.global.js"></script>
   <style>
     .container {
       max-width: 600px;
@@ -51,17 +51,17 @@
   // Initialize NEAR
   near.config({ networkId: 'testnet' });
 
-  let currentAccount = near.accountId;
+  let currentAccount = near.accountId();
 
   // Setup account handling
-  near.onAccount((accountId) => {
+  near.event.onAccount((accountId) => {
     console.log("Account ID Update", accountId);
     currentAccount = accountId;
     updateUI();
   });
 
   // Setup transaction handling
-  near.onTx((txStatus) => {
+  near.event.onTx((txStatus) => {
     console.log("Transaction Status Update", txStatus);
     fetchGreeting(); // Refresh greeting after successful transaction
     updateStatus(`Transaction ${txStatus.status}: ${txStatus.txHash || ''}`);

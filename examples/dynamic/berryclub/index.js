@@ -41,11 +41,11 @@ function Counter() {
   const [berryAccount, setBerryAccount] = useState(null);
   const [encodedLines, setEncodedLines] = useState([]);
   useEffect(() => {
-    near.onAccount((accountId) => {
+    near.event.onAccount((accountId) => {
       console.log("Account ID Update", accountId);
       setNonce((nonce) => nonce + 1);
     });
-    near.onTx((txStatus) => {
+    near.event.onTx((txStatus) => {
       console.log("Tx Status Update", txStatus);
       setNonce((nonce) => nonce + 1);
     });
@@ -61,12 +61,12 @@ function Counter() {
         }),
       );
       setBerryAccount(
-        near.accountId
+        near.accountId()
           ? await near.view({
               contractId,
               methodName: "get_account",
               args: {
-                account_id: near.accountId,
+                account_id: near.accountId(),
               },
             })
           : null,
@@ -86,14 +86,14 @@ function Counter() {
 
   return (
     <div className="container-fluid">
-      {near.accountId ? (
+      {near.accountId() ? (
         <div key="sign-out">
-          <h1>Logged in as {near.accountId}</h1>
-          <div>Pubkey is {near.publicKey}</div>
+          <h1>Logged in as {near.accountId()}</h1>
+          <div>Pubkey is {near.publicKey()}</div>
           <div>
             Auth:
             <br />
-            <pre>{JSON.stringify(near.authStatus, null, 2)}</pre>
+            <pre>{JSON.stringify(near.authStatus(), null, 2)}</pre>
           </div>
           <button
             className="btn btn-secondary m-1"
@@ -115,7 +115,7 @@ function Counter() {
       <div>
         Total Supply: {totalSupply ? parseFloat(totalSupply) / 1e18 : ""}
       </div>
-      {near.accountId && (
+      {near.accountId() && (
         <div>
           Your Balance:{" "}
           {berryAccount

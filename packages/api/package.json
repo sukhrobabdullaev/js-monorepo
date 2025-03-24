@@ -41,7 +41,7 @@
     "@noble/curves": "*",
     "@noble/hashes": "*",
     "base58-js": "*",
-    "big": "*",
+    "big.js": "*",
     "borsh": "*"
   },
   "devDependencies": {

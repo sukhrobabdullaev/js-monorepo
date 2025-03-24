@@ -91,7 +91,7 @@ export const getWalletAdapterState = (): WalletAdapterState => {
     publicKey: _state.publicKey,
     accountId: _state.accountId,
     lastWalletId: _state.lastWalletId,
-    networkId: DEFAULT_NETWORK_ID,
+    networkId: _config.networkId,
   };
 }
 

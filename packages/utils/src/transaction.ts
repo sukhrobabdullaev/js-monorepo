@@ -91,20 +91,14 @@ export function mapAction(action: any): object {
       };
     }
     case "FunctionCall": {
-      // turn JS object into json string
-      const argsAsString = JSON.stringify(action.args)
-      // an alternative to using NodeJS Buffer, TextEncoder can help but is limited
-      const argsEncoded = new TextEncoder().encode(argsAsString)
-
-      const defaultGas = BigInt("225000000000000")
-      const defaultDeposit = BigInt("0")
-
       return {
         functionCall: {
           methodName: action.methodName,
-          args: argsEncoded,
-          gas: BigInt(action.gas ?? defaultGas),
-          deposit: BigInt(action.deposit ?? defaultDeposit),
+          args: (action.argsBase64 !== null && action.argsBase64 !== undefined) ?
+            fromBase64(action.argsBase64) :
+            (new TextEncoder().encode(JSON.stringify(action.args))),
+          gas: BigInt(action.gas ?? "300000000000000"),
+          deposit: BigInt(action.deposit ?? "0"),
         },
       };
     }

@@ -1,6 +1,6 @@
 import { serialize as borshSerialize, deserialize as borshDeserialize, Schema } from "borsh";
 import { keyFromString } from "./crypto.js";
-import { fromBase58, fromBase64, toBase64 } from "./misc.js";
+import {base64ToBytes, fromBase58, fromBase64, toBase64} from "./misc.js";
 import { getBorshSchema } from "@fastnear/borsh-schema";
 
 export interface PlainTransaction {
@@ -86,7 +86,7 @@ export function mapAction(action: any): object {
     case "DeployContract": {
       return {
         deployContract: {
-          code: fromBase64(action.codeBase64),
+          code: base64ToBytes(action.codeBase64),
         },
       };
     }
@@ -95,7 +95,7 @@ export function mapAction(action: any): object {
         functionCall: {
           methodName: action.methodName,
           args: (action.argsBase64 !== null && action.argsBase64 !== undefined) ?
-            fromBase64(action.argsBase64) :
+            base64ToBytes(action.argsBase64) :
             (new TextEncoder().encode(JSON.stringify(action.args))),
           gas: BigInt(action.gas ?? "300000000000000"),
           deposit: BigInt(action.deposit ?? "0"),
